@@ -13,8 +13,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/daterangepicker/daterangepicker.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/datepicker/datepicker3.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/iCheck/all.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/colorpicker/bootstrap-colorpicker.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/timepicker/bootstrap-timepicker.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo $theme_asset_url ?>plugins/select2/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $theme_asset_url ?>dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -129,7 +139,7 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         
         <li class="active"><a href="<?= site_url('Admin'); ?>"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="<?= site_url('Technician'); ?>"><i class="fa fa-link"></i> <span>Technician</span></a></li>
+        <li><a href="<?= site_url('technician'); ?>"><i class="fa fa-link"></i> <span>Technician</span></a></li>
         <li><a href="<?= site_url('admin/dashboard'); ?>"><i class="fa fa-link"></i> <span>Demo Dashboard</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Performance Analysis</span>

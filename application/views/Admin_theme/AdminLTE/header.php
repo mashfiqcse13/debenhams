@@ -130,6 +130,7 @@ desired effect
         
         <li class="active"><a href="<?= site_url('Admin'); ?>"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href="<?= site_url('Technician'); ?>"><i class="fa fa-link"></i> <span>Technician</span></a></li>
+        <li><a href="<?= site_url('admin/dashboard'); ?>"><i class="fa fa-link"></i> <span>Demo Dashboard</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Performance Analysis</span>
             <span class="pull-right-container">

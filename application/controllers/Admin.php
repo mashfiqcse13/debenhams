@@ -26,4 +26,12 @@ class Admin extends CI_Controller {
         $this->load->view($this->config->item('ADMIN_THEME') . 'starter', $data);
 //		$this->load->view('welcome_message');
     }
+    
+       public function dashboard() {
+        $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        $data['Title'] = 'Dashboard';
+        $data['base_url'] = base_url();
+        $this->load->view($this->config->item('ADMIN_THEME') . 'dashboard', $data);
+//		$this->load->view('welcome_message');
+    } 
 }

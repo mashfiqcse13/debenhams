@@ -29,6 +29,7 @@ class Tank_auth
 		$this->ci->load->library('session');
 		$this->ci->load->database();
 		$this->ci->load->model('tank_auth/users');
+		$this->ci->load->model('Supply_info_model');
 
 		// Try to autologin
 		$this->autologin();
@@ -68,10 +69,12 @@ class Tank_auth
 						$this->error = array('banned' => $user->ban_reason);
 
 					} else {
+                                            $technician_id =  $this->ci->Supply_info_model->select_all_user_id($user->id);
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
+                                                                'technician_id' => $technician_id->id_technician,
 						));
 
 						if ($user->activated == 0) {							// fail - not activated
@@ -113,7 +116,7 @@ class Tank_auth
 		$this->delete_autologin();
 
 		// See http://codeigniter.com/forums/viewreply/662369/ as the reason for the next line
-		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => ''));
+		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => '', 'technician_id' => ''));
 
 		$this->ci->session->sess_destroy();
 	}
@@ -148,6 +151,8 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
+        
+        
 
 	/**
 	 * Create new user on the site and return some data about it:
@@ -562,7 +567,7 @@ class Tank_auth
 
 					$this->ci->load->model('tank_auth/user_autologin');
 					if (!is_null($user = $this->ci->user_autologin->get($data['user_id'], md5($data['key'])))) {
-
+                                           
 						// Login user
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,

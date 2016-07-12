@@ -39,8 +39,5 @@ class Performance extends CI_Controller {
 //		$this->load->view('welcome_message');
     } 
     
-    public function data(){
-        echo json_encode($this->performance_model->order_by_techncian(1));
-        
-    }
+
 }

@@ -92,6 +92,13 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo $theme_asset_url ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<?php if (isset($glosary)): ?>
+    <!-- glosary crud js file -->
+    <?php foreach ($glosary->js_files as $file): ?>
+
+        <script src="<?php echo $file; ?>"></script>
+    <?php endforeach; ?>
+<?php endif; ?>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo $theme_asset_url ?>bootstrap/js/bootstrap.min.js"></script>
 <!-- Select2 -->
@@ -119,6 +126,7 @@
 <script src="<?php echo $theme_asset_url ?>dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo $theme_asset_url ?>dist/js/demo.js"></script>
+
 <!-- Page script -->
 <script>
   $(function () {

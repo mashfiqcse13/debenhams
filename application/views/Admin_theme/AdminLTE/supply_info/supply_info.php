@@ -187,7 +187,7 @@
 
                         <?= form_close(); ?>
                         <?php
-                    } if ($this->uri->segment(3) == 'edit') {
+                    }else if ($this->uri->segment(3) == 'edit') {
                         $attributes = array(
                             'class' => 'form-horizontal',
                             'method' => 'get',
@@ -416,13 +416,18 @@
             });
         }
     });
-    document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $value->id_supply_style_no;?>";
-    document.forms['form'].elements['id_supply_session'].value = "<?php echo $value->id_supply_session;?>";
-    document.forms['form'].elements['id_department'].value = "<?php echo $value->id_department;?>";
-    document.forms['form'].elements['id_supplyer'].value = "<?php echo $value->id_supplyer;?>";
-    document.forms['form'].elements['sample_result'].value = "<?php echo $value->sample_result;?>";
-    document.forms['form'].elements['approved_by'].value = "<?php echo $value->approved_by;?>";
-    document.forms['form'].elements['lab_test_report'].value = "<?php echo $value->lab_test_report;?>";
-    document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block;?>";
-    document.forms['form'].elements['id_supply_fit_name'].value = "<?php echo $value->id_supply_fit_name;?>";
-</script>
+    </script>
+   
+<?php if ($this->uri->segment(3) == 'edit') { ?>
+    <script>
+        document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $value->id_supply_style_no; ?>";
+        document.forms['form'].elements['id_supply_session'].value = "<?php echo $value->id_supply_session; ?>";
+        document.forms['form'].elements['id_department'].value = "<?php echo $value->id_department; ?>";
+        document.forms['form'].elements['id_supplyer'].value = "<?php echo $value->id_supplyer; ?>";
+        document.forms['form'].elements['sample_result'].value = "<?php echo $value->sample_result; ?>";
+        document.forms['form'].elements['approved_by'].value = "<?php echo $value->approved_by; ?>";
+        document.forms['form'].elements['lab_test_report'].value = "<?php echo $value->lab_test_report; ?>";
+        document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
+        document.forms['form'].elements['id_supply_fit_name'].value = "<?php echo $value->id_supply_fit_name; ?>";
+    </script>
+<?php } ?>

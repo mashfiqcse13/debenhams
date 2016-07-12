@@ -152,6 +152,7 @@ desired effect
             <li><a href="<?= site_url('Performance/supplier'); ?>"><i class="fa fa-bar-chart"></i> Performance of Supplier</a></li>
             <li><a href="<?= site_url('Performance/ranking_supplier'); ?>"><i class="fa fa-bar-chart"></i> Ranking of Supplier</a></li>
             <li><a href="<?= site_url('Performance/order_analysis'); ?>"><i class="fa fa-bar-chart"></i> Total Order Analysis</a></li>
+            <li><?php echo anchor('supply_info', '<i class="fa fa-plus-circle"></i>  <span>Insert Info</span>'); ?></li>
           </ul>
         </li>
         <li><a href="<?= site_url('login/logout'); ?>"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>

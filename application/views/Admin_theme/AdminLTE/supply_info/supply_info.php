@@ -2,7 +2,6 @@
 <?php include_once __DIR__ . '/../header.php'; ?>
 
 <!-- Left side column. contains the logo and sidebar -->
-<?php include_once '/../main_sidebar.php'; ?> <!-- main sidebar area -->
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

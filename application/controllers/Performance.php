@@ -32,8 +32,12 @@ class Performance extends CI_Controller {
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Technician Performance';
         $data['technician_dropdown']=$this->performance_model->get_technician_dropdown();
+        
+        $data['analysis']=$this->performance_model->order_by_techncian(1);
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'performance_technician', $data);
 //		$this->load->view('welcome_message');
     } 
+    
+
 }

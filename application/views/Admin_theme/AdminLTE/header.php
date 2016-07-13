@@ -175,6 +175,16 @@ desired effect
               <li><?php echo anchor('supply_info', '<i class="fa fa-plus-circle"></i>  <span>Insert Info</span>'); ?></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Style No</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li><?php echo anchor('supply_style_no', '<i class="fa fa-slideshare"></i>  <span>Style No</span>'); ?></li>
+          </ul>
+        </li>
         <li><a href="<?= site_url('login/logout'); ?>"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

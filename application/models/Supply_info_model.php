@@ -44,13 +44,25 @@ class Supply_info_model extends ci_model{
         return $query->row();
     }
     function select_all_by_technician_id(){
-        $id = $this->session->userdata('technician_id');
-        $this->db->select('id_technician');
+        $id = $this->session->userdata('user_id');
+        $user_type = $this->user($id);
+        $this->db->select('*');
         $this->db->from('supply_style_no');
-        $this->db->where('id_technician',$id);
+        $this->db->where('allocated_to',$user_type->type);
         $query = $this->db->get();
-        return $query->row();
+        return $query->result();
     }
+    
+    function user($id){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->join('user_type','users.id = user_type.user_id','left');
+        $this->db->where('users.id',$id);
+        $this->db->where('user_type.type',2);
+        $query = $this->db->get();
+        return $query->row(); 
+    }
+    
 //    ajax search
     function select_fit_name_by_fit_id($id){
         $this->db->select('*');

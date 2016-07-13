@@ -46,7 +46,7 @@
                                                 <?php
                                                 foreach ($all_style_no as $style_no) {
                                                     ?>
-                                                    <option value="<?php echo $style_no->style_no; ?>"><?php echo $style_no->style_no; ?></option>
+                                                    <option value="<?php echo $style_no->id_supply_style_no; ?>"><?php echo $style_no->style_no; ?></option>
                                                     <?php
                                                 }
                                                 ?>
@@ -61,7 +61,7 @@
                                                 <?php
                                                 foreach ($all_session as $session) {
                                                     ?>
-                                                    <option value="<?php ?>"><?php echo $session->name; ?></option>
+                                                    <option value="<?php echo $session->id_supply_session;?>"><?php echo $session->name; ?></option>
                                                     <?php
                                                 }
                                                 ?>
@@ -217,7 +217,7 @@
                                                     <?php
                                                     foreach ($all_style_no as $style_no) {
                                                         ?>
-                                                        <option value="<?php echo $style_no->style_no; ?>"><?php echo $style_no->style_no; ?></option>
+                                                        <option value="<?php echo $style_no->id_supply_style_no; ?>"><?php echo $style_no->style_no; ?></option>
                                                         <?php
                                                     }
                                                     ?>

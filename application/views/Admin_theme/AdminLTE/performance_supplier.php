@@ -32,11 +32,11 @@
 
                         <div class="col-md-5">
                             <div class="form-group col-md-4 text-left">
-                                <label>Select Technician:</label>                        
+                                <label>Select Supplier:</label>                        
                             </div>
                             <div class="form-group col-md-6">
                                 <div class="input-group">
-                                    <?php echo $technician_dropdown; ?>
+                                    <?php echo $suppliers_dropdown; ?>
 
                                     </select>
                                 </div><!-- /.input group -->
@@ -73,7 +73,8 @@
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
-                        <h2 class="text-center page-header">Technician Performance:  <?=$user_name;?></h2>
+                        <h2 class="text-center page-header">Supplier Performance</h2>
+                        <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
                         <div id="piechart" style="width: 100%; height: 500px;"></div>
                     </div> 
@@ -100,7 +101,7 @@
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: '<?=$Title;?> : <?=$user_name;?>'
+          title: '<?=$Title;?> : <?=$user_name;?> ( Basis on Pass/Fail ) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

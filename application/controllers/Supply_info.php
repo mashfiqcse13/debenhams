@@ -62,7 +62,7 @@ class Supply_info extends CI_Controller {
         $data['id_supplyer'] = $this->input->post('id_supplyer');
         $data['sample_result'] = $this->input->post('sample_result');
         $data['approved_by'] = $this->input->post('approved_by');
-        $data['id_technician'] = $this->session->userdata('technician_id');
+        $data['id_technician'] = $this->session->userdata('user_id');
         $data['lab_test_report'] = $this->input->post('lab_test_report');
         $data['pattern_block'] = $this->input->post('pattern_block');
         $data['date_created'] = date('Y-m-d H:i:s');
@@ -86,7 +86,7 @@ class Supply_info extends CI_Controller {
         $data['id_supplyer'] = $this->input->post('id_supplyer');
         $data['sample_result'] = $this->input->post('sample_result');
         $data['approved_by'] = $this->input->post('approved_by');
-        $data['id_technician'] = $this->session->userdata('technician_id');
+        $data['id_technician'] = $this->session->userdata('user_id');
         $data['lab_test_report'] = $this->input->post('lab_test_report');
         $data['pattern_block'] = $this->input->post('pattern_block');
         $data['date_created'] = date('Y-m-d H:i:s');

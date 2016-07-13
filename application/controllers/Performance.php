@@ -29,7 +29,27 @@ class Performance extends CI_Controller {
 //		$this->load->view('welcome_message');
     }
     
-       public function technician() {
+    public function technician() {
+        $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        $data['Title'] = 'Technician Performance';
+        $data['technician_dropdown']=$this->performance_model->get_technician_dropdown();
+        
+        $date_range =$this->input->post('date_range');
+        
+        $user_id = $this->input->post('user_id');
+        $btn_submit=$this->input->post('btn_submit');
+        if(isset($btn_submit)){  
+            $data['user_name']=$this->performance_model->get_user_name($user_id);
+            $data['total_order']=$this->performance_model->total_order_count($user_id,$date_range);
+            $data['analysis']=$this->performance_model->order_by_techncian($user_id,$date_range);
+        }
+        
+        $data['base_url'] = base_url();
+        $this->load->view($this->config->item('ADMIN_THEME') . 'performance_technician', $data);
+    } 
+    
+    
+    public function supplier() {
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Technician Performance';
         $data['technician_dropdown']=$this->performance_model->get_technician_dropdown();

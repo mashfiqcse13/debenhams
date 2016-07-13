@@ -72,11 +72,11 @@ class Performance_model  extends CI_Model  {
     return $data;
     }
     
-    function order_by_supplier($id,$date){
+    function supplier_performance_by_pass_fail($id,$date){
         
-        $this->load->model('common_model');
-        
+        $this->load->model('common_model');        
         $date_range=$this->common_model->dateformatter($date);
+        
         $con1="sample_result = 1 AND approved_by = 1 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
         $con2="sample_result = 2 AND approved_by = 1 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
         $con3="sample_result = 1 AND approved_by = 2 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
@@ -99,6 +99,44 @@ class Performance_model  extends CI_Model  {
        
        
     return $data;
+    }
+    
+    function supplier_performance_by_fittype($id,$date){
+        
+        $this->load->model('common_model');        
+        $date_range=$this->common_model->dateformatter($date);
+        
+        $con1="id_supply_fit_name = 1 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
+        $con2="id_supply_fit_name = 2 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
+        $con3="id_supply_fit_name = 3 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
+        $con4="id_supply_fit_name = 4 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
+        
+        $count1=$this->row_count_fit($con1);
+        $count2=$this->row_count_fit($con2);
+        $count3=$this->row_count_fit($con3);
+        $count4=$this->row_count_fit($con4);
+        
+        $data="[['Fit Type','Percentage'],
+               ['First Fit Sample',$count1],
+               ['Second Fit Sample',$count2],
+               ['Third Fit Sample',$count3],
+               ['Forth Fit Sample',$count4]
+               ]";
+        
+        
+        return $data; 
+        
+    }
+    
+    function row_count_fit($condition){
+        
+        $query=$this->db->query("SELECT COUNT(*) as count_result FROM supply_info LEFT JOIN supply_fit_register on
+                                supply_info.id_supply_style_no=supply_fit_register.id_supply_info 
+                                WHERE $condition");
+        foreach ($query->result() as $row)
+        {
+                return $row->count_result;
+        }
     }
     
     function total_order_count($id,$date,$name){

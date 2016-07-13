@@ -73,10 +73,24 @@
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
-                        <h2 class="text-center page-header">Supplier Performance</h2>
+                        <h2 class="text-center page-header">Supplier Performance : Basis on pass/fail</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
                         <div id="piechart" style="width: 100%; height: 500px;"></div>
+                    </div> 
+                    </div>
+                </div>
+
+                <?php } ?>
+        
+                <?php if(!empty($supplier_performance_by_fittype)){ ?>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="box box-title">
+                        <h2 class="text-center page-header">Supplier Performance : Basis on Fit Sample</h2>
+                        <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <div id="piechart_fit" style="width: 100%; height: 500px;"></div>
                     </div> 
                     </div>
                 </div>
@@ -105,6 +119,20 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+      
+      google.charts.setOnLoadCallback(drawChart_fit);
+      function drawChart_fit() {
+
+        var data = google.visualization.arrayToDataTable(<?php echo $supplier_performance_by_fittype ; ?>);
+
+        var options = {
+          title: '<?=$Title;?> : <?=$user_name;?> ( Fit Sample ) '
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_fit'));
 
         chart.draw(data, options);
       }

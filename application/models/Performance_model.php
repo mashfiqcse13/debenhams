@@ -13,17 +13,28 @@ class Performance_model  extends CI_Model  {
         $data = array();
         $data[''] = 'Select Technician';
         foreach ($technicians as $technician) {
-            $data[$technician->id_technician] = $technician->technician_name;
+            $data[$technician->user_id] = $technician->technician_name;
         }
-        return form_dropdown('id_technician', $data, NULL, ' class="form-control select2" required');
+        return form_dropdown('user_id', $data, NULL, ' class="form-control select2" required');
     }
     
-    function order_by_techncian($id){
+        function get_user_name($user_id){
+        $query = $this->db->get_where('technician',array('user_id' => $user_id));
+        foreach($query->result() as $row){
+            return $row->technician_name;
+        }
+    }
+    
+    function order_by_techncian($id,$date){
         
-        $con1=array('sample_result' => 1, 'approved_by' => 1, 'id_technician' => $id);    
-        $con2=array('sample_result' => 2, 'approved_by' => 1, 'id_technician' => $id); 
-        $con3=array('sample_result' => 1, 'approved_by' => 2, 'id_technician' => $id); 
-        $con4=array('sample_result' => 2, 'approved_by' => 2, 'id_technician' => $id); 
+        $this->load->model('common_model');
+        
+        $date_range=$this->common_model->dateformatter($date);
+        $con1="sample_result = 1 AND approved_by = 1 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
+        $con2="sample_result = 2 AND approved_by = 1 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
+        $con3="sample_result = 1 AND approved_by = 2 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
+        $con4="sample_result = 2 AND approved_by = 2 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
+        
         
         $count1=$this->row_count($con1);
         $count2=$this->row_count($con2);
@@ -43,10 +54,21 @@ class Performance_model  extends CI_Model  {
     return $data;
     }
     
+    function total_order_count($id,$date){
+        $this->load->model('common_model');        
+        $date_range=$this->common_model->dateformatter($date);
+        $con="id_technician = $id AND DATE(date_created) BETWEEN $date_range";
+        $total=$this->row_count($con);
+        return $total;
+    }
+    
     function row_count($condition){
-        $query=$this->db->select('Count(sample_result) as count_result')
-                ->where($condition)->get('supply_info');
         
+        $query=$this->db->query("SELECT COUNT(sample_result) as count_result FROM supply_info WHERE $condition");
+//                $this->db->select('Count(sample_result) as count_result')
+//                ->where($condition)->get('supply_info');
+//        $lst=$this->db->last_query();
+//        print_r($lst);
         foreach ($query->result() as $row)
         {
                 return $row->count_result;

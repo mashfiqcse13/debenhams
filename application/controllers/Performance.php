@@ -17,6 +17,7 @@ class Performance extends CI_Controller {
         }
         $this->load->library('grocery_CRUD');
         $this->load->model('performance_model');
+        $this->load->model('common_model');
         
     }
 
@@ -33,10 +34,18 @@ class Performance extends CI_Controller {
         $data['Title'] = 'Technician Performance';
         $data['technician_dropdown']=$this->performance_model->get_technician_dropdown();
         
-        $data['analysis']=$this->performance_model->order_by_techncian(1);
+        $date_range =$this->input->post('date_range');
+        
+        $user_id = $this->input->post('user_id');
+        $btn_submit=$this->input->post('btn_submit');
+        if(isset($btn_submit)){  
+            $data['user_name']=$this->performance_model->get_user_name($user_id);
+            $data['total_order']=$this->performance_model->total_order_count($user_id,$date_range);
+            $data['analysis']=$this->performance_model->order_by_techncian($user_id,$date_range);
+        }
+        
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'performance_technician', $data);
-//		$this->load->view('welcome_message');
     } 
     
 

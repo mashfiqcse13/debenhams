@@ -69,7 +69,18 @@
             </div>
         </div>
 
-        <div id="piechart" style="width: 100%; height: 500px;"></div>
+                <?php if(!empty($analysis)){ ?>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="box box-title">
+                        <h2 class="text-center page-header">Technician Performance:  <?=$user_name;?></h2>
+                        <p class="strong">Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <div id="piechart" style="width: 100%; height: 500px;"></div>
+                    </div> 
+                    </div>
+                </div>
+
+                <?php } ?>
 
        
       <!-- Your Page Content Here -->
@@ -89,7 +100,7 @@
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: 'Tecnician Performance'
+          title: '<?=$Title;?> : <?=$user_name;?>'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

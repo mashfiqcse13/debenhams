@@ -74,7 +74,7 @@
                     <div class="col-md-12">
                     <div class="box box-title">
                         <h2 class="text-center page-header">Technician Performance:  <?=$user_name;?></h2>
-                        <p class="strong">Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
                         <div id="piechart" style="width: 100%; height: 500px;"></div>
                     </div> 
                     </div>

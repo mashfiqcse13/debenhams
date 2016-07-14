@@ -8,12 +8,13 @@
 class Performance_model  extends CI_Model  {
     
     function get_technician_dropdown() {
-        $technicians = $this->db->get('technician')->result();
+        $technicians = $this->db->query('SELECT DISTINCT `id_technician` ,username FROM `supply_info` 
+                LEFT JOIN users on supply_info.id_technician=users.id')->result();
 
         $data = array();
         $data[''] = 'Select Technician';
         foreach ($technicians as $technician) {
-            $data[$technician->user_id] = $technician->technician_name;
+            $data[$technician->id_technician] = $technician->username;
         }
         return form_dropdown('user_id', $data, NULL, ' class="form-control select2" required');
     }
@@ -30,9 +31,9 @@ class Performance_model  extends CI_Model  {
     }
     
     function get_technician_name($user_id){
-        $query = $this->db->get_where('technician',array('user_id' => $user_id));
+        $query = $this->db->get_where('users',array('id' => $user_id));
         foreach($query->result() as $row){
-            return $row->technician_name;
+            return $row->username;
         }
     }
     
@@ -40,6 +41,89 @@ class Performance_model  extends CI_Model  {
         $query = $this->db->get_where('supplyer',array('id_supplyer' => $user_id));
         foreach($query->result() as $row){
             return $row->name;
+        }
+    }
+    
+    function ranking_supplyer(){
+        $total_supplyer=$this->db->get('supplyer');
+        
+        $total_order=array();
+        $fit_result=array();
+        $rating=array();
+        
+        foreach($total_supplyer->result() as $row){
+            $total_order[]=$this->supplyer_row_count($row->id_supplyer);
+            
+            $fit=$this->db->query("SELECT 
+                                    id_supply_fit_name,
+                                    count(id_supply_fit_name) as count                                    
+                                    FROM `supply_info` left JOIN supply_fit_register ON
+                                    supply_info.id_supply_info=supply_fit_register.id_supply_info 
+                                    WHERE 
+                                    id_supplyer = $row->id_supplyer and 
+                                    sample_result = 1 
+                                    group by (id_supply_fit_name) ");
+            
+            $fit_total=0;
+            foreach($fit->result() as $row){
+                $fit=$row->count;
+                
+                if($row->id_supply_fit_name==1){
+                    $fit=$fit*4;
+                }elseif($row->id_supply_fit_name==2){
+                    $fit=$fit*3;
+                }elseif($row->id_supply_fit_name==3){
+                    $fit=$fit*2;
+                }elseif($row->id_supply_fit_name==4){
+                    $fit=$fit*1;
+                }              
+                $fit_total+=$fit;
+                
+            }
+            $fit_result[]=$fit_total;
+            
+
+            
+            
+        }
+        // $rating[]=($fit_result[$i]*100)/$total_order[$i];
+               // $max = count($data['ranking_supplyer']['total_order']);
+        
+        $i=0;
+        $graph="[['Supplier Name' , 'Ratting'],";
+        foreach($total_order as $row){
+            if($total_order[$i]== 0){
+                $i++;
+                continue;
+                
+            }else{
+                $rating=($fit_result[$i]*100)/$total_order[$i];
+            }
+            $name[$i]=$this->get_supplier_name($i+1);
+            $graph.="['$name[$i]]',$rating],";
+            $i++;
+        }
+        $graph.="]";
+        
+        
+        
+        $data['total_order']=$total_order;
+        $data['fit_result']=$fit_result;
+        $data['rating']=$graph;
+        $data['name']=$name;
+        
+        
+          
+        return $data;
+    }
+    
+
+    
+    function supplyer_row_count($id){
+        
+        $query=$this->db->query("SELECT COUNT(*) as count FROM supply_info WHERE id_supplyer=$id");
+        foreach($query->result() as $row){
+            return $row->count;
         }
     }
     

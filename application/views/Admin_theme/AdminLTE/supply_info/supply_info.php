@@ -6,14 +6,14 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            <?= $Title ?>
-            <small> <?= $Title ?></small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="<?= $base_url ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Insert Info</li>
-        </ol>
+      <h1>
+        <?= $Title ?>
+        <small><?= $Title ?></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Insert Info</li>
+      </ol>
     </section>
 
     <!-- Main content -->

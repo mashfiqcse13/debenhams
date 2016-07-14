@@ -185,6 +185,18 @@ desired effect
               <li><?php echo anchor('supply_style_no', '<i class="fa fa-slideshare"></i>  <span>Style No</span>'); ?></li>
           </ul>
         </li>
+        <li class="treeview">
+            <?php echo anchor('department', '<i class="fa fa-link"></i>  <span>Department</span>'); ?>
+        </li>
+        <li class="treeview">
+            <?php echo anchor('supplier', '<i class="fa fa-link"></i>  <span>Supplier</span>'); ?>
+        </li>
+        <li class="treeview">
+            <?php echo anchor('supply_session', '<i class="fa fa-link"></i>  <span>Supply Session</span>'); ?>
+        </li>
+        <li class="treeview">
+            <?php echo anchor('supply_fit_name', '<i class="fa fa-link"></i>  <span>Supply Fit Name</span>'); ?>
+        </li>
         <li><a href="<?= site_url('login/logout'); ?>"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

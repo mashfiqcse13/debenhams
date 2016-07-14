@@ -1,12 +1,14 @@
 <?php
 
-/* 
+defined('BASEPATH') OR exit('No direct script access allowed');
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-class Common_model  extends CI_Model  {
-    
+
+class Common_model extends CI_Model {
+
     function dateformatter($range_string, $formate = 'Mysql') {
         $date = explode(' - ', $range_string);
         $date[0] = explode('/', $date[0]);
@@ -23,12 +25,12 @@ class Common_model  extends CI_Model  {
             return $date;
         }
     }
-    
-    
+
     function convert_date_range_to_mysql_between($data_picker_date_range) {
         $dates = explode(' - ', $data_picker_date_range);
         $from = date('Y-m-d', strtotime($dates[0]));
         $to = date('Y-m-d', strtotime($dates[1]));
         return " '$from' and '$to' ";
     }
+
 }

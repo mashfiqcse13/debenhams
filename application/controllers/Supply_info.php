@@ -30,7 +30,42 @@ class Supply_info extends CI_Controller {
     function index(){
         $crud = new grocery_CRUD();
         $crud->set_table('supply_info')
-                ->set_subject('Supply Info');
+                ->set_subject('Supply Info')
+                ->display_as('id_supply_session','Session Name')
+                ->display_as('id_department','Department Name')
+                ->display_as('id_supplyer','Supplier Name')
+                ->callback_column('id_supply_session',array($this,'supply_session'))
+                ->callback_column('id_department',array($this,'department'))
+                ->callback_column('id_supplyer',array($this,'supplyer'))
+                ->callback_column('id_technician',array($this,'technician'))
+                ->callback_column('sample_result',function($this){
+                    if($this==1){
+                        return 'Pass';
+                    }else{
+                        return 'Fail';
+                    }
+                })
+                ->callback_column('approved_by',function($this){
+                    if($this==1){
+                        return 'United Kingdom';
+                    }else{
+                        return 'Bamgladesh';
+                    }
+                })
+                ->callback_column('lab_test_report',function($this){
+                     if($this==1){
+                        return 'Pass';
+                    }else{
+                        return 'Fail';
+                    }
+                })
+                ->callback_column('pattern_block',function($this){
+                    if($this==1){
+                        return 'United Kingdom';
+                    }else{
+                        return 'Bamgladesh';
+                    }
+                });
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id();
@@ -45,6 +80,19 @@ class Supply_info extends CI_Controller {
         $data['Title'] = 'Insert Info';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_info/supply_info', $data);
+    }
+    
+    function supply_session($value,$row){
+        return $this->Supply_info_model->get_all($value,'supply_session','id_supply_session');
+    }
+    function department($value,$row){
+        return $this->Supply_info_model->get_all($value,'department','id_department');
+    }
+    function supplyer($value,$row){
+        return $this->Supply_info_model->get_all($value,'supplyer','id_supplyer');
+    }
+    function technician($value,$row){
+        return $this->Supply_info_model->get_all_technician($value,'technician','user_id');
     }
     
     function fit_info(){

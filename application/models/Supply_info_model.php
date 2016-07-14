@@ -46,11 +46,13 @@ class Supply_info_model extends ci_model{
     function select_all_by_technician_id(){
         $id = $this->session->userdata('user_id');
         $user_type = $this->user($id);
+        if(!empty($user_type->type)){
         $this->db->select('*');
         $this->db->from('supply_style_no');
         $this->db->where('allocated_to',$user_type->type);
         $query = $this->db->get();
         return $query->result();
+        }
     }
     
     function user($id){
@@ -80,4 +82,19 @@ class Supply_info_model extends ci_model{
         $query = $this->db->get();
         return $query->result();
     }
+    
+    function get_all($value,$tbl_name,$id){
+        $get_info = $this->db->query('select * from `'.$tbl_name.'` where `'.$id.'` = '.$value)->result();
+        foreach ($get_info as $supply){
+           $data= $supply->name;
+        }
+        return $data;
+}
+    function get_all_technician($value,$tbl_name,$id){
+        $get_info = $this->db->query('select * from `'.$tbl_name.'` where `'.$id.'` = '.$value)->result();
+        foreach ($get_info as $supply){
+           $data= $supply->technician_name;
+        }
+        return $data;
+}
 }

@@ -69,12 +69,10 @@ class Tank_auth
 						$this->error = array('banned' => $user->ban_reason);
 
 					} else {
-                                            $technician_id =  $this->ci->Supply_info_model->select_all_user_id($user->id);
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
-                                                                'technician_id' => $technician_id->id_technician,
 						));
 
 						if ($user->activated == 0) {							// fail - not activated
@@ -116,7 +114,7 @@ class Tank_auth
 		$this->delete_autologin();
 
 		// See http://codeigniter.com/forums/viewreply/662369/ as the reason for the next line
-		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => '', 'technician_id' => ''));
+		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => ''));
 
 		$this->ci->session->sess_destroy();
 	}

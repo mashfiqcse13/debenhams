@@ -47,11 +47,17 @@ class Performance_model  extends CI_Model  {
         
         $this->load->model('common_model');
         
-        $date_range=$this->common_model->dateformatter($date);
-        $con1="sample_result = 1 AND approved_by = 1 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
-        $con2="sample_result = 2 AND approved_by = 1 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
-        $con3="sample_result = 1 AND approved_by = 2 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
-        $con4="sample_result = 2 AND approved_by = 2 AND id_technician = $id AND DATE(date_created) BETWEEN $date_range";
+        if(empty($date) || $date==''){
+            $date_range='';
+        }
+        if(!empty($date)){
+            $date=$this->common_model->dateformatter($date);
+            $date_range="AND DATE(date_created) BETWEEN $date";
+        }
+        $con1="sample_result = 1 AND approved_by = 1 AND id_technician = $id  $date_range";
+        $con2="sample_result = 2 AND approved_by = 1 AND id_technician = $id  $date_range";
+        $con3="sample_result = 1 AND approved_by = 2 AND id_technician = $id  $date_range";
+        $con4="sample_result = 2 AND approved_by = 2 AND id_technician = $id  $date_range";
         
         
         $count1=$this->row_count($con1);
@@ -75,12 +81,18 @@ class Performance_model  extends CI_Model  {
     function supplier_performance_by_pass_fail($id,$date){
         
         $this->load->model('common_model');        
-        $date_range=$this->common_model->dateformatter($date);
+        if(empty($date) || $date==''){
+            $date_range='';
+        }
+        if(!empty($date)){
+            $date=$this->common_model->dateformatter($date);
+            $date_range="AND DATE(date_created) BETWEEN $date";
+        }
         
-        $con1="sample_result = 1 AND approved_by = 1 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-        $con2="sample_result = 2 AND approved_by = 1 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-        $con3="sample_result = 1 AND approved_by = 2 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-        $con4="sample_result = 2 AND approved_by = 2 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
+        $con1="sample_result = 1 AND approved_by = 1 AND id_supplyer = $id  $date_range";
+        $con2="sample_result = 2 AND approved_by = 1 AND id_supplyer = $id  $date_range";
+        $con3="sample_result = 1 AND approved_by = 2 AND id_supplyer = $id  $date_range";
+        $con4="sample_result = 2 AND approved_by = 2 AND id_supplyer = $id  $date_range";
         
         
         $count1=$this->row_count($con1);
@@ -104,12 +116,20 @@ class Performance_model  extends CI_Model  {
     function supplier_performance_by_fittype($id,$date){
         
         $this->load->model('common_model');        
-        $date_range=$this->common_model->dateformatter($date);
         
-        $con1="id_supply_fit_name = 1 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-        $con2="id_supply_fit_name = 2 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-        $con3="id_supply_fit_name = 3 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-        $con4="id_supply_fit_name = 4 AND id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
+        
+        if(empty($date) || $date==''){
+            $date_range='';
+        }
+        if(!empty($date)){
+            $date=$this->common_model->dateformatter($date);
+            $date_range="AND DATE(date_created) BETWEEN $date";
+        }
+        
+        $con1="id_supply_fit_name = 1 AND id_supplyer = $id  $date_range";
+        $con2="id_supply_fit_name = 2 AND id_supplyer = $id  $date_range";
+        $con3="id_supply_fit_name = 3 AND id_supplyer = $id  $date_range";
+        $con4="id_supply_fit_name = 4 AND id_supplyer = $id  $date_range";
         
         $count1=$this->row_count_fit($con1);
         $count2=$this->row_count_fit($con2);
@@ -140,30 +160,36 @@ class Performance_model  extends CI_Model  {
     }
     
     function total_order_count($id,$date,$name){
-        $this->load->model('common_model');        
-        $date_range=$this->common_model->dateformatter($date);
-        $con="$name = $id AND DATE(date_created) BETWEEN $date_range";
+        $this->load->model('common_model'); 
+        if(empty($date) || $date==''){
+            $date_range='';
+        }
+        if(!empty($date)){
+            $date=$this->common_model->dateformatter($date);
+            $date_range="AND DATE(date_created) BETWEEN $date";
+        }
+        
+        $con="$name = $id $date_range";
         $total=$this->row_count($con);
         return $total;
     }
     
     function unpased_order_count($id,$date,$name){
-        $this->load->model('common_model');        
-        $date_range=$this->common_model->dateformatter($date);
-        $con="sample_result != 1 AND sample_result !=2 AND $name = $id AND DATE(date_created) BETWEEN $date_range";
+        $this->load->model('common_model');
+        if(empty($date) || $date==''){
+            $date_range='';
+        }
+        if(!empty($date)){
+            $date=$this->common_model->dateformatter($date);
+            $date_range="AND DATE(date_created) BETWEEN $date";
+        }
+        
+        $con="sample_result != 1 AND sample_result !=2 AND $name = $id  $date_range";
         $total=$this->row_count($con);
         return $total;
     }
 
-//    
-//    function total_order_count_for_supplier($id,$date){
-//        $this->load->model('common_model');        
-//        $date_range=$this->common_model->dateformatter($date);
-//        $con="id_supplyer = $id AND DATE(date_created) BETWEEN $date_range";
-//        $total=$this->row_count($con);
-//        return $total;
-//    }
-//    
+ 
     function row_count($condition){
         
         $query=$this->db->query("SELECT COUNT(sample_result) as count_result FROM supply_info WHERE $condition");

@@ -36,6 +36,7 @@ class Performance extends CI_Controller {
         
         $date_range =$this->input->post('date_range');
         
+        
         $user_id = $this->input->post('user_id');
         $btn_submit=$this->input->post('btn_submit');
         if(isset($btn_submit)){  

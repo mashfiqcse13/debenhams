@@ -32,6 +32,7 @@ class Supply_style_no extends CI_Controller {
         $crud = new grocery_CRUD();
         $crud->set_table('supply_style_no')
                 ->set_subject('Supply Style No')
+                ->callback_column('allocated_to',array($this,'user_name'))
                 ->field_type('allocated_to', 'dropdown', $this->Supply_style_no_model->get_technicians_as_array());
         $output = $crud->render();
         $data['glosary'] = $output;
@@ -39,6 +40,10 @@ class Supply_style_no extends CI_Controller {
         $data['Title'] = 'Style No';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_style_no/supply_style_no', $data);
+    }
+    
+    function user_name($value,$row){
+        return $this->Supply_style_no_model->get_all($value,'users','id');
     }
 
 }

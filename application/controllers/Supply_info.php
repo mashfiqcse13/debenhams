@@ -92,7 +92,7 @@ class Supply_info extends CI_Controller {
         return $this->Supply_info_model->get_all($value,'supplyer','id_supplyer');
     }
     function technician($value,$row){
-        return $this->Supply_info_model->get_all_technician($value,'technician','user_id');
+        return $this->Supply_info_model->get_all_technician($value,'users','id');
     }
     
     function fit_info(){

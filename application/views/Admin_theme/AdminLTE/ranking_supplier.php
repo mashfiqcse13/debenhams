@@ -30,20 +30,40 @@
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
-                        <h2 class="text-center page-header">Supplier Rankng</h2>
-                        <?php
+                        <div class="row">
+                            <h2 class="text-center page-header">Supplier Rankng</h2>
+                            <div class="col-md-8">
+                                <div id="chart_div"></div>
+                                <hr>
+                                <div id="piechart" style="width: 100%; height: 500px;"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-bordered" style="margin-left: -15px">
+                                    <tr>
+                                        <th>Name Of Supplier</th>
+                                        <th>Toatal Order</th>
+                                        <th>Unfinished Order</th>
+                                    </tr>
+                                <?php
                             $i=0;
+                            
                             foreach($ranking_supplyer['name'] as $row){ 
                         ?>
-                        <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$ranking_supplyer['name'][$i];?> ( Total Order: <?=$ranking_supplyer['total_order'][$i];?> ) , ( Unfinished Order : <?=$ranking_supplyer['unfinished_order'][$i];?> ) </p>
-                        <?php 
+                            <tr>
+                                <td> <?=$ranking_supplyer['name'][$i];?></td><td><?=$ranking_supplyer['total_order'][$i];?></td> <td> <?=$ranking_supplyer['unfinished_order'][$i];?> </td>
+                            </tr>
+                           <?php 
                             $i++;
                             }
+                            
                         ?>
-                        <hr>
-                        <div id="chart_div"></div>
-                        <hr>
-                        <div id="piechart" style="width: 100%; height: 500px;"></div>
+                            </table>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
                     </div> 
                     </div>
                 </div>

@@ -52,7 +52,11 @@ class Performance_model  extends CI_Model  {
         $rating=array();
         
         foreach($total_supplyer->result() as $row){
-            $total_order[]=$this->supplyer_row_count($row->id_supplyer);
+            $con1=" id_supplyer = $row->id_supplyer AND sample_result=1 or sample_result=2 ";
+            $total_order[]=$this->row_count($con1);
+            
+            $con2=" id_supplyer = $row->id_supplyer AND sample_result is null ";
+            $unfinished_order[]=$this->row_count($con2);
             
             $fit=$this->db->query("SELECT 
                                     id_supply_fit_name,
@@ -108,6 +112,7 @@ class Performance_model  extends CI_Model  {
         
         
         $data['total_order']=$total_order;
+        $data['unfinished_order']=$unfinished_order;
         $data['fit_result']=$fit_result;
         $data['rating']=$graph;
         $data['name']=$name;
@@ -117,13 +122,79 @@ class Performance_model  extends CI_Model  {
         return $data;
     }
     
+    function order_analysis(){
+        
+        $data['total_finish_order']=$this->row_count(' sample_result=1 or sample_result=2 ');
+        $data['unfinished_order']=$unfinished_order=$this->row_count(' sample_result is null ');
+        
+        $fit=array();
+        $fit[]=$fit1_pass=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=1 ');
+        $fit[]=$fit2_pass=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=1 ');
+        $fit[]=$fit3_pass=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=1 ');
+        $fit[]=$fit4_pass=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=1 ');
+        $fit[]=$fit1_fail=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=2 ');
+        $fit[]=$fit2_fail=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=2 ');
+        $fit[]=$fit3_fail=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=2 ');
+        $fit[]=$fit4_fail=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=2 ');
+        
+        $data['fit']=$fit;
+                
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=1 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=1 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=1 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=1 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=2 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=2 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=2 ');
+//        $fit[]=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=2 ');
+//        
+//        $data['fit']=$fit;
+
+        $data['rating']="[['Analysis by pass  fail','Rating'],
+               ['First Fit Sample Pass',$fit1_pass],
+               ['Second Fit Sample Pass',$fit2_pass],
+               ['Third Fit Sample Pass',$fit3_pass],
+               ['Forth Fit Sample Pass',$fit4_pass],
+               ['First Fit Sample Fail',$fit1_fail],
+               ['Second Fit Sample Fail',$fit2_fail],
+               ['Third Fit Sample Fail',$fit3_fail],
+               ['Forth Fit Sample Fail',$fit4_fail],
+               ['Unfinished Sample Result',$unfinished_order]
+               ]";
+//        
+//        
+//        
+//        $data['total_order']=$total_order;
+//        $data['fit_result']=$fit_result;
+//        $data['rating']=$graph;
+//        $data['name']=$name;
+        
+        
+          
+        return $data;
+    }
+    
 
     
-    function supplyer_row_count($id){
+    function row_count_fit($condition){
         
-        $query=$this->db->query("SELECT COUNT(*) as count FROM supply_info WHERE id_supplyer=$id");
-        foreach($query->result() as $row){
-            return $row->count;
+        $query=$this->db->query("SELECT COUNT(*) as count_result FROM supply_info LEFT JOIN supply_fit_register on
+                                supply_info.id_supply_style_no=supply_fit_register.id_supply_info 
+                                WHERE $condition");
+        foreach ($query->result() as $row)
+        {
+                return $row->count_result;
+        }
+    }
+    
+    function row_count($condition){
+        
+        $query=$this->db->query("SELECT COUNT(*) as count_result FROM supply_info WHERE $condition");
+//        $lst=$this->db->last_query();
+//        print_r($lst);
+        foreach ($query->result() as $row)
+        {
+                return $row->count_result;
         }
     }
     
@@ -232,16 +303,7 @@ class Performance_model  extends CI_Model  {
         
     }
     
-    function row_count_fit($condition){
-        
-        $query=$this->db->query("SELECT COUNT(*) as count_result FROM supply_info LEFT JOIN supply_fit_register on
-                                supply_info.id_supply_style_no=supply_fit_register.id_supply_info 
-                                WHERE $condition");
-        foreach ($query->result() as $row)
-        {
-                return $row->count_result;
-        }
-    }
+
     
     function total_order_count($id,$date,$name){
         $this->load->model('common_model'); 
@@ -274,14 +336,5 @@ class Performance_model  extends CI_Model  {
     }
 
  
-    function row_count($condition){
-        
-        $query=$this->db->query("SELECT COUNT(sample_result) as count_result FROM supply_info WHERE $condition");
-//        $lst=$this->db->last_query();
-//        print_r($lst);
-        foreach ($query->result() as $row)
-        {
-                return $row->count_result;
-        }
-    }
+
 }

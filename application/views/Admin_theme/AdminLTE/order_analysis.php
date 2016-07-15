@@ -30,18 +30,45 @@
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
-                        <h2 class="text-center page-header">Supplier Rankng</h2>
-                        <?php
-                            $i=0;
-                            foreach($ranking_supplyer['name'] as $row){ 
-                        ?>
-                        <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$ranking_supplyer['name'][$i];?> ( Total Order: <?=$ranking_supplyer['total_order'][$i];?> ) , ( Unfinished Order : <?=$ranking_supplyer['unfinished_order'][$i];?> ) </p>
-                        <?php 
-                            $i++;
-                            }
-                        ?>
-                        <hr>
-                        <div id="chart_div"></div>
+                        <h2 class="text-center page-header">Total Order Analysis</h2>
+                        
+
+                         
+                        <table class="table table-bordered text-blue" style="margin-left: 50px;max-width:600px;">
+                            <tr>
+                                <th>Total Finished Order</th>
+                                <th><?=$order_analysis['total_finish_order'];?></th>
+                                <th>Unfinished Order</th>
+                                <th><?=$order_analysis['unfinished_order'];?></th>
+                            </tr>
+                            <tr>
+                                <td>First Fit Sample Pass</td>
+                                <td><?=$order_analysis['fit'][0];?></td>
+                                <td>First Fit Sample Fail</td>
+                                <td><?=$order_analysis['fit'][4];?></td>
+                            </tr>
+                            <tr>
+                                <td>Second Fit Sample Pass</td>
+                                <td><?=$order_analysis['fit'][1];?></td>
+                                <td>Second Fit Sample Fail</td>
+                                <td><?=$order_analysis['fit'][5];?></td>
+                            </tr>
+                            <tr>
+                                <td>Third Fit Sample Pass</td>
+                                <td><?=$order_analysis['fit'][2];?></td>
+                                <td>Third Fit Sample Fail</td>
+                                <td><?=$order_analysis['fit'][6];?></td>
+                            </tr>
+                            <tr>
+                                <td>Forth Fit Sample Pass</td>
+                                <td><?=$order_analysis['fit'][3];?></td>
+                                <td>Forth Fit Sample Fail</td>
+                                <td><?=$order_analysis['fit'][7];?></td>
+                            </tr>
+                            
+                        </table>
+                    
+
                         <hr>
                         <div id="piechart" style="width: 100%; height: 500px;"></div>
                     </div> 
@@ -65,7 +92,7 @@
 <script type="text/javascript">
  
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMultSeries);
+//google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries() {
       var data = google.visualization.arrayToDataTable(<?=$analysis;?>);
@@ -78,7 +105,7 @@ function drawMultSeries() {
           minValue: 0
         },
         vAxis: {
-          title: 'Supplier Name'
+          title: 'Fit Type By Pass Fail'
         }
       };
 
@@ -94,7 +121,7 @@ function drawMultSeries() {
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: ' Pie Chart for Supplier Ranking '
+          title: ' Total Order Analysis(Analysis by pass fail '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

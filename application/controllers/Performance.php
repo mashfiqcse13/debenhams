@@ -93,5 +93,25 @@ class Performance extends CI_Controller {
         $this->load->view($this->config->item('ADMIN_THEME') . 'ranking_supplier', $data);
     } 
     
+        public function order_analysis() {
+            
+        $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        
+        $data['order_analysis']=$this->performance_model->order_analysis();
+
+        
+        
+        $data['analysis']=$data['order_analysis']['rating'];
+//        echo '<pre>';
+//
+//        print_r($data['order_analysis']);
+        
+        
+
+        $data['Title'] = 'Suppliers Ranking';
+        $data['base_url'] = base_url();
+        $this->load->view($this->config->item('ADMIN_THEME') . 'order_analysis', $data);
+    } 
+    
 
 }

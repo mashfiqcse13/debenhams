@@ -108,7 +108,7 @@ class Performance extends CI_Controller {
         
         
 
-        $data['Title'] = 'Suppliers Ranking';
+        $data['Title'] = 'Total Order Analysis';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'order_analysis', $data);
     } 

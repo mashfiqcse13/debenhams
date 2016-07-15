@@ -121,7 +121,7 @@ function drawMultSeries() {
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: ' Total Order Analysis(Analysis by pass fail '
+          title: ' Total Order Analysis ( Analysis by pass fail ) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

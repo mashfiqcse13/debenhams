@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author sonjoy
  */
 class Supply_info extends CI_Controller {
+
     //put your code here
     public function __construct() {
         parent::__construct();
@@ -25,44 +26,43 @@ class Supply_info extends CI_Controller {
         $this->load->library('grocery_CRUD');
         $this->load->model('Supply_info_model');
     }
-    
-    
-    function index(){
+
+    function index() {
         $crud = new grocery_CRUD();
         $crud->set_table('supply_info')
                 ->set_subject('Supply Info')
-                ->display_as('id_supply_session','Session Name')
-                ->display_as('id_department','Department Name')
-                ->display_as('id_supplyer','Supplier Name')
-                ->callback_column('id_supply_session',array($this,'supply_session'))
-                ->callback_column('id_department',array($this,'department'))
-                ->callback_column('id_supplyer',array($this,'supplyer'))
-                ->callback_column('id_technician',array($this,'technician'))
-                ->callback_column('sample_result',function($this){
-                    if($this==1){
+                ->display_as('id_supply_session', 'Session Name')
+                ->display_as('id_department', 'Department Name')
+                ->display_as('id_supplyer', 'Supplier Name')
+                ->callback_column('id_supply_session', array($this, 'supply_session'))
+                ->callback_column('id_department', array($this, 'department'))
+                ->callback_column('id_supplyer', array($this, 'supplyer'))
+                ->callback_column('id_technician', array($this, 'technician'))
+                ->callback_column('sample_result', function($this) {
+                    if ($this == 1) {
                         return 'Pass';
-                    }else{
+                    } else {
                         return 'Fail';
                     }
                 })
-                ->callback_column('approved_by',function($this){
-                    if($this==1){
+                ->callback_column('approved_by', function($this) {
+                    if ($this == 1) {
                         return 'United Kingdom';
-                    }else{
+                    } else {
                         return 'Bamgladesh';
                     }
                 })
-                ->callback_column('lab_test_report',function($this){
-                     if($this==1){
+                ->callback_column('lab_test_report', function($this) {
+                    if ($this == 1) {
                         return 'Pass';
-                    }else{
+                    } else {
                         return 'Fail';
                     }
                 })
-                ->callback_column('pattern_block',function($this){
-                    if($this==1){
+                ->callback_column('pattern_block', function($this) {
+                    if ($this == 1) {
                         return 'United Kingdom';
-                    }else{
+                    } else {
                         return 'Bamgladesh';
                     }
                 });
@@ -76,33 +76,46 @@ class Supply_info extends CI_Controller {
         $supply_id = $this->uri->segment(4);
         $data['all_supply_info'] = $this->Supply_info_model->supply_info_by_supply_id($supply_id);
 //        echo '<pre>';print_r($data['all_supply_info']);exit();
+        $data['all_supply_fit_register'] = $this->Supply_info_model->supply_register_by_supply_id($supply_id);
+//         echo '<pre>';print_r($data['all_supply_fit_register']);exit();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Insert Info';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_info/supply_info', $data);
     }
-    
-    function supply_session($value,$row){
-        return $this->Supply_info_model->get_all($value,'supply_session','id_supply_session');
+
+    function supply_session($value, $row) {
+        return $this->Supply_info_model->get_all($value, 'supply_session', 'id_supply_session');
     }
-    function department($value,$row){
-        return $this->Supply_info_model->get_all($value,'department','id_department');
+
+    function department($value, $row) {
+        return $this->Supply_info_model->get_all($value, 'department', 'id_department');
     }
-    function supplyer($value,$row){
-        return $this->Supply_info_model->get_all($value,'supplyer','id_supplyer');
+
+    function supplyer($value, $row) {
+        return $this->Supply_info_model->get_all($value, 'supplyer', 'id_supplyer');
     }
-    function technician($value,$row){
-        return $this->Supply_info_model->get_all_technician($value,'users','id');
+
+    function technician($value, $row) {
+        return $this->Supply_info_model->get_all_technician($value, 'users', 'id');
     }
-    
-    function fit_info(){
+
+    function fit_info() {
         $id = $this->input->post('id_supply_fit_name');
         $data['supply_fit'] = $this->Supply_info_model->select_fit_name_by_fit_id($id);
 //        echo '<pre>';print_r($data['supply_fit']);exit();
         echo json_encode($data);
     }
-    
-    function save_info(){
+
+    function register_info() {
+        $id = $this->input->post('id_supply_fit_name');
+        $supply_info = $this->input->post('id_supply_info');
+        $data['supply_fit'] = $this->Supply_info_model->select_supply_register_by_fit_id($id, $supply_info);
+//        echo '<pre>';print_r($data['supply_fit']);exit();
+        echo json_encode($data);
+    }
+
+    function save_info() {
         $data['id_supply_style_no'] = $this->input->post('id_supply_style_no');
         $data['id_supply_session'] = $this->input->post('id_supply_session');
         $data['id_department'] = $this->input->post('id_department');
@@ -115,19 +128,21 @@ class Supply_info extends CI_Controller {
         $data['pattern_block'] = $this->input->post('pattern_block');
         $data['date_created'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
-        $supply_info_id = $this->Supply_info_model->save_info('supply_info',$data);
-        
+        $supply_info_id = $this->Supply_info_model->save_info('supply_info', $data);
+
         $fit['id_supply_info'] = $supply_info_id;
         $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
-        $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s',strtotime($this->input->post('supply_fit_register_date_send')));
-        $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s',strtotime($this->input->post('supply_fit_register_date_receive')));
+        $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
+        $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
 //        echo '<pre>'; print_r($fit);exit();
-        $this->Supply_info_model->save_info('supply_fit_register',$fit);
+        $this->Supply_info_model->save_info('supply_fit_register', $fit);
         redirect('supply_info');
     }
-    function update_info(){
+
+    function update_info() {
         $id = $this->input->post('id_supply_info');
         $data['id_supply_style_no'] = $this->input->post('id_supply_style_no');
+//         echo '<pre>'; print_r($id);exit();
         $data['id_supply_session'] = $this->input->post('id_supply_session');
         $data['id_department'] = $this->input->post('id_department');
         $data['style_description'] = $this->input->post('style_description');
@@ -139,15 +154,21 @@ class Supply_info extends CI_Controller {
         $data['pattern_block'] = $this->input->post('pattern_block');
         $data['date_created'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
-        $supply_info_id = $this->Supply_info_model->update_info('supply_info','id_supply_info',$data,$id);
+        $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();
         $id_fit = $this->input->post('id_supply_fit_register');
         $fit['id_supply_info'] = $supply_info_id->id_supply_info;
         $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
-        $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s',strtotime($this->input->post('supply_fit_register_date_send')));
-        $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s',strtotime($this->input->post('supply_fit_register_date_receive')));
+        $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
+        $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
 //        echo '<pre>'; print_r($fit);exit();
-        $this->Supply_info_model->update_info('supply_fit_register','id_supply_fit_register',$fit,$id_fit);
+        $fit_exist = $this->Supply_info_model->check_fit($id_fit, $fit['id_supply_fit_name']);
+        if (!empty($fit_exist)) {
+            $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_fit);
+        } else {
+            $this->Supply_info_model->save_info('supply_fit_register', $fit);
+        }
         redirect('supply_info');
     }
+
 }

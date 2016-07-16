@@ -6,14 +6,14 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        <?= $Title ?>
-        <small><?= $Title ?></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Insert Info</li>
-      </ol>
+        <h1>
+            <?= $Title ?>
+            <small><?= $Title ?></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Insert Info</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -61,7 +61,7 @@
                                                 <?php
                                                 foreach ($all_session as $session) {
                                                     ?>
-                                                    <option value="<?php echo $session->id_supply_session;?>"><?php echo $session->name; ?></option>
+                                                    <option value="<?php echo $session->id_supply_session; ?>"><?php echo $session->name; ?></option>
                                                     <?php
                                                 }
                                                 ?>
@@ -232,12 +232,12 @@
                                                     <?php
                                                     foreach ($all_session as $session) {
                                                         ?>
-                                                        <option value="<?php echo $session->id_supply_session;?>"><?php echo $session->name; ?></option>
+                                                        <option value="<?php echo $session->id_supply_session; ?>"><?php echo $session->name; ?></option>
                                                         <?php
                                                     }
                                                     ?>
-                                                    <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" />
-                                                    <input type="hidden" name="id_fit" value="<?php echo $value->id_supply_fit_register; ?>" />
+                                                    <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;         ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -281,33 +281,40 @@
                                             </div>
 
                                         </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Fit Name:</label>
-                                            <div class="col-md-9">
-                                                <select name="id_supply_fit_name" id="fit_name" class="form-control">
-                                                    <option value="0">Select Fit Name</option>
-                                                    <?php
-                                                    foreach ($all_fit_name as $fit) {
-                                                        ?>
-                                                        <option value="<?php echo $fit->id_supply_fit_name; ?>"><?php echo $fit->name; ?></option>
+                                        <?php
+                                        foreach ($all_supply_fit_register as $register) {
+                                            ?>
+                                            <div class="form-group ">
+                                                <label class="col-md-3">Fit Name:</label>
+                                                <div class="col-md-9">
+                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control">
+                                                        <option value="0">Select Fit Name</option>
                                                         <?php
-                                                    }
-                                                    ?>
-                                                </select>
+                                                        foreach ($all_fit_name as $fit) {
+                                                            ?>
+                                                            <option value="<?php echo $fit->id_supply_fit_name; ?>"><?php echo $fit->name; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group " id="send">
-                                            <label class="col-md-3" >Send:</label>
-                                            <div class="col-md-9">
-                                                <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php echo $value->supply_fit_register_date_send; ?>" placeholder="Add Date"/>
+
+                                            <div class="form-group " id="send">
+                                                <label class="col-md-3" >Send:</label>
+                                                <div class="col-md-9">
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;         ?>" placeholder="Add Date"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group " id="receive">
-                                            <label class="col-md-3" >Receive:</label>
-                                            <div class="col-md-9">
-                                                <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php echo $value->supply_fit_register_date_receive; ?>" placeholder="Add Date"/>
+                                            <div class="form-group " id="receive">
+                                                <label class="col-md-3" >Receive:</label>
+                                                <div class="col-md-9">
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;         ?>" placeholder="Add Date"/>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                     <div class="col-md-6"> 
                                         <div class="form-group ">
@@ -396,6 +403,10 @@
     $('#fit_name').change(function () {
         var select = $("#fit_name option:selected").val();
 //        alert(select);
+        if (select == 0) {
+            $('#send').hide();
+            $('#receive').hide();
+        }
         if (select != 0) {
             $.post("<?php echo base_url(); ?>index.php/supply_info/fit_info", {"id_supply_fit_name": select});
             var id = select;
@@ -409,15 +420,13 @@
                     var obj = $.parseJSON(data);
                     $.each(obj.supply_fit, function (i, fit) {
                         var fit_id = fit['id_supply_fit_name'];
-                        var fit_name = fit['id_supply_fit_name'];
+                        var fit_name = fit['name'];
                         $('#send').show();
                         $('#send label').html(function () {
-                            var fit_name = fit['name'];
                             return fit_name + " send date:";
                         });
                         $('#receive').show();
                         $('#receive label').html(function () {
-                            var fit_name = fit['name'];
                             return fit_name + " receive date:";
                         });
 
@@ -430,6 +439,7 @@
 
 <?php if ($this->uri->segment(3) == 'edit') { ?>
     <script>
+
         document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $value->id_supply_style_no; ?>";
         document.forms['form'].elements['id_supply_session'].value = "<?php echo $value->id_supply_session; ?>";
         document.forms['form'].elements['id_department'].value = "<?php echo $value->id_department; ?>";
@@ -438,6 +448,91 @@
         document.forms['form'].elements['approved_by'].value = "<?php echo $value->approved_by; ?>";
         document.forms['form'].elements['lab_test_report'].value = "<?php echo $value->lab_test_report; ?>";
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
-        document.forms['form'].elements['id_supply_fit_name'].value = "<?php echo $value->id_supply_fit_name; ?>";
+        document.forms['form'].elements['id_supply_fit_name'].value = "<?php echo $register->id_supply_fit_name; ?>";
+
+
+
+        var select = $("#fit_name option:selected").val();
+        var id_supply = $("#id_supply_info").val();
+        if (select == 0) {
+            $('#send').hide();
+            $('#receive').hide();
+        }
+        if (select != 0) {
+            $.post("<?php echo base_url(); ?>index.php/supply_info/register_info", {"id_supply_info": id_supply});
+
+            var id = select;
+            $("#id_fit").val(select);
+            $.ajax({
+                url: '<?php echo base_url(); ?>index.php/supply_info/register_info',
+                data: {'id_supply_fit_name': id, "id_supply_info": id_supply},
+                dataType: 'text',
+                type: 'POST',
+                success: function (data) {
+                    //                                        alert(data);
+                    var obj = $.parseJSON(data);
+                    
+                    $.each(obj.supply_fit, function (i, fit) {
+                        var date_send = fit['supply_fit_register_date_send'];
+                        var date_receive = fit['supply_fit_register_date_receive'];
+                        var fit_name = fit['name'];
+                        $('#send').show();
+                        $('#send label').html(function () {
+                            var fit_name = fit['name'];
+                            return fit_name + " send date:";
+                        });
+                        $('#send input').val(date_send);
+                        $('#receive').show();
+                        $('#receive label').html(function () {
+                            return fit_name + " receive date:";
+                        });
+                        $('#receive input').val(date_receive);
+                    });
+                }
+            });
+        }
+        $('#fit_name').change(function () {
+            var select = $("#fit_name option:selected").val();
+            if (select != 0) {
+                $.post("<?php echo base_url(); ?>index.php/supply_info/register_info", {"id_supply_info": id_supply});
+                var id = select;
+                $("#id_fit").val(select);
+                $.ajax({
+                    url: '<?php echo base_url(); ?>index.php/supply_info/register_info',
+                    data: {'id_supply_fit_name': id, "id_supply_info": id_supply},
+                    dataType: 'text',
+                    type: 'POST',
+                    success: function (data) {
+//                        alert(data);
+                        
+                        var obj = $.parseJSON(data);
+//                        alert(obj.supply_fit);
+                        if (jQuery.isEmptyObject(obj.supply_fit)) {
+                            $('#send input').val('');
+                            $('#receive input').val('');
+                        }else{
+                        $.each(obj.supply_fit, function (i, fit) {
+                            
+                            var date_send = fit['supply_fit_register_date_send'];
+                            var date_receive = fit['supply_fit_register_date_receive'];
+                            var fit_name = fit['name'];
+                            $('#send').show();
+                            $('#send label').html(function () {
+                                var fit_name = fit['name'];
+                                return fit_name + " send date:";
+                            });
+                            $('#send input').val(date_send);
+                            $('#receive').show();
+                            $('#receive label').html(function () {
+                                return fit_name + " receive date:";
+                            });
+                            $('#receive input').val(date_receive);
+                            
+                        });
+                        }
+                    }
+                });
+            }
+        });
     </script>
 <?php } ?>

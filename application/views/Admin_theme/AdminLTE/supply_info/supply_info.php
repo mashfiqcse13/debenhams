@@ -212,16 +212,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Style No:</label>
                                             <div class="col-md-9">
-                                                <select name="id_supply_style_no" id="" class="form-control">
-                                                    <option value="">Select Style No</option>
-                                                    <?php
-                                                    foreach ($all_style_no as $style_no) {
-                                                        ?>
-                                                        <option value="<?php echo $style_no->id_supply_style_no; ?>"><?php echo $style_no->style_no; ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <p><?php echo $value->id_supply_style_no; ?></p>
                                             </div>
                                         </div>
                                         <div class="form-group ">
@@ -296,7 +287,9 @@
                                                             <?php
                                                         }
                                                         ?>
+                                                            
                                                     </select>
+                                                    <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register;?>"/>
                                                 </div>
                                             </div>
 
@@ -304,6 +297,7 @@
                                                 <label class="col-md-3" >Send:</label>
                                                 <div class="col-md-9">
                                                     <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;         ?>" placeholder="Add Date"/>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="form-group " id="receive">
@@ -440,7 +434,6 @@
 <?php if ($this->uri->segment(3) == 'edit') { ?>
     <script>
 
-        document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $value->id_supply_style_no; ?>";
         document.forms['form'].elements['id_supply_session'].value = "<?php echo $value->id_supply_session; ?>";
         document.forms['form'].elements['id_department'].value = "<?php echo $value->id_department; ?>";
         document.forms['form'].elements['id_supplyer'].value = "<?php echo $value->id_supplyer; ?>";

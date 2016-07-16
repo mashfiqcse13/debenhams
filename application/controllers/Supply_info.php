@@ -141,7 +141,6 @@ class Supply_info extends CI_Controller {
 
     function update_info() {
         $id = $this->input->post('id_supply_info');
-        $data['id_supply_style_no'] = $this->input->post('id_supply_style_no');
 //         echo '<pre>'; print_r($id);exit();
         $data['id_supply_session'] = $this->input->post('id_supply_session');
         $data['id_department'] = $this->input->post('id_department');
@@ -158,11 +157,12 @@ class Supply_info extends CI_Controller {
 //        echo '<pre>'; print_r($supply_info_id);exit();
         $id_fit = $this->input->post('id_supply_fit_register');
         $fit['id_supply_info'] = $supply_info_id->id_supply_info;
-        $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
+        $fit['id_supply_fit_name'] = $this->input->post('id_fit');
         $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
         $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
-//        echo '<pre>'; print_r($fit);exit();
+//        echo '<pre>'; print_r($id_fit);exit();
         $fit_exist = $this->Supply_info_model->check_fit($id_fit, $fit['id_supply_fit_name']);
+        
         if (!empty($fit_exist)) {
             $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_fit);
         } else {

@@ -136,11 +136,11 @@
                     <div class="col-md-12">
                         <a class="btn btn-primary pull-right" href="<?= site_url('Excel'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
             
-                        <table class="table table-bordered table-striped" id="example1">
+                        <table class="table table-bordered table-striped table-condensed" id="example1">
                             <thead>
                                 <tr>
-                                    <th>Style No</th>
-                                    <th>Session</th>
+                                    <th class="nowrap">Style No</th>
+                                    <th class="nowrap">Session</th>
                                     <th>Department:</th>
                                     <th>Style Description</th>
                                     <th>Supplier Name:</th>
@@ -290,6 +290,15 @@
 <!-- /.content-wrapper -->
 
 <?php include_once 'footer.php'; ?>
+<style>
+    th {
+    min-width: 132px;
+    font-size: 13px;
+    background: #DFF0D8;
+    color: #000;
+    text-align: center;
+}
+</style>
 <script type="text/javascript">
     $('.datepicker').datepicker({
         autoclose: true

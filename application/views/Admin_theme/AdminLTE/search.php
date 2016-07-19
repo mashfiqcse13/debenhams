@@ -70,7 +70,7 @@
                         <div class="form-group ">
                             <label class="col-md-3">Technician Name:</label>
                             <div class="col-md-9">
-                                <select name="id_supplyer" id="" class="form-control">
+                                <select name="id_technican" id="" class="form-control">
                                     <option value="">Null</option>
                                     <?php
                                     foreach ($all_technician as $technician) {
@@ -169,10 +169,7 @@
                                             ?>
                                             <tr>
                                                 <td><?php echo $all_informations[$i][0]->style_no; ?></td>
-                                                <td><?php
-                                                    echo $all_informations[$i][0]->supply_name;
-                                                    echo $all_informations[$i][0]->id_supply_info;
-                                                    ?></td>
+                                                <td><?php echo $all_informations[$i][0]->supply_name; ?></td>
                                                 <td><?php echo $all_informations[$i][0]->department_name; ?></td>
                                                 <td><?php echo $all_informations[$i][0]->style_description; ?></td>
                                                 <td><?php echo $all_informations[$i][0]->supplyer_name; ?></td>
@@ -267,9 +264,9 @@
                                                 <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                     </a>
-                                                    <button type="button" class="btn btn-danger" aria-label="Left Align">
+                                                    <a href="<?= site_url('search/search_delete/' . $all_informations[$i][0]->id_supply_info); ?>" onclick="return check();"type="button" class="btn btn-danger" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                                    </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -297,6 +294,15 @@
     });
     $('#example1').DataTable({
         "scrollX": true,
-        bFilter: false, 
+        bFilter: false,
     });
+
+    function check() {
+        var chk = confirm('Are You Sure To Delete?');
+        if (chk) {
+            return true;
+        }
+    }
+
+
 </script>

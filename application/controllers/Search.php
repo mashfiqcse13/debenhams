@@ -27,28 +27,30 @@ class Search extends CI_Controller{
     }
     function index() {
         $id_supply_style_no = $this->input->post('id_supply_style_no');
+        $technician = $this->input->post('id_technician');
         $id_supplyer = $this->input->post('id_supplyer');
         $date_from = date('Y-m-d', strtotime($this->input->post('date_from')));
         $id_department = $this->input->post('id_department');
         $sample_result = $this->input->post('sample_result');
-        $date_to = date('Y-m-d', strtotime($this->input->post('date_to')));
+        $date_to = date('Y-m-d', strtotime($this->input->post('date_to'). ' +1 day'));
+        $data['max_supply_info']= $this->Search_model->get_max_supply_info(); 
         if(!empty($id_supply_style_no)){
-            $data['all_informations']= $this->Search_model->select_all_info_by_style_no($id_supply_style_no);
-        }if(!empty($id_supplyer)){
-            $data['all_informations']= $this->Search_model->select_all_info_by_supplyer($id_supplyer);
-        }if(!empty($id_department)){
-            $data['all_informations']= $this->Search_model->select_all_info_by_department($id_department);
-        }if(!empty($sample_result)){
-            $data['all_informations']= $this->Search_model->select_all_info_by_sample($sample_result);
-        }if(!empty($sample_result)){
-            $data['all_informations']= $this->Search_model->select_all_info_by_date($date_from,$date_to);
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_style_no($id_supply_style_no);
+        }else if(!empty($id_supplyer)){
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_supplyer($id_supplyer);
+        }else if(!empty($id_department)){
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_department($id_department);
+        }else if(!empty($sample_result)){
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_sample($sample_result);
+        }else if($date_from != "1970-01-01"){
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_date($date_from, $date_to);
+//            echo '<pre>';print_r($data);exit();
+        }else if(!empty($technician)){
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_technician($technican);
         }else{
            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register(); 
-           $data['max_supply_info']= $this->Search_model->get_max_supply_info(); 
+           
         }
-        
-        
-        
 //        echo '<pre>';print_r($data);exit();
         $data['all_style_no'] = $this->Search_model->select_all_by_technician_id();
         $data['all_department'] = $this->Search_model->select_all('department');
@@ -65,5 +67,10 @@ class Search extends CI_Controller{
         $data['fit_info'] = $this->Search_model->fit_info($id);
 //        echo '<pre>';print_r($data['fit_info']);exit();
         echo json_encode($data);
+    }
+    
+    function search_delete($id){
+        $this->Search_model->search_delete($id);
+        redirect('search');
     }
 }

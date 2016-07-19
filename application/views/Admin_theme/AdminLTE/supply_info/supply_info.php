@@ -1,19 +1,19 @@
-<!--add header -->
 <?php include_once __DIR__ . '/../header.php'; ?>
 
-<!-- Left side column. contains the logo and sidebar -->
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            <?= $Title ?>
-            <small><?= $Title ?></small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Insert Info</li>
-        </ol>
+      <h1>
+        <?=$Title;?>
+        <small>Insert Various Information</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Insert Info</li>
+      </ol>
     </section>
 
     <!-- Main content -->
@@ -228,7 +228,7 @@
                                                     }
                                                     ?>
                                                     <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;         ?>" id="id_fit"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;          ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -287,23 +287,23 @@
                                                             <?php
                                                         }
                                                         ?>
-                                                            
+
                                                     </select>
-                                                    <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register;?>"/>
+                                                    <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register; ?>"/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group " id="send">
                                                 <label class="col-md-3" >Send:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;         ?>" placeholder="Add Date"/>
-                                                    
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;          ?>" placeholder="Add Date"/>
+
                                                 </div>
                                             </div>
                                             <div class="form-group " id="receive">
                                                 <label class="col-md-3" >Receive:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;         ?>" placeholder="Add Date"/>
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;          ?>" placeholder="Add Date"/>
                                                 </div>
                                             </div>
                                             <?php
@@ -382,12 +382,10 @@
 
 
 
-    </section><!-- /.content -->
-</div><!-- /.content-wrapper -->
-
-<!-- insert book -->
-
-
+ </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
 <?php include_once __DIR__ . '/../footer.php'; ?>
 <script type="text/javascript">
@@ -464,22 +462,29 @@
                 success: function (data) {
                     //                                        alert(data);
                     var obj = $.parseJSON(data);
-                    
+
                     $.each(obj.supply_fit, function (i, fit) {
-                        var date_send = fit['supply_fit_register_date_send'];
-                        var date_receive = fit['supply_fit_register_date_receive'];
+                        var date_send = new Date(fit['supply_fit_register_date_send']);
+                        var date_send_change = formatDate(date_send);
+                        
+                        var date_receive = new Date(fit['supply_fit_register_date_receive']);
+                        var date_receive_change = formatDate(date_receive);
+                        function formatDate(value)
+                        {
+                            return value.getDate()+ "/" + (value.getMonth()+1)+ "/" + value.getFullYear();
+                        }
                         var fit_name = fit['name'];
                         $('#send').show();
                         $('#send label').html(function () {
                             var fit_name = fit['name'];
                             return fit_name + " send date:";
                         });
-                        $('#send input').val(date_send);
+                        $('#send input').val(date_send_change);
                         $('#receive').show();
                         $('#receive label').html(function () {
                             return fit_name + " receive date:";
                         });
-                        $('#receive input').val(date_receive);
+                        $('#receive input').val(date_receive_change);
                     });
                 }
             });
@@ -496,32 +501,32 @@
                     dataType: 'text',
                     type: 'POST',
                     success: function (data) {
-//                        alert(data);
-                        
+    //                        alert(data);
+
                         var obj = $.parseJSON(data);
-//                        alert(obj.supply_fit);
+    //                        alert(obj.supply_fit);
                         if (jQuery.isEmptyObject(obj.supply_fit)) {
                             $('#send input').val('');
                             $('#receive input').val('');
-                        }else{
-                        $.each(obj.supply_fit, function (i, fit) {
-                            
-                            var date_send = fit['supply_fit_register_date_send'];
-                            var date_receive = fit['supply_fit_register_date_receive'];
-                            var fit_name = fit['name'];
-                            $('#send').show();
-                            $('#send label').html(function () {
+                        } else {
+                            $.each(obj.supply_fit, function (i, fit) {
+
+                                var date_send = fit['supply_fit_register_date_send'];
+                                var date_receive = fit['supply_fit_register_date_receive'];
                                 var fit_name = fit['name'];
-                                return fit_name + " send date:";
+                                $('#send').show();
+                                $('#send label').html(function () {
+                                    var fit_name = fit['name'];
+                                    return fit_name + " send date:";
+                                });
+                                $('#send input').val(date_send);
+                                $('#receive').show();
+                                $('#receive label').html(function () {
+                                    return fit_name + " receive date:";
+                                });
+                                $('#receive input').val(date_receive);
+
                             });
-                            $('#send input').val(date_send);
-                            $('#receive').show();
-                            $('#receive label').html(function () {
-                                return fit_name + " receive date:";
-                            });
-                            $('#receive input').val(date_receive);
-                            
-                        });
                         }
                     }
                 });

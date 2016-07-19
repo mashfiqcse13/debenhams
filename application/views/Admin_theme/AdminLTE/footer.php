@@ -110,6 +110,9 @@
 <!-- date-range-picker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script src="<?php echo $theme_asset_url ?>plugins/daterangepicker/daterangepicker.js"></script>
+<!--datatable-->
+<script src="<?php echo $theme_asset_url ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo $theme_asset_url ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <!-- bootstrap datepicker -->
 <script src="<?php echo $theme_asset_url ?>plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- bootstrap color picker -->

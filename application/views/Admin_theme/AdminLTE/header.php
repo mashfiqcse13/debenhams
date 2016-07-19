@@ -198,6 +198,9 @@ desired effect
             <?php echo anchor('supply_fit_name', '<i class="fa fa-link"></i>  <span>Supply Fit Name</span>'); ?>
         </li>
         <li class="treeview">
+            <?php echo anchor('search', '<i class="fa fa-link"></i>  <span>Search</span>'); ?>
+        </li>
+        <li class="treeview">
             <?php echo anchor('users_list', '<i class="fa fa-link"></i>  <span>Users</span>'); ?>
         </li>
         <li><a href="<?= site_url('login/logout'); ?>"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>

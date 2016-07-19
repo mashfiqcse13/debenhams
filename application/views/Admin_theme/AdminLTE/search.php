@@ -136,7 +136,7 @@
                     <div class="col-md-12">
                         <a class="btn btn-primary pull-right" href="<?= site_url('Excel'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
             
-                        <table class="table table-bordered table-striped table-condensed" id="example1">
+                        <table class="table table-bordered table-striped table-condensed search_table" id="example1">
                             <thead>
                                 <tr>
                                     <th class="nowrap">Style No</th>
@@ -291,7 +291,7 @@
 
 <?php include_once 'footer.php'; ?>
 <style>
-    th {
+    .search_table th {
     min-width: 132px;
     font-size: 13px;
     background: #DFF0D8;

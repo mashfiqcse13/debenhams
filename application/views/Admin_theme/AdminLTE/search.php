@@ -134,6 +134,8 @@
                 <?= form_close(); ?>
                 <div class="row">
                     <div class="col-md-12">
+                        <a class="btn btn-primary pull-right" href="<?= site_url('Excel'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
+            
                         <table class="table table-bordered table-striped" id="example1">
                             <thead>
                                 <tr>

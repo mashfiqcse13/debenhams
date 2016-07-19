@@ -24,6 +24,7 @@ class Search extends CI_Controller{
         }
         $this->load->library('grocery_CRUD');
         $this->load->model('Search_model');
+        $this->load->library('session');
     }
     function index() {
         $id_supply_style_no = $this->input->post('id_supply_style_no');
@@ -35,6 +36,7 @@ class Search extends CI_Controller{
         $date_to = date('Y-m-d', strtotime($this->input->post('date_to'). ' +1 day'));
         $data['max_supply_info']= $this->Search_model->get_max_supply_info(); 
         if(!empty($id_supply_style_no)){
+            
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_style_no($id_supply_style_no);
         }else if(!empty($id_supplyer)){
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_supplyer($id_supplyer);
@@ -51,11 +53,16 @@ class Search extends CI_Controller{
            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register(); 
            
         }
+         $this->session->set_userdata('excel_session_data',$data['all_informations']);
+        
+
+
 //        echo '<pre>';print_r($data);exit();
         $data['all_style_no'] = $this->Search_model->select_all_by_technician_id();
         $data['all_department'] = $this->Search_model->select_all('department');
         $data['all_technician'] = $this->Search_model->select_all('users');
         $data['all_supplyer'] = $this->Search_model->select_all('supplyer');
+        
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Insert Info';
         $data['base_url'] = base_url();

@@ -55,7 +55,7 @@ class Performance_model  extends CI_Model  {
             $con1=" id_supplyer = $row->id_supplyer AND sample_result=1 or sample_result=2 ";
             $total_order[]=$this->row_count($con1);
             
-            $con2=" id_supplyer = $row->id_supplyer AND sample_result is null ";
+            $con2=" id_supplyer = $row->id_supplyer AND sample_result is null or sample_result = '' ";
             $unfinished_order[]=$this->row_count($con2);
             
             $fit=$this->db->query("SELECT 
@@ -125,7 +125,7 @@ class Performance_model  extends CI_Model  {
     function order_analysis(){
         
         $data['total_finish_order']=$this->row_count(' sample_result=1 or sample_result=2 ');
-        $data['unfinished_order']=$unfinished_order=$this->row_count(' sample_result is null ');
+        $data['unfinished_order']=$unfinished_order=$this->row_count(' sample_result is null or sample_result = "" ');
         
         $fit=array();
         $fit[]=$fit1_pass=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=1 ');

@@ -313,7 +313,7 @@ class Performance_model extends CI_Model  {
             $date_range="AND DATE(date_created) BETWEEN $date";
         }
         
-        $con="sample_result != 1 AND sample_result !=2 AND $name = $id  $date_range";
+        $con="sample_result is null or sample_result = '' AND $name = $id  $date_range";
         $total=$this->row_count($con);
         return $total;
     }

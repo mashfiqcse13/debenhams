@@ -29,11 +29,21 @@ class Supply_info extends CI_Controller {
 
     function index() {
         $crud = new grocery_CRUD();
+        
+        if($this->session->userdata('user_type')==1){
+            $con=' 1=1 ';
+        }elseif($this->session->userdata('user_type')==2){
+            $id_technician=$this->session->userdata('user_id');
+            $con="id_technician=$id_technician";
+        }
+        
+        
         $crud->set_table('supply_info')
                 ->set_subject('Supply Info')
                 ->display_as('id_supply_session', 'Session Name')
                 ->display_as('id_department', 'Department Name')
                 ->display_as('id_supplyer', 'Supplier Name')
+                ->where($con)
                 ->callback_column('id_supply_session', array($this, 'supply_session'))
                 ->callback_column('id_department', array($this, 'department'))
                 ->callback_column('id_supplyer', array($this, 'supplyer'))

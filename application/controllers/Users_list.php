@@ -23,6 +23,9 @@ class Users_list extends ci_controller {
             redirect('login');
             return 0;
         }
+        if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1){
+            redirect('admin');
+        }
         $this->load->library('grocery_CRUD');
         $this->load->model('User_model');
         $this->load->model('tank_auth/users', 'users');

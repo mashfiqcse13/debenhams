@@ -16,11 +16,15 @@ class Admin extends CI_Controller {
             return 0;
         }
         $this->load->library('grocery_CRUD');
+        $this->load->model('role');
+        $this->role->check_access();
         
     }
 
     public function index() {
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        
+        
         $data['Title'] = 'Dashboard';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'starter', $data);
@@ -31,7 +35,7 @@ class Admin extends CI_Controller {
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Dashboard';
         $data['base_url'] = base_url();
-        $this->load->view($this->config->item('ADMIN_THEME') . 'dashboard', $data);
+        $this->load->view($this->config->item('ADMIN_THEME') . 'starter', $data);
 //		$this->load->view('welcome_message');
     } 
 }

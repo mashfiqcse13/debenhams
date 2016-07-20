@@ -5,7 +5,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-class Performance_model  extends CI_Model  {
+class Performance_model extends CI_Model  {
+    
+    
+    
     
     function get_technician_dropdown() {
         $technicians = $this->db->query('SELECT DISTINCT `id_technician` ,username FROM `supply_info` 
@@ -45,83 +48,63 @@ class Performance_model  extends CI_Model  {
     }
     
     function ranking_supplyer(){
+        $this->load->model('Search_model');
         $total_supplyer=$this->db->get('supplyer');
-        
-        $total_order=array();
-        $fit_result=array();
-        $rating=array();
-        
+        $this->load->library('session');
+        $data=array();
+        $data['all']=$this->Search_model->get_supply_info_with_fit_register();
+        $count=array();
         foreach($total_supplyer->result() as $row){
-            $con1=" id_supplyer = $row->id_supplyer AND sample_result=1 or sample_result=2 ";
-            $total_order[]=$this->row_count($con1);
-            
-            $con2=" id_supplyer = $row->id_supplyer AND sample_result is null or sample_result = '' ";
-            $unfinished_order[]=$this->row_count($con2);
-            
-            $fit=$this->db->query("SELECT 
-                                    id_supply_fit_name,
-                                    count(id_supply_fit_name) as count                                    
-                                    FROM `supply_info` left JOIN supply_fit_register ON
-                                    supply_info.id_supply_info=supply_fit_register.id_supply_info 
-                                    WHERE 
-                                    id_supplyer = $row->id_supplyer and 
-                                    sample_result = 1 
-                                    group by (id_supply_fit_name) ");
-            
-            $fit_total=0;
-            foreach($fit->result() as $row){
-                $fit=$row->count;
-                
-                if($row->id_supply_fit_name==1){
-                    $fit=$fit*4;
-                }elseif($row->id_supply_fit_name==2){
-                    $fit=$fit*3;
-                }elseif($row->id_supply_fit_name==3){
-                    $fit=$fit*2;
-                }elseif($row->id_supply_fit_name==4){
-                    $fit=$fit*1;
-                }              
-                $fit_total+=$fit;
-                
-            }
-            $fit_result[]=$fit_total;
-            
-
-            
-            
-        }
-        // $rating[]=($fit_result[$i]*100)/$total_order[$i];
-               // $max = count($data['ranking_supplyer']['total_order']);
-        
-        $i=0;
-        $graph="[['Supplier Name' , 'Ratting'],";
-        foreach($total_order as $row){
-            if($total_order[$i]== 0){
-                $i++;
-                continue;
-                
-            }else{
-                $rating=($fit_result[$i]*100)/$total_order[$i];
-            }
-            $name[$i]=$this->get_supplier_name($i+1);
-            $graph.="['$name[$i]]',$rating],";
-            $i++;
-        }
-        $graph.="]";
-        
-        
-        
-        $data['total_order']=$total_order;
-        $data['unfinished_order']=$unfinished_order;
-        $data['fit_result']=$fit_result;
-        $data['rating']=$graph;
-        $data['name']=$name;
-        
-        
-          
+            //$total_style=count($data['all']);
+            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_supplyer($row->id_supplyer);
+//            for($i=1; $i >= $total_style; $i++){
+//                
+//                if($supplyer->id_supplyer == $data['all'][$i][0]->id_supplyer && $data['all'][$i][0]->sample_result == 1){
+//                    $this->fit['id_supply_fit_name'] = $data['all'][$i][1][1]->id_supply_fit_name;
+//                    $$this->fit['supply_fit_name'] = $data['all'][$i][1][1]->supply_fit_name;
+//                    
+//                    if($row->id_supply_fit_name==1){
+//                        $$this->fit['count_result'] =$$this->fit['id_supply_fit_name']*4;
+//                    }elseif($row->id_supply_fit_name==2){
+//                        $$this->fit['count_result'] =$$this->fit['id_supply_fit_name']*3;
+//                    }elseif($row->id_supply_fit_name==3){
+//                        $$this->fit['count_result'] =$$this->fit['id_supply_fit_name']*2;
+//                    }elseif($row->id_supply_fit_name==4){
+//                       $$this->fit['count_result'] =$$this->fit['id_supply_fit_name']*1;
+//                    }      
+//                    
+//                }
+//            }
+        //}
+//        $val=$data;
+//        $v=$data['all'][1][0]->id_supply_info;
         return $data;
     }
-    
+    }
+
+//    function ranking_supplyer1(){
+//        $this->load->model('Search_model');
+//        $total_supplyer=$this->db->get('supplyer');
+//        
+//        $all_informations=$this->Search_model->get_supply_info_with_fit_register();
+//        
+//        $total_order=array();
+//        $fit_result=array();
+//        $rating=array();
+//        
+//        foreach($total_supplyer->result() as $row){
+//            $con1=" id_supplyer = $row->id_supplyer AND sample_result=1 or sample_result=2 ";
+//            $total_order[]=$this->row_count($con1);
+//            
+//            $con2=" id_supplyer = $row->id_supplyer AND sample_result is null or sample_result = '' ";
+//            $unfinished_order[]=$this->row_count($con2);
+//            
+//
+//        
+//  
+//        return $data;
+//    }
+//    
     function order_analysis(){
         
         $data['total_finish_order']=$this->row_count(' sample_result=1 or sample_result=2 ');
@@ -334,7 +317,4 @@ class Performance_model  extends CI_Model  {
         $total=$this->row_count($con);
         return $total;
     }
-
- 
-
 }

@@ -16,7 +16,7 @@ class Excel extends CI_Controller {
     }
  
 function index() {
-         $id_supply_style_no = $this->input->post('id_supply_style_no');
+        $id_supply_style_no = $this->input->post('id_supply_style_no');
         $technician = $this->input->post('id_technician');
         $id_supplyer = $this->input->post('id_supplyer');
         $date_from = date('Y-m-d', strtotime($this->input->post('date_from')));

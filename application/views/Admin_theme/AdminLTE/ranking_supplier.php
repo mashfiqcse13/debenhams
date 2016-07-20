@@ -1,3 +1,86 @@
+
+                                <?php
+
+                                if (isset($all_informations)) {
+                                    for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
+                                        if (!empty($all_informations[$i][0]->id_supply_info)) {
+                                             $fit['id_supply_info'][]=$all_informations[$i][0]->id_supply_info;
+                                                $fit['id_supplyer'][]=$all_informations[$i][0]->id_supplyer; 
+                                              $fit['supplyer_name'][]=$all_informations[$i][0]->supplyer_name;
+                                                if (!empty($all_informations[$i][1][$i])) {                                                   
+                                            $fit['fit_name'][]=$all_informations[$i][1][$i]['id_supply_fit_name'];                                  
+                                                    
+                                                }if (empty($all_informations[$i][1][$i])) {
+                                                   
+                                                }
+                                               
+                                                    if ($all_informations[$i][0]->sample_result == 1) {
+                                                        $fit['result'][]=1;
+                                                        
+                                                    } else {
+                                                        $fit['result'][]=2;
+                                                        
+                                                    }
+                                                    
+                                                
+                                                
+                                            
+                                         
+                                        }
+                                    }
+                                }
+
+$fit_result=array();
+ $c=count($fit['id_supply_info']);
+for($i=1;$i <= $supplyer_count; $i++) { 
+    
+    $fit_total=0;
+    $order_count=0;
+    for($j=0;$j<$c;$j++){
+      
+      
+     
+        if($fit['id_supplyer'][$j]==$i && $fit['result'][$j]==1){ 
+                
+                $fitr=$fit['fit_name'][$j];
+                
+                if($fit['fit_name'][$j]==1){
+                    $fitr=$fitr*4;
+                }elseif($fit['fit_name'][$j]==2){
+                    $fitr=$fitr*3;
+                }elseif($fit['fit_name'][$j]==3){
+                    $fitr=$fitr*2;
+                }elseif($fit['fit_name'][$j]==4){
+                    $fitr=$fitr*1;
+                }              
+                $fit_total+=$fitr; 
+                $order_count++;
+        }
+        
+    }
+    $name=$supplyername[$i];
+    $fit_result[$i]['rank']=$fit_total;
+    $fit_result[$i]['order_count']=$order_count;
+    $fit_result[$i]['name']=$name;
+    
+    
+}
+ $fit_result_count = count($fit_result);
+        
+
+        $graph="[['Supplier Name' , 'Ratting'],";
+        for($i=1;$i<=$fit_result_count;$i++){
+            $rating=($fit_result[$i]['rank']*100)/$fit_result[$i]['order_count'];
+            $name=$fit_result[$i]['name'];
+            $graph.="['$name',$rating],";
+        }
+        $graph.="]";
+
+//echo '<pre>';
+//print_r($fit_result);
+
+?>
+
 <?php include_once 'header.php'; ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -26,7 +109,7 @@
             </div>
         </div>
 
-                <?php if(!empty($analysis)){ ?>
+                <?php if(!empty($graph)){ ?>
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
@@ -42,18 +125,18 @@
                                     <tr>
                                         <th>Name Of Supplier</th>
                                         <th>Toatal Order</th>
-                                        <th>Unfinished Order</th>
+                                        
                                     </tr>
                                 <?php
                             $i=0;
                             
-                            foreach($ranking_supplyer['name'] as $row){ 
+                            for($i=1;$i<=$fit_result_count;$i++){
                         ?>
                             <tr>
-                                <td> <?=$ranking_supplyer['name'][$i];?></td><td><?=$ranking_supplyer['total_order'][$i];?></td> <td> <?=$ranking_supplyer['unfinished_order'][$i];?> </td>
+                                <td> <?=$fit_result[$i]['name'];?></td><td><?=$fit_result[$i]['order_count'];?></td> 
                             </tr>
                            <?php 
-                            $i++;
+                            
                             }
                             
                         ?>
@@ -61,9 +144,9 @@
                             </div>
                         </div>
                         
+                        <div id="chart_div"></div>
                         
-                        
-                        
+                        <div id="piechart" style="width: 100%; height: 500px;"></div>
                     </div> 
                     </div>
                 </div>
@@ -88,7 +171,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries() {
-      var data = google.visualization.arrayToDataTable(<?=$analysis;?>);
+      var data = google.visualization.arrayToDataTable(<?=$graph;?>);
 
       var options = {
         title: 'Here Highest Percentage Refers Highest Performance and Rank of Supplier',
@@ -111,7 +194,7 @@ function drawMultSeries() {
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
+        var data = google.visualization.arrayToDataTable(<?php echo $graph ; ?>);
 
         var options = {
           title: ' Pie Chart for Supplier Ranking '

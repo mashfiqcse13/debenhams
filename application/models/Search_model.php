@@ -88,6 +88,7 @@ class Search_model extends CI_Model {
     }
 
     function get_supply_info_with_fit_register_by_style_no($id_supply_style_no) {
+        
         $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
         $this->db->from('supply_info');
         $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');

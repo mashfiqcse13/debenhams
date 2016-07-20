@@ -51,6 +51,7 @@ class Search extends CI_Controller{
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_technician($technican);
         }else{
            $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register(); 
+
            
         }
          $this->session->set_userdata('excel_session_data',$data['all_informations']);

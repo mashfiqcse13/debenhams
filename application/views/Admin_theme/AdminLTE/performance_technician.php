@@ -29,7 +29,9 @@
                             //echo form_open(base_url() . "index.php/bank/management_report", $attributes)
                     ?>
                     <div class="row">
+                        <?php if(!$this->session->userdata('user_type') and $this->session->userdata('user_type')==1 ){ ?>
 
+       
                         <div class="col-md-5">
                             <div class="form-group col-md-4 text-left">
                                 <label>Select Technician:</label>                        
@@ -42,6 +44,10 @@
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                         </div>
+                        <?php  }elseif($this->session->userdata('user_type')==2){
+                            echo '<input type="hidden" value="'.$this->session->userdata('user_id').'" name="user_id">';
+                        }
+                        ?>
 
                     <div class="col-md-7">
                     <div class="form-group col-md-4 text-left">

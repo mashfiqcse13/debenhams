@@ -17,6 +17,9 @@ class Supply_info_table extends CI_Controller {
             redirect('login');
             return 0;
         }
+        if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1 or $this->session_userdata('user_type')!=2){
+            redirect('admin');
+        }
         $this->load->library('grocery_CRUD');
         $this->load->model('Supply_info_model');
     }
@@ -25,7 +28,7 @@ class Supply_info_table extends CI_Controller {
     function index() {
         $crud = new grocery_CRUD();
         
-        $c=
+        
         
                 
         $output = $crud->render();

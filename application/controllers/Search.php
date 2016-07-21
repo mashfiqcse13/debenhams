@@ -21,6 +21,8 @@ class Search extends CI_Controller{
         if (!$this->tank_auth->is_logged_in()) {         //not logged in
             redirect('login');
             return 0;
+        }if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1 ){
+            redirect('admin');
         }
         $this->load->library('grocery_CRUD');
         $this->load->model('Search_model');

@@ -23,6 +23,9 @@ class Supply_info extends CI_Controller {
             redirect('login');
             return 0;
         }
+        if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1 or $this->session_userdata('user_type')!=2){
+            redirect('admin');
+        }
         $this->load->library('grocery_CRUD');
         $this->load->model('Supply_info_model');
     }

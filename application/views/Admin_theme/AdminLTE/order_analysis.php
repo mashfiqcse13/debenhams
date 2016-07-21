@@ -1,4 +1,7 @@
 <?php 
+if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1){
+            redirect('admin');
+}
 include_once 'header.php'; ?>
 
   <!-- Content Wrapper. Contains page content -->

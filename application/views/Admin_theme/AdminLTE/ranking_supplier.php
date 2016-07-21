@@ -1,6 +1,7 @@
-
-                                <?php
-
+<?php
+if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1){
+            redirect('admin');
+}
                                 if (isset($all_informations)) {
                                     for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
                                         if (!empty($all_informations[$i][0]->id_supply_info)) {

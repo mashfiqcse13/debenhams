@@ -29,7 +29,7 @@
                             //echo form_open(base_url() . "index.php/bank/management_report", $attributes)
                     ?>
                     <div class="row">
-                        <?php if(!$this->session->userdata('user_type') and $this->session->userdata('user_type')==1 ){ ?>
+                        <?php if($this->session->userdata('user_type')==1 ){ ?>
 
        
                         <div class="col-md-5">

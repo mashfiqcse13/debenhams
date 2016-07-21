@@ -65,7 +65,7 @@ class Search extends CI_Controller{
         $data['all_supplyer'] = $this->Search_model->select_all('supplyer');
         
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-        $data['Title'] = 'Insert Info';
+        $data['Title'] = 'Search Info';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'search', $data);
     }

@@ -312,6 +312,8 @@
         var chk = confirm('Are You Sure To Delete?');
         if (chk) {
             return true;
+        }else{
+            return false;
         }
     }
 

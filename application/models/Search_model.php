@@ -79,7 +79,6 @@ class Search_model extends CI_Model {
         $this->db->from('supply_style_no');
         $query = $this->db->get();
         return $query->result();
-//        }
     }
 
     function search_delete($id) {

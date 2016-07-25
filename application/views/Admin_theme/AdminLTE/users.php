@@ -17,7 +17,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="min-height: 600px;">
         <div class="box">
             <?php
             if ($this->uri->segment(3) == 'add') {
@@ -112,13 +112,7 @@
                                     <input type="hidden" name="id" value="<?php echo $user->id;?>" />
                                     <input type="hidden" name="id_user_type" value="<?php echo $user->id_user_type;?>" />
                                 </div>
-                            </div> 
-                            <div class="form-group ">
-                                <label class="col-md-3">Password:</label>
-                                <div class="col-md-9">
-                                    <input type="password" name="password" class="form-control" value="<?php echo $user->password; ?>"/>
-                                </div>
-                            </div> 
+                            </div>
                             <div class="form-group ">
                                 <label class="col-md-3">Email:</label>
                                 <div class="col-md-9">

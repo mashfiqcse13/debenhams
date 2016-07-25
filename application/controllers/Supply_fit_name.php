@@ -31,7 +31,9 @@ class Supply_fit_name extends ci_controller{
     function index() {
         $crud = new grocery_CRUD();
         $crud->set_table('supply_fit_name')
-                ->set_subject('Supply Fit Name');
+                ->set_subject('Supply Fit Name')
+                                ->order_by('id_supply_fit_name','desc');
+
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

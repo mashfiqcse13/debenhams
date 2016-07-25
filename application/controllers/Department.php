@@ -32,7 +32,8 @@ class Department extends ci_controller{
     function index() {
         $crud = new grocery_CRUD();
         $crud->set_table('department')
-                ->set_subject('Department');
+                ->set_subject('Department')
+                ->order_by('id_department','desc');
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

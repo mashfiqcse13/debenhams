@@ -18,18 +18,17 @@ class Search_model extends CI_Model {
     //put your code here
 
     function getregister($id_supply_info) {
-        $this->db->select('*');
+        $this->db->select('supply_fit_register.id_supply_fit_name,supply_fit_register_date_send as date_send,supply_fit_register_date_receive as date_receive,name as supply_fit_name');
         $this->db->from('supply_fit_register');
         $this->db->join('supply_fit_name', 'supply_fit_register.id_supply_fit_name = supply_fit_name.id_supply_fit_name', 'left');
-        $this->db->where('id_supply_info', $id_supply_info);
+        $this->db->where('supply_fit_register.id_supply_info', $id_supply_info);
         $this->db->order_by('id_supply_info', 'ASC');
-//        $this->db->select_max('supply_fit_register.id_supply_fit_name');
-        $fit_register = $this->db->get()->result();
-        foreach ($fit_register as $fit) {
-            $this->supply_fit_register_detail[$fit->id_supply_info] = array('id_supply_fit_name' => $fit->id_supply_fit_name, 'supply_fit_name' => $fit->name, 'date_send' => $fit->supply_fit_register_date_send, 'date_receive' => $fit->supply_fit_register_date_receive);
-            ;
-        }
-        return $this->supply_fit_register_detail;
+         return $fit_register = $this->db->get()->result();
+//        foreach ($fit_register as $fit) {
+//            $this->supply_fit_register_detail[$fit->id_supply_info] = array('id_supply_fit_name' => $fit->id_supply_fit_name, 'date_send' => $fit->supply_fit_register_date_send, 'date_receive' => $fit->supply_fit_register_date_receive);
+//            
+//        }
+//         $this->supply_fit_register_detail;
     }
 
     function build_fit_register_detail() {
@@ -42,8 +41,11 @@ class Search_model extends CI_Model {
         if (empty($id_supply_info)) {
             $this->build_fit_register_detail();
         } else {
-            $this->getregister($id_supply_info);
-            return $this->supply_fit_register_detail;
+           return $fit_register = $this->getregister($id_supply_info);
+//            for($i = 0; $i<= count($fit_register); $i++){
+//            $this->supply_fit_register_detail[$i] = $fit_register;
+//            }
+//           return $this->supply_fit_register_detail;
         }
     }
 
@@ -55,16 +57,26 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department = department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer = supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician = users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
             $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
         }
+//        for($i = 0; $i<= count($informtions); $i++){
+//            $register[$i] = array($informtions, $this->get_fit_register_detail_by($i));
+//        }
         return $register;
     }
 
     function get_max_supply_info() {
         $this->db->select_max('id_supply_info');
         return $query = $this->db->get('supply_info')->row();
+    }
+    
+    function get_max_supply_fit_regiter(){
+       $this->db->select_max('id_supply_fit_register');
+        return $query = $this->db->get('supply_fit_register')->row(); 
     }
 
     function select_all($tbl_name) {
@@ -95,6 +107,8 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $this->db->where('supply_info.id_supply_style_no', $id_supply_style_no);
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
@@ -111,6 +125,8 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $this->db->where('supply_info.id_supplyer', $id_supplyer);
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
@@ -127,6 +143,8 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $this->db->where('supply_info.id_department', $id_department);
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
@@ -143,6 +161,8 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $this->db->where('supply_info.sample_result', $sample_result);
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
@@ -159,6 +179,8 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $this->db->where('supply_info.id_technician', $sample_result);
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
@@ -175,6 +197,8 @@ class Search_model extends CI_Model {
         $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
+        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
+        $this->db->order_by('supply_info.id_supply_style_no','desc');
         $this->db->where('supply_info.date_created >=', $date_from);
         $this->db->where('supply_info.date_created <=', $date_to);
         $informtions = $this->db->get()->result();

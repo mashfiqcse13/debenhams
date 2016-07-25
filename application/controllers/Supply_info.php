@@ -40,9 +40,11 @@ class Supply_info extends CI_Controller {
         
         $crud->set_table('supply_info')
                 ->set_subject('Supply Info')
-                ->display_as('id_supply_session', 'Session Name')
-                ->display_as('id_department', 'Department Name')
-                ->display_as('id_supplyer', 'Supplier Name')
+                ->display_as('id_supply_style_no', 'Style No')
+                ->display_as('id_supply_session', 'Session')
+                ->display_as('id_department', 'Department')
+                ->display_as('id_supplyer', 'Supplier')
+                ->display_as('id_technician', 'Technician')
                 ->where($con)
                 ->callback_column('id_supply_session', array($this, 'supply_session'))
                 ->callback_column('id_department', array($this, 'department'))
@@ -75,7 +77,8 @@ class Supply_info extends CI_Controller {
                     } else {
                         return 'Bamgladesh';
                     }
-                });
+                })
+                ->order_by('id_supply_info', 'desc');
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id();

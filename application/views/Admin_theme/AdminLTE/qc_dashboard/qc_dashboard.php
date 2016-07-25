@@ -1,4 +1,4 @@
-<?php include_once '/../header.php'; ?>
+<?php include_once __DIR__ . '/../header.php'; ?>
 
 
 
@@ -35,7 +35,7 @@
                         <div class="form-group ">
                             <label class="col-md-3">Style No:</label>
                             <div class="col-md-9">
-                                <select name="id_supply_style_no" id="" class="form-control">
+                                <select name="id_supply_style_no" id="" class="form-control select2">
                                     <option value="">Select Style No</option>
                                     <?php
                                     foreach ($all_style_no as $style_no) {
@@ -60,6 +60,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <a href="<?php echo site_url('qc_dashboard/add_new'); ?>" class="btn btn-success" style="margin: 10px 0 ;"/><i class="fa fa-plus"></i> Add New</a>
+                        <a href="<?php echo site_url('pdf/qc_dashboard'); ?>" class="btn btn-bitbucket pull-right" style="margin: 10px 0 ;"/><i class="fa fa-file-pdf-o"></i> Download pdf</a>
                         <table class="table table-bordered table-striped table-condensed search_table" id="example1">
                             <thead>
                                 <tr>
@@ -105,7 +106,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php include_once '/../footer.php'; ?>
+<?php include_once __DIR__ . '/../footer.php'; ?>
 <style>
     .search_table th {
         min-width: 132px;

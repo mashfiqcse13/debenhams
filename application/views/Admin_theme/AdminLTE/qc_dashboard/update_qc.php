@@ -1,4 +1,4 @@
-<?php include_once '/../header.php'; ?>
+<?php include_once __DIR__ . '/../header.php'; ?>
 
 
 
@@ -34,7 +34,7 @@
                 <div class="form-group ">
                     <label class="col-md-3">Style No:</label>
                     <div class="col-md-9">
-                        <select name="id_supply_style_no" id="" class="form-control">
+                        <select name="id_supply_style_no" id="" class="form-control select2">
                             <option value="">Select Style No</option>
                             <?php
                             foreach ($all_style_no as $style_no) {
@@ -84,7 +84,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php include_once '/../footer.php'; ?>
+<?php include_once __DIR__ . '/../footer.php'; ?>
 <script type="text/javascript">
     document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $info->id_supply_style_no; ?>";
     $('.datepicker').datepicker({

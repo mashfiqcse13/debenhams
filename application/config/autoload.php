@@ -102,9 +102,11 @@ $autoload['helper'] = array('url', 'form', 'date');
 | NOTE: This item is intended for use ONLY if you have created custom
 | config files.  Otherwise, leave it blank.
 |
-*/
+*/if ($_SERVER['HTTP_HOST'] == "http://qa-debenhams.com/") {
+    $autoload['config'] = array('common/site_qc_debenhams');
+}else{
     $autoload['config'] = array('common/site_localhost');
-
+}
 /*
 | -------------------------------------------------------------------
 |  Auto-load Language files

@@ -35,6 +35,7 @@ class Search extends CI_Controller{
         $sample_result = $this->input->post('sample_result');
         $date_to = date('Y-m-d', strtotime($this->input->post('date_to'). ' +1 day'));
         $data['max_supply_info']= $this->Search_model->get_max_supply_info(); 
+        $data['max_supply_fit_register']= $this->Search_model->get_max_supply_fit_regiter(); 
         if(!empty($id_supply_style_no)){
             
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_style_no($id_supply_style_no);
@@ -55,6 +56,7 @@ class Search extends CI_Controller{
            
         }
          $this->session->set_userdata('excel_session_data',$data['all_informations']);
+         $this->session->set_userdata('pdf_session_data',$data['all_informations']);
         
 
 

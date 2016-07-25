@@ -23,7 +23,7 @@ class Users_list extends ci_controller {
             redirect('login');
             return 0;
         }
-        if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1){
+        if (!$this->session->userdata('user_type') or $this->session->userdata('user_type') != 1) {
             redirect('admin');
         }
         $this->load->library('grocery_CRUD');
@@ -35,7 +35,9 @@ class Users_list extends ci_controller {
     function index() {
         $crud = new grocery_CRUD();
         $crud->set_table('users')
-                ->set_subject('Users');
+                ->set_subject('Users')
+                ->unset_columns('password')
+                ->order_by('id', 'desc');
         $output = $crud->render();
         $data['glosary'] = $output;
         $user_id = $this->uri->segment('4');
@@ -45,6 +47,8 @@ class Users_list extends ci_controller {
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'users', $data);
     }
+
+    
 
     function save_info() {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
@@ -71,6 +75,7 @@ class Users_list extends ci_controller {
         $this->User_model->save('user_type', $data);
         redirect('users_list');
     }
+
     function update_info() {
         $id = $this->input->post('id');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
@@ -88,11 +93,11 @@ class Users_list extends ci_controller {
         $user['banned'] = $this->input->post('banned');
         $user['ban_reason'] = $this->input->post('banned_reason');
         $user['modified'] = date('Y-m-d H:i:s');
-        $user_id = $this->User_model->update_info('users','id', $user, $id);
+        $user_id = $this->User_model->update_info('users', 'id', $user, $id);
         $id_user_type = $this->input->post('id_user_type');
         $data['user_id'] = $user_id->id;
         $data['type'] = $this->input->post('type');
-        $this->User_model->update_info('user_type','id_user_type', $data ,$id_user_type);
+        $this->User_model->update_info('user_type', 'id_user_type', $data, $id_user_type);
         redirect('users_list');
     }
 

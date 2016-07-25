@@ -25,6 +25,7 @@ class QC_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        $this->db->order_by('id_qc_info','desc');
         $query = $this->db->get();
         return $query->result();
     }
@@ -32,6 +33,7 @@ class QC_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        $this->db->order_by('id_qc_info','desc');
         $this->db->where('qc_info.id_supply_style_no',$style_id);
         $query = $this->db->get();
         return $query->result();

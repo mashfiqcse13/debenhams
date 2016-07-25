@@ -33,7 +33,8 @@ class Supply_style_no extends CI_Controller {
         $crud->set_table('supply_style_no')
                 ->set_subject('Supply Style No')
                 ->callback_column('allocated_to',array($this,'user_name'))
-                ->field_type('allocated_to', 'dropdown', $this->Supply_style_no_model->get_technicians_as_array());
+                ->field_type('allocated_to', 'dropdown', $this->Supply_style_no_model->get_technicians_as_array())
+                ->order_by('id_supply_style_no','desc');
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

@@ -48,15 +48,15 @@ class Users_list extends ci_controller {
         $this->load->view($this->config->item('ADMIN_THEME') . 'users', $data);
     }
 
-    
-
     function save_info() {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 
         $user['username'] = $this->input->post('username');
-        $user['email'] = $this->input->post('email');
+        if (!empty($this->input->post('email'))) {
+            $user['email'] = $this->input->post('email');
+        }
         $password = $this->input->post('password');
         $hasher = new PasswordHash(
                 $this->config->item('phpass_hash_strength', 'tank_auth'), $this->config->item('phpass_hash_portable', 'tank_auth')
@@ -83,7 +83,9 @@ class Users_list extends ci_controller {
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 
         $user['username'] = $this->input->post('username');
-        $user['email'] = $this->input->post('email');
+        if (!empty($this->input->post('email'))) {
+            $user['email'] = $this->input->post('email');
+        }
         $password = $this->input->post('password');
         $hasher = new PasswordHash(
                 $this->config->item('phpass_hash_strength', 'tank_auth'), $this->config->item('phpass_hash_portable', 'tank_auth')

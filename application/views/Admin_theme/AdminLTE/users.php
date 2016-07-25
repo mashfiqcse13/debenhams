@@ -62,17 +62,19 @@
                     <div class="form-group ">
                         <label class="col-md-3">Banned:</label>
                         <div class="col-md-9">
-                            <select name="banned" id="" class="form-control">
+                            <select name="banned" id="banned" class="form-control">
                                 <option value="0">Not Banned</option>
                                 <option value="1">Banned</option>
                             </select>
                         </div>
                     </div> 
-                    <div class="form-group ">
-                        <label class="col-md-3">Banned Reason:</label>
-                        <div class="col-md-9">
-                            <input type="text" name="banned_reason" class="form-control" />
-                        </div>
+                    <div id="ban_reason" >
+                        <div class="form-group ">
+                            <label class="col-md-3">Banned Reason:</label>
+                            <div class="col-md-9">
+                                <input type="text" name="banned_reason" class="form-control" />
+                            </div>
+                        </div> 
                     </div> 
                     <div class="form-group ">
                         <label class="col-md-3">User type:</label>
@@ -109,10 +111,16 @@
                                 <label class="col-md-3">User Name:</label>
                                 <div class="col-md-9">
                                     <input type="text" name="username" class="form-control" value="<?php echo $user->username; ?>"/>
-                                    <input type="hidden" name="id" value="<?php echo $user->id;?>" />
-                                    <input type="hidden" name="id_user_type" value="<?php echo $user->id_user_type;?>" />
+                                    <input type="hidden" name="id" value="<?php echo $user->id; ?>" />
+                                    <input type="hidden" name="id_user_type" value="<?php echo $user->id_user_type; ?>" />
                                 </div>
                             </div>
+                            <div class="form-group ">
+                                <label class="col-md-3">Password:</label>
+                                <div class="col-md-9">
+                                    <input type="password" name="password" class="form-control" />
+                                </div>
+                            </div> 
                             <div class="form-group ">
                                 <label class="col-md-3">Email:</label>
                                 <div class="col-md-9">
@@ -183,7 +191,8 @@
         var select = $("#banned option:selected").val();
         if (select == 1) {
             $('#ban_reason').show();
-        }if (select == 0) {
+        }
+        if (select == 0) {
             $('#ban_reason').hide();
         }
     });

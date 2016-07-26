@@ -195,17 +195,20 @@
                                     <th>Wearer Receive Date</th>
                                     <th>Gold Sl Send Date</th>
                                     <th>Gold Sl Receive Date</th>
-                                    <th>File Receive Date</th>
-                                    <th>PP Meeting Date</th>
-                                    <th>Inline Date</th>
-                                    <th>Final Inspection Date</th>
+                                    
                                     <th>Sample Pass /Fail</th>
                                     <th>Lab Test Report</th>
                                     <th>Pattern Block</th>
                                     <th>Tested By</th>
+                                    <th>File Receive Date</th>
+                                    <th>PP Meeting Date</th>
+                                    <th>Inline Date</th>
+                                    <th>Final Inspection Date</th>
                                     <th>Technician</th>
-                                    <th>Data Entry Date</th>
+                                    
                                     <th>Remark</th>
+                                    
+                                    <th>Data Entry Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -443,10 +446,7 @@
                                                 </td>
                                                 <?php ?>   
 
-                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)); ?></td>
-                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)); ?></td>
-                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)); ?></td>
-                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)); ?></td>
+                                                
                                                 <td>
                                                     <?php
                                                     if ($all_informations[$i][0]->sample_result == 1) {
@@ -481,9 +481,17 @@
                                                     }
                                                     ?>
                                                 </td>
+                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)); ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)); ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)); ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)); ?></td>
+                                                
+                                                
                                                 <td><?php echo $all_informations[$i][0]->username; ?></td>
-                                                <td><?php echo $all_informations[$i][0]->date_created; ?></td>
+                                                
                                                 <td><?php echo $all_informations[$i][0]->remark; ?></td>
+                                                
+                                                <td><?php echo $all_informations[$i][0]->date_created; ?></td>
                                                 <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                     </a>

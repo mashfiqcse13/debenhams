@@ -165,8 +165,8 @@
                 <?= form_close(); ?>
                 <div class="row">
                     <div class="col-md-12">
-                        <a class="btn btn-bitbucket pull-right" href="<?= site_url('Pdf'); ?>"><i class="fa fa-file-pdf-o"></i> Download as pdf </a>
-                        <a class="btn btn-primary pull-right" href="<?= site_url('Excel'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
+                        <a style="margin-right:5px;padding-right: 5px;margin-left:5px;" class="btn btn-bitbucket pull-right btn-sm" href="<?= site_url('Pdf'); ?>"><i class="fa fa-file-pdf-o"></i> Download as pdf </a>
+                        <a class="btn btn-primary pull-right btn-sm" href="<?= site_url('Excel'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
 
                         <table class="table table-bordered table-striped table-condensed search_table" id="example1">
                             <thead>
@@ -193,16 +193,16 @@
                                     <th>PP Receive Date</th>
                                     <th>Wearer Send Date</th>
                                     <th>Wearer Receive Date</th>
-                                    <th>Gold sl Send Date</th>
-                                    <th>Gold sl Receive Date</th>
+                                    <th>Gold Sl Send Date</th>
+                                    <th>Gold Sl Receive Date</th>
                                     <th>File Receive Date</th>
                                     <th>PP Meeting Date</th>
                                     <th>Inline Date</th>
                                     <th>Final Inspection Date</th>
-                                    <th>Sample pass /fail</th>
+                                    <th>Sample Pass /Fail</th>
                                     <th>Lab Test Report</th>
                                     <th>Pattern Block</th>
-                                    <th>Tested by</th>
+                                    <th>Tested By</th>
                                     <th>Technician</th>
                                     <th>Data Entry Date</th>
                                     <th>Remark</th>
@@ -513,10 +513,14 @@
 <?php include_once 'footer.php'; ?>
 <style>
     .search_table th {
-        min-width: 132px;
+        min-width: 100px;
         font-size: 13px;
         background: #DFF0D8;
         color: #000;
+        text-align: center;
+        vertical-align: top!important;
+    }
+    td {
         text-align: center;
     }
 </style>

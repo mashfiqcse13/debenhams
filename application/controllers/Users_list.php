@@ -36,8 +36,15 @@ class Users_list extends ci_controller {
         $crud = new grocery_CRUD();
         $crud->set_table('users')
                 ->set_subject('Users')
-                ->unset_columns('password')
-                ->order_by('id', 'desc');
+                ->unset_columns('password','new_password_key','new_password_requested','new_email','new_email_key')
+                ->order_by('id', 'desc')
+                ->callback_column('banned', function($this) {
+                    if ($this == 1) {
+                        return 'Banned';
+                    } else {
+                        return 'Not Banned';
+                    }
+                });
         $output = $crud->render();
         $data['glosary'] = $output;
         $user_id = $this->uri->segment('4');

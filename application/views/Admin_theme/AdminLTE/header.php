@@ -77,9 +77,9 @@
                 <!-- Logo -->
                 <a href="<?= site_url('Admin'); ?>" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><?php echo $this->config->item('SITETITLE'); ?></span>
+                    <span class="logo-mini">DH</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><small><?php echo $this->config->item('SITETITLE'); ?></small></span>
+                    <span class="logo-lg"><small>DEBENHAMS</small></span> 
                 </a>
 
                 <!-- Header Navbar -->
@@ -120,7 +120,7 @@
                 <section class="sidebar">
 
                     <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel">
+                    <div class="user-panel" style="display:none"> 
                         <div class="pull-left image">
                             <!--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
                         </div>
@@ -132,7 +132,7 @@
                     </div>
 
                     <!-- search form (Optional) -->
-                    <form action="#" method="get" class="sidebar-form">
+                    <form action="#" method="get" class="sidebar-form" style="display:none">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">

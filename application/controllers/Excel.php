@@ -25,7 +25,7 @@ function index() {
         $date_to = date('Y-m-d', strtotime($this->input->post('date_to'). ' +1 day'));
         $data['max_supply_info']= $this->Search_model->get_max_supply_info(); 
         $data['max_supply_fit_register']= $this->Search_model->get_max_supply_fit_regiter(); 
-
+        
         $data['all_informations']= $this->session->userdata('excel_session_data');           
      
 //        echo '<pre>';print_r($data);exit();
@@ -36,7 +36,7 @@ function index() {
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Insert Info';
         $data['base_url'] = base_url();
-        $this->load->view('home', $data);
+        $this->load->view('excel', $data);
     }
    
 

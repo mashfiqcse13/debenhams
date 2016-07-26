@@ -30,10 +30,19 @@ class Supply_style_no extends CI_Controller {
 
     function index() {
         $crud = new grocery_CRUD();
+        
+        if($this->session->userdata('user_type')==1){
+            $con=' 1=1 ';
+        }elseif($this->session->userdata('user_type')==2){
+            $id_technician=$this->session->userdata('user_id');
+            $con="allocated_to=$id_technician";
+        }
+        
         $crud->set_table('supply_style_no')
                 ->set_subject('Supply Style No')
                 ->callback_column('allocated_to',array($this,'user_name'))
                 ->field_type('allocated_to', 'dropdown', $this->Supply_style_no_model->get_technicians_as_array())
+                ->where($con)
                 ->order_by('id_supply_style_no','desc');
         $output = $crud->render();
         $data['glosary'] = $output;

@@ -535,3 +535,9 @@
         });
     </script>
 <?php } ?>
+<?php if ($this->uri->segment(3) == 'edit' or $this->uri->segment(3) == 'add' ) { ?>
+    <script>
+        $('.treeview-menu').css('display','block');
+
+    </script>
+<?php } ?>

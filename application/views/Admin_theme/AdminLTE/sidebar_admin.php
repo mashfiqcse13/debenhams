@@ -3,7 +3,7 @@
     <li class="header">Main Sidebar</li>
     <!-- Optionally, you can add icons to the links -->
 
-    <li class="active"><a href="<?= site_url('Admin'); ?>"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+   
 
     <li><a href="<?= site_url('admin/dashboard'); ?>"><i class="fa fa-link"></i> <span>Demo Dashboard</span></a></li>
     <li class="treeview">

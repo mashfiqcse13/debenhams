@@ -1,4 +1,18 @@
-<?php include_once 'header.php'; ?>
+<?php
+                    if ($this->session->userdata('user_type') == 1) {
+
+                         redirect('search');
+
+                    } elseif ($this->session->userdata('user_type') == 2) {
+
+                         redirect('supply_info');
+
+                    } elseif ($this->session->userdata('user_type') == 3) {
+
+                         redirect('qc_dashboard');
+
+                    }
+?><?php include_once 'header.php'; ?>
 
 
 

@@ -106,6 +106,7 @@ GROUP BY supply_info.id_supplyer");
         $data['all']=$this->Search_model->get_supply_info_with_fit_register();
         $count=array();
         $data['max_supply_info']= $this->Search_model->get_max_supply_info();
+        
         $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register(); 
         foreach($total_supplyer->result() as $row){
             $data['total'][$row->id_supplyer]=$row->name;

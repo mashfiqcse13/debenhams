@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-md-3">Fit Name:</label>
+                                        <label class="col-md-3">Production Step Name:</label>
                                         <div class="col-md-9">
                                             <select name="id_supply_fit_name" id="fit_name" class="form-control select2">
                                                 <option value="0">Select Fit Name</option>

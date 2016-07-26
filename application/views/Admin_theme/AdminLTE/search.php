@@ -51,6 +51,28 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label class="col-md-3">Department:</label>
+                            <div class="col-md-9">
+                                <select name="id_department" id="" class="form-control select2">
+                                    <option value="">Null</option>
+                                    <?php
+                                    foreach ($all_department as $iepartment) {
+                                        ?>
+                                        <option value="<?php echo $iepartment->id_department; ?>"><?php echo $iepartment->name; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group ">
                             <label class="col-md-3">Supplier:</label>
                             <div class="col-md-9">
@@ -67,6 +89,23 @@
                             </div>
 
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label class="col-md-3">Sample Result:</label>
+                            <div class="col-md-9">
+                                <select name="sample_result" id="" class="form-control select2">
+                                    <option value="">Null</option>
+                                    <option value="1">Pass</option>
+                                    <option value="2">Fail</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group ">
                             <label class="col-md-3">Technician Name:</label>
                             <div class="col-md-9">
@@ -92,58 +131,37 @@
                             </div>
 
                         </div>
-
+                    </div>
+                    <div class="col-md-6">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group " id="send">
                             <label class="col-md-3" >Date From:</label>
                             <div class="col-md-9">
                                 <input type="" class="form-control datepicker" name="date_from" id="datepicker" placeholder="Add Date"/>
-
+                                 <input type="hidden" />
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-md-6" style="margin-top: 26px;">
-                        <div class="form-group">
-                            <label class="col-md-3"></label>
-                            <input type="hidden" />
-                        </div>
-                        <div class="form-group ">
-                            <label class="col-md-3">Department:</label>
-                            <div class="col-md-9">
-                                <select name="id_department" id="" class="form-control select2">
-                                    <option value="">Null</option>
-                                    <?php
-                                    foreach ($all_department as $iepartment) {
-                                        ?>
-                                        <option value="<?php echo $iepartment->id_department; ?>"><?php echo $iepartment->name; ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <label class="col-md-3">Sample Result:</label>
-                            <div class="col-md-9">
-                                <select name="sample_result" id="" class="form-control select2">
-                                    <option value="">Null</option>
-                                    <option value="1">Pass</option>
-                                    <option value="2">Fail</option>
-                                </select>
-                            </div>
-
-                        </div>
+                    <div class="col-md-6">
                         <div class="form-group " id="send">
                             <label class="col-md-3" >Date To:</label>
                             <div class="col-md-9">
                                 <input type="" class="form-control datepicker" name="date_to" id="datepicker" placeholder="Add Date"/>
                             </div>
                         </div>
-
                     </div>
+                </div>
+                
+                
+            
 
                 </div>
                 <input type="submit"  value="Search Information" class="btn btn-success" style="margin: 10px 0 ;"/>
+                <a href="" class="btn btn-primary">Reset</a>
                 <?= form_close(); ?>
                 <div class="row">
                     <div class="col-md-12">

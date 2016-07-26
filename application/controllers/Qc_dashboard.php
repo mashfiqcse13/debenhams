@@ -32,10 +32,15 @@ class Qc_dashboard extends CI_Controller {
         $style_id = $this->input->get('id_supply_style_no');
         if (!empty($style_id)) {
             $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info_by_style_id($style_id);
-        }else{
+        } else {
             $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info();
         }
-        $this->session->set_userdata('pdf_qc_dashboard',$data['get_all_qc_info']);
+        $data['date_range'] = $this->input->get('date_range');
+        $date = explode('-', $data['date_range']);
+        if ($data['date_range'] != '') {
+            $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info_by_date($date[0], $date[1]);
+        }
+        $this->session->set_userdata('pdf_qc_dashboard', $data['get_all_qc_info']);
         $data['all_style_no'] = $this->QC_model->select_all_style_no();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'QC Dashboard';
@@ -66,6 +71,7 @@ class Qc_dashboard extends CI_Controller {
         $data['pp_meeting_date'] = date('Y-m-d', strtotime($this->input->post('pp_meeting_date')));
         $data['inline_date'] = date('Y-m-d', strtotime($this->input->post('inline_date')));
         $data['final_inspection_date'] = date('Y-m-d', strtotime($this->input->post('final_inspection_date')));
+        $data['date_created'] = date('Y-m-d H:i:s');
         $this->QC_model->save_info('qc_info', $data);
         redirect('qc_dashboard');
     }
@@ -77,11 +83,12 @@ class Qc_dashboard extends CI_Controller {
         $data['pp_meeting_date'] = date('Y-m-d', strtotime($this->input->post('pp_meeting_date')));
         $data['inline_date'] = date('Y-m-d', strtotime($this->input->post('inline_date')));
         $data['final_inspection_date'] = date('Y-m-d', strtotime($this->input->post('final_inspection_date')));
+        $data['date_created'] = date('Y-m-d H:i:s');
         $this->QC_model->update_info('qc_info', $data, $id);
         redirect('qc_dashboard');
     }
-    
-    function delete($id){
+
+    function delete($id) {
         $this->QC_model->delete($id);
         redirect('qc_dashboard');
     }

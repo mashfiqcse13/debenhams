@@ -55,6 +55,35 @@
                 </div>
 
                 <?= form_close(); ?>
+                <?php
+                $attributes = array(
+                    'class' => 'form-horizontal',
+                    'method' => 'get',
+                    'name' => 'form',
+                    'method' => 'get');
+                echo form_open('qc_dashboard', $attributes)
+                ?>
+                <div class="row col-md-offset-2">
+                    <div class="col-md-8 ">
+                        <div class="form-group ">
+                            <label class="col-md-3">Search with Date Range:</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="date_range" value="<?= isset($date_range) ? $date_range : ''; ?>" class="form-control pull-right" id="reservation"  title="This is not a date"/>
+                                </div><!-- /.input group -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" name="btn_submit" value="true" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                         <?= anchor(current_url() . '', '<i class="fa fa-refresh"></i>', ' class="btn btn-success"') ?>
+                    </div>
+                </div>
+
+                <?= form_close(); ?>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -69,6 +98,7 @@
                                     <th>P.P Meeting Date:</th>
                                     <th>In-Line Date</th>
                                     <th>Final Inspection Date:</th>
+                                    <th>Data Entry Date:</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -82,6 +112,7 @@
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
+                                        <td><?php echo $all_informations->date_created; ?></td>
                                         <td><a href="<?= site_url('qc_dashboard/reduce/' . $all_informations->id_qc_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                             </a>

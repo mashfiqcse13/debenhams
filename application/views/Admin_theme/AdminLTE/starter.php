@@ -5,7 +5,7 @@
 
                     } elseif ($this->session->userdata('user_type') == 2) {
 
-                         redirect('supply_info');
+                         redirect('search');
 
                     } elseif ($this->session->userdata('user_type') == 3) {
 

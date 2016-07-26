@@ -31,6 +31,8 @@
                     <th>Department:</th>
                     <th>Style Description</th>
                     <th>Supplier Name:</th>
+                    <th>Dev Send Date</th>
+                    <th>Dev Receive Date</th>
                     <th>First Fit Send Date:</th>
                     <th>First Fit Receive Date:</th>
                     <th>Second Fit Send Date:</th>
@@ -40,9 +42,7 @@
                     <th>Forth Fit Send Date:</th>
                     <th>Forth Fit Receive Date:</th>
                     <th>Fifth Fit Send Date:</th>
-                    <th>Fifth Fit Receive Date:</th>
-                    <th>Dev Send Date</th>
-                    <th>Dev Receive Date</th>
+                    <th>Fifth Fit Receive Date:</th>                    
                     <th>PP Send Date</th>
                     <th>PP Receive Date</th>
                     <th>Wearer Send Date</th>
@@ -74,7 +74,30 @@ if (isset($all_informations)) {
                                 <td><?php echo $all_informations[$i][0]->department_name; ?></td>
                                 <td><?php echo $all_informations[$i][0]->style_description; ?></td>
                                 <td><?php echo $all_informations[$i][0]->supplyer_name; ?></td>
-            <?php ?>
+            
+                                <td>
+                                <?php
+                                for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
+                                    if (!empty($all_informations[$i][1][$o])) {
+                                        if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
+                                            echo $all_informations[$i][1][$o]->date_send;
+                                        }
+                                    }
+                                }
+                                ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
+                                        if (!empty($all_informations[$i][1][$o])) {
+                                            if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
+                                                echo $all_informations[$i][1][$o]->date_receive;
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </td>
+                                
                                 <td>
                                 <?php
                                 for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
@@ -196,31 +219,7 @@ if (isset($all_informations)) {
                                 </td>
                                     <?php
                                     ?>  
-                                <td>
-
-                                <?php
-                                for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
-                                    if (!empty($all_informations[$i][1][$o])) {
-                                        if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                            echo $all_informations[$i][1][$o]->date_send;
-                                        }
-                                    }
-                                }
-                                ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
-                                        if (!empty($all_informations[$i][1][$o])) {
-                                            if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                                echo $all_informations[$i][1][$o]->date_receive;
-                                            }
-                                        }
-                                    }
-                                    ?>
-                                </td>
-                                    <?php
-                                    ?>  
+                                
                                 <td>
 
                                 <?php

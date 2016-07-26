@@ -22,6 +22,10 @@
     <li class="treeview">
         <?php echo anchor('supply_style_no', '<i class="fa fa-link"></i>  <span>Style No</span>'); ?>
     </li>
+    
+    <li class="treeview">
+        <?php echo anchor('search', '<i class="fa fa-link"></i>  <span>Search</span>'); ?>
+    </li>
 
     <li><a href="<?= site_url('login/logout'); ?>"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
 </ul>

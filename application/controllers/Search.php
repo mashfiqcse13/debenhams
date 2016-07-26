@@ -36,8 +36,7 @@ class Search extends CI_Controller{
         $date_to = date('Y-m-d', strtotime($this->input->post('date_to'). ' +1 day'));
         $data['max_supply_info']= $this->Search_model->get_max_supply_info(); 
         $data['max_supply_fit_register']= $this->Search_model->get_max_supply_fit_regiter(); 
-        if(!empty($id_supply_style_no)){
-            
+        if(!empty($id_supply_style_no)){            
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_style_no($id_supply_style_no);
         }else if(!empty($id_supplyer)){
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_supplyer($id_supplyer);
@@ -51,9 +50,7 @@ class Search extends CI_Controller{
         }else if(!empty($technician)){
             $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register_by_technician($technican);
         }else{
-           $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register(); 
-
-           
+           $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register();
         }
          $this->session->set_userdata('excel_session_data',$data['all_informations']);
          $this->session->set_userdata('pdf_session_data',$data['all_informations']);

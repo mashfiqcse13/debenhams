@@ -30,6 +30,7 @@
                     <th>P.P Meeting Date:</th>
                     <th>In-Line Date</th>
                     <th>Final Inspection Date:</th>
+                    <th>Created Date:</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@
                         <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
                         <td><?php echo date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
+                         <td><?php echo $all_informations->date_created; ?></td>
                     </tr>
                     <?php
                 }

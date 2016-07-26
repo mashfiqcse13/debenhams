@@ -108,6 +108,7 @@ class Supply_info_model extends ci_model {
     }
     
     function get_all($value, $tbl_name, $id) {
+        $data='';
         $get_info = $this->db->query('select * from `' . $tbl_name . '` where `' . $id . '` = ' . $value)->result();
         foreach ($get_info as $supply) {
             $data = $supply->name;

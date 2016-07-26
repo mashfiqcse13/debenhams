@@ -24,6 +24,7 @@ class Supply_style_no_model extends CI_Model {
     }
 
     function get_all($value,$tbl_name,$id) {
+        $data='';
         $get_info = $this->db->query('select * from `' . $tbl_name . '` where `' . $id . '` = ' . $value)->result();
         foreach ($get_info as $supply) {
             $data = $supply->username;

@@ -218,7 +218,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Session:</label>
                                             <div class="col-md-9">
-                                                <select name="id_supply_session" id="" class="form-control select2">
+                                                <select name="id_supply_session" id="" class="form-control select">
                                                     <option value="0">Select Session No</option>
                                                     <?php
                                                     foreach ($all_session as $session) {
@@ -236,7 +236,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Department:</label>
                                             <div class="col-md-9">
-                                                <select name="id_department" id="" class="form-control select2">
+                                                <select name="id_department" id="" class="form-control select">
                                                     <option value="0">Select Department No</option>
                                                     <?php
                                                     foreach ($all_department as $department) {
@@ -259,7 +259,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Supplier:</label>
                                             <div class="col-md-9">
-                                                <select name="id_supplyer" id="" class="form-control select2">
+                                                <select name="id_supplyer" id="" class="form-control select">
                                                     <option value="0">Select Supplier</option>
                                                     <?php
                                                     foreach ($all_supplyer as $supplyer) {
@@ -278,7 +278,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Fit Name:</label>
                                                 <div class="col-md-9">
-                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control select2">
+                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control select">
                                                         <option value="0">Select Fit Name</option>
                                                         <?php
                                                         foreach ($all_fit_name as $fit) {
@@ -314,7 +314,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Sample Result:</label>
                                             <div class="col-md-9">
-                                                <select name="sample_result" id="" class="form-control select2">
+                                                <select name="sample_result" id="" class="form-control select">
                                                     <option value="0">Select Sample Result</option>
                                                     <option value="1">Pass</option>
                                                     <option value="2">Fail</option>
@@ -325,7 +325,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Approved By:</label>
                                             <div class="col-md-9">
-                                                <select name="approved_by" id="" class="form-control select2">
+                                                <select name="approved_by" id="" class="form-control select">
                                                     <option value="0">Select Approved By</option>
                                                     <option value="1">United Kingdom</option>
                                                     <option value="2">Bangladesh</option>
@@ -336,7 +336,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Lab Test Report:</label>
                                             <div class="col-md-9">
-                                                <select name="lab_test_report" id="" class="form-control select2">
+                                                <select name="lab_test_report" id="" class="form-control select">
                                                     <option value="0">Select Lab Test Report</option>
                                                     <option value="1">Pass</option>
                                                     <option value="2">Fail</option>
@@ -347,7 +347,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Patter Block:</label>
                                             <div class="col-md-9">
-                                                <select name="pattern_block" id="" class="form-control select2">
+                                                <select name="pattern_block" id="" class="form-control select">
                                                     <option value="0">Select Pattern Block</option>
                                                     <option value="1">United Kingdom</option>
                                                     <option value="2">Bangladesh</option>

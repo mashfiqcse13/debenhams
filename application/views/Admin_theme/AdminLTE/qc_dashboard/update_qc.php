@@ -34,7 +34,7 @@
                 <div class="form-group ">
                     <label class="col-md-3">Style No:</label>
                     <div class="col-md-9">
-                        <select name="id_supply_style_no" id="" class="form-control select2">
+                        <select name="id_supply_style_no" id="" class="form-control select">
                             <option value="">Select Style No</option>
                             <?php
                             foreach ($all_style_no as $style_no) {

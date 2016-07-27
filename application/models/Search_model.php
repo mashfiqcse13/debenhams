@@ -87,6 +87,14 @@ class Search_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    function select_technician_by_type() {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->join('user_type','users.id = user_type.user_id','left');
+        $this->db->where('user_type.type',2);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     function select_all_by_technician_id() {
         $this->db->select('*');

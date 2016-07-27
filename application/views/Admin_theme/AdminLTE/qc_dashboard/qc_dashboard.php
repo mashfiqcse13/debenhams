@@ -102,6 +102,7 @@
                             <thead>
                                 <tr>
                                     <th class="nowrap">Style No</th>
+                                    <th style="display:none;"></th>
                                     <th class="nowrap">File Receive Date</th>
                                     <th>P.P Meeting Date:</th>
                                     <th>In-Line Date</th>
@@ -119,6 +120,7 @@
                                     ?>
                                     <tr>
                                         <td class="nowrap"><?php echo $all_informations->style_no; ?></td>
+                                        <td style="display:none;"><?php echo $all_informations->id_qc_info; ?></td>
                                         <td class="nowrap"><?php echo date('d/m/Y', strtotime($all_informations->file_receive_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
@@ -166,7 +168,7 @@
     $('#example1').DataTable({
         "scrollX": true,
         bFilter: false,
-        "order": [[6, "desc"]]
+        "order": [[1, "desc"]]
     });
     setTimeout(function () {
         $('#message').fadeOut();

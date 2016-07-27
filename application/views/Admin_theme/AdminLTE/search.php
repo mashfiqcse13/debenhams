@@ -210,6 +210,9 @@
                                 <th>PP Meeting Date</th>
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>
+                                <th>Orders Comment</th>
+                                <th>Wash Approval Date</th>
+                                <th>Wash Comment</th>
                                 <th>Technician</th>
 
                                 <th>Remark</th>
@@ -491,6 +494,9 @@
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)); ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)); ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)); ?></td>
+                                            <td><?php echo $all_informations[$i][0]->orders_comment; ?></td>
+                                            <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)); ?></td>
+                                            <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
 
 
                                             <td><?php echo $all_informations[$i][0]->username; ?></td>

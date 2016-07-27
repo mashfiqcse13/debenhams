@@ -41,7 +41,7 @@ class Search extends CI_Controller {
         
         
         $id_supply_style_no = $this->input->get('id_supply_style_no');
-        $technician = $this->input->get('id_technician');
+        $technician = $this->input->get('id_technican');
         $id_supplyer = $this->input->get('id_supplyer');
         $date_from = date('Y-m-d', strtotime($this->input->get('date_from')));
         $id_department = $this->input->get('id_department');
@@ -68,7 +68,7 @@ class Search extends CI_Controller {
 
        
         $data['all_department'] = $this->Search_model->select_all('department');
-        $data['all_technician'] = $this->Search_model->select_all('users');
+        $data['all_technician'] = $this->Search_model->select_technician_by_type();
         $data['all_supplyer'] = $this->Search_model->select_all('supplyer');
 
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

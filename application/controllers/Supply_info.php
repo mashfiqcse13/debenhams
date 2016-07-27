@@ -39,12 +39,13 @@ class Supply_info extends CI_Controller {
         
         
         $crud->set_table('supply_info')
-                ->set_subject('Supply Info')
+                ->set_subject('Sample Info')
                 ->display_as('id_supply_style_no', 'Style No')
                 ->display_as('id_supply_session', 'Session')
                 ->display_as('id_department', 'Department')
                 ->display_as('id_supplyer', 'Supplier')
                 ->display_as('id_technician', 'Technician')
+                ->set_relation('id_supply_style_no', 'supply_style_no', 'style_no')
                 ->where($con)
                 ->callback_column('id_supply_session', array($this, 'supply_session'))
                 ->callback_column('id_department', array($this, 'department'))
@@ -79,6 +80,7 @@ class Supply_info extends CI_Controller {
                     }
                 })
                 ->order_by('id_supply_info', 'desc');
+                
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id();
@@ -151,7 +153,7 @@ class Supply_info extends CI_Controller {
         $this->Supply_info_model->save_info('supply_fit_register', $fit);
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Saved!</p></div>';
         $this->session->set_userdata($sdata);
-        redirect('supply_info');
+        redirect('search');
     }
 
     function update_info() {
@@ -187,7 +189,7 @@ class Supply_info extends CI_Controller {
         }
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
         $this->session->set_userdata($sdata);
-        redirect('supply_info');
+        redirect('search');
     }
 
 }

@@ -152,6 +152,7 @@
         color: #000;
         text-align: center;
     }
+    table{text-align: center;}
 </style>
 <script type="text/javascript">
     $('#example1').DataTable({

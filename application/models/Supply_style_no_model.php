@@ -14,8 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Supply_style_no_model extends CI_Model {
 
-    function get_technicians_as_array() {
-        $technicians = $this->db->query("SELECT * FROM `users` join `user_type` on users.id = user_type.user_id WHERE type = 2")->result();
+    function get_technicians_as_array($con) {
+        $technicians = $this->db->query("SELECT * FROM `users` join `user_type` on users.id = user_type.user_id WHERE type = 2 AND $con")->result();
         $data = array();
         foreach ($technicians as $technician) {
             $data[$technician->id] = $technician->username;

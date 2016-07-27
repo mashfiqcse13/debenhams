@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-md-3">Production Step Name:</label>
+                                        <label class="col-md-3">Sample Step Name:</label>
                                         <div class="col-md-9">
                                             <select name="id_supply_fit_name" id="fit_name" class="form-control select2">
                                                 <option value="0">Select Fit Name</option>
@@ -416,11 +416,11 @@
                         var fit_name = fit['name'];
                         $('#send').show();
                         $('#send label').html(function () {
-                            return fit_name + " send date:";
+                            return fit_name + " Send Date:";
                         });
                         $('#receive').show();
                         $('#receive label').html(function () {
-                            return fit_name + " receive date:";
+                            return fit_name + " Receive Date:";
                         });
 
                     });
@@ -478,12 +478,12 @@
                         $('#send').show();
                         $('#send label').html(function () {
                             var fit_name = fit['name'];
-                            return fit_name + " send date:";
+                            return fit_name + " Send Date:";
                         });
                         $('#send input').val(date_send_change);
                         $('#receive').show();
                         $('#receive label').html(function () {
-                            return fit_name + " receive date:";
+                            return fit_name + " Receive Date:";
                         });
                         $('#receive input').val(date_receive_change);
                     });
@@ -518,12 +518,12 @@
                                 $('#send').show();
                                 $('#send label').html(function () {
                                     var fit_name = fit['name'];
-                                    return fit_name + " send date:";
+                                    return fit_name + " Send date:";
                                 });
                                 $('#send input').val(date_send);
                                 $('#receive').show();
                                 $('#receive label').html(function () {
-                                    return fit_name + " receive date:";
+                                    return fit_name + " Receive date:";
                                 });
                                 $('#receive input').val(date_receive);
 

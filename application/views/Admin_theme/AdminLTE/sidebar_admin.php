@@ -46,7 +46,7 @@
                     <li><?php echo anchor('department', '<i class="fa fa-edit"></i>  <span>Department</span>'); ?></li>
                     <li><?php echo anchor('supplier', '<i class="fa fa-edit"></i>  <span>Supplier</span>'); ?></li>
                     <li><?php echo anchor('supply_session', '<i class="fa fa-edit"></i>  <span>Session</span>'); ?></li>
-                    <li><?php echo anchor('supply_fit_name', '<i class="fa fa-edit"></i>  <span>Production Step Name</span>'); ?></li>
+                    <li><?php echo anchor('supply_fit_name', '<i class="fa fa-edit"></i>  <span>Sample Step Name</span>'); ?></li>
                     
                 </ul>
              </li> 

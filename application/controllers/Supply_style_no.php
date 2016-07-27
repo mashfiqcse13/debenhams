@@ -33,21 +33,27 @@ class Supply_style_no extends CI_Controller {
         
         if($this->session->userdata('user_type')==1){
             $con=' 1=1 ';
+            $con1=' 1=1';
         }elseif($this->session->userdata('user_type')==2){
             $id_technician=$this->session->userdata('user_id');
             $con="allocated_to=$id_technician";
+            $con1="user_id=$id_technician";
         }
         
         $crud->set_table('supply_style_no')
-                ->set_subject('Supply Style No')
-                ->callback_column('allocated_to',array($this,'user_name'))
-                ->field_type('allocated_to', 'dropdown', $this->Supply_style_no_model->get_technicians_as_array())
+                ->set_subject('Sample Style No')
+                ->callback_column('allocated_to',array($this,'user_name'))                
                 ->where($con)
                 ->order_by('id_supply_style_no','desc');
+        
+        $crud->callback_add_field('allocated_to',function(){
+            return $this->session->userdata('username').'<input  name="allocated_to" type="hidden" value="'.$this->session->userdata('user_id').'">';           
+        });
+        
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-        $data['Title'] = 'Style No';
+        $data['Title'] = 'Sample Style No';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_style_no/supply_style_no', $data);
     }

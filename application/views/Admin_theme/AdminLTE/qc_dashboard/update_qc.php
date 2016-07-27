@@ -49,26 +49,30 @@
                 <div class="form-group ">
                     <label class="col-md-3">File Receive Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="file_receive_date"  placeholder="Add Date" class="form-control datepicker" value="<?php echo date('m/d/Y',strtotime($info->file_receive_date));?>"/>
+                        <input type="" name="file_receive_date"  placeholder="Add Date" class="form-control datepicker" 
+                               value="<?php if(date('m/d/Y',strtotime($info->file_receive_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime($info->file_receive_date));}?>"/>
                         <input type="hidden" name="id_qc_info" value="<?php echo $info->id_qc_info;?>"/>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label class="col-md-3">PP Meeting Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="pp_meeting_date"  placeholder="Add Date" class="form-control datepicker"  value="<?php echo date('m/d/Y',strtotime( $info->pp_meeting_date));?>"/>
+                        <input type="" name="pp_meeting_date"  placeholder="Add Date" class="form-control datepicker"  
+                               value="<?php if(date('m/d/Y',strtotime( $info->pp_meeting_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime( $info->pp_meeting_date));}?>"/>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label class="col-md-3">In line Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="inline_date"  placeholder="Add Date" class="form-control datepicker"  value="<?php echo date('m/d/Y',strtotime($info->inline_date));?>"/>
+                        <input type="" name="inline_date"  placeholder="Add Date" class="form-control datepicker"  
+                               value="<?php if(date('m/d/Y',strtotime($info->inline_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime($info->inline_date));}?>"/>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label class="col-md-3">Final Inspection Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="final_inspection_date"   placeholder="Add Date" class="form-control datepicker"  value="<?php echo date('m/d/Y',strtotime($info->final_inspection_date));?>"/>
+                        <input type="" name="final_inspection_date"   placeholder="Add Date" class="form-control datepicker"  
+                               value="<?php if(date('m/d/Y',strtotime($info->final_inspection_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime($info->final_inspection_date));}?>"/>
                     </div>
                 </div>
                 <button type="submit" name="btn_submit" value="true" class="btn btn-success pull-right">Update</button>
@@ -76,7 +80,7 @@
                 }?>
                 <?= form_close(); ?>
             </div>
-        </div>
+        </div> 
 </div>
 
 </section>

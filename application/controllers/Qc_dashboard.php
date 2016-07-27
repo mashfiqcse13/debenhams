@@ -40,6 +40,8 @@ class Qc_dashboard extends CI_Controller {
         if ($data['date_range'] != '') {
             $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info_by_date($date[0], $date[1]);
         }
+        
+        
         $this->session->set_userdata('pdf_qc_dashboard', $data['get_all_qc_info']);
         $data['all_style_no'] = $this->QC_model->select_all_style_no();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

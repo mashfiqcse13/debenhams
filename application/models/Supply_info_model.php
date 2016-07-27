@@ -44,9 +44,11 @@ class Supply_info_model extends ci_model {
         return $query->row();
     }
 
-    function select_all_by_technician_id() {
+    function select_all_by_technician_id($con='') {
+        
         $this->db->select('*');
         $this->db->from('supply_style_no');
+        $this->db->where($con);
         $query = $this->db->get();
         return $query->result();
 //        }

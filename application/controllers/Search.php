@@ -29,6 +29,17 @@ class Search extends CI_Controller {
     }
 
     function index() {
+        if($this->session->userdata('user_type')==1){
+            
+            $con1=' 1=1';
+        }elseif($this->session->userdata('user_type')==2){
+            $id_technician=$this->session->userdata('user_id');
+            
+            
+            $con1="allocated_to=$id_technician";
+        }
+        
+        
         $id_supply_style_no = $this->input->get('id_supply_style_no');
         $technician = $this->input->get('id_technician');
         $id_supplyer = $this->input->get('id_supplyer');
@@ -48,10 +59,14 @@ class Search extends CI_Controller {
         $this->session->set_userdata('excel_session_data', $data['all_informations']);
         $this->session->set_userdata('pdf_session_data', $data['all_informations']);
 
-
+        
+        
 
 //        echo '<pre>';print_r($data);exit();
-        $data['all_style_no'] = $this->Search_model->select_all_by_technician_id();
+        $data['all_style_no'] = $this->Search_model->select_all_by_technician_id($con1);
+        
+
+       
         $data['all_department'] = $this->Search_model->select_all('department');
         $data['all_technician'] = $this->Search_model->select_all('users');
         $data['all_supplyer'] = $this->Search_model->select_all('supplyer');

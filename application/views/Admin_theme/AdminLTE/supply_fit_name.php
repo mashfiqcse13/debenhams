@@ -12,7 +12,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Supply Fit Name</li>
+        <li class="active">Sample Step Name</li>
       </ol>
     </section>
 

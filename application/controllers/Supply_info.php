@@ -32,9 +32,11 @@ class Supply_info extends CI_Controller {
         
         if($this->session->userdata('user_type')==1){
             $con=' 1=1 ';
+            $con1=' 1=1';
         }elseif($this->session->userdata('user_type')==2){
             $id_technician=$this->session->userdata('user_id');
             $con="id_technician=$id_technician";
+            $con1="allocated_to=$id_technician";
         }
         
         
@@ -83,7 +85,7 @@ class Supply_info extends CI_Controller {
                 
         $output = $crud->render();
         $data['glosary'] = $output;
-        $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id();
+        $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id($con1);
         $data['all_session'] = $this->Supply_info_model->select_all('supply_session');
         $data['all_department'] = $this->Supply_info_model->select_all('department');
         $data['all_supplyer'] = $this->Supply_info_model->select_all('supplyer');

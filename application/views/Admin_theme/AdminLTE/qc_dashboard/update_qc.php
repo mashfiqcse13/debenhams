@@ -35,7 +35,7 @@
                     <label class="col-md-3">Style No:</label>
                     <div class="col-md-9">
                         <select name="id_supply_style_no" id="" class="form-control select">
-                            <option value="">Select Style No</option>
+                            <option value="blank">Select Style No</option>
                             <?php
                             foreach ($all_style_no as $style_no) {
                                 ?>
@@ -71,7 +71,7 @@
                         <input type="" name="final_inspection_date"   placeholder="Add Date" class="form-control datepicker"  value="<?php echo date('m/d/Y',strtotime($info->final_inspection_date));?>"/>
                     </div>
                 </div>
-                <button type="submit" name="btn_submit" value="true" class="btn btn-success pull-right">Update</button>
+                <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right">Update</button>
                 <?php
                 }?>
                 <?= form_close(); ?>
@@ -89,6 +89,20 @@
     document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $info->id_supply_style_no; ?>";
     $('.datepicker').datepicker({
         autoclose: true
+    });
+    
+    $("input").each(function () {
+        var curTable = $(this).val();
+        if (curTable == "01/01/1970") {
+            $(this).val(' ')
+        }
+    });
+    
+    $('#save').click(function () {
+        if (document.getElementsByName('id_supply_style_no')[0].value == 'blank') {
+            alert('Please Select Style no !');
+            return false;
+        }
     });
      
 </script>

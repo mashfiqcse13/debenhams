@@ -80,12 +80,12 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php include_once __DIR__ .'/../footer.php'; ?>
+<?php include_once __DIR__ . '/../footer.php'; ?>
 <script type="text/javascript">
     $('.datepicker').datepicker({
         autoclose: true
     });
-		$('#save').click(function () {
+    $('#save').click(function () {
         if (document.getElementsByName('id_supply_style_no')[0].value == 'blank') {
             alert('Please Select Style no !');
             return false;

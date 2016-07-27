@@ -2,18 +2,18 @@
 
 
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        <?=$Title;?>
-        <small>Insert Various Information</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Insert Info</li>
-      </ol>
+        <h1>
+            <?= $Title; ?>
+            <small>Insert Various Information</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Insert Info</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -228,7 +228,7 @@
                                                     }
                                                     ?>
                                                     <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;          ?>" id="id_fit"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;             ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -296,14 +296,14 @@
                                             <div class="form-group " id="send">
                                                 <label class="col-md-3" >Send:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;          ?>" placeholder="Add Date"/>
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;             ?>" placeholder="Add Date"/>
 
                                                 </div>
                                             </div>
                                             <div class="form-group " id="receive">
                                                 <label class="col-md-3" >Receive:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;          ?>" placeholder="Add Date"/>
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;             ?>" placeholder="Add Date"/>
                                                 </div>
                                             </div>
                                             <?php
@@ -370,6 +370,11 @@
                             <?= form_close(); ?>
                             <?php
                         } else {
+                            $success = $this->session->userdata('message');
+                            if (isset($success)) {
+                                echo $success;
+                            }
+                            $this->session->unset_userdata('message');
                             echo $glosary->output;
                         }
                         ?>
@@ -382,13 +387,16 @@
 
 
 
- </section>
+    </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->
 
 <?php include_once __DIR__ . '/../footer.php'; ?>
 <script type="text/javascript">
+    setTimeout(function () {
+        $('#message').fadeOut();
+    }, 5000);
     $('.datepicker').datepicker();
     $('#send').hide();
     $('#receive').hide();
@@ -467,12 +475,12 @@
                     $.each(obj.supply_fit, function (i, fit) {
                         var date_send = new Date(fit['supply_fit_register_date_send']);
                         var date_send_change = formatDate(date_send);
-                        
+
                         var date_receive = new Date(fit['supply_fit_register_date_receive']);
                         var date_receive_change = formatDate(date_receive);
                         function formatDate(value)
                         {
-                            return value.getDate()+ "/" + (value.getMonth()+1)+ "/" + value.getFullYear();
+                            return value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
                         }
                         var fit_name = fit['name'];
                         $('#send').show();
@@ -535,9 +543,9 @@
         });
     </script>
 <?php } ?>
-<?php if ($this->uri->segment(3) == 'edit' or $this->uri->segment(3) == 'add' ) { ?>
+<?php if ($this->uri->segment(3) == 'edit' or $this->uri->segment(3) == 'add') { ?>
     <script>
-        $('.treeview-menu').css('display','block');
+        $('.treeview-menu').css('display', 'block');
 
     </script>
 <?php } ?>

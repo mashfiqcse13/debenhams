@@ -30,8 +30,7 @@
                 $attributes = array(
                     'class' => 'form-horizontal',
                     'method' => 'get',
-                    'name' => 'form',
-                    'method' => 'post');
+                    'name' => 'form');
                 echo form_open('search', $attributes)
                 ?>
                 <div class="row">
@@ -161,7 +160,7 @@
 
             </div>
             <input type="submit"  value="Search Information" class="btn btn-success" style="margin: 10px 0 ;"/>
-            <a href="" class="btn btn-primary">Reset</a>
+            <?= anchor(current_url() . '', 'Reset', ' class="btn btn-primary"') ?>
             <?= form_close(); ?>
             <div class="row">
                 <div class="col-md-12">
@@ -498,7 +497,7 @@
 
                                             <td><?php echo $all_informations[$i][0]->remark; ?></td>
 
-                                            <td><?php echo $all_informations[$i][0]->date_created; ?></td>
+                                            <td><?php echo $all_informations[$i][0]->date; ?></td>
                                             <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>

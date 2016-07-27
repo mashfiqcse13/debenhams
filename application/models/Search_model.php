@@ -50,7 +50,7 @@ class Search_model extends CI_Model {
     }
 
     function get_supply_info_with_fit_register() {
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
+        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date');
         $this->db->from('supply_info');
         $this->db->join('supply_session', 'supply_info.id_supply_session=supply_session.id_supply_session', 'left');
         $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
@@ -100,9 +100,8 @@ class Search_model extends CI_Model {
         $this->db->delete('supply_info');
     }
 
-    function get_supply_info_with_fit_register_by_style_no($id_supply_style_no) {
-
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
+    function get_supply_info($id_supply_style_no, $id_supplyer, $id_department, $sample_result, $technician, $date_from, $date_to) {
+        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date');
         $this->db->from('supply_info');
         $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
         $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
@@ -111,129 +110,27 @@ class Search_model extends CI_Model {
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
         $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
         $this->db->order_by('supply_info.id_supply_style_no', 'desc');
+        $this->db->like('supply_info.id_supply_style_no', $id_supply_style_no);
+        $this->db->like('supply_info.id_supplyer', $id_supplyer);
+        $this->db->like('supply_info.id_department', $id_department);
+        $this->db->like('supply_info.sample_result', $sample_result);
+        $this->db->like('supply_info.id_technician', $technician);
+        if ($date_from != "1970-01-01") {
+            $this->db->where('supply_info.date_created >=', $date_from);
+            $this->db->where('supply_info.date_created <=', $date_to);
+        }
         $technician = $this->session->userdata('user_type');
         if ($technician == 2) {
             $this->db->where('supply_info.id_technician', $_SESSION['user_id']);
         }
-        $this->db->where('supply_info.id_supply_style_no', $id_supply_style_no);
         $informtions = $this->db->get()->result();
+        $register = array();
         foreach ($informtions as $info) {
             $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
         }
         return $register;
     }
 
-    function get_supply_info_with_fit_register_by_supplyer($id_supplyer) {
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
-        $this->db->from('supply_info');
-        $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
-        $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
-        $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
-        $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
-        $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
-        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
-        $this->db->order_by('supply_info.id_supply_style_no', 'desc');
-        $technician = $this->session->userdata('user_type');
-        if ($technician == 2) {
-            $this->db->where('supply_info.id_technician', $_SESSION['user_id']);
-        }
-        $this->db->where('supply_info.id_supplyer', $id_supplyer);
-        $informtions = $this->db->get()->result();
-        foreach ($informtions as $info) {
-            $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
-        }
-        return $register;
-    }
-
-    function get_supply_info_with_fit_register_by_department($id_department) {
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
-        $this->db->from('supply_info');
-        $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
-        $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
-        $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
-        $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
-        $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
-        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
-        $this->db->order_by('supply_info.id_supply_style_no', 'desc');
-        $technician = $this->session->userdata('user_type');
-        if ($technician == 2) {
-            $this->db->where('supply_info.id_technician', $_SESSION['user_id']);
-        }
-        $this->db->where('supply_info.id_department', $id_department);
-        $informtions = $this->db->get()->result();
-        foreach ($informtions as $info) {
-            $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
-        }
-        return $register;
-    }
-
-    function get_supply_info_with_fit_register_by_sample($sample_result) {
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
-        $this->db->from('supply_info');
-        $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
-        $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
-        $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
-        $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
-        $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
-        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
-        $this->db->order_by('supply_info.id_supply_style_no', 'desc');
-        $technician = $this->session->userdata('user_type');
-        if ($technician == 2) {
-            $this->db->where('supply_info.id_technician', $_SESSION['user_id']);
-        }
-        $this->db->where('supply_info.sample_result', $sample_result);
-        $informtions = $this->db->get()->result();
-        foreach ($informtions as $info) {
-            $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
-        }
-        return $register;
-    }
-
-    function get_supply_info_with_fit_register_by_technician($technican) {
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
-        $this->db->from('supply_info');
-        $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
-        $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
-        $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
-        $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
-        $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
-        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
-        $this->db->order_by('supply_info.id_supply_style_no', 'desc');
-        $technician = $this->session->userdata('user_type');
-        if ($technician == 2) {
-            $this->db->where('supply_info.id_technician', $_SESSION['user_id']);
-        }
-        $this->db->where('supply_info.id_technician', $sample_result);
-        $informtions = $this->db->get()->result();
-        foreach ($informtions as $info) {
-            $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
-        }
-        return $register;
-    }
-
-    function get_supply_info_with_fit_register_by_date($date_from, $date_to) {
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name');
-        $this->db->from('supply_info');
-        $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
-        $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
-        $this->db->join('department', 'supply_info.id_department =department.id_department', 'left');
-        $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
-        $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
-        $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
-        $this->db->order_by('supply_info.id_supply_style_no', 'desc');
-        $technician = $this->session->userdata('user_type');
-        if ($technician == 2) {
-            $this->db->where('supply_info.id_technician', $_SESSION['user_id']);
-        }
-        $this->db->where('supply_info.date_created >=', $date_from);
-        $this->db->where('supply_info.date_created <=', $date_to);
-        $informtions = $this->db->get()->result();
-
-        foreach ($informtions as $info) {
-            $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
-        }
-        return $register;
-    }
 
     function fit_info($id) {
         $this->db->select('*');

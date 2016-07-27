@@ -29,31 +29,22 @@ class Search extends CI_Controller {
     }
 
     function index() {
-        $id_supply_style_no = $this->input->post('id_supply_style_no');
-        $technician = $this->input->post('id_technician');
-        $id_supplyer = $this->input->post('id_supplyer');
-        $date_from = date('Y-m-d', strtotime($this->input->post('date_from')));
-        $id_department = $this->input->post('id_department');
-        $sample_result = $this->input->post('sample_result');
-        $date_to = date('Y-m-d', strtotime($this->input->post('date_to') . ' +1 day'));
+        $id_supply_style_no = $this->input->get('id_supply_style_no');
+        $technician = $this->input->get('id_technician');
+        $id_supplyer = $this->input->get('id_supplyer');
+        $date_from = date('Y-m-d', strtotime($this->input->get('date_from')));
+        $id_department = $this->input->get('id_department');
+        $sample_result = $this->input->get('sample_result');
+        $date_to = date('Y-m-d', strtotime($this->input->get('date_to') . ' +1 day'));
         $data['max_supply_info'] = $this->Search_model->get_max_supply_info();
         $data['max_supply_fit_register'] = $this->Search_model->get_max_supply_fit_regiter();
-        if (!empty($id_supply_style_no)) {
-            $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register_by_style_no($id_supply_style_no);
-        } else if (!empty($id_supplyer)) {
-            $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register_by_supplyer($id_supplyer);
-        } else if (!empty($id_department)) {
-            $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register_by_department($id_department);
-        } else if (!empty($sample_result)) {
-            $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register_by_sample($sample_result);
-        } else if ($date_from != "1970-01-01") {
-            $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register_by_date($date_from, $date_to);
-//            echo '<pre>';print_r($data);exit();
-        } else if (!empty($technician)) {
-            $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register_by_technician($technican);
+//         $date_from != "1970-01-01"
+        if(!empty($id_supply_style_no) || !empty($id_supplyer) || !empty($id_department) || !empty($sample_result) || !empty($technician) || $date_from != "1970-01-01"){
+             $data['all_informations'] = $this->Search_model->get_supply_info($id_supply_style_no,$id_supplyer,$id_department,$sample_result,$technician,$date_from, $date_to);
         } else {
             $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register();
         }
+//        echo '<pre>';print_r($data['all_informations']);exit();
         $this->session->set_userdata('excel_session_data', $data['all_informations']);
         $this->session->set_userdata('pdf_session_data', $data['all_informations']);
 

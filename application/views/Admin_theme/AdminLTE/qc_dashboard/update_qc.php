@@ -75,6 +75,24 @@
                                value="<?php if(date('m/d/Y',strtotime($info->final_inspection_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime($info->final_inspection_date));}?>"/>
                     </div>
                 </div>
+                <div class="form-group ">
+                    <label class="col-md-3">Orders Comment:</label>
+                    <div class="col-md-9">
+                        <textarea name="orders_comment" rows="8" class="form-control" ><?php echo $info->orders_comment; ?></textarea>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-md-3">Wash Approval Date:</label>
+                    <div class="col-md-9">
+                        <input type="" name="wash_approval_date"   placeholder="Add Date" class="form-control datepicker" value="<?php if(date('m/d/Y',strtotime($info->wash_approval_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime($info->wash_approval_date));}?>" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-md-3">Wash Comment:</label>
+                    <div class="col-md-9">
+                        <textarea name="wash_comment" rows="8"  class="form-control" ><?php echo $info->wash_comment; ?></textarea>
+                    </div>
+                </div>
                 <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right">Update</button>
                 <?php
                 }?>

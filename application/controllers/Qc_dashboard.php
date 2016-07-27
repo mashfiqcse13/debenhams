@@ -71,6 +71,9 @@ class Qc_dashboard extends CI_Controller {
         $data['pp_meeting_date'] = date('Y-m-d', strtotime($this->input->post('pp_meeting_date')));
         $data['inline_date'] = date('Y-m-d', strtotime($this->input->post('inline_date')));
         $data['final_inspection_date'] = date('Y-m-d', strtotime($this->input->post('final_inspection_date')));
+        $data['wash_approval_date'] = date('Y-m-d', strtotime($this->input->post('wash_approval_date')));
+        $data['orders_comment'] = $this->input->post('orders_comment');
+        $data['wash_comment'] = $this->input->post('wash_comment');
         $data['date_created'] = date('Y-m-d H:i:s');
         $this->QC_model->save_info('qc_info', $data);
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Saved!</p></div>';
@@ -85,6 +88,9 @@ class Qc_dashboard extends CI_Controller {
         $data['pp_meeting_date'] = date('Y-m-d', strtotime($this->input->post('pp_meeting_date')));
         $data['inline_date'] = date('Y-m-d', strtotime($this->input->post('inline_date')));
         $data['final_inspection_date'] = date('Y-m-d', strtotime($this->input->post('final_inspection_date')));
+        $data['wash_approval_date'] = date('Y-m-d', strtotime($this->input->post('wash_approval_date')));
+        $data['orders_comment'] = $this->input->post('orders_comment');
+        $data['wash_comment'] = $this->input->post('wash_comment');
         $data['date_created'] = date('Y-m-d H:i:s');
         $this->QC_model->update_info('qc_info', $data, $id);
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';

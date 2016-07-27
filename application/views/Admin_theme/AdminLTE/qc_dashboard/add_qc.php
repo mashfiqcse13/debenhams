@@ -69,6 +69,24 @@
                         <input type="" name="final_inspection_date"   placeholder="Add Date" class="form-control datepicker" value="" />
                     </div>
                 </div>
+                <div class="form-group ">
+                    <label class="col-md-3">Orders Comment:</label>
+                    <div class="col-md-9">
+                        <textarea name="orders_comment" rows="8" class="form-control" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-md-3">Wash Approval Date:</label>
+                    <div class="col-md-9">
+                        <input type="" name="wash_approval_date"   placeholder="Add Date" class="form-control datepicker" value="" />
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-md-3">Wash Comment:</label>
+                    <div class="col-md-9">
+                        <textarea name="wash_comment" rows="8"  class="form-control" ></textarea>
+                    </div>
+                </div>
                 <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right">Save</button>
                 <?= form_close(); ?>
             </div>

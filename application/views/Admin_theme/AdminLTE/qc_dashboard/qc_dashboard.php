@@ -104,6 +104,9 @@
                                     <th>P.P Meeting Date:</th>
                                     <th>In-Line Date</th>
                                     <th>Final Inspection Date:</th>
+                                    <th>Orders Comment:</th>
+                                    <th>Wash Approval Date:</th>
+                                    <th>Wash Comment:</th>
                                     <th>Data Entry Date:</th>
                                     <th>Actions</th>
                                 </tr>
@@ -118,6 +121,9 @@
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
+                                        <td><?php echo $all_informations->orders_comment; ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($all_informations->wash_approval_date)); ?></td>
+                                        <td><?php echo $all_informations->wash_comment; ?></td>
                                         <td><?php echo $all_informations->date_created; ?></td>
                                         <td><a href="<?= site_url('qc_dashboard/reduce/' . $all_informations->id_qc_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

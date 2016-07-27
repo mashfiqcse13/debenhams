@@ -95,7 +95,7 @@
                         $this->session->unset_userdata('message');
                         ?>
                         <a href="<?php echo site_url('qc_dashboard/add_new'); ?>" class="btn btn-success" style="margin: 10px 0 ;"/><i class="fa fa-plus"></i> Add New</a>
-                        <a href="<?php echo site_url('pdf/qc_dashboard'); ?>" class="btn btn-bitbucket pull-right" style="margin: 10px 0 ;"/><i class="fa fa-file-pdf-o"></i> Download pdf</a>
+                        <a href="<?php echo site_url('pdf/qc_dashboard'); ?>" class="btn btn-bitbucket pull-right" style="margin: 10px 0 ;"/><i class="fa fa-file-pdf-o"></i> Download pdf</a> 
                         <table class="table table-bordered table-striped table-condensed search_table" id="example1">
                             <thead>
                                 <tr>
@@ -152,7 +152,7 @@
 <?php include_once __DIR__ . '/../footer.php'; ?>
 <style>
     .search_table th {
-        min-width: 132px;
+        min-width: 142px;
         font-size: 13px;
         background: #DFF0D8;
         color: #000;

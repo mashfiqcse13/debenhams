@@ -53,29 +53,29 @@ class Supply_info extends CI_Controller {
                 ->callback_column('sample_result', function($this) {
                     if ($this == 1) {
                         return 'Pass';
-                    } else {
+                    } if ($this == 2) {
                         return 'Fail';
                     }
                 })
                 ->callback_column('approved_by', function($this) {
                     if ($this == 1) {
                         return 'United Kingdom';
-                    } else {
-                        return 'Bamgladesh';
+                    } if ($this == 2) {
+                        return 'Bangladesh';
                     }
                 })
                 ->callback_column('lab_test_report', function($this) {
                     if ($this == 1) {
                         return 'Pass';
-                    } else {
+                    } if ($this == 2){
                         return 'Fail';
                     }
                 })
                 ->callback_column('pattern_block', function($this) {
                     if ($this == 1) {
                         return 'United Kingdom';
-                    } else {
-                        return 'Bamgladesh';
+                    } if ($this == 2){
+                        return 'Bangladesh';
                     }
                 })
                 ->order_by('id_supply_info', 'desc');
@@ -149,6 +149,8 @@ class Supply_info extends CI_Controller {
         $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
 //        echo '<pre>'; print_r($fit);exit();
         $this->Supply_info_model->save_info('supply_fit_register', $fit);
+        $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Saved!</p></div>';
+        $this->session->set_userdata($sdata);
         redirect('supply_info');
     }
 
@@ -179,8 +181,12 @@ class Supply_info extends CI_Controller {
         if (!empty($fit_exist)) {
             $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_fit);
         } else {
-            $this->Supply_info_model->save_info('supply_fit_register', $fit);
+            if (!empty($fit['id_supply_fit_name'])) {
+                $this->Supply_info_model->save_info('supply_fit_register', $fit);
+            }
         }
+        $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
+        $this->session->set_userdata($sdata);
         redirect('supply_info');
     }
 

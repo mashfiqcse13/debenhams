@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-md-4">
                         <button type="submit" name="btn_submit" value="true" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                         <?= anchor(current_url() . '', '<i class="fa fa-refresh"></i>', ' class="btn btn-success"') ?>
+                        <?= anchor(current_url() . '', '<i class="fa fa-refresh"></i>', ' class="btn btn-success"') ?>
                     </div>
                 </div>
 
@@ -58,7 +58,6 @@
                 <?php
                 $attributes = array(
                     'class' => 'form-horizontal',
-                    'method' => 'get',
                     'name' => 'form',
                     'method' => 'get');
                 echo form_open('qc_dashboard', $attributes)
@@ -79,7 +78,7 @@
                     </div>
                     <div class="col-md-4">
                         <button type="submit" name="btn_submit" value="true" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                         <?= anchor(current_url() . '', '<i class="fa fa-refresh"></i>', ' class="btn btn-success"') ?>
+                        <?= anchor(current_url() . '', '<i class="fa fa-refresh"></i>', ' class="btn btn-success"') ?>
                     </div>
                 </div>
 
@@ -88,6 +87,13 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <?php
+                        $success = $this->session->userdata('message');
+                        if (isset($success)) {
+                            echo $success;
+                        }
+                        $this->session->unset_userdata('message');
+                        ?>
                         <a href="<?php echo site_url('qc_dashboard/add_new'); ?>" class="btn btn-success" style="margin: 10px 0 ;"/><i class="fa fa-plus"></i> Add New</a>
                         <a href="<?php echo site_url('pdf/qc_dashboard'); ?>" class="btn btn-bitbucket pull-right" style="margin: 10px 0 ;"/><i class="fa fa-file-pdf-o"></i> Download pdf</a>
                         <table class="table table-bordered table-striped table-condensed search_table" id="example1">
@@ -151,13 +157,26 @@
     $('#example1').DataTable({
         "scrollX": true,
         bFilter: false,
+        "order": [[6, "desc"]]
     });
+    setTimeout(function () {
+        $('#message').fadeOut();
+    }, 5000);
+
+
     function check() {
         var chk = confirm('Are You Sure To Delete?');
         if (chk) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
+    $("table tr td").each(function () {
+        var curTable = $(this).html();
+        if (curTable == "01/01/1970") {
+            $(this).html(' ')
+        }
+    });
 </script>

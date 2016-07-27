@@ -34,7 +34,7 @@
                     <label class="col-md-3">Style No:</label>
                     <div class="col-md-9">
                         <select name="id_supply_style_no" id="" class="form-control select2">
-                            <option value="">Select Style No</option>
+                            <option value="blank">Select Style No</option>
                             <?php
                             foreach ($all_style_no as $style_no) {
                                 ?>
@@ -48,28 +48,28 @@
                 <div class="form-group ">
                     <label class="col-md-3">File Receive Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="file_receive_date"  placeholder="Add Date" class="form-control datepicker" />
+                        <input type="" name="file_receive_date"  placeholder="Add Date" class="form-control datepicker" value=""/>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label class="col-md-3">PP Meeting Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="pp_meeting_date"  placeholder="Add Date" class="form-control datepicker" />
+                        <input type="" name="pp_meeting_date"  placeholder="Add Date" class="form-control datepicker" value="" />
                     </div>
                 </div>
                 <div class="form-group ">
                     <label class="col-md-3">In line Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="inline_date"  placeholder="Add Date" class="form-control datepicker" />
+                        <input type="" name="inline_date"  placeholder="Add Date" class="form-control datepicker" value=""/>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label class="col-md-3">Final Inspection Date:</label>
                     <div class="col-md-9">
-                        <input type="" name="final_inspection_date"   placeholder="Add Date" class="form-control datepicker" />
+                        <input type="" name="final_inspection_date"   placeholder="Add Date" class="form-control datepicker" value="" />
                     </div>
                 </div>
-                <button type="submit" name="btn_submit" value="true" class="btn btn-success pull-right">Save</button>
+                <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right">Save</button>
                 <?= form_close(); ?>
             </div>
         </div>
@@ -84,5 +84,11 @@
 <script type="text/javascript">
     $('.datepicker').datepicker({
         autoclose: true
+    });
+		$('#save').click(function () {
+        if (document.getElementsByName('id_supply_style_no')[0].value == 'blank') {
+            alert('Please Select Style no !');
+            return false;
+        }
     });
 </script>

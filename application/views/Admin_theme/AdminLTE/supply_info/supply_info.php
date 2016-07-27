@@ -278,7 +278,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Fit Name:</label>
                                                 <div class="col-md-9">
-                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control select">
+                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control select" required>
                                                         <option value="0">Select Fit Name</option>
                                                         <?php
                                                         foreach ($all_fit_name as $fit) {

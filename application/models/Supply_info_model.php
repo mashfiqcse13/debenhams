@@ -44,25 +44,35 @@ class Supply_info_model extends ci_model {
         return $query->row();
     }
 
-    function select_all_by_technician_id($con='') {
-        
+    function select_all_by_technician_id($con = '') {
+        $sql = array();
         $this->db->select('*');
         $this->db->from('supply_style_no');
         $this->db->where($con);
-        $query = $this->db->get();
-        return $query->result();
-//        }
+        $query = $this->db->get()->result();
+        for ($i = 0; $i < count($query); $i++) {
+            $id = $query[$i]->id_supply_style_no;
+            $data = $this->supply_info($id);
+            if (empty($data)) {
+                $this->db->select('*');
+                $this->db->from('supply_style_no');
+                $this->db->where($con);
+                $this->db->where('id_supply_style_no',$id);
+                $sql[]= $this->db->get()->row();
+                
+            }
+        }
+        return $sql;
     }
 
-//    function user($id){
-//        $this->db->select('*');
-//        $this->db->from('users');
-//        $this->db->join('user_type','users.id = user_type.user_id','left');
-//        $this->db->where('users.id',$id);
-//        $this->db->where('user_type.type',2);
-//        $query = $this->db->get();
-//        return $query->row(); 
-//    }
+    function supply_info($id) {
+        $this->db->select('*');
+        $this->db->from('supply_info');
+        $this->db->where('id_supply_style_no', $id);
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
 //    ajax search
     function select_fit_name_by_fit_id($id) {
         $this->db->select('*');
@@ -75,7 +85,7 @@ class Supply_info_model extends ci_model {
     function supply_info_by_supply_id($supply_id) {
         $this->db->select('*');
         $this->db->from('supply_info');
-        $this->db->join('supply_style_no','supply_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
         $this->db->where('supply_info.id_supply_info', $supply_id);
         $query = $this->db->get();
         return $query->result();
@@ -90,17 +100,17 @@ class Supply_info_model extends ci_model {
         return $query->result();
     }
 
-    function select_supply_register_by_fit_id($id,$supply_info){
+    function select_supply_register_by_fit_id($id, $supply_info) {
         $this->db->select('*');
         $this->db->from('supply_fit_register');
-        $this->db->join('supply_fit_name','supply_fit_register.id_supply_fit_name = supply_fit_name.id_supply_fit_name','left');
+        $this->db->join('supply_fit_name', 'supply_fit_register.id_supply_fit_name = supply_fit_name.id_supply_fit_name', 'left');
         $this->db->where('supply_fit_register.id_supply_fit_name', $id);
         $this->db->where('supply_fit_register.id_supply_info', $supply_info);
         $query = $this->db->get();
         return $query->result();
     }
-    
-    function check_fit($id_fit,$fit_id){
+
+    function check_fit($id_fit, $fit_id) {
         $this->db->select('*');
         $this->db->from('supply_fit_register');
         $this->db->where('id_supply_fit_register', $id_fit);
@@ -108,9 +118,9 @@ class Supply_info_model extends ci_model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     function get_all($value, $tbl_name, $id) {
-        $data='';
+        $data = '';
         $get_info = $this->db->query('select * from `' . $tbl_name . '` where `' . $id . '` = ' . $value)->result();
         foreach ($get_info as $supply) {
             $data = $supply->name;
@@ -119,7 +129,7 @@ class Supply_info_model extends ci_model {
     }
 
     function get_all_technician($value, $tbl_name, $id) {
-        $data='';
+        $data = '';
         $get_info = $this->db->query('select * from `' . $tbl_name . '` where `' . $id . '` = ' . $value)->result();
         foreach ($get_info as $supply) {
             $data = $supply->username;

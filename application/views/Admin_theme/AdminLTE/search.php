@@ -460,7 +460,7 @@
                                                 <?php
                                                 if ($all_informations[$i][0]->sample_result == 1) {
                                                     echo 'Pass';
-                                                } else {
+                                                }if ($all_informations[$i][0]->sample_result == 2) {
                                                     echo 'Fail';
                                                 }
                                                 ?>
@@ -469,7 +469,7 @@
                                                 <?php
                                                 if ($all_informations[$i][0]->lab_test_report == 1) {
                                                     echo 'Pass';
-                                                } else {
+                                                }if($all_informations[$i][0]->lab_test_report == 2) {
                                                     echo 'Fail';
                                                 }
                                                 ?>
@@ -477,7 +477,7 @@
                                             <td><?php
                                                 if ($all_informations[$i][0]->pattern_block == 1) {
                                                     echo 'United Kingdom';
-                                                } else {
+                                                }if ($all_informations[$i][0]->pattern_block == 2)  {
                                                     echo 'Bangladesh';
                                                 }
                                                 ?>
@@ -485,7 +485,7 @@
                                             <td><?php
                                                 if ($all_informations[$i][0]->approved_by == 1) {
                                                     echo 'United Kingdom';
-                                                } else {
+                                                }if($all_informations[$i][0]->approved_by == 2) {
                                                     echo 'Bangladesh';
                                                 }
                                                 ?>
@@ -564,6 +564,13 @@
             return false;
         }
     }
+    
+    $("table tr td").each(function () {
+        var curTable = $(this).html();
+        if (curTable == "01/01/1970" || curTable == "30/11/-0001") {
+            $(this).html(' ')
+        }
+    });
 
 
 </script>

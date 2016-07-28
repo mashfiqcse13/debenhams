@@ -186,7 +186,7 @@
 
     $("table tr td").each(function () {
         var curTable = $(this).html();
-        if (curTable == "01/01/1970") {
+        if (curTable == "01/01/1970" || curTable =='30/11/-0001') {
             $(this).html(' ')
         }
     });

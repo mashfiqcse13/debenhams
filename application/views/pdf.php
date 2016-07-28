@@ -22,7 +22,7 @@
                 <div class="pull-right">Report Date: <?php echo date('Y-m-d H:i:s', now()); ?></div>
             </div>
         </div>
-        <table class="table table-bordered table-striped table-condensed search_table" id="example1" border="1">
+        <table class="table table-bordered table-striped table-condensed search_table" id="example1">
             <thead>
                 <tr>
                     <th>Style No</th>
@@ -42,287 +42,329 @@
                     <th>Forth Fit Send Date:</th>
                     <th>Forth Fit Receive Date:</th>
                     <th>Fifth Fit Send Date:</th>
-                    <th>Fifth Fit Receive Date:</th>                    
+                    <th>Fifth Fit Receive Date:</th>
                     <th>PP Send Date</th>
                     <th>PP Receive Date</th>
                     <th>Wearer Send Date</th>
                     <th>Wearer Receive Date</th>
-                    <th>Gold sl Send Date</th>
-                    <th>Gold sl Receive Date</th>
+                    <th>Gold Sl Send Date</th>
+                    <th>Gold Sl Receive Date</th>
+
+                    <th>Sample Pass /Fail</th>
+                    <th>Lab Test Report</th>
+                    <th>Pattern Block</th>
+                    <th>Tested By</th>
                     <th>File Receive Date</th>
                     <th>PP Meeting Date</th>
                     <th>Inline Date</th>
                     <th>Final Inspection Date</th>
-                    <th>Sample pass /fail</th>
-                    <th>Tested by</th>
+                    <th>Orders Comment</th>
+                    <th>Wash Approval Date</th>
+                    <th>Wash Comment</th>
                     <th>Technician</th>
+
+                    <th>Remark</th>
+
                     <th>Data Entry Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-<?php
+                <?php
 //                                echo print_r($max_supply_info->id_supply_info);
-if (isset($all_informations)) {
-    for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
-        if (!empty($all_informations[$i][0]->id_supply_info)) {
-            ?>
+                if (isset($all_informations)) {
+                    for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
+                        if (!empty($all_informations[$i][0]->id_supply_info)) {
+                            ?>
                             <tr>
                                 <td><?php echo $all_informations[$i][0]->style_no; ?></td>
                                 <td><?php echo $all_informations[$i][0]->supply_name; ?> </td>
                                 <td style="display:none;"><?php echo $all_informations[$i][0]->id_supply_info;
-                ?></td>
+                            ?></td>
                                 <td><?php echo $all_informations[$i][0]->department_name; ?></td>
                                 <td><?php echo $all_informations[$i][0]->style_description; ?></td>
                                 <td><?php echo $all_informations[$i][0]->supplyer_name; ?></td>
-            
+
                                 <td>
-                                <?php
-                                for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
-                                    if (!empty($all_informations[$i][1][$o])) {
-                                        if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                            echo $all_informations[$i][1][$o]->date_send;
+
+                                    <?php
+                                    for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
+                                        if (!empty($all_informations[$i][1][$o])) {
+                                            if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
                                         if (!empty($all_informations[$i][1][$o])) {
                                             if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                                echo $all_informations[$i][1][$o]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
-                                </td>
-                                
+                                </td> 
+
                                 <td>
-                                <?php
-                                for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
-                                    if (!empty($all_informations[$i][1][$j])) {
-                                        if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
-                                            echo $all_informations[$i][1][$j]->date_send;
+                                    <?php
+                                    for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
+                                        if (!empty($all_informations[$i][1][$j])) {
+                                            if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td><?php
                                     for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
                                         if (!empty($all_informations[$i][1][$j])) {
                                             if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
-                                                echo $all_informations[$i][1][$j]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php
-                                    ?>  
-                                <td>
                                 <?php
-                                for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
-                                    if (!empty($all_informations[$i][1][$k])) {
-                                        if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
-                                            echo $all_informations[$i][1][$k]->date_send;
+                                ?>  
+                                <td>
+                                    <?php
+                                    for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
+                                        if (!empty($all_informations[$i][1][$k])) {
+                                            if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
                                         if (!empty($all_informations[$i][1][$k])) {
                                             if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
-                                                echo $all_informations[$i][1][$k]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php
-                                    ?>  
-                                <td>
                                 <?php
-                                for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
-                                    if (!empty($all_informations[$i][1][$l])) {
-                                        if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
-                                            echo $all_informations[$i][1][$l]->date_send;
+                                ?>  
+                                <td>
+                                    <?php
+                                    for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
+                                        if (!empty($all_informations[$i][1][$l])) {
+                                            if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
                                         if (!empty($all_informations[$i][1][$l])) {
                                             if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
-                                                echo $all_informations[$i][1][$l]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php
-                                    ?>  
+                                <?php
+                                ?>  
                                 <td>
 
-                                <?php
-                                for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
-                                    if (!empty($all_informations[$i][1][$m])) {
-                                        if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
-                                            echo $all_informations[$i][1][$m]->date_send;
+                                    <?php
+                                    for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
+                                        if (!empty($all_informations[$i][1][$m])) {
+                                            if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
                                         if (!empty($all_informations[$i][1][$m])) {
                                             if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
-                                                echo $all_informations[$i][1][$m]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php
-                                    ?>  
+                                <?php
+                                ?>  
                                 <td>
 
-                                <?php
-                                for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
-                                    if (!empty($all_informations[$i][1][$n])) {
-                                        if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
-                                            echo $all_informations[$i][1][$n]->date_send;
+                                    <?php
+                                    for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
+                                        if (!empty($all_informations[$i][1][$n])) {
+                                            if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
                                         if (!empty($all_informations[$i][1][$n])) {
                                             if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
-                                                echo $all_informations[$i][1][$n]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php
-                                    ?>  
-                                
+
                                 <td>
 
-                                <?php
-                                for ($p = 0; $p < $max_supply_fit_register->id_supply_fit_register; $p++) {
-                                    if (!empty($all_informations[$i][1][$p])) {
-                                        if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
-                                            echo $all_informations[$i][1][$p]->date_send;
+                                    <?php
+                                    for ($p = 0; $p < $max_supply_fit_register->id_supply_fit_register; $p++) {
+                                        if (!empty($all_informations[$i][1][$p])) {
+                                            if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($p = 0; $p < $max_supply_fit_register->id_supply_fit_register; $p++) {
                                         if (!empty($all_informations[$i][1][$p])) {
                                             if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
-                                                echo $all_informations[$i][1][$p]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php ?>  
+                                <?php ?>  
                                 <td>
 
-                                <?php
-                                for ($r = 0; $r < $max_supply_fit_register->id_supply_fit_register; $r++) {
-                                    if (!empty($all_informations[$i][1][$r])) {
-                                        if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
-                                            echo $all_informations[$i][1][$r]->date_send;
+                                    <?php
+                                    for ($r = 0; $r < $max_supply_fit_register->id_supply_fit_register; $r++) {
+                                        if (!empty($all_informations[$i][1][$r])) {
+                                            if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($r = 0; $r < $max_supply_fit_register->id_supply_fit_register; $r++) {
                                         if (!empty($all_informations[$i][1][$r])) {
                                             if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
-                                                echo $all_informations[$i][1][$r]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php
-                                    ?>   
+                                <?php
+                                ?>   
                                 <td>
 
-                                <?php
-                                for ($w = 0; $w < $max_supply_fit_register->id_supply_fit_register; $w++) {
-                                    if (!empty($all_informations[$i][1][$w])) {
-                                        if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
-                                            echo $all_informations[$i][1][$w]->date_send;
+                                    <?php
+                                    for ($w = 0; $w < $max_supply_fit_register->id_supply_fit_register; $w++) {
+                                        if (!empty($all_informations[$i][1][$w])) {
+                                            if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </td>
                                 <td>
                                     <?php
                                     for ($w = 0; $w <= $max_supply_fit_register->id_supply_fit_register; $w++) {
                                         if (!empty($all_informations[$i][1][$w])) {
                                             if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
-                                                echo $all_informations[$i][1][$w]->date_receive;
+                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));
                                             }
                                         }
                                     }
                                     ?>
                                 </td>
-                                    <?php ?>   
-                                <td>
-                                <?php
-                                if ($all_informations[$i][0]->sample_result == 1) {
-                                    echo 'Pass';
-                                } else {
-                                    echo 'Fail';
-                                }
-                                ?>
-                                </td>
-                                <td><?php echo $all_informations[$i][0]->file_receive_date; ?></td>
-                                <td><?php echo $all_informations[$i][0]->pp_meeting_date; ?></td>
-                                <td><?php echo $all_informations[$i][0]->inline_date; ?></td>
-                                <td><?php echo $all_informations[$i][0]->final_inspection_date; ?></td>
-                                <td><?php
-                        if ($all_informations[$i][0]->approved_by == 1) {
-                            echo 'United Kingdom';
-                        } else {
-                            echo 'Bangladesh';
-                        }
-                                ?>
-                                </td>
-                                <td><?php echo $all_informations[$i][0]->username; ?></td>
-                                <td><?php echo $all_informations[$i][0]->date_created; ?></td>
+                                <?php ?>   
 
+
+                                <td>
+                                    <?php
+                                    if ($all_informations[$i][0]->sample_result == 1) {
+                                        echo 'Pass';
+                                    } else {
+                                        echo 'Fail';
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($all_informations[$i][0]->lab_test_report == 1) {
+                                        echo 'Pass';
+                                    } else {
+                                        echo 'Fail';
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php
+                                    if ($all_informations[$i][0]->pattern_block == 1) {
+                                        echo 'United Kingdom';
+                                    } else {
+                                        echo 'Bangladesh';
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php
+                                    if ($all_informations[$i][0]->approved_by == 1) {
+                                        echo 'United Kingdom';
+                                    } else {
+                                        echo 'Bangladesh';
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)); ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)); ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)); ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)); ?></td>
+                                <td><?php echo $all_informations[$i][0]->orders_comment; ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)); ?></td>
+                                <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
+
+
+                                <td><?php echo $all_informations[$i][0]->username; ?></td>
+
+                                <td><?php echo $all_informations[$i][0]->remark; ?></td>
+
+                                <td><?php echo $all_informations[$i][0]->date; ?></td>
+                                <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </a>
+                                    <a href="<?= site_url('search/search_delete/' . $all_informations[$i][0]->id_supply_info); ?>" onclick="return check();"type="button" class="btn btn-danger" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                </td>
                             </tr>
-            <?php
-        }
-    }
-}
-?>
+                            <?php
+                        }
+                    }
+                }
+                ?>
             </tbody>
         </table>
     </body>

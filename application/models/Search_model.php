@@ -124,8 +124,8 @@ class Search_model extends CI_Model {
         $this->db->like('supply_info.sample_result', $sample_result);
         $this->db->like('supply_info.id_technician', $technician);
         if ($date_from != "1970-01-01") {
-            $this->db->where('supply_info.date_created >=', $date_from);
-            $this->db->where('supply_info.date_created <=', $date_to);
+            $this->db->where('supply_info.date_created >=',DATE($date_from));
+            $this->db->where('supply_info.date_created <=', DATE($date_to));
         }
         $technician = $this->session->userdata('user_type');
         if ($technician == 2) {

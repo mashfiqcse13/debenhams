@@ -40,8 +40,8 @@ class Qc_dashboard extends CI_Controller {
         if ($data['date_range'] != '') {
             $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info_by_date($date[0], $date[1]);
         }
-        
-        
+
+
         $this->session->set_userdata('pdf_qc_dashboard', $data['get_all_qc_info']);
         $data['all_style_no'] = $this->QC_model->select_all_style_no();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
@@ -51,7 +51,8 @@ class Qc_dashboard extends CI_Controller {
     }
 
     function add_new() {
-        $data['all_style_no'] = $this->QC_model->select_all_style_no();
+        $data['all_style_no'] = $this->QC_model->select_all_by_technician_id();
+//        echo '<pre>';print_r($data);exit();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Add New QC';
         $data['base_url'] = base_url();
@@ -60,7 +61,8 @@ class Qc_dashboard extends CI_Controller {
 
     function reduce($id) {
         $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info_by_qc_id($id);
-        $data['all_style_no'] = $this->QC_model->select_all_style_no();
+        $data['all_style_no'] = $this->QC_model->select_all_by_technician_id();
+        
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Add New QC';
         $data['base_url'] = base_url();
@@ -69,11 +71,27 @@ class Qc_dashboard extends CI_Controller {
 
     function save() {
         $data['id_supply_style_no'] = $this->input->post('id_supply_style_no');
-        $data['file_receive_date'] = date('Y-m-d', strtotime($this->input->post('file_receive_date')));
+        if (empty($this->input->post('file_receive_date'))) {
+            $data['file_receive_date'] = '0000-00-00 00:00:00';
+        } else {
+            $data['file_receive_date'] = date('Y-m-d', strtotime($this->input->post('file_receive_date')));
+        }if (empty($this->input->post('pp_meeting_date'))) {
+            $data['pp_meeting_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['pp_meeting_date'] = date('Y-m-d', strtotime($this->input->post('pp_meeting_date')));
+        }if (empty($this->input->post('inline_date'))) {
+            $data['inline_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['inline_date'] = date('Y-m-d', strtotime($this->input->post('inline_date')));
+        }if (empty($this->input->post('final_inspection_date'))) {
+            $data['final_inspection_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['final_inspection_date'] = date('Y-m-d', strtotime($this->input->post('final_inspection_date')));
+        }if (empty($this->input->post('wash_approval_date'))) {
+            $data['wash_approval_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['wash_approval_date'] = date('Y-m-d', strtotime($this->input->post('wash_approval_date')));
+        }
         $data['orders_comment'] = $this->input->post('orders_comment');
         $data['wash_comment'] = $this->input->post('wash_comment');
         $data['date_created'] = date('Y-m-d H:i:s');
@@ -86,11 +104,27 @@ class Qc_dashboard extends CI_Controller {
     function update() {
         $id = $this->input->post('id_qc_info');
         $data['id_supply_style_no'] = $this->input->post('id_supply_style_no');
-        $data['file_receive_date'] = date('Y-m-d', strtotime($this->input->post('file_receive_date')));
+         if (empty($this->input->post('file_receive_date'))) {
+            $data['file_receive_date'] = '0000-00-00 00:00:00';
+        } else {
+            $data['file_receive_date'] = date('Y-m-d', strtotime($this->input->post('file_receive_date')));
+        }if (empty($this->input->post('pp_meeting_date'))) {
+            $data['pp_meeting_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['pp_meeting_date'] = date('Y-m-d', strtotime($this->input->post('pp_meeting_date')));
+        }if (empty($this->input->post('inline_date'))) {
+            $data['inline_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['inline_date'] = date('Y-m-d', strtotime($this->input->post('inline_date')));
+        }if (empty($this->input->post('final_inspection_date'))) {
+            $data['final_inspection_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['final_inspection_date'] = date('Y-m-d', strtotime($this->input->post('final_inspection_date')));
+        }if (empty($this->input->post('wash_approval_date'))) {
+            $data['wash_approval_date'] = '0000-00-00 00:00:00';
+        } else {
         $data['wash_approval_date'] = date('Y-m-d', strtotime($this->input->post('wash_approval_date')));
+        }
         $data['orders_comment'] = $this->input->post('orders_comment');
         $data['wash_comment'] = $this->input->post('wash_comment');
         $data['date_created'] = date('Y-m-d H:i:s');

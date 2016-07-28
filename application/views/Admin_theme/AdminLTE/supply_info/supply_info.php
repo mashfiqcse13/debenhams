@@ -96,7 +96,7 @@
                                         <label class="col-md-3">Supplier:</label>
                                         <div class="col-md-9">
                                             <select name="id_supplyer" id="" class="form-control select2">
-                                                <option value="0">Select Supplier</option>
+                                                <option value="blank">Select Supplier</option>
                                                 <?php
                                                 foreach ($all_supplyer as $supplyer) {
                                                     ?>
@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit"  value="Save" class="btn btn-primary pull-right"/>
+                            <input type="submit" id="save"  value="Save" class="btn btn-primary pull-right"/>
                         </div>
 
                         <?= form_close(); ?>
@@ -260,7 +260,7 @@
                                             <label class="col-md-3">Supplier:</label>
                                             <div class="col-md-9">
                                                 <select name="id_supplyer" id="" class="form-control select">
-                                                    <option value="0">Select Supplier</option>
+                                                    <option value="blank">Select Supplier</option>
                                                     <?php
                                                     foreach ($all_supplyer as $supplyer) {
                                                         ?>
@@ -361,7 +361,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit"  value="Update" class="btn btn-success pull-right" style="margin-right: 10px"/>
+                                    <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px"/>
                                     <?php
                                 }
                                 ?>
@@ -397,6 +397,12 @@
     setTimeout(function () {
         $('#message').fadeOut();
     }, 5000);
+    $('#save').click(function () {
+        if (document.getElementsByName('id_supplyer')[0].value == 'blank') {
+            alert('Please Select Supplier !');
+            return false;
+        }
+    });
     $('.datepicker').datepicker();
     $('#send').hide();
     $('#receive').hide();

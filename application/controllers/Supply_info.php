@@ -81,6 +81,7 @@ class Supply_info extends CI_Controller {
                         return 'Bangladesh';
                     }
                 })
+                ->callback_after_delete(array($this,'fit_register_delete'))
                 ->order_by('id_supply_info', 'desc');
                 
         $output = $crud->render();
@@ -115,6 +116,10 @@ class Supply_info extends CI_Controller {
 
     function technician($value, $row) {
         return $this->Supply_info_model->get_all_technician($value, 'users', 'id');
+    }
+    
+    function fit_register_delete($id){
+        return $this->db->delete('supply_fit_register',array('id_supply_info' => $id));
     }
 
     function fit_info() {

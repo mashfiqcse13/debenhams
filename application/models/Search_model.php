@@ -104,8 +104,8 @@ class Search_model extends CI_Model {
     }
 
     function search_delete($id) {
-        $this->db->where('id_supply_info', $id);
-        $this->db->delete('supply_info');
+        $this->db->delete('supply_info',array('id_supply_info'=> $id));
+        $this->db->delete('supply_fit_register',array('id_supply_info'=> $id));
     }
 
     function get_supply_info($id_supply_style_no, $id_supplyer, $id_department, $sample_result, $technician, $date_from, $date_to) {

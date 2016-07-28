@@ -48,16 +48,17 @@ class Search extends CI_Controller {
         $id_department = $this->input->get('id_department');
         $sample_result = $this->input->get('sample_result');
         $date_to = date('Y-m-d', strtotime($this->input->get('date_to') . ' +1 day'));
+//        echo '<pre>';print_r($date_from);exit();
 //        $date_to = $this->input->get('date_to');
         $data['max_supply_info'] = $this->Search_model->get_max_supply_info();
         $data['max_supply_fit_register'] = $this->Search_model->get_max_supply_fit_regiter();
 //         $date_from != "1970-01-01"
-        if(!empty($id_supply_style_no) || !empty($id_supplyer) || !empty($id_department) || !empty($sample_result) || !empty($technician) || $date_from != "1970-01-01"){
+        if(!empty($id_supply_style_no) || !empty($id_supplyer) || !empty($id_department) || !empty($sample_result) || !empty($technician) || $date_from != "1970-01-01 06:00:00"){
              $data['all_informations'] = $this->Search_model->get_supply_info($id_supply_style_no,$id_supplyer,$id_department,$sample_result,$technician,$date_from, $date_to);
         } else {
             $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register();
         }
-//        echo '<pre>';print_r($data['all_informations']);exit();
+//        echo '<pre>';print_r($data);exit();
         $this->session->set_userdata('excel_session_data', $data['all_informations']);
         $this->session->set_userdata('pdf_session_data', $data['all_informations']);
 

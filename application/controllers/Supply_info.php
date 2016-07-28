@@ -175,7 +175,7 @@ class Supply_info extends CI_Controller {
         $data['id_technician'] = $this->session->userdata('user_id');
         $data['lab_test_report'] = $this->input->post('lab_test_report');
         $data['pattern_block'] = $this->input->post('pattern_block');
-        $data['date_created'] = date('Y-m-d H:i:s');
+        $data['last_modified'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
         $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();

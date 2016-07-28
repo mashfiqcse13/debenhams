@@ -42,14 +42,11 @@ class Search_model extends CI_Model {
             $this->build_fit_register_detail();
         } else {
             return $fit_register = $this->getregister($id_supply_info);
-//            for($i = 0; $i<= count($fit_register); $i++){
-//            $this->supply_fit_register_detail[$i] = $fit_register;
-//            }
-//           return $this->supply_fit_register_detail;
         }
     }
 
     function get_supply_info_with_fit_register() {
+        $register = array();
         $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date');
         $this->db->from('supply_info');
         $this->db->join('supply_session', 'supply_info.id_supply_session=supply_session.id_supply_session', 'left');
@@ -66,9 +63,9 @@ class Search_model extends CI_Model {
         $informtions = $this->db->get()->result();
         foreach ($informtions as $info) {
             $register[$info->id_supply_info] = array($info, $this->get_fit_register_detail_by($info->id_supply_info));
-        }if (!empty($register)) {
-            return $register;
         }
+            return $register;
+        
     }
 
     function get_max_supply_info() {

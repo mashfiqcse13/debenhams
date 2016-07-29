@@ -25,7 +25,6 @@
                 <?php
                 $attributes = array(
                     'class' => 'form-horizontal',
-                    'method' => 'get',
                     'name' => 'form',
                     'method' => 'post');
                 echo form_open('qc_dashboard/update', $attributes);

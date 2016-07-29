@@ -64,8 +64,6 @@ class Search extends CI_Controller {
 
         
         
-
-//        echo '<pre>';print_r($data);exit();
         $data['all_style_no'] = $this->Search_model->select_all_by_technician_id($con1);
         
 

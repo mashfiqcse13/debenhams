@@ -137,6 +137,27 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group ">
+                                        <label class="col-md-3">Lab Test Report:</label>
+                                        <div class="col-md-9">
+                                            <select name="lab_test_report" id="" class="form-control select2">
+                                                <option value="0">Select Lab Test Report</option>
+                                                <option value="1">Pass</option>
+                                                <option value="2">Fail</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="col-md-3">Patter Block:</label>
+                                        <div class="col-md-9">
+                                            <select name="pattern_block" id="" class="form-control select2">
+                                                <option value="0">Select Pattern Block</option>
+                                                <option value="1">United Kingdom</option>
+                                                <option value="2">Bangladesh</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
                                         <label class="col-md-3">Sample Result:</label>
                                         <div class="col-md-9">
                                             <select name="sample_result" id="" class="form-control select2">
@@ -158,27 +179,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="col-md-3">Lab Test Report:</label>
-                                        <div class="col-md-9">
-                                            <select name="lab_test_report" id="" class="form-control select2">
-                                                <option value="0">Select Lab Test Report</option>
-                                                <option value="1">Pass</option>
-                                                <option value="2">Fail</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="col-md-3">Patter Block:</label>
-                                        <div class="col-md-9">
-                                            <select name="pattern_block" id="" class="form-control select2">
-                                                <option value="0">Select Pattern Block</option>
-                                                <option value="1">United Kingdom</option>
-                                                <option value="2">Bangladesh</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group ">
                                         <label class="col-md-3">Remark:</label>
                                         <div class="col-md-9">
@@ -312,6 +313,27 @@
                                     </div>
                                     <div class="col-md-6"> 
                                         <div class="form-group ">
+                                            <label class="col-md-3">Lab Test Report:</label>
+                                            <div class="col-md-9">
+                                                <select name="lab_test_report" id="" class="form-control select">
+                                                    <option value="0">Select Lab Test Report</option>
+                                                    <option value="1">Pass</option>
+                                                    <option value="2">Fail</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Patter Block:</label>
+                                            <div class="col-md-9">
+                                                <select name="pattern_block" id="" class="form-control select">
+                                                    <option value="0">Select Pattern Block</option>
+                                                    <option value="1">United Kingdom</option>
+                                                    <option value="2">Bangladesh</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
                                             <label class="col-md-3">Sample Result:</label>
                                             <div class="col-md-9">
                                                 <select name="sample_result" id="" class="form-control select">
@@ -333,27 +355,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Lab Test Report:</label>
-                                            <div class="col-md-9">
-                                                <select name="lab_test_report" id="" class="form-control select">
-                                                    <option value="0">Select Lab Test Report</option>
-                                                    <option value="1">Pass</option>
-                                                    <option value="2">Fail</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Patter Block:</label>
-                                            <div class="col-md-9">
-                                                <select name="pattern_block" id="" class="form-control select">
-                                                    <option value="0">Select Pattern Block</option>
-                                                    <option value="1">United Kingdom</option>
-                                                    <option value="2">Bangladesh</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group ">
                                             <label class="col-md-3">Remark:</label>
                                             <div class="col-md-9">

@@ -202,10 +202,11 @@
                                 <th>Gold Sl Send Date</th>
                                 <th>Gold Sl Receive Date</th>
 
-                                <th>Sample Pass /Fail</th>
+                                
                                 <th>Lab Test Report</th>
                                 <th>Pattern Block</th>
-                                <th>Tested By</th>
+                                <th>Sample Pass /Fail</th>
+                                <th>Approved By</th>
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>
                                 <th>Inline Date</th>
@@ -218,6 +219,8 @@
                                 <th>Remark</th>
 
                                 <th>Data Entry Date</th>
+                                <th>Last Modified by Technician</th>
+                                <th>Last Modified by QC</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -456,15 +459,7 @@
                                             <?php ?>   
 
 
-                                            <td>
-                                                <?php
-                                                if ($all_informations[$i][0]->sample_result == 1) {
-                                                    echo 'Pass';
-                                                }if ($all_informations[$i][0]->sample_result == 2) {
-                                                    echo 'Fail';
-                                                }
-                                                ?>
-                                            </td>
+                                            
                                             <td>
                                                 <?php
                                                 if ($all_informations[$i][0]->lab_test_report == 1) {
@@ -479,6 +474,15 @@
                                                     echo 'United Kingdom';
                                                 }if ($all_informations[$i][0]->pattern_block == 2)  {
                                                     echo 'Bangladesh';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($all_informations[$i][0]->sample_result == 1) {
+                                                    echo 'Pass';
+                                                }if ($all_informations[$i][0]->sample_result == 2) {
+                                                    echo 'Fail';
                                                 }
                                                 ?>
                                             </td>
@@ -504,6 +508,8 @@
                                             <td><?php echo $all_informations[$i][0]->remark; ?></td>
 
                                             <td><?php echo $all_informations[$i][0]->date; ?></td>
+                                            <td><?php echo $all_informations[$i][0]->last_modified_qc; ?></td>
+                                            <td><?php echo $all_informations[$i][0]->last_modified; ?></td>
                                             <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>

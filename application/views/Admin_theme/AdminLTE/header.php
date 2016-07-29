@@ -30,7 +30,7 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo $theme_asset_url ?>dist/css/skins/_all-skins.min.css">
-        
+
         <style type="text/css">
             body {
                 text-transform: capitalize;
@@ -108,6 +108,14 @@
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><i class="fa fa-user"></i> User :<strong> <?php echo $_SESSION['username']; ?></strong></span>
                                 </a>
+                                <ul class="dropdown-menu" style="width: 50px">
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-right">
+                                            <a href="<?= site_url('login/logout'); ?>" class="btn btn-primary">Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
 
                             </li>
                             <!-- Control Sidebar Toggle Button -->

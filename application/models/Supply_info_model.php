@@ -96,6 +96,7 @@ class Supply_info_model extends ci_model {
         $this->db->from('supply_fit_register');
         $this->db->where('id_supply_info', $supply_id);
         $this->db->select_max('id_supply_fit_name');
+//        $this->db->select_max('id_supply_fit_register');
         $query = $this->db->get();
         return $query->result();
     }
@@ -110,10 +111,10 @@ class Supply_info_model extends ci_model {
         return $query->result();
     }
 
-    function check_fit($id_fit, $fit_id) {
+    function check_fit($id_supply_info, $fit_id) {
         $this->db->select('*');
         $this->db->from('supply_fit_register');
-        $this->db->where('id_supply_fit_register', $id_fit);
+        $this->db->where('id_supply_info', $id_supply_info);
         $this->db->where('id_supply_fit_name', $fit_id);
         $query = $this->db->get();
         return $query->result();

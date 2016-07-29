@@ -246,40 +246,43 @@
                                                 for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
                                                     if (!empty($all_informations[$i][1][$o])) {
                                                         if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
                                                     if (!empty($all_informations[$i][1][$o])) {
                                                         if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td> 
 
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
                                                     if (!empty($all_informations[$i][1][$j])) {
                                                         if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php
+                                            <td class="fit_date"><?php
                                                 for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
                                                     if (!empty($all_informations[$i][1][$j])) {
                                                         if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));}
                                                         }
                                                     }
                                                 }
@@ -287,23 +290,25 @@
                                             </td>
                                             <?php
                                             ?>  
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
                                                     if (!empty($all_informations[$i][1][$k])) {
                                                         if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
                                                     if (!empty($all_informations[$i][1][$k])) {
                                                         if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));}
                                                         }
                                                     }
                                                 }
@@ -311,23 +316,25 @@
                                             </td>
                                             <?php
                                             ?>  
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
                                                     if (!empty($all_informations[$i][1][$l])) {
                                                         if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
                                                     if (!empty($all_informations[$i][1][$l])) {
                                                         if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));}
                                                         }
                                                     }
                                                 }
@@ -335,24 +342,26 @@
                                             </td>
                                             <?php
                                             ?>  
-                                            <td>
+                                            <td class="fit_date">
 
                                                 <?php
                                                 for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
                                                     if (!empty($all_informations[$i][1][$m])) {
                                                         if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
                                                     if (!empty($all_informations[$i][1][$m])) {
                                                         if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));}
                                                         }
                                                     }
                                                 }
@@ -360,72 +369,78 @@
                                             </td>
                                             <?php
                                             ?>  
-                                            <td>
+                                            <td class="fit_date">
 
                                                 <?php
                                                 for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
                                                     if (!empty($all_informations[$i][1][$n])) {
                                                         if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
                                                     if (!empty($all_informations[$i][1][$n])) {
                                                         if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
 
-                                            <td>
+                                            <td class="fit_date">
 
                                                 <?php
                                                 for ($p = 0; $p < $max_supply_fit_register->id_supply_fit_register; $p++) {
                                                     if (!empty($all_informations[$i][1][$p])) {
                                                         if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($p = 0; $p < $max_supply_fit_register->id_supply_fit_register; $p++) {
                                                     if (!empty($all_informations[$i][1][$p])) {
                                                         if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
                                             <?php ?>  
-                                            <td>
+                                            <td class="fit_date">
 
                                                 <?php
                                                 for ($r = 0; $r < $max_supply_fit_register->id_supply_fit_register; $r++) {
                                                     if (!empty($all_informations[$i][1][$r])) {
                                                         if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($r = 0; $r < $max_supply_fit_register->id_supply_fit_register; $r++) {
                                                     if (!empty($all_informations[$i][1][$r])) {
                                                         if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));}
                                                         }
                                                     }
                                                 }
@@ -433,24 +448,26 @@
                                             </td>
                                             <?php
                                             ?>   
-                                            <td>
+                                            <td class="fit_date">
 
                                                 <?php
                                                 for ($w = 0; $w < $max_supply_fit_register->id_supply_fit_register; $w++) {
                                                     if (!empty($all_informations[$i][1][$w])) {
                                                         if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));}
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td class="fit_date">
                                                 <?php
                                                 for ($w = 0; $w <= $max_supply_fit_register->id_supply_fit_register; $w++) {
                                                     if (!empty($all_informations[$i][1][$w])) {
                                                         if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
-                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));
+//                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));
+                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));}
                                                         }
                                                     }
                                                 }
@@ -508,8 +525,8 @@
                                             <td><?php echo $all_informations[$i][0]->remark; ?></td>
 
                                             <td><?php echo $all_informations[$i][0]->date; ?></td>
-                                            <td><?php echo $all_informations[$i][0]->last_modified_qc; ?></td>
                                             <td><?php echo $all_informations[$i][0]->last_modified; ?></td>
+                                            <td><?php echo $all_informations[$i][0]->last_modified_qc; ?></td>
                                             <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>
@@ -574,6 +591,14 @@
     $("table tr td").each(function () {
         var curTable = $(this).html();
         if (curTable == "01/01/1970" || curTable == "30/11/-0001") {
+            $(this).html(' ')
+        }
+    });
+    $(".fit_date").each(function () {
+        var curTable = $(this).html();
+//        alert(curTable);
+        if (curTable == "01/01/1970") {
+            alert(curTable);
             $(this).html(' ')
         }
     });

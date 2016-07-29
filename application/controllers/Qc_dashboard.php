@@ -62,7 +62,7 @@ class Qc_dashboard extends CI_Controller {
     function reduce($id) {
         $data['get_all_qc_info'] = $this->QC_model->get_all_qc_info_by_qc_id($id);
 //        echo '<pre>';print_r($data);exit();
-        $data['all_style_no'] = $this->QC_model->select_all_by_technician_id();
+        $data['all_style_no'] = $this->QC_model->select_all_style_no();
         
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Add New QC';

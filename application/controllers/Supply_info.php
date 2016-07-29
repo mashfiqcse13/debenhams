@@ -97,7 +97,11 @@ class Supply_info extends CI_Controller {
         $data['all_supply_fit_register'] = $this->Supply_info_model->supply_register_by_supply_id($supply_id);
 //         echo '<pre>';print_r($data['all_supply_fit_register']);exit();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        if($this->uri->segment(3)== 'edit'){
+            $data['Title'] = 'Update Info';
+        }else{
         $data['Title'] = 'Insert Info';
+        }
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_info/supply_info', $data);
     }
@@ -184,12 +188,12 @@ class Supply_info extends CI_Controller {
         $fit['id_supply_fit_name'] = $this->input->post('id_fit');
         $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
         $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
-//        echo '<pre>'; print_r($id_fit);exit();
-        $fit_exist = $this->Supply_info_model->check_fit($id_fit, $fit['id_supply_fit_name']);
-        
+//        echo '<pre>'; print_r($fit);exit();
+        $fit_exist = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
+//        echo '<pre>'; print_r($fit_exist);exit();
         if (!empty($fit_exist)) {
             $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_fit);
-        } else {
+        }if (empty($fit_exist)) {
             if (!empty($fit['id_supply_fit_name'])) {
                 $this->Supply_info_model->save_info('supply_fit_register', $fit);
             }

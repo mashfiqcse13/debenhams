@@ -179,7 +179,7 @@
                                         </div>
 
                                     </div>
-                                    
+
                                     <div class="form-group ">
                                         <label class="col-md-3">Remark:</label>
                                         <div class="col-md-9">
@@ -229,7 +229,7 @@
                                                     }
                                                     ?>
                                                     <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;             ?>" id="id_fit"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                  ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -297,14 +297,14 @@
                                             <div class="form-group " id="send">
                                                 <label class="col-md-3" >Send:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;             ?>" placeholder="Add Date"/>
+                                                    <input type="" class="form-control datepicker" id="sendcheck" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;                  ?>" placeholder="Add Date"/>
 
                                                 </div>
                                             </div>
                                             <div class="form-group " id="receive">
                                                 <label class="col-md-3" >Receive:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;             ?>" placeholder="Add Date"/>
+                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;                  ?>" placeholder="Add Date"/>
                                                 </div>
                                             </div>
                                             <?php
@@ -355,7 +355,7 @@
                                             </div>
 
                                         </div>
-                                        
+
                                         <div class="form-group ">
                                             <label class="col-md-3">Remark:</label>
                                             <div class="col-md-9">
@@ -458,9 +458,22 @@
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
         document.forms['form'].elements['id_supply_fit_name'].value = "<?php echo $register->id_supply_fit_name; ?>";
 
-
+        $("input").each(function () {
+            var curTable = $(this).val();
+            if (curTable == "1970-01-01 06:00:00") {
+                $(this).val(' ')
+            }
+        });
+        var sendCheck = $('#sendcheck').val();
+    //        alert(sendCheck);
+        var receiveCheck = $('#receive').val();
+        if (sendCheck == "1/1/1970" || receiveCheck == "1/1/1970") {
+            $('#send').val(' ');
+            $('#receive').val(' ');
+        }
 
         var select = $("#fit_name option:selected").val();
+    //        alert(select);
         var id_supply = $("#id_supply_info").val();
         if (select == 0) {
             $('#send').hide();
@@ -477,15 +490,16 @@
                 dataType: 'text',
                 type: 'POST',
                 success: function (data) {
-                    //                                        alert(data);
+    //                                                            alert(data);
                     var obj = $.parseJSON(data);
 
                     $.each(obj.supply_fit, function (i, fit) {
                         var date_send = new Date(fit['supply_fit_register_date_send']);
                         var date_send_change = formatDate(date_send);
-
+    //                        alert(date_send_change);
                         var date_receive = new Date(fit['supply_fit_register_date_receive']);
                         var date_receive_change = formatDate(date_receive);
+                        
                         function formatDate(value)
                         {
                             return value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
@@ -496,12 +510,20 @@
                             var fit_name = fit['name'];
                             return fit_name + " Send Date:";
                         });
-                        $('#send input').val(date_send_change);
+                        if (date_send_change == '1/1/1970') {
+                            $('#send input').val('');
+                        } else {
+                            $('#send input').val(date_send_change);
+                        }
                         $('#receive').show();
                         $('#receive label').html(function () {
                             return fit_name + " Receive Date:";
                         });
-                        $('#receive input').val(date_receive_change);
+                        if (date_receive_change == '1/1/1970') {
+                            $('#receive input').val('');
+                        } else {
+                            $('#receive input').val(date_receive_change);
+                        }
                     });
                 }
             });
@@ -528,20 +550,36 @@
                         } else {
                             $.each(obj.supply_fit, function (i, fit) {
 
-                                var date_send = fit['supply_fit_register_date_send'];
-                                var date_receive = fit['supply_fit_register_date_receive'];
+                                var date_send = new Date(fit['supply_fit_register_date_send']);
+                                var date_send_change = formatDate(date_send);
+    //                        alert(date_send_change);
+                                var date_receive = new Date(fit['supply_fit_register_date_receive']);
+                                var date_receive_change = formatDate(date_receive);
+                                function formatDate(value)
+                                {
+                                    return value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+                                }
                                 var fit_name = fit['name'];
                                 $('#send').show();
                                 $('#send label').html(function () {
                                     var fit_name = fit['name'];
                                     return fit_name + " Send date:";
                                 });
-                                $('#send input').val(date_send);
+                                if (date_send_change == '1/1/1970') {
+                                    $('#send input').val('');
+                                } else {
+                                    $('#send input').val(date_send_change);
+                                }
                                 $('#receive').show();
                                 $('#receive label').html(function () {
                                     return fit_name + " Receive date:";
                                 });
-                                $('#receive input').val(date_receive);
+//                                alert(date_)
+                                if (date_receive_change == '1/1/1970') {
+                                    $('#receive input').val('');
+                                } else {
+                                    $('#receive input').val(date_receive_change);
+                                }
 
                             });
                         }

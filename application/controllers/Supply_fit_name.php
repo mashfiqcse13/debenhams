@@ -33,6 +33,7 @@ class Supply_fit_name extends ci_controller{
         $crud->set_table('supply_fit_name')
                 ->set_subject('Sample Step Name')
                                 ->order_by('id_supply_fit_name','desc');
+        $crud->unset_add()->unset_edit()->unset_delete(); 
 
         $output = $crud->render();
         $data['glosary'] = $output;

@@ -316,4 +316,4 @@ class Performance_model extends CI_Model  {
         $total=$this->row_count($con);
         return $total;
     }
-}
+} 

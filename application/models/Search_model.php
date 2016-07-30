@@ -92,7 +92,7 @@ class Search_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
+ 
     function select_all_by_technician_id($con) {
         $this->db->select('*');
         $this->db->from('supply_style_no');

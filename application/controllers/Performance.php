@@ -152,3 +152,4 @@ GROUP BY supply_info.id_supplyer");
     
 
 }
+ 

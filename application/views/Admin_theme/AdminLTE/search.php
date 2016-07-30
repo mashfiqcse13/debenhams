@@ -39,7 +39,7 @@
                             <label class="col-md-3">Style No:</label>
                             <div class="col-md-9">
                                 <select name="id_supply_style_no" id="" class="form-control select2">
-                                    <option value="">Null</option>
+                                    <option value="">Select Style No</option>
                                     <?php
                                     foreach ($all_style_no as $style_no) {
                                         ?>
@@ -56,7 +56,7 @@
                             <label class="col-md-3">Department:</label>
                             <div class="col-md-9">
                                 <select name="id_department" id="" class="form-control select2">
-                                    <option value="">Null</option>
+                                    <option value="">Select Department</option>
                                     <?php
                                     foreach ($all_department as $iepartment) {
                                         ?>
@@ -76,7 +76,7 @@
                             <label class="col-md-3">Supplier:</label>
                             <div class="col-md-9">
                                 <select name="id_supplyer" id="" class="form-control select2">
-                                    <option value="">Null</option>
+                                    <option value="">Select Supplier</option>
                                     <?php
                                     foreach ($all_supplyer as $supplyer) {
                                         ?>
@@ -94,7 +94,7 @@
                             <label class="col-md-3">Sample Result:</label>
                             <div class="col-md-9">
                                 <select name="sample_result" id="" class="form-control select2">
-                                    <option value="">Null</option>
+                                    <option value="">Select Sample Result</option>
                                     <option value="1">Pass</option>
                                     <option value="2">Fail</option>
                                 </select>
@@ -115,7 +115,7 @@
                                 } else {
                                     ?>
                                     <select name="id_technican" id="" class="form-control select2">
-                                        <option value="">Null</option>
+                                        <option value="">Select Technician</option>
                                         <?php
                                         foreach ($all_technician as $technician) {
                                             ?>

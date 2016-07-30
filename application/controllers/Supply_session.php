@@ -31,12 +31,12 @@ class Supply_session extends ci_controller{
     function index() {
         $crud = new grocery_CRUD();
         $crud->set_table('supply_session')
-                ->set_subject('Supply Session')
+                ->set_subject('Supply Season')
                 ->order_by('id_supply_session','desc');
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-        $data['Title'] = 'Supply Session';
+        $data['Title'] = 'Supply Season';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_session', $data);
     }

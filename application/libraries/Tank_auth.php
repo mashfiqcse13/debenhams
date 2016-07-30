@@ -23,7 +23,7 @@ class Tank_auth
 	function __construct()
 	{
 		$this->ci =& get_instance();
-
+                date_default_timezone_set('Asia/Dhaka');
 		$this->ci->load->config('tank_auth', TRUE);
 
 		$this->ci->load->library('session');

@@ -73,21 +73,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label class="col-md-3">Supplier:</label>
+                            <label class="col-md-3">Season:</label>
                             <div class="col-md-9">
-                                <select name="id_supplyer" id="" class="form-control select2">
-                                    <option value="">Select Supplier</option>
+                                <select name="id_supply_session" id="" class="form-control select2">
+                                    <option value="">Select Season</option>
                                     <?php
-                                    foreach ($all_supplyer as $supplyer) {
+                                    foreach ($all_seasons as $season) {
                                         ?>
-                                        <option value="<?php echo $supplyer->id_supplyer; ?>"><?php echo $supplyer->name; ?></option>
+                                        <option value="<?php echo $season->id_supply_session; ?>"><?php echo $season->name; ?></option>
                                         <?php
                                     }
                                     ?>
                                 </select>
                             </div>
 
-                        </div>
+                        </div>                        
                     </div>
                     <div class="col-md-6">
                         <div class="form-group ">
@@ -132,15 +132,15 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                            <div class="form-group ">
-                            <label class="col-md-3">Season:</label>
+                        <div class="form-group ">
+                            <label class="col-md-3">Supplier:</label>
                             <div class="col-md-9">
-                                <select name="id_supply_session" id="" class="form-control select2">
-                                    <option value="">Null</option>
+                                <select name="id_supplyer" id="" class="form-control select2">
+                                    <option value="">Select Supplier</option>
                                     <?php
-                                    foreach ($all_seasons as $season) {
+                                    foreach ($all_supplyer as $supplyer) {
                                         ?>
-                                        <option value="<?php echo $season->id_supply_session; ?>"><?php echo $season->name; ?></option>
+                                        <option value="<?php echo $supplyer->id_supplyer; ?>"><?php echo $supplyer->name; ?></option>
                                         <?php
                                     }
                                     ?>
@@ -212,24 +212,24 @@
                                 <th>Fifth Fit Receive Date:</th>
                                 <th>PP Send Date</th>
                                 <th>PP Receive Date</th>
-                                <th>Wash Approval Date</th>
-                                <th>Wash Comment</th>
                                 <th>Wearer Send Date</th>
                                 <th>Wearer Receive Date</th>
                                 <th>Gold Sl Send Date</th>
                                 <th>Gold Sl Receive Date</th>
 
-                                
+
                                 <th>Lab Test Report</th>
                                 <th>Pattern Block</th>
                                 <th>Sample Pass /Fail</th>
                                 <th>Approved By</th>
                                 <th>File Receive Date</th>
-                                <th>PP Meeting Date</th>
+                                <th>PP Meeting Date</th>                                
+                                <th>Wash Approval Date</th>
+                                <th>Wash Comment</th>
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>
                                 <th>Orders Comment</th>
-                                
+
                                 <th>Technician</th>
 
                                 <th>Remark</th>
@@ -262,7 +262,11 @@
                                                 for ($o = 0; $o < $max_supply_fit_register->id_supply_fit_register; $o++) {
                                                     if (!empty($all_informations[$i][1][$o])) {
                                                         if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -274,7 +278,11 @@
                                                     if (!empty($all_informations[$i][1][$o])) {
                                                         if ($all_informations[$i][1][$o]->id_supply_fit_name == 6) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -287,7 +295,11 @@
                                                     if (!empty($all_informations[$i][1][$j])) {
                                                         if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -298,7 +310,11 @@
                                                     if (!empty($all_informations[$i][1][$j])) {
                                                         if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -312,7 +328,11 @@
                                                     if (!empty($all_informations[$i][1][$k])) {
                                                         if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -324,21 +344,28 @@
                                                     if (!empty($all_informations[$i][1][$k])) {
                                                         if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$k]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <?php
-                                            ?>  
+                                            <?php ?>  
                                             <td class="fit_date">
                                                 <?php
                                                 for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
                                                     if (!empty($all_informations[$i][1][$l])) {
                                                         if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -350,7 +377,11 @@
                                                     if (!empty($all_informations[$i][1][$l])) {
                                                         if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$l]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -365,7 +396,11 @@
                                                     if (!empty($all_informations[$i][1][$m])) {
                                                         if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -377,14 +412,17 @@
                                                     if (!empty($all_informations[$i][1][$m])) {
                                                         if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$m]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <?php
-                                            ?>  
+                                            <?php ?>  
                                             <td class="fit_date">
 
                                                 <?php
@@ -392,7 +430,11 @@
                                                     if (!empty($all_informations[$i][1][$n])) {
                                                         if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -404,7 +446,11 @@
                                                     if (!empty($all_informations[$i][1][$n])) {
                                                         if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -418,7 +464,11 @@
                                                     if (!empty($all_informations[$i][1][$p])) {
                                                         if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -430,14 +480,17 @@
                                                     if (!empty($all_informations[$i][1][$p])) {
                                                         if ($all_informations[$i][1][$p]->id_supply_fit_name == 7) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$p]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)); ?></td>
-                                            <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
+
                                             <?php ?>  
                                             <td class="fit_date">
 
@@ -446,7 +499,11 @@
                                                     if (!empty($all_informations[$i][1][$r])) {
                                                         if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -458,7 +515,11 @@
                                                     if (!empty($all_informations[$i][1][$r])) {
                                                         if ($all_informations[$i][1][$r]->id_supply_fit_name == 8) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$r]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -473,7 +534,11 @@
                                                     if (!empty($all_informations[$i][1][$w])) {
                                                         if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_send));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -485,7 +550,11 @@
                                                     if (!empty($all_informations[$i][1][$w])) {
                                                         if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));
-                                                            if(date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive))=='01/01/1970'){echo '';}else{echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));}
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -494,12 +563,12 @@
                                             <?php ?>   
 
 
-                                            
+
                                             <td>
                                                 <?php
                                                 if ($all_informations[$i][0]->lab_test_report == 1) {
                                                     echo 'Pass';
-                                                }if($all_informations[$i][0]->lab_test_report == 2) {
+                                                }if ($all_informations[$i][0]->lab_test_report == 2) {
                                                     echo 'Fail';
                                                 }
                                                 ?>
@@ -507,7 +576,7 @@
                                             <td><?php
                                                 if ($all_informations[$i][0]->pattern_block == 1) {
                                                     echo 'United Kingdom';
-                                                }if ($all_informations[$i][0]->pattern_block == 2)  {
+                                                }if ($all_informations[$i][0]->pattern_block == 2) {
                                                     echo 'Bangladesh';
                                                 }
                                                 ?>
@@ -524,17 +593,19 @@
                                             <td><?php
                                                 if ($all_informations[$i][0]->approved_by == 1) {
                                                     echo 'United Kingdom';
-                                                }if($all_informations[$i][0]->approved_by == 2) {
+                                                }if ($all_informations[$i][0]->approved_by == 2) {
                                                     echo 'Bangladesh';
                                                 }
                                                 ?>
                                             </td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)); ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)); ?></td>
+                                            <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)); ?></td>
+                                            <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)); ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)); ?></td>
                                             <td><?php echo $all_informations[$i][0]->orders_comment; ?></td>
-                                            
+
 
 
                                             <td><?php echo $all_informations[$i][0]->username; ?></td>
@@ -604,7 +675,7 @@
             return false;
         }
     }
-    
+
     $("table tr td").each(function () {
         var curTable = $(this).html();
         if (curTable == "01/01/1970" || curTable == "30/11/-0001") {

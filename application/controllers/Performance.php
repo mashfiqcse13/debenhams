@@ -97,36 +97,32 @@ class Performance extends CI_Controller {
     public function ranking_supplier() {
         
         
-        
+        $count=array();
         $this->load->model('Search_model');
         $total_supplyer=$this->db->query("select supplyer.name as name, supplyer.id_supplyer  FROM supply_info LEFT JOIN supplyer ON 
 supply_info.id_supplyer=supplyer.id_supplyer
 GROUP BY supply_info.id_supplyer");
         
         $data['all']=$this->Search_model->get_supply_info_with_fit_register();
-        $count=array();
+        
         $data['max_supply_info']= $this->Search_model->get_max_supply_info();
+        //print_r($data['max_supply_info']);
         
         $data['all_informations']= $this->Search_model->get_supply_info_with_fit_register(); 
+        
         foreach($total_supplyer->result() as $row){
-            $data['total'][$row->id_supplyer]=$row->name;
+            $data['supplyer']['name'][]=$row->name;
+            $data['supplyer']['id'][]=$row->id_supplyer;
             
         }
 
-        //$data['all_informations']=$this->performance_model->ranking_supplyer();
-
-        
-        
-        //$data['analysis']=$data['ranking_supplyer']['rating'];
-        
-//        $v= $data['ranking_supplyer'];
-////        echo $v;
-//       echo $v;
-//        echo '<pre>';
 //        
-        $data['supplyer_count'] = count($data['total']);
-        $data['supplyername']=$data['total'];
-        //print_r($data['supplyername']);
+        $data['supplyer_count'] = count($data['supplyer']['name']);
+        
+//        echo '<pre>';
+//        print_r($data['supplyer']);
+        
+        
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
 
         $data['Title'] = 'Suppliers Ranking';

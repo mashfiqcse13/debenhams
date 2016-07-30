@@ -11,13 +11,12 @@ class Performance_model extends CI_Model  {
     
     
     function get_technician_dropdown() {
-        $technicians = $this->db->query('SELECT DISTINCT `id_technician` ,username FROM `supply_info` 
-                LEFT JOIN users on supply_info.id_technician=users.id')->result();
+        $technicians = $this->db->query('SELECT id,type,username FROM `users` LEFT JOIN user_type ON users.id=user_type.user_id WHERE type=2')->result();
 
         $data = array();
         $data[''] = 'Select Technician';
         foreach ($technicians as $technician) {
-            $data[$technician->id_technician] = $technician->username;
+            $data[$technician->id] = $technician->username;
         }
         return form_dropdown('user_id', $data, NULL, ' class="form-control select2" required');
     }

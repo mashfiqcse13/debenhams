@@ -1,6 +1,7 @@
 <?php
-                                // echo '<pre>';
-                                // print_r($all_informations);
+//                                 echo '<pre>';
+//                                 print_r($all_informations);
+
 if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1){
             redirect('admin');
 }
@@ -14,47 +15,14 @@ if(!$this->session->userdata('user_type') or $this->session->userdata('user_type
                                                 $fit['id_supply_info'][]=$all_informations[$i][0]->id_supply_info;
                                                 $fit['id_supplyer'][]=$all_informations[$i][0]->id_supplyer; 
                                                 $fit['supplyer_name'][]=$all_informations[$i][0]->supplyer_name;
-
-
-                                                $v=count($all_informations[$i][1]);
                                                 
-                                                for($w=0; $w > $v; $w++){
-
-                                                    $fit_name_count=array();
-
-                                                    if($all_informations[$i][1][$w]->id_supply_fit_name==5){
-                                                        $fit_name_count[$w][]=$all_informations[$i][1][0]->id_supply_fit_name;
-                                                    }
-                                                    if($all_informations[$i][1][0]->id_supply_fit_name==4){
-                                                        $fit_name_count[$w][]=$all_informations[$i][1][0]->id_supply_fit_name;
-
-                                                    }
-                                                    if($all_informations[$i][1][0]->id_supply_fit_name==3){
-                                                        $fit_name_count[$w][]=$all_informations[$i][1][0]->id_supply_fit_name;
-
-                                                    }
-                                                    if($all_informations[$i][1][0]->id_supply_fit_name==2){
-                                                        $fit_name_count[$w][]=$all_informations[$i][1][0]->id_supply_fit_name;
-
-                                                    }
-                                                    if($all_informations[$i][1][0]->id_supply_fit_name==1){
-                                                        $fit_name_count[$w][]=$all_informations[$i][1][0]->id_supply_fit_name;
-
-                                                    }
-                                                    $fit_name[]=max($fit_name_count[$w]);
-
+                                                
+                                                $id=$all_informations[$i][0]->id_supply_info;
+                                                $value=$this->db->query("SELECT max(id_supply_fit_name)as max_fit FROM `supply_fit_register` WHERE id_supply_fit_name BETWEEN 1 AND 5 and id_supply_info=$id");
+                                                foreach($value->result() as $row){
+                                                    $fit['fit_name'][]=$row->max_fit;
                                                 }
                                                 
-
-
-
-
-
-                                                    if($all_informations[$i][1][0]->id_supply_fit_name < 5){                                              
-                                                        $fit['fit_name'][]=$all_informations[$i][1][0]->id_supply_fit_name;                                  
-                                                    }elseif($all_informations[$i][1][0]->id_supply_fit_name > 5){
-                                                        $fit['fit_name'][]=0;
-                                                    }
                                                 
                                                     if ($all_informations[$i][0]->sample_result == 1) {
                                                         $fit['result'][]=1;
@@ -78,7 +46,7 @@ if(!$this->session->userdata('user_type') or $this->session->userdata('user_type
 
 $fit_result=array();
  $c=count($fit['id_supply_info']);
-for($i=1;$i <= $supplyer_count; $i++) { 
+for($i=0;$i < $supplyer_count; $i++) { 
     
     $fit_total=0;
     $order_count=0;
@@ -86,7 +54,7 @@ for($i=1;$i <= $supplyer_count; $i++) {
       
       
      
-        if($fit['id_supplyer'][$j]==$i && $fit['result'][$j]==1 && $fit['fit_name'][$j]!=0){ 
+        if($fit['id_supplyer'][$j]==$supplyer['id'][$i] && $fit['result'][$j]==1 && $fit['fit_name'][$j]!=0){ 
                 
                 $fitr=$fit['fit_name'][$j];
                 
@@ -104,7 +72,7 @@ for($i=1;$i <= $supplyer_count; $i++) {
         }
         
     }
-    $name=$supplyername[$i];
+    $name=$supplyer['name'][$i];
     $fit_result[$i]['rank']=$fit_total;
     $fit_result[$i]['order_count']=$order_count;
     $fit_result[$i]['name']=$name;
@@ -115,8 +83,12 @@ for($i=1;$i <= $supplyer_count; $i++) {
         
 
         $graph="[['Supplier Name' , 'Ratting'],";
-        for($i=1;$i<=$fit_result_count;$i++){
+        for($i=0;$i<$fit_result_count;$i++){
+            if($fit_result[$i]['order_count']!=0){
             $rating=($fit_result[$i]['rank']*100)/$fit_result[$i]['order_count'];
+            }else{
+                $rating=0;
+            }
             $name=$fit_result[$i]['name'];
             $graph.="['$name',$rating],";
         }
@@ -176,7 +148,7 @@ for($i=1;$i <= $supplyer_count; $i++) {
                                 <?php
                             $i=0;
                             
-                            for($i=1;$i<=$fit_result_count;$i++){
+                            for($i=0;$i<$fit_result_count;$i++){
                         ?>
                             <tr>
                                 <td> <?=$fit_result[$i]['name'];?></td><td><?=$fit_result[$i]['order_count'];?></td> 

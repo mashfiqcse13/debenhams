@@ -132,7 +132,22 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                            <div class="form-group ">
+                            <label class="col-md-3">Season:</label>
+                            <div class="col-md-9">
+                                <select name="id_supply_session" id="" class="form-control select2">
+                                    <option value="">Null</option>
+                                    <?php
+                                    foreach ($all_seasons as $season) {
+                                        ?>
+                                        <option value="<?php echo $season->id_supply_session; ?>"><?php echo $season->name; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -178,7 +193,7 @@
                         <thead>
                             <tr>
                                 <th>Style No</th>
-                                <th>Session</th>
+                                <th>Season</th>
                                 <th style="display:none;">supply id</th>
                                 <th>Department:</th>
                                 <th>Style Description</th>
@@ -197,6 +212,8 @@
                                 <th>Fifth Fit Receive Date:</th>
                                 <th>PP Send Date</th>
                                 <th>PP Receive Date</th>
+                                <th>Wash Approval Date</th>
+                                <th>Wash Comment</th>
                                 <th>Wearer Send Date</th>
                                 <th>Wearer Receive Date</th>
                                 <th>Gold Sl Send Date</th>
@@ -212,8 +229,7 @@
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>
                                 <th>Orders Comment</th>
-                                <th>Wash Approval Date</th>
-                                <th>Wash Comment</th>
+                                
                                 <th>Technician</th>
 
                                 <th>Remark</th>
@@ -420,6 +436,8 @@
                                                 }
                                                 ?>
                                             </td>
+                                            <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)); ?></td>
+                                            <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                                             <?php ?>  
                                             <td class="fit_date">
 
@@ -516,8 +534,7 @@
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)); ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)); ?></td>
                                             <td><?php echo $all_informations[$i][0]->orders_comment; ?></td>
-                                            <td><?php echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)); ?></td>
-                                            <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
+                                            
 
 
                                             <td><?php echo $all_informations[$i][0]->username; ?></td>

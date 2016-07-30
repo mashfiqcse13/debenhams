@@ -316,7 +316,7 @@
                                             <label class="col-md-3">Lab Test Report:</label>
                                             <div class="col-md-9">
                                                 <select name="lab_test_report" id="" class="form-control select">
-                                                    <option value="0">Select Lab Test Report</option>
+                                                    <option value="">Select Lab Test Report</option>
                                                     <option value="1">Pass</option>
                                                     <option value="2">Fail</option>
                                                 </select>

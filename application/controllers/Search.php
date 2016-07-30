@@ -43,18 +43,19 @@ class Search extends CI_Controller {
         $id_supply_style_no = $this->input->get('id_supply_style_no');
         $technician = $this->input->get('id_technican');
         $id_supplyer = $this->input->get('id_supplyer');
+        $id_season = $this->input->get('id_supply_session');
         $date_from = date('Y-m-d H:i:s', strtotime($this->input->get('date_from')));
 //        $date_from =  $this->input->get('date_from');
         $id_department = $this->input->get('id_department');
         $sample_result = $this->input->get('sample_result');
         $date_to = date('Y-m-d', strtotime($this->input->get('date_to') . ' +1 day'));
-//        echo '<pre>';print_r($date_from);exit();
+//        echo '<pre>';print_r($id_season);exit();
 //        $date_to = $this->input->get('date_to');
         $data['max_supply_info'] = $this->Search_model->get_max_supply_info();
         $data['max_supply_fit_register'] = $this->Search_model->get_max_supply_fit_regiter();
 //         $date_from != "1970-01-01"
-        if(!empty($id_supply_style_no) || !empty($id_supplyer) || !empty($id_department) || !empty($sample_result) || !empty($technician) || $date_from != "1970-01-01 06:00:00"){
-             $data['all_informations'] = $this->Search_model->get_supply_info($id_supply_style_no,$id_supplyer,$id_department,$sample_result,$technician,$date_from, $date_to);
+        if(!empty($id_supply_style_no) || !empty($id_supplyer) || !empty($id_season) || !empty($id_department) || !empty($sample_result) || !empty($technician) || $date_from != "1970-01-01 06:00:00"){
+             $data['all_informations'] = $this->Search_model->get_supply_info($id_supply_style_no,$id_supplyer,$id_season,$id_department,$sample_result,$technician,$date_from, $date_to);
         } else {
             $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register();
         }
@@ -68,6 +69,7 @@ class Search extends CI_Controller {
         
  
        
+        $data['all_seasons'] = $this->Search_model->select_all('supply_session');
         $data['all_department'] = $this->Search_model->select_all('department');
         $data['all_technician'] = $this->Search_model->select_technician_by_type();
         $data['all_supplyer'] = $this->Search_model->select_all('supplyer');

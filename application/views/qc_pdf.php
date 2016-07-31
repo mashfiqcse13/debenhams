@@ -22,15 +22,21 @@
                 <div class="pull-right">Report Date: <?php echo date('Y-m-d H:i:s', now()); ?></div>
             </div>
         </div>
-        <table class="table table-bordered table-striped table-condensed search_table" id="example1" border="1">
+        <table class="table table-bordered table-striped table-condensed search_table" id="example1" border ="1">
             <thead>
                 <tr>
                     <th class="nowrap">Style No</th>
+                    <th style="display:none;"></th>
                     <th class="nowrap">File Receive Date</th>
                     <th>P.P Meeting Date:</th>
+                    <th>Wash Approval Date:</th>
+                    <th>Wash Comment:</th>
                     <th>In-Line Date</th>
                     <th>Final Inspection Date:</th>
-                    <th>Created Date:</th>
+                    <th>Orders Comment:</th>                                    
+                    <th>Data Entry Date:</th>
+                    <th>Last Modified Date:</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,11 +45,23 @@
                     ?>
                     <tr>
                         <td class="nowrap"><?php echo $all_informations->style_no; ?></td>
+                        <td style="display:none;"><?php echo $all_informations->id_qc_info; ?></td>
                         <td class="nowrap"><?php echo date('d/m/Y', strtotime($all_informations->file_receive_date)); ?></td>
                         <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($all_informations->wash_approval_date)); ?></td>
+                        <td><?php echo $all_informations->wash_comment; ?></td>
                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
                         <td><?php echo date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
-                         <td><?php echo $all_informations->date_created; ?></td>
+                        <td><?php echo $all_informations->orders_comment; ?></td>
+                        <td><?php echo $all_informations->date_created; ?></td>
+                        <td><?php echo $all_informations->last_modified_qc; ?></td>
+                        <td><a href="<?= site_url('qc_dashboard/reduce/' . $all_informations->id_qc_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                            <a href="<?= site_url('qc_dashboard/delete/' . $all_informations->id_qc_info); ?>" onclick="return check();"type="button" class="btn btn-danger" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </td>
                     </tr>
                     <?php
                 }

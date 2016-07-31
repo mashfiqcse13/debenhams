@@ -59,14 +59,16 @@ for($i=0;$i < $supplyer_count; $i++) {
                 $fitr=$fit['fit_name'][$j];
                 
                 if($fit['fit_name'][$j]==1){
-                    $fitr=$fitr*4;
+                    $fitr=$fitr*5;
                 }elseif($fit['fit_name'][$j]==2){
-                    $fitr=$fitr*3;
+                    $fitr=$fitr*4;
                 }elseif($fit['fit_name'][$j]==3){
-                    $fitr=$fitr*2;
+                    $fitr=$fitr*3;
                 }elseif($fit['fit_name'][$j]==4){
+                    $fitr=$fitr*2;
+                }elseif($fit['fit_name'][$j]==5){
                     $fitr=$fitr*1;
-                }              
+                }               
                 $fit_total+=$fitr; 
                 $order_count++;
         }

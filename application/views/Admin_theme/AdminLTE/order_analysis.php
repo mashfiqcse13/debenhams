@@ -1,4 +1,5 @@
 <?php 
+
 if(!$this->session->userdata('user_type') or $this->session->userdata('user_type')!=1){
             redirect('admin');
 }
@@ -47,27 +48,34 @@ include_once 'header.php'; ?>
                             </tr>
                             <tr>
                                 <td>First Fit Sample Pass</td>
-                                <td><?=$order_analysis['fit'][0];?></td>
+                                <td><?=$order_analysis['count_pass'][1];?></td>
                                 <td>First Fit Sample Fail</td>
-                                <td><?=$order_analysis['fit'][4];?></td>
+                                <td><?=$order_analysis['count_fail'][1];?></td>
                             </tr>
                             <tr>
                                 <td>Second Fit Sample Pass</td>
-                                <td><?=$order_analysis['fit'][1];?></td>
+                                <td><?=$order_analysis['count_pass'][2];?></td>
                                 <td>Second Fit Sample Fail</td>
-                                <td><?=$order_analysis['fit'][5];?></td>
+                                <td><?=$order_analysis['count_fail'][2];?></td>
                             </tr>
                             <tr>
                                 <td>Third Fit Sample Pass</td>
-                                <td><?=$order_analysis['fit'][2];?></td>
+                                <td><?=$order_analysis['count_pass'][3];?></td>
                                 <td>Third Fit Sample Fail</td>
-                                <td><?=$order_analysis['fit'][6];?></td>
+                                <td><?=$order_analysis['count_fail'][3];?></td>
                             </tr>
                             <tr>
                                 <td>Forth Fit Sample Pass</td>
-                                <td><?=$order_analysis['fit'][3];?></td>
+                                <td><?=$order_analysis['count_pass'][4];?></td>
                                 <td>Forth Fit Sample Fail</td>
-                                <td><?=$order_analysis['fit'][7];?></td>
+                                <td><?=$order_analysis['count_fail'][4];?></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Forth Fit Sample Pass</td>
+                                <td><?=$order_analysis['count_pass'][5];?></td>
+                                <td>Forth Fit Sample Fail</td>
+                                <td><?=$order_analysis['count_fail'][5];?></td>
                             </tr>
                             
                         </table>

@@ -58,11 +58,23 @@ class Performance extends CI_Controller {
 
         $data['suppliers_dropdown']=$this->performance_model->get_supplier_dropdown();
         
+        
+        
+        
         $date_range =$this->input->post('date_range');
         
         $user_id = $this->input->post('id_supplyer');
         $btn_submit=$this->input->post('btn_submit');
+        
+        
+        
+        
         if(isset($btn_submit)){  
+            
+            
+         
+        
+        
             $data['user_name']=$this->performance_model->get_supplier_name($user_id);
             $data['total_order']=$this->performance_model->total_order_count($user_id,$date_range,'id_supplyer');
             $data['analysis']=$this->performance_model->supplier_performance_by_pass_fail($user_id,$date_range);
@@ -74,25 +86,7 @@ class Performance extends CI_Controller {
         $this->load->view($this->config->item('ADMIN_THEME') . 'performance_supplier', $data);
     } 
     
-    public function ranking_supplier3() {
-            
-        $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-        
-        $data['order_analysis']=$this->performance_model->order_analysis();
-
-        
-        
-        $data['analysis']=$data['order_analysis']['rating'];
-//        echo '<pre>';
-//
-//        print_r($data['order_analysis']);
-        
-        
-
-        $data['Title'] = 'Total Order Analysis';
-        $data['base_url'] = base_url();
-        $this->load->view($this->config->item('ADMIN_THEME') . 'ranking_supplier', $data);
-    } 
+    
     
     public function ranking_supplier() {
         
@@ -130,12 +124,12 @@ GROUP BY supply_info.id_supplyer");
         $this->load->view($this->config->item('ADMIN_THEME') . 'ranking_supplier', $data);
     } 
     
-        public function order_analysis() {
+    public function order_analysis() {
             
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         
         $data['order_analysis']=$this->performance_model->order_analysis();
-
+        
         
         
         $data['analysis']=$data['order_analysis']['rating'];

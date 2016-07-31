@@ -109,38 +109,77 @@ class Performance_model extends CI_Model  {
         $data['total_finish_order']=$this->row_count(' sample_result=1 or sample_result=2 ');
         $data['unfinished_order']=$unfinished_order=$this->row_count(' sample_result is null or sample_result = "" ');
         
-        $fit=array();
-        $fit[]=$fit1_pass=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=1 ');
-        $fit[]=$fit2_pass=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=1 ');
-        $fit[]=$fit3_pass=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=1 ');
-        $fit[]=$fit4_pass=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=1 ');
-        $fit[]=$fit1_fail=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=2 ');
-        $fit[]=$fit2_fail=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=2 ');
-        $fit[]=$fit3_fail=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=2 ');
-        $fit[]=$fit4_fail=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=2 ');
+        $fit_pass_query=$this->db->query("SELECT max(id_supply_fit_name) as max_value 
+                FROM `supply_fit_register` left join supply_info on 
+                supply_fit_register.id_supply_info=supply_info.id_supply_info 
+                WHERE sample_result=1 and id_supply_fit_name BETWEEN 1 and 5 
+                group by id_supply_style_no")->result();
         
-        $data['fit']=$fit;
-                
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=1 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=1 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=1 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=1 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=1 AND sample_result=2 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=2 AND sample_result=2 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=3 AND sample_result=2 ');
-//        $fit[]=$this->row_count_fit(' id_supply_fit_name=4 AND sample_result=2 ');
-//        
-//        $data['fit']=$fit;
-
+        foreach($fit_pass_query as $row){
+                $fit_pass[]=$row->max_value;
+        }
+        
+        $fit_pass_result=  array_count_values($fit_pass);
+            
+        
+            $count_pass=array();
+            
+            for($i=1;$i<=5;$i++){
+                if(isset($fit_pass_result[$i])){
+                    $count_pass[$i]=$fit_pass_result[$i];
+                }else{
+                    $count_pass[$i]=0;
+                }
+            }
+            
+            
+        $fit_fail_query=$this->db->query("SELECT max(id_supply_fit_name) as max_value  
+                        FROM `supply_fit_register` left join supply_info on 
+                        supply_fit_register.id_supply_info=supply_info.id_supply_info 
+                        WHERE sample_result=2 and id_supply_fit_name BETWEEN 1 and 5 
+                        group by id_supply_style_no")->result();
+            
+        foreach($fit_fail_query as $row){
+                $fit_fail[]=$row->max_value;
+            }
+            $fit_fail_result=  array_count_values($fit_fail);
+        
+            $count_fail=array();
+            for($j=1;$j<=5;$j++){
+                if(isset($fit_fail_result[$j])){
+                    $count_fail[$j]=$fit_fail_result[$j];
+                }else{
+                    $count_fail[$j]=0;
+                }
+            }
+            
+            
+            $fit1_pass=$count_pass[1];
+            $fit2_pass=$count_pass[2];
+            $fit3_pass=$count_pass[3];
+            $fit4_pass=$count_pass[4];
+            $fit5_pass=$count_pass[5];
+                    
+            $fit1_fail=$count_fail[1];
+            $fit2_fail=$count_fail[2];
+            $fit3_fail=$count_fail[3];
+            $fit4_fail=$count_fail[4];
+            $fit5_fail=$count_fail[5];
+        
+        $data['count_pass']=$count_pass;
+        $data['count_fail']=$count_fail;
+            
         $data['rating']="[['Analysis by pass  fail','Rating'],
                ['First Fit Sample Pass',$fit1_pass],
                ['Second Fit Sample Pass',$fit2_pass],
                ['Third Fit Sample Pass',$fit3_pass],
                ['Forth Fit Sample Pass',$fit4_pass],
+               ['Fifth Fit Sample Pass',$fit5_pass],
                ['First Fit Sample Fail',$fit1_fail],
                ['Second Fit Sample Fail',$fit2_fail],
                ['Third Fit Sample Fail',$fit3_fail],
                ['Forth Fit Sample Fail',$fit4_fail],
+               ['Fifth Fit Sample Fail',$fit5_fail],
                ['Unfinished Sample Result',$unfinished_order]
                ]";
 //        
@@ -262,22 +301,48 @@ class Performance_model extends CI_Model  {
             $date=$this->common_model->dateformatter($date);
             $date_range="AND DATE(date_created) BETWEEN $date";
         }
+
         
-        $con1="id_supply_fit_name = 1 AND id_supplyer = $id  $date_range";
-        $con2="id_supply_fit_name = 2 AND id_supplyer = $id  $date_range";
-        $con3="id_supply_fit_name = 3 AND id_supplyer = $id  $date_range";
-        $con4="id_supply_fit_name = 4 AND id_supplyer = $id  $date_range";
+        $result=$this->db->query("SELECT max(id_supply_fit_name) as max_value
+                    FROM `supply_fit_register` 
+                    left join supply_info on 
+                    supply_fit_register.id_supply_info=supply_info.id_supply_info 
+                    WHERE 
+                    id_supplyer=$id $date_range and 
+                    sample_result=1 and 
+                    id_supply_fit_name BETWEEN 1 and 
+                    5 group by id_supply_style_no")->result();
+            
+            foreach($result as $row){
+                $fit[]=$row->max_value;
+            }
+            $fit_result=  array_count_values($fit);
+            
         
-        $count1=$this->row_count_fit($con1);
-        $count2=$this->row_count_fit($con2);
-        $count3=$this->row_count_fit($con3);
-        $count4=$this->row_count_fit($con4);
+            $count;
+            
+            for($i=1;$i<=5;$i++){
+                if(isset($fit_result[$i])){
+                    $count[$i]=$fit_result[$i];
+                }else{
+                    $count[$i]=0;
+                }
+            }
+            
+            $count1=$count[1];
+            $count2=$count[2];
+            $count3=$count[3];
+            $count4=$count[4];
+            $count5=$count[5];
+        
+
         
         $data="[['Fit Type','Percentage'],
                ['First Fit Sample',$count1],
                ['Second Fit Sample',$count2],
                ['Third Fit Sample',$count3],
-               ['Forth Fit Sample',$count4]
+               ['Forth Fit Sample',$count4],
+               ['Fifth Fit Sample',$count5]
                ]";
         
         
@@ -315,5 +380,10 @@ class Performance_model extends CI_Model  {
         $con="sample_result is null or sample_result = '' AND $name = $id  $date_range";
         $total=$this->row_count($con);
         return $total;
+    }
+    
+    
+    function supplier_ranking(){
+        
     }
 } 

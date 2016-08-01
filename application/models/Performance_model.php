@@ -236,6 +236,7 @@ class Performance_model extends CI_Model  {
         $con4="sample_result = 2 AND approved_by = 2 AND id_technician = $id  $date_range";
         
         
+        
         $count1=$this->row_count($con1);
         $count2=$this->row_count($con2);
         $count3=$this->row_count($con3);

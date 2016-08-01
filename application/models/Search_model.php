@@ -99,7 +99,7 @@ class Search_model extends CI_Model {
         $this->db->where($con);        
         $query = $this->db->get();
         return $query->result();
-    }
+    } 
 
     function search_delete($id) {
         $this->db->delete('supply_info', array('id_supply_info' => $id));

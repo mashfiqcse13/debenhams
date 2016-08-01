@@ -95,7 +95,7 @@
                         $this->session->unset_userdata('message');
                         ?>
                         <a href="<?php echo site_url('qc_dashboard/add_new'); ?>" class="btn btn-success" style="margin: 10px 0 ;"/><i class="fa fa-plus"></i> Add New</a>
-                        <a href="<?php echo site_url('pdf/qc_dashboard'); ?>" class="btn btn-bitbucket pull-right" style="margin: 10px 0 ;"/><i class="fa fa-file-pdf-o"></i> Download pdf</a> 
+<!--                        <a href="<?php echo site_url('pdf/qc_dashboard'); ?>" class="btn btn-bitbucket pull-right" style="margin: 10px 0 ;"/><i class="fa fa-file-pdf-o"></i> Download pdf</a> -->
                         <a class="btn btn-primary pull-right" style="margin: 10px 0 ;margin-right:10px;" href="<?= site_url('Excel/qc_dashboard'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
 
                         <table class="table table-bordered table-striped table-condensed search_table" id="example1">

@@ -106,13 +106,13 @@ class Performance_model extends CI_Model  {
 //    
     function order_analysis(){
         
-        $data['total_finish_order']=$this->row_count(' sample_result=1 or sample_result=2 ');
-        $data['unfinished_order']=$unfinished_order=$this->row_count(' sample_result is null or sample_result = "" ');
+        $data['total_finish_order']=$this->row_count(' sample_result=2 or sample_result=3 ');
+        $data['unfinished_order']=$unfinished_order=$this->row_count(' sample_result is null or sample_result = "0" ');
         
         $fit_pass_query=$this->db->query("SELECT max(id_supply_fit_name) as max_value 
                 FROM `supply_fit_register` left join supply_info on 
                 supply_fit_register.id_supply_info=supply_info.id_supply_info 
-                WHERE sample_result=1 and id_supply_fit_name BETWEEN 1 and 5 
+                WHERE sample_result=2 and id_supply_fit_name BETWEEN 1 and 5 
                 group by id_supply_style_no")->result();
         
         foreach($fit_pass_query as $row){
@@ -136,7 +136,7 @@ class Performance_model extends CI_Model  {
         $fit_fail_query=$this->db->query("SELECT max(id_supply_fit_name) as max_value  
                         FROM `supply_fit_register` left join supply_info on 
                         supply_fit_register.id_supply_info=supply_info.id_supply_info 
-                        WHERE sample_result=2 and id_supply_fit_name BETWEEN 1 and 5 
+                        WHERE sample_result=3 and id_supply_fit_name BETWEEN 1 and 5 
                         group by id_supply_style_no")->result();
             
         foreach($fit_fail_query as $row){
@@ -230,11 +230,10 @@ class Performance_model extends CI_Model  {
             $date=$this->common_model->dateformatter($date);
             $date_range="AND DATE(date_created) BETWEEN $date";
         }
-        $con1="sample_result = 1 AND approved_by = 1 AND id_technician = $id  $date_range";
-        $con2="sample_result = 2 AND approved_by = 1 AND id_technician = $id  $date_range";
-        $con3="sample_result = 1 AND approved_by = 2 AND id_technician = $id  $date_range";
-        $con4="sample_result = 2 AND approved_by = 2 AND id_technician = $id  $date_range";
-        
+        $con1="sample_result = 2 AND approved_by = 2 AND id_technician = $id  $date_range";
+        $con2="sample_result = 3 AND approved_by = 2 AND id_technician = $id  $date_range";
+        $con3="sample_result = 2 AND approved_by = 3 AND id_technician = $id  $date_range";
+        $con4="sample_result = 3 AND approved_by = 3 AND id_technician = $id  $date_range"; 
         
         
         $count1=$this->row_count($con1);
@@ -266,10 +265,10 @@ class Performance_model extends CI_Model  {
             $date_range="AND DATE(date_created) BETWEEN $date";
         }
         
-        $con1="sample_result = 1 AND approved_by = 1 AND id_supplyer = $id  $date_range";
-        $con2="sample_result = 2 AND approved_by = 1 AND id_supplyer = $id  $date_range";
-        $con3="sample_result = 1 AND approved_by = 2 AND id_supplyer = $id  $date_range";
-        $con4="sample_result = 2 AND approved_by = 2 AND id_supplyer = $id  $date_range";
+        $con1="sample_result = 2 AND approved_by = 2 AND id_supplyer = $id  $date_range";
+        $con2="sample_result = 3 AND approved_by = 2 AND id_supplyer = $id  $date_range";
+        $con3="sample_result = 2 AND approved_by = 3 AND id_supplyer = $id  $date_range";
+        $con4="sample_result = 3 AND approved_by = 3 AND id_supplyer = $id  $date_range";
         
         
         $count1=$this->row_count($con1);
@@ -310,7 +309,7 @@ class Performance_model extends CI_Model  {
                     supply_fit_register.id_supply_info=supply_info.id_supply_info 
                     WHERE 
                     id_supplyer=$id $date_range and 
-                    sample_result=1 and 
+                    sample_result=2 and 
                     id_supply_fit_name BETWEEN 1 and 
                     5 group by id_supply_style_no")->result();
             

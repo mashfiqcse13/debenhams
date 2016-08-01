@@ -29,17 +29,17 @@ class Supply_info extends CI_Controller {
 
     function index() {
         $crud = new grocery_CRUD();
-        
-        if($this->session->userdata('user_type')==1){
-            $con=' 1=1 ';
-            $con1=' 1=1';
-        }elseif($this->session->userdata('user_type')==2){
-            $id_technician=$this->session->userdata('user_id');
-            $con="id_technician=$id_technician";
-            $con1="allocated_to=$id_technician";
+
+        if ($this->session->userdata('user_type') == 1) {
+            $con = ' 1=1 ';
+            $con1 = ' 1=1';
+        } elseif ($this->session->userdata('user_type') == 2) {
+            $id_technician = $this->session->userdata('user_id');
+            $con = "id_technician=$id_technician";
+            $con1 = "allocated_to=$id_technician";
         }
-        
-        
+
+
         $crud->set_table('supply_info')
                 ->set_subject('Sample Info')
                 ->display_as('id_supply_style_no', 'Style No')
@@ -70,20 +70,20 @@ class Supply_info extends CI_Controller {
                 ->callback_column('lab_test_report', function($this) {
                     if ($this == 1) {
                         return 'Pass';
-                    } if ($this == 2){
+                    } if ($this == 2) {
                         return 'Fail';
                     }
                 })
                 ->callback_column('pattern_block', function($this) {
                     if ($this == 1) {
                         return 'United Kingdom';
-                    } if ($this == 2){
+                    } if ($this == 2) {
                         return 'Bangladesh';
                     }
                 })
-                ->callback_after_delete(array($this,'fit_register_delete'))
+                ->callback_after_delete(array($this, 'fit_register_delete'))
                 ->order_by('id_supply_info', 'desc');
-                
+
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id($con1);
@@ -97,10 +97,10 @@ class Supply_info extends CI_Controller {
         $data['all_supply_fit_register'] = $this->Supply_info_model->supply_register_by_supply_id($supply_id);
 //         echo '<pre>';print_r($data['all_supply_fit_register']);exit();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-        if($this->uri->segment(3)== 'edit'){
+        if ($this->uri->segment(3) == 'edit') {
             $data['Title'] = 'Update Info';
-        }else{
-        $data['Title'] = 'Insert Info';
+        } else {
+            $data['Title'] = 'Insert Info';
         }
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_info/supply_info', $data);
@@ -121,9 +121,9 @@ class Supply_info extends CI_Controller {
     function technician($value, $row) {
         return $this->Supply_info_model->get_all_technician($value, 'users', 'id');
     }
-    
-    function fit_register_delete($id){
-        return $this->db->delete('supply_fit_register',array('id_supply_info' => $id));
+
+    function fit_register_delete($id) {
+        return $this->db->delete('supply_fit_register', array('id_supply_info' => $id));
     }
 
     function fit_info() {
@@ -169,7 +169,7 @@ class Supply_info extends CI_Controller {
 
     function update_info() {
         $id = $this->input->post('id_supply_info');
-//         echo '<pre>'; print_r($id);exit();
+//         echo '<pre>'; print_r($_POST);exit();
         $data['id_supply_session'] = $this->input->post('id_supply_session');
         $data['id_department'] = $this->input->post('id_department');
         $data['style_description'] = $this->input->post('style_description');
@@ -189,14 +189,12 @@ class Supply_info extends CI_Controller {
         $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
         $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
 //        echo '<pre>'; print_r($fit);exit();
-        $fit_exist = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
-//        echo '<pre>'; print_r($fit_exist);exit();
-        if (!empty($fit_exist)) {
-            $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_fit);
-        }if (empty($fit_exist)) {
-            if (!empty($fit['id_supply_fit_name'])) {
-                $this->Supply_info_model->save_info('supply_fit_register', $fit);
-            }
+        $id_supply_fit_register = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
+//        die("<pre>" . var_dump($id_supply_fit_register));
+        if ($id_supply_fit_register != FALSE) {
+            $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_supply_fit_register);
+        } else {
+            $this->Supply_info_model->save_info('supply_fit_register', $fit);
         }
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
         $this->session->set_userdata($sdata);

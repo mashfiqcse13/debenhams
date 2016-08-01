@@ -57,9 +57,8 @@ class Supply_info_model extends ci_model {
                 $this->db->select('*');
                 $this->db->from('supply_style_no');
                 $this->db->where($con);
-                $this->db->where('id_supply_style_no',$id);
-                $sql[]= $this->db->get()->row();
-                
+                $this->db->where('id_supply_style_no', $id);
+                $sql[] = $this->db->get()->row();
             }
         }
         return $sql;
@@ -116,8 +115,12 @@ class Supply_info_model extends ci_model {
         $this->db->from('supply_fit_register');
         $this->db->where('id_supply_info', $id_supply_info);
         $this->db->where('id_supply_fit_name', $fit_id);
-        $query = $this->db->get();
-        return $query->result();
+        $result = $this->db->get()->result();
+        If (empty($result)) {
+            return false;
+        } else {
+            return $result[0]->id_supply_fit_register;
+        }
     }
 
     function get_all($value, $tbl_name, $id) {

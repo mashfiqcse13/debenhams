@@ -111,7 +111,7 @@
                                         <label class="col-md-3">Sample Step Name:</label>
                                         <div class="col-md-9">
                                             <select name="id_supply_fit_name" id="fit_name" class="form-control select2">
-                                                <option value="0">Select Fit Name</option>
+                                                <option value="0">Select Sample Step Name</option>
                                                 <?php
                                                 foreach ($all_fit_name as $fit) {
                                                     ?>
@@ -277,10 +277,10 @@
                                         foreach ($all_supply_fit_register as $register) {
                                             ?>
                                             <div class="form-group ">
-                                                <label class="col-md-3">Fit Name:</label>
+                                                <label class="col-md-3">Sample Step Name:</label>
                                                 <div class="col-md-9">
                                                     <select name="id_supply_fit_name" id="fit_name" class="form-control select" required>
-                                                        <option value="0">Select Fit Name</option>
+                                                        <option value="0">Select Sample Step Name</option>
                                                         <?php
                                                         foreach ($all_fit_name as $fit) {
                                                             ?>
@@ -291,6 +291,7 @@
 
                                                     </select>
                                                     <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register; ?>"/>
+                                                   
                                                 </div>
                                             </div>
 
@@ -455,7 +456,7 @@
         document.forms['form'].elements['approved_by'].value = "<?php echo $value->approved_by; ?>";
         document.forms['form'].elements['lab_test_report'].value = "<?php echo $value->lab_test_report; ?>";
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
-        document.forms['form'].elements['id_supply_fit_name'].value = "<?php echo $register->id_supply_fit_name; ?>";
+//        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name; ?>";
 
         $("input").each(function () {
             var curTable = $(this).val();
@@ -498,13 +499,13 @@
     //                        alert(date_send_change);
                         var date_receive = new Date(fit['supply_fit_register_date_receive']);
                         var date_receive_change = formatDate(date_receive);
-                        
+//                        $('#register').val(fit['id_supply_fit_register']);
                         function formatDate(value)
                         {
                             return (value.getMonth() + 1) + "/" + value.getDate() + "/" + value.getFullYear();
                         }
                         var fit_name = fit['name'];
-                        $('#send').show();
+//                        $('#send').show();
                         $('#send label').html(function () {
                             var fit_name = fit['name'];
                             return fit_name + " Send Date:";
@@ -514,7 +515,7 @@
                         } else {
                              $('#send input').datepicker('setDate',date_send_change);
                         }
-                        $('#receive').show();
+//                        $('#receive').show();
                         $('#receive label').html(function () {
                             return fit_name + " Receive Date:";
                         });

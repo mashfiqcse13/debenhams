@@ -186,7 +186,7 @@
                     }
                     $this->session->unset_userdata('message');
                     ?>
-                    <a style="margin-right:5px;padding-right: 5px;margin-left:5px;" class="btn btn-bitbucket pull-right btn-sm" href="<?= site_url('Pdf'); ?>"><i class="fa fa-file-pdf-o"></i> Download as pdf </a>
+                    <!--<a style="margin-right:5px;padding-right: 5px;margin-left:5px;" class="btn btn-bitbucket pull-right btn-sm" href="<?= site_url('Pdf'); ?>"><i class="fa fa-file-pdf-o"></i> Download as pdf </a>-->
                     <a class="btn btn-primary pull-right btn-sm" href="<?= site_url('Excel'); ?>"><i class="fa fa-table"></i> Download as Excel </a>
 
                     <table class="table table-bordered table-striped table-condensed search_table" id="example1">

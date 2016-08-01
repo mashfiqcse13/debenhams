@@ -123,7 +123,13 @@
                                         <td class="nowrap"><?php echo $all_informations->style_no; ?></td>
                                         <td style="display:none;"><?php echo $all_informations->id_qc_info; ?></td>
                                         <td class="nowrap"><?php echo date('d/m/Y', strtotime($all_informations->file_receive_date)); ?></td>
-                                        <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
+                                        <td><?php
+                                        if (date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_send));
+                                                            }
+                                        echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->wash_approval_date)); ?></td>
                                         <td><?php echo $all_informations->wash_comment; ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>

@@ -44,11 +44,11 @@ class Search extends CI_Controller {
         $technician = $this->input->get('id_technican');
         $id_supplyer = $this->input->get('id_supplyer');
         $id_season = $this->input->get('id_supply_session');
-        $date_from = date('Y-m-d', strtotime($this->input->get('date_from')));
+        $date_from = date('Y-m-d H:i:s', strtotime($this->input->get('date_from')));
 //        $date_from =  $this->input->get('date_from');
         $id_department = $this->input->get('id_department');
         $sample_result = $this->input->get('sample_result');
-        $date_to = date('Y-m-d', strtotime($this->input->get('date_to') . ' +1 day'));
+        $date_to = date('Y-m-d H:i:s', strtotime($this->input->get('date_to') . ' +1 day'));
 //        echo '<pre>';print_r($id_season);exit();
 //        $date_to = $this->input->get('date_to');
         $data['max_supply_info'] = $this->Search_model->get_max_supply_info();

@@ -54,10 +54,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-md-3">Session:</label>
+                                        <label class="col-md-3">Season:</label>
                                         <div class="col-md-9">
                                             <select name="id_supply_session" id="" class="form-control select2">
-                                                <option value="0">Select Session No</option>
+                                                <option value="0">Select Season No</option>
                                                 <?php
                                                 foreach ($all_session as $session) {
                                                     ?>
@@ -217,10 +217,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group ">
-                                            <label class="col-md-3">Session:</label>
+                                            <label class="col-md-3">Season:</label>
                                             <div class="col-md-9">
                                                 <select name="id_supply_session" id="" class="form-control select">
-                                                    <option value="0">Select Session No</option>
+                                                    <option value="0">Select Season No</option>
                                                     <?php
                                                     foreach ($all_session as $session) {
                                                         ?>
@@ -297,14 +297,13 @@
                                             <div class="form-group " id="send">
                                                 <label class="col-md-3" >Send:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" id="sendcheck" name="supply_fit_register_date_send" value="<?php // echo $register->supply_fit_register_date_send;                  ?>" placeholder="Add Date"/>
-
+                                                    <input type="text" class="form-control datepicker" id="sendcheck" name="supply_fit_register_date_send"  placeholder="Add Date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group " id="receive">
                                                 <label class="col-md-3" >Receive:</label>
                                                 <div class="col-md-9">
-                                                    <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" value="<?php // echo $register->supply_fit_register_date_receive;                  ?>" placeholder="Add Date"/>
+                                                    <input type="text" class="form-control datepicker" name="supply_fit_register_date_receive"  placeholder="Add Date"/>
                                                 </div>
                                             </div>
                                             <?php
@@ -502,7 +501,7 @@
                         
                         function formatDate(value)
                         {
-                            return value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+                            return (value.getMonth() + 1) + "/" + value.getDate() + "/" + value.getFullYear();
                         }
                         var fit_name = fit['name'];
                         $('#send').show();
@@ -513,7 +512,7 @@
                         if (date_send_change == '1/1/1970') {
                             $('#send input').val('');
                         } else {
-                            $('#send input').val(date_send_change);
+                             $('#send input').datepicker('setDate',date_send_change);
                         }
                         $('#receive').show();
                         $('#receive label').html(function () {
@@ -522,7 +521,7 @@
                         if (date_receive_change == '1/1/1970') {
                             $('#receive input').val('');
                         } else {
-                            $('#receive input').val(date_receive_change);
+                            $('#receive input').datepicker('setDate',date_receive_change);
                         }
                     });
                 }
@@ -552,12 +551,12 @@
 
                                 var date_send = new Date(fit['supply_fit_register_date_send']);
                                 var date_send_change = formatDate(date_send);
-    //                        alert(date_send_change);
+//                            alert(date_send_change);
                                 var date_receive = new Date(fit['supply_fit_register_date_receive']);
                                 var date_receive_change = formatDate(date_receive);
                                 function formatDate(value)
                                 {
-                                    return value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+                                    return (value.getMonth() + 1) + "/" + value.getDate() + "/" + value.getFullYear();
                                 }
                                 var fit_name = fit['name'];
                                 $('#send').show();
@@ -568,7 +567,7 @@
                                 if (date_send_change == '1/1/1970') {
                                     $('#send input').val('');
                                 } else {
-                                    $('#send input').val(date_send_change);
+                                    $('#send input').datepicker('setDate',date_send_change);
                                 }
                                 $('#receive').show();
                                 $('#receive label').html(function () {
@@ -578,7 +577,7 @@
                                 if (date_receive_change == '1/1/1970') {
                                     $('#receive input').val('');
                                 } else {
-                                    $('#receive input').val(date_receive_change);
+                                    $('#receive input').datepicker('setDate',date_receive_change);
                                 }
 
                             });

@@ -116,63 +116,6 @@ class Search_model extends CI_Model {
         $this->db->join('supplyer', 'supply_info.id_supplyer =supplyer.id_supplyer', 'left');
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
         $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
-//        $this->db->order_by('supply_info.id_supply_style_no', 'desc');
-//         $information = $this->db->query('SELECT *,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date FROM `supply_info` LEFT JOIN `supply_session` ON supply_info.id_supply_session = supply_session.id_supply_session LEFT JOIN `supply_style_no` ON
-//supply_info.id_supply_style_no = supply_style_no.id_supply_style_no LEFT JOIN `department` ON
-//supply_info.id_department =department.id_department LEFT JOIN `supplyer` ON supply_info.id_supplyer =supplyer.id_supplyer LEFT JOIN `users` ON supply_info.id_technician =users.id LEFT JOIN `qc_info` ON
-////supply_info.id_supply_style_no = qc_info.id_supply_style_no WHERE supply_info.id_supply_style_no LIKE "%'.$id_supply_style_no.'%" AND supply_info.id_supplyer LIKE '%$id_supplyer%'AND supply_info.id_supply_session LIKE "%'.$id_season.'%"')->result();
-//       if(!empty($id_supply_style_no) || !empty($id_supplyer) || !empty($id_season) || !empty($id_department) || !empty($sample_result) || !empty($technician) || $date_from != "1970-01-01 06:00:00"){
-//           $array = array('supply_info.id_supply_style_no' => $id_supply_style_no OR'supply_info.id_supplyer' => $id_supplyer, 'supply_info.id_supply_session' => $id_department, 'supply_info.sample_result' => $sample_result ,'supply_info.id_technician' => $technician);
-//           $where = "supply_info.id_supply_style_no='$id_supply_style_no' 
-//           OR supply_info.id_supplyer='$id_supplyer' 
-//           OR supply_info.id_supply_session='$id_season'
-//            OR supply_info.id_department = '$id_department'
-//             OR supply_info.sample_result ='$sample_result' 
-//             OR supply_info.id_technician = '$technician'";
-
-
-//        $condition = "1";
-//
-//
-//        if ($id_supply_style_no != "null") {
-//            $condition = "supply_info.id_supply_style_no='$id_supply_style_no'";
-//        }
-//        if ($id_department != "null") {
-//            if ($condition == 1)
-//                $condition = "supply_info.id_department='$id_department'";
-//            else
-//                $condition.=" and supply_info.id_department='$id_department'";
-//        }
-//        if ($id_season != "null") {
-//            if ($condition == 1)
-//                $condition = "supply_info.id_supply_session='$id_season'";
-//            else
-//                $condition.=" and supply_info.id_supply_session='$id_season'";
-//        }
-//        if ($id_supplyer != "null") {
-//            if ($condition == 1)
-//                $condition = "supply_info.id_supplyer='$id_supplyer'";
-//            else
-//                $condition.=" and supply_info.id_supplyer='$id_supplyer'";
-//        }
-//        if ($sample_result != "null") {
-//            if ($condition == 1)
-//                $condition = "supply_info.sample_result='$sample_result'";
-//            else
-//                $condition.=" and supply_info.sample_result='$sample_result'";
-//        }
-//        if ($technician != "null") {
-//            if ($condition == 1)
-//                $condition = "supply_info.id_technician='$technician'";
-//            else
-//                $condition.=" and supply_info.id_technician='$technician'";
-//        }
-//        if (count($date_from) == 3 and count($date_to) == 3) {
-//            if ($condition == 1)
-//                $condition = "(DATE(supply_info.date_created) BETWEEN '$date_from' AND '$date_to";
-//            else
-//                $condition.=" and (DATE(supply_info.date_created) BETWEEN '$date_from' AND '$date_to";
-//        }
 
 
 

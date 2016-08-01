@@ -93,9 +93,10 @@ class Search_model extends CI_Model {
         return $query->result();
     }
 
-    function select_all_by_technician_id() {
+    function select_all_by_technician_id($con) {
         $this->db->select('*');
         $this->db->from('supply_style_no');
+        $this->db->where($con);        
         $query = $this->db->get();
         return $query->result();
     }
@@ -117,11 +118,6 @@ class Search_model extends CI_Model {
         $this->db->join('users', 'supply_info.id_technician =users.id', 'left');
         $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
 
-
-
-
-
-
         if (!empty($id_supply_style_no)) {
             $this->db->like('supply_info.id_supply_style_no',$id_supply_style_no);
         }if (!empty($id_supplyer)) {
@@ -137,7 +133,7 @@ class Search_model extends CI_Model {
         }if ($date_from != "1970-01-01 06:00:00") {
 //            $this->db->where('supply_info.date_created >=', DATE($date_from));
 //            $this->db->where('supply_info.date_created <=', DATE($date_to));
-            $condition = "supply_info.date_created BETWEEN '$date_from' AND '$date_to'";
+            $condition = "DATE(supply_info.date_created) BETWEEN '$date_from' AND '$date_to'";
             $this->db->where($condition);
         }
         $technician = $this->session->userdata('user_type');

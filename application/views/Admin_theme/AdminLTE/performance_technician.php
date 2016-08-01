@@ -84,6 +84,7 @@
                         <h2 class="text-center page-header">Technician Performance</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Technician : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Checked Order for <?=$user_name;?> : <?=$total_order-$unpased;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Unchecked Order for <?=$user_name;?> : <?=$unpased;?></p>
                         
                         <div id="piechart" style="width: 100%; height: 500px;"></div>

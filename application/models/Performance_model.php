@@ -171,14 +171,14 @@ class Performance_model extends CI_Model  {
             
         $data['rating']="[['Analysis by pass  fail','Rating'],
                ['First Fit Sample Pass',$fit1_pass],
+                   ['First Fit Sample Fail',$fit1_fail],
                ['Second Fit Sample Pass',$fit2_pass],
+                   ['Second Fit Sample Fail',$fit2_fail],
                ['Third Fit Sample Pass',$fit3_pass],
+                   ['Third Fit Sample Fail',$fit3_fail],
                ['Forth Fit Sample Pass',$fit4_pass],
-               ['Fifth Fit Sample Pass',$fit5_pass],
-               ['First Fit Sample Fail',$fit1_fail],
-               ['Second Fit Sample Fail',$fit2_fail],
-               ['Third Fit Sample Fail',$fit3_fail],
-               ['Forth Fit Sample Fail',$fit4_fail],
+                   ['Forth Fit Sample Fail',$fit4_fail],
+               ['Fifth Fit Sample Pass',$fit5_pass],   
                ['Fifth Fit Sample Fail',$fit5_fail],
                ['Unfinished Sample Result',$unfinished_order]
                ]";
@@ -338,11 +338,11 @@ class Performance_model extends CI_Model  {
 
         
         $data="[['Fit Type','Percentage'],
-               ['First Fit Sample',$count1],
-               ['Second Fit Sample',$count2],
-               ['Third Fit Sample',$count3],
-               ['Forth Fit Sample',$count4],
-               ['Fifth Fit Sample',$count5]
+               ['First Fit Sample Pass',$count1],
+               ['Second Fit Sample Pass',$count2],
+               ['Third Fit Sample Pass',$count3],
+               ['Forth Fit Sample Pass',$count4],
+               ['Fifth Fit Sample Pass',$count5]
                ]";
         
         
@@ -377,7 +377,7 @@ class Performance_model extends CI_Model  {
             $date_range="AND DATE(date_created) BETWEEN $date";
         }
         
-        $con="sample_result is null or sample_result = '' AND $name = $id  $date_range";
+        $con="sample_result is null or sample_result = '0' AND $name = $id  $date_range";
         $total=$this->row_count($con);
         return $total;
     }

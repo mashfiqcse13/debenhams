@@ -117,7 +117,7 @@ function drawMultSeries() {
           minValue: 0
         },
         vAxis: {
-          title: 'Fit Type By Pass Fail'
+          title: 'Fit Type By Pass/Fail'
         }
       };
 
@@ -133,7 +133,7 @@ function drawMultSeries() {
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: ' Total Order Analysis ( Analysis by pass fail ) '
+          title: ' Total Order Analysis ( Analysis by pass/fail ) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

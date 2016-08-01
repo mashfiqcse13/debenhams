@@ -134,7 +134,7 @@ for($i=0;$i < $supplyer_count; $i++) {
                     <div class="col-md-12">
                     <div class="box box-title">
                         <div class="row">
-                            <h2 class="text-center page-header">Supplier Rankng</h2>
+                            <h2 class="text-center page-header">Supplier Ranking</h2>
                             <div class="col-md-8">
                                 <div id="chart_div"></div>
                                 <hr>
@@ -194,10 +194,10 @@ function drawMultSeries() {
       var data = google.visualization.arrayToDataTable(<?=$graph;?>);
 
       var options = {
-        title: 'Here Highest Percentage Refers Highest Performance and Rank of Supplier',
+        title: 'Here Highest Points Refers Highest Performance and Rank of Supplier',
         chartArea: {width: '50%'},
         hAxis: {
-          title: 'Complete Order',
+          title: 'Points',
           minValue: 0
         },
         vAxis: {
@@ -217,7 +217,7 @@ function drawMultSeries() {
         var data = google.visualization.arrayToDataTable(<?php echo $graph ; ?>);
 
         var options = {
-          title: ' Pie Chart for Supplier Ranking '
+          title: ' Here Highest Percentage Refers Highest Performance And Rank Of Supplier '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

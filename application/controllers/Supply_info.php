@@ -184,17 +184,19 @@ class Supply_info extends CI_Controller {
         $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();
         $id_fit = $this->input->post('id_supply_fit_register');
-        $fit['id_supply_info'] = $supply_info_id->id_supply_info;
-        $fit['id_supply_fit_name'] = $this->input->post('id_fit');
-        $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
-        $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
-//        echo '<pre>'; print_r($fit);exit();
-        $id_supply_fit_register = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
-//        die("<pre>" . var_dump($id_supply_fit_register));
-        if ($id_supply_fit_register != FALSE) {
-            $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_supply_fit_register);
-        } else {
-            $this->Supply_info_model->save_info('supply_fit_register', $fit);
+        if (!empty($this->input->post('id_fit'))) {
+            $fit['id_supply_info'] = $supply_info_id->id_supply_info;
+            $fit['id_supply_fit_name'] = $this->input->post('id_fit');
+            $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
+            $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
+            //        echo '<pre>'; print_r($fit);exit();
+            $id_supply_fit_register = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
+            //        die("<pre>" . var_dump($id_supply_fit_register));
+            if ($id_supply_fit_register != FALSE) {
+                $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_supply_fit_register);
+            } else {
+                $this->Supply_info_model->save_info('supply_fit_register', $fit);
+            }
         }
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
         $this->session->set_userdata($sdata);

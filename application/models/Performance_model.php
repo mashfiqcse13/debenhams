@@ -138,7 +138,7 @@ class Performance_model extends CI_Model  {
                         supply_fit_register.id_supply_info=supply_info.id_supply_info 
                         WHERE sample_result=3 and id_supply_fit_name BETWEEN 1 and 5 
                         group by id_supply_style_no")->result();
-            
+        $fit_fail=array();
         foreach($fit_fail_query as $row){
                 $fit_fail[]=$row->max_value;
             }
@@ -254,6 +254,105 @@ class Performance_model extends CI_Model  {
     return $data;
     }
     
+    function technician_performance_by_fittype($id,$date){
+        
+        $this->load->model('common_model');        
+        
+        
+        if(empty($date) || $date==''){
+            $date_range='';
+        }
+        if(!empty($date)){
+            $date=$this->common_model->dateformatter($date);
+            $date_range="AND DATE(date_created) BETWEEN $date";
+        }
+
+        //fit result by pass
+        $result=$this->db->query("SELECT max(id_supply_fit_name) as max_value
+                    FROM `supply_fit_register` 
+                    left join supply_info on 
+                    supply_fit_register.id_supply_info=supply_info.id_supply_info 
+                    WHERE 
+                    id_technician=$id $date_range and 
+                    sample_result=2 and 
+                    id_supply_fit_name BETWEEN 1 and 
+                    5 group by id_supply_style_no")->result();
+            $fit=array();
+            foreach($result as $row){
+                $fit[]=$row->max_value;
+            }
+            $fit_result=  array_count_values($fit);
+            
+        
+            $count;
+            
+            for($i=1;$i<=5;$i++){
+                if(isset($fit_result[$i])){
+                    $count[$i]=$fit_result[$i];
+                }else{
+                    $count[$i]=0;
+                }
+            }
+            
+            $count1=$count[1];
+            $count2=$count[2];
+            $count3=$count[3];
+            $count4=$count[4];
+            $count5=$count[5];
+        
+        //fit result by fail
+            $result_fail=$this->db->query("SELECT max(id_supply_fit_name) as max_value
+                    FROM `supply_fit_register` 
+                    left join supply_info on 
+                    supply_fit_register.id_supply_info=supply_info.id_supply_info 
+                    WHERE 
+                    id_technician=$id $date_range and 
+                    sample_result=3 and 
+                    id_supply_fit_name BETWEEN 1 and 
+                    5 group by id_supply_style_no")->result();
+            
+            $fit_fail=array();
+            foreach($result_fail as $row){
+                $fit_fail[]=$row->max_value;
+            }
+            $fit_resultf=  array_count_values($fit_fail);
+            
+        
+            $countf;
+            
+            for($j=1;$j<=5;$j++){
+                if(isset($fit_resultf[$j])){
+                    $countf[$j]=$fit_resultf[$j];
+                }else{
+                    $countf[$j]=0;
+                }
+            }
+            
+            $countf1=$countf[1];
+            $countf2=$countf[2];
+            $countf3=$countf[3];
+            $countf4=$countf[4];
+            $countf5=$countf[5];
+        
+        $data="[['Fit Type','Percentage'],
+               ['First Fit Sample Pass',$count1],
+                   ['First Fit Sample Fail',$countf1],
+               ['Second Fit Sample Pass',$count2],
+                   ['Second Fit Sample Fail',$countf2],
+               ['Third Fit Sample Pass',$count3],
+                   ['Third Fit Sample Fail',$countf3],
+               ['Forth Fit Sample Pass',$count4],
+                   ['Forth Fit Sample Fail',$countf4],
+               ['Fifth Fit Sample Pass',$count5],
+                   ['Fifth Fit Sample Fail',$countf5]
+               ]";
+        
+        
+        return $data; 
+        
+    }
+    
+    
     function supplier_performance_by_pass_fail($id,$date){
         
         $this->load->model('common_model');        
@@ -289,6 +388,8 @@ class Performance_model extends CI_Model  {
     return $data;
     }
     
+     
+    
     function supplier_performance_by_fittype($id,$date){
         
         $this->load->model('common_model');        
@@ -302,7 +403,7 @@ class Performance_model extends CI_Model  {
             $date_range="AND DATE(date_created) BETWEEN $date";
         }
 
-        
+        //fit result by pass
         $result=$this->db->query("SELECT max(id_supply_fit_name) as max_value
                     FROM `supply_fit_register` 
                     left join supply_info on 
@@ -312,7 +413,7 @@ class Performance_model extends CI_Model  {
                     sample_result=2 and 
                     id_supply_fit_name BETWEEN 1 and 
                     5 group by id_supply_style_no")->result();
-            
+            $fit=array();
             foreach($result as $row){
                 $fit[]=$row->max_value;
             }
@@ -335,14 +436,51 @@ class Performance_model extends CI_Model  {
             $count4=$count[4];
             $count5=$count[5];
         
-
+        //fit result by fail
+            $result_fail=$this->db->query("SELECT max(id_supply_fit_name) as max_value
+                    FROM `supply_fit_register` 
+                    left join supply_info on 
+                    supply_fit_register.id_supply_info=supply_info.id_supply_info 
+                    WHERE 
+                    id_supplyer=$id $date_range and 
+                    sample_result=3 and 
+                    id_supply_fit_name BETWEEN 1 and 
+                    5 group by id_supply_style_no")->result();
+            
+            $fit_fail=array();
+            foreach($result_fail as $row){
+                $fit_fail[]=$row->max_value;
+            }
+            $fit_resultf=  array_count_values($fit_fail);
+            
+        
+            $countf;
+            
+            for($j=1;$j<=5;$j++){
+                if(isset($fit_resultf[$j])){
+                    $countf[$j]=$fit_resultf[$j];
+                }else{
+                    $countf[$j]=0;
+                }
+            }
+            
+            $countf1=$countf[1];
+            $countf2=$countf[2];
+            $countf3=$countf[3];
+            $countf4=$countf[4];
+            $countf5=$countf[5];
         
         $data="[['Fit Type','Percentage'],
                ['First Fit Sample Pass',$count1],
+                   ['First Fit Sample Fail',$countf1],
                ['Second Fit Sample Pass',$count2],
+                   ['Second Fit Sample Fail',$countf2],
                ['Third Fit Sample Pass',$count3],
+                   ['Third Fit Sample Fail',$countf3],
                ['Forth Fit Sample Pass',$count4],
-               ['Fifth Fit Sample Pass',$count5]
+                   ['Forth Fit Sample Fail',$countf4],
+               ['Fifth Fit Sample Pass',$count5],
+                   ['Fifth Fit Sample Fail',$countf5]
                ]";
         
         

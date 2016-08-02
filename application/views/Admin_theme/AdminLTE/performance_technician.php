@@ -93,7 +93,20 @@
                 </div>
 
                 <?php } ?>
+        
+        
+                <?php if(!empty($analysis_by_fit)){ ?>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="box box-title">
+                        <h2 class="text-center page-header">Technician Performance : Basis on Fit Sample</h2>
+                       <div id="piechart_fit" style="width: 100%; height: 500px;"></div>
+                    </div> 
+                    </div>
+                </div>
 
+                <?php } ?>
+ 
        
       <!-- Your Page Content Here -->
 
@@ -117,6 +130,23 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        
+        
+      }
+      
+      
+      google.charts.setOnLoadCallback(drawChart_fit);
+      function drawChart_fit() {
+
+        var data = google.visualization.arrayToDataTable(<?php echo $analysis_by_fit ; ?>);
+
+        var options = {
+          title: '<?=$Title;?> : <?=$user_name;?> ( Fit Sample ) '
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_fit'));
 
         chart.draw(data, options);
       }

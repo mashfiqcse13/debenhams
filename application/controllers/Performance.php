@@ -44,6 +44,7 @@ class Performance extends CI_Controller {
             $data['user_name']=$this->performance_model->get_technician_name($user_id);
             $data['total_order']=$this->performance_model->total_order_count($user_id,$date_range,'id_technician');
             $data['analysis']=$this->performance_model->order_by_techncian($user_id,$date_range);
+            $data['analysis_by_fit']=$this->performance_model->technician_performance_by_fittype($user_id,$date_range);
             $data['unpased']=$this->performance_model->unpased_order_count($user_id,$date_range,'id_technician');
         }
         

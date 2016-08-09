@@ -14,7 +14,7 @@ class Excel extends CI_Controller {
         $this->load->model('Search_model');
         $this->load->library('session');
     }
- 
+  
 function index() {
         if($this->session->userdata('user_type')==1){
 

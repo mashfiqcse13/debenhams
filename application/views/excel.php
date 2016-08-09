@@ -32,8 +32,8 @@ header( "Content-disposition: attachment; filename=spreadsheet.xls" );
                     <th>Gold Sl Receive Date</th>
                     <th>Lab Test Report</th>
                     <th>Pattern Block</th>
-                    <th>Sample Pass /Fail</th>
-                    <th>Approved By</th>
+                    <th>Fit Sample Pass/ Fail</th>
+                    <th>Fit Sample Approved By</th>
                     <th>File Receive Date</th>
                     <th>PP Meeting Date</th>                                
                     <th>Wash Approval Date</th>

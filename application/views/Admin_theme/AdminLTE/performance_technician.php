@@ -100,6 +100,12 @@
                     <div class="col-md-12">
                     <div class="box box-title">
                         <h2 class="text-center page-header">Technician Performance : Basis on Fit Sample step</h2>
+                        <p class="text-blue" style="padding-left: 50px;">Name of Technician : <?=$user_name; ?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample by <?=$user_name;?> : <?=$total_order-$unpased;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Unchecked Fit sample by <?=$user_name;?> : <?=$unpased;?></p>
+                        
+                        
                        <div id="piechart_fit" style="width: 100%; height: 500px;"></div>
                     </div> 
                     </div>

@@ -79,7 +79,7 @@ include_once 'header.php'; ?>
                     <div class="box box-title">
                         <h2 class="text-center page-header">Supplier Performance : Basis on Fit sample pass/fail</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
-                        <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Total Order for <?=$user_name;?> : <?=$total_order;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample for <?=$user_name;?> : <?=$total_order-$unpased;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Unchecked Fit sample for <?=$user_name;?> : <?=$unpased;?></p>
                         
@@ -96,7 +96,7 @@ include_once 'header.php'; ?>
                     <div class="box box-title">
                         <h2 class="text-center page-header">Supplier Performance : Basis on Fit Sample step</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
-                        <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Total Order For <?=$user_name;?> : <?=$total_order;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample for <?=$user_name;?> : <?=$total_order-$unpased;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Unchecked Fit sample for <?=$user_name;?> : <?=$unpased;?></p>
                         <div id="piechart_fit" style="width: 100%; height: 500px;"></div>

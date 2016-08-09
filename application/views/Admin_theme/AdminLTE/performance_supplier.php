@@ -77,7 +77,7 @@ include_once 'header.php'; ?>
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
-                        <h2 class="text-center page-header">Supplier Performance : Basis on pass/fail</h2>
+                        <h2 class="text-center page-header">Supplier Performance : Basis on Fit sample pass/fail</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample for <?=$user_name;?> : <?=$total_order-$unpased;?></p>
@@ -94,7 +94,7 @@ include_once 'header.php'; ?>
                 <div class="row">
                     <div class="col-md-12">
                     <div class="box box-title">
-                        <h2 class="text-center page-header">Supplier Performance : Basis on Fit Sample</h2>
+                        <h2 class="text-center page-header">Supplier Performance : Basis on Fit Sample step</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample for <?=$user_name;?> : <?=$total_order-$unpased;?></p>

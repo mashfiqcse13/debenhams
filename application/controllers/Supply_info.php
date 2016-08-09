@@ -47,6 +47,8 @@ class Supply_info extends CI_Controller {
                 ->display_as('id_department', 'Department')
                 ->display_as('id_supplyer', 'Supplier')
                 ->display_as('id_technician', 'Technician')
+                ->display_as('sample_result', 'Fit Sample Result')
+                ->display_as('approved_by', 'Fit Sample Approved By')
                 ->set_relation('id_supply_style_no', 'supply_style_no', 'style_no')
                 ->where($con)
                 ->callback_column('id_supply_session', array($this, 'supply_session'))
@@ -158,6 +160,10 @@ class Supply_info extends CI_Controller {
 
         $fit['id_supply_info'] = $supply_info_id;
         $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
+        $sample_approved = $this->input->post('sample_approved');
+        if (!empty($sample_approved)) {
+            $fit['sample_approved'] = $sample_approved;
+        }
         $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
         $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
 //        echo '<pre>'; print_r($fit);exit();
@@ -187,6 +193,10 @@ class Supply_info extends CI_Controller {
         if (!empty($this->input->post('id_fit'))) {
             $fit['id_supply_info'] = $supply_info_id->id_supply_info;
             $fit['id_supply_fit_name'] = $this->input->post('id_fit');
+            $sample_approved = $this->input->post('sample_approved');
+            if (!empty($sample_approved)) {
+                $fit['sample_approved'] = $sample_approved;
+            }
             $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
             $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
             //        echo '<pre>'; print_r($fit);exit();

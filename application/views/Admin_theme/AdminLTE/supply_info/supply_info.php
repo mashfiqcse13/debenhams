@@ -134,8 +134,43 @@
                                             <input type="" class="form-control datepicker" name="supply_fit_register_date_receive" placeholder="Add Date"/>
                                         </div>
                                     </div>
+                                    <div class="form-group " id="approved_by">
+                                        <label class="col-md-3" >Fit Sample Approved BY:</label>
+                                        <div class="col-md-9">
+                                            <select name="sample_approved" id="" class="form-control select">
+                                                <option value="0">Select Sample Step Pass/Fail By</option>
+                                                <option value="1">Pass By United Kingdom</option>
+                                                <option value="2">Pass By Bangladesh</option>
+                                                <option value="3">Fail By United Kingdom</option>
+                                                <option value="4">Fail By Bangladesh</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label class="col-md-3">Fit Sample Result:</label>
+                                        <div class="col-md-9">
+                                            <select name="sample_result" id="" class="form-control select2">
+                                                <option value="0">Select Fit Sample Result</option>
+                                                <option value="1">Pass</option>
+                                                <option value="2">Fail</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="col-md-3">Fit Sample Approved By:</label>
+                                        <div class="col-md-9">
+                                            <select name="approved_by" id="" class="form-control select2">
+                                                <option value="0">Select Fit Sample  Approved By</option>
+                                                <option value="1">United Kingdom</option>
+                                                <option value="2">Bangladesh</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
                                     <div class="form-group ">
                                         <label class="col-md-3">Lab Test Report:</label>
                                         <div class="col-md-9">
@@ -148,7 +183,7 @@
 
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-md-3">Patter Block:</label>
+                                        <label class="col-md-3">Pattern Block:</label>
                                         <div class="col-md-9">
                                             <select name="pattern_block" id="" class="form-control select2">
                                                 <option value="0">Select Pattern Block</option>
@@ -157,28 +192,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="col-md-3">Fit Sample Result:</label>
-                                        <div class="col-md-9">
-                                            <select name="sample_result" id="" class="form-control select2">
-                                                <option value="0">Select Sample Result</option>
-                                                <option value="1">Pass</option>
-                                                <option value="2">Fail</option>
-                                            </select>
-                                        </div>
 
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="col-md-3">Fit Sample Approved By:</label>
-                                        <div class="col-md-9">
-                                            <select name="approved_by" id="" class="form-control select2">
-                                                <option value="0">Select Approved By</option>
-                                                <option value="1">United Kingdom</option>
-                                                <option value="2">Bangladesh</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
 
                                     <div class="form-group ">
                                         <label class="col-md-3">Remark:</label>
@@ -229,7 +243,7 @@
                                                     }
                                                     ?>
                                                     <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                  ?>" id="id_fit"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -291,7 +305,7 @@
 
                                                     </select>
                                                     <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register; ?>"/>
-                                                   
+
                                                 </div>
                                             </div>
 
@@ -307,11 +321,45 @@
                                                     <input type="text" class="form-control datepicker" name="supply_fit_register_date_receive"  placeholder="Add Date"/>
                                                 </div>
                                             </div>
+                                            <div class="form-group " id="approved_by">
+                                                <label class="col-md-3" >Fit Sample Approved BY:</label>
+                                                <div class="col-md-9">
+                                                    <select name="sample_approved" id="" class="form-control select">
+                                                        <option value="0">Select Sample Step Pass/Fail By</option>
+                                                        <option value="1">Pass By United Kingdom</option>
+                                                        <option value="2">Pass By Bangladesh</option>
+                                                        <option value="3">Fail By United Kingdom</option>
+                                                        <option value="4">Fail By Bangladesh</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <?php
                                         }
                                         ?>
                                     </div>
+
                                     <div class="col-md-6"> 
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Fit Sample Result:</label>
+                                            <div class="col-md-9">
+                                                <select name="sample_result" id="" class="form-control select">
+                                                    <option value="0">Select Fit Sample Result</option>
+                                                    <option value="1">Pass</option>
+                                                    <option value="2">Fail</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Fit Sample Approved By:</label>
+                                            <div class="col-md-9">
+                                                <select name="approved_by" id="" class="form-control select">
+                                                    <option value="0">Select Fit Sample  Approved By</option>
+                                                    <option value="1">United Kingdom</option>
+                                                    <option value="2">Bangladesh</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group ">
                                             <label class="col-md-3">Lab Test Report:</label>
                                             <div class="col-md-9">
@@ -324,7 +372,7 @@
 
                                         </div>
                                         <div class="form-group ">
-                                            <label class="col-md-3">Patter Block:</label>
+                                            <label class="col-md-3">Pattern Block:</label>
                                             <div class="col-md-9">
                                                 <select name="pattern_block" id="" class="form-control select">
                                                     <option value="0">Select Pattern Block</option>
@@ -333,28 +381,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Fit Sample Result:</label>
-                                            <div class="col-md-9">
-                                                <select name="sample_result" id="" class="form-control select">
-                                                    <option value="0">Select Sample Result</option>
-                                                    <option value="1">Pass</option>
-                                                    <option value="2">Fail</option>
-                                                </select>
-                                            </div>
 
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Fit Sample Approved By:</label>
-                                            <div class="col-md-9">
-                                                <select name="approved_by" id="" class="form-control select">
-                                                    <option value="0">Select Approved By</option>
-                                                    <option value="1">United Kingdom</option>
-                                                    <option value="2">Bangladesh</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
 
                                         <div class="form-group ">
                                             <label class="col-md-3">Remark:</label>
@@ -363,28 +390,29 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px"/>
-                                    <?php
-                                }
-                                ?>
-                            </div>
-
-                            <?= form_close(); ?>
-                            <?php
-                        } else {
-                            $success = $this->session->userdata('message');
-                            if (isset($success)) {
-                                echo $success;
+                                </div>
+                                <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px"/>
+                                <?php
                             }
-                            $this->session->unset_userdata('message');
-                            echo $glosary->output;
-                        }
-                        ?>
+                            ?>
+                        </div>
 
-                    </div>
+                        <?= form_close(); ?>
+                        <?php
+                    } else {
+                        $success = $this->session->userdata('message');
+                        if (isset($success)) {
+                            echo $success;
+                        }
+                        $this->session->unset_userdata('message');
+                        echo $glosary->output;
+                    }
+                    ?>
 
                 </div>
+
             </div>
+        </div>
 
 
 
@@ -409,12 +437,19 @@
     $('#send').hide();
     $('#receive').hide();
     $(".select2").select2();
+    $('#approved_by').hide();
     $('#fit_name').change(function () {
         var select = $("#fit_name option:selected").val();
-//        alert(select);
+        //        alert(select);
+
         if (select == 0) {
             $('#send').hide();
             $('#receive').hide();
+        }
+        if (select == 6 || select == 7 || select == 8 || select == 9) {
+            $('#approved_by').show();
+        } else {
+            $('#approved_by').hide();
         }
         if (select != 0) {
             $.post("<?php echo base_url(); ?>index.php/supply_info/fit_info", {"id_supply_fit_name": select});
@@ -425,7 +460,7 @@
                 dataType: 'text',
                 type: 'POST',
                 success: function (data) {
-//                    alert(data);
+                    //                    alert(data);
                     var obj = $.parseJSON(data);
                     $.each(obj.supply_fit, function (i, fit) {
                         var fit_id = fit['id_supply_fit_name'];
@@ -437,6 +472,11 @@
                         $('#receive').show();
                         $('#receive label').html(function () {
                             return fit_name + " Receive Date:";
+                        });
+
+                        $('#approved_by label').html(function () {
+                            var fit_name = fit['name'];
+                            return fit_name + " Pass/Fail By:";
                         });
 
                     });
@@ -456,7 +496,9 @@
         document.forms['form'].elements['approved_by'].value = "<?php echo $value->approved_by; ?>";
         document.forms['form'].elements['lab_test_report'].value = "<?php echo $value->lab_test_report; ?>";
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
-//        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name; ?>";
+
+
+        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;               ?>";
 
         $("input").each(function () {
             var curTable = $(this).val();
@@ -465,15 +507,17 @@
             }
         });
         var sendCheck = $('#sendcheck').val();
-    //        alert(sendCheck);
+        //        alert(sendCheck);
         var receiveCheck = $('#receive').val();
+        $('#approved_by').hide();
+
         if (sendCheck == "1/1/1970" || receiveCheck == "1/1/1970") {
             $('#send').val(' ');
             $('#receive').val(' ');
         }
 
         var select = $("#fit_name option:selected").val();
-    //        alert(select);
+        //        alert(select);
         var id_supply = $("#id_supply_info").val();
         if (select == 0) {
             $('#send').hide();
@@ -490,22 +534,22 @@
                 dataType: 'text',
                 type: 'POST',
                 success: function (data) {
-    //                                                            alert(data);
+                    //                                                            alert(data);
                     var obj = $.parseJSON(data);
 
                     $.each(obj.supply_fit, function (i, fit) {
                         var date_send = new Date(fit['supply_fit_register_date_send']);
                         var date_send_change = formatDate(date_send);
-    //                        alert(date_send_change);
+                        //                        alert(date_send_change);
                         var date_receive = new Date(fit['supply_fit_register_date_receive']);
                         var date_receive_change = formatDate(date_receive);
-//                        $('#register').val(fit['id_supply_fit_register']);
+                        //                        $('#register').val(fit['id_supply_fit_register']);
                         function formatDate(value)
                         {
                             return (value.getMonth() + 1) + "/" + value.getDate() + "/" + value.getFullYear();
                         }
                         var fit_name = fit['name'];
-//                        $('#send').show();
+                        //                        $('#send').show();
                         $('#send label').html(function () {
                             var fit_name = fit['name'];
                             return fit_name + " Send Date:";
@@ -513,23 +557,29 @@
                         if (date_send_change == '1/1/1970') {
                             $('#send input').val('');
                         } else {
-                             $('#send input').datepicker('setDate',date_send_change);
+                            $('#send input').datepicker('setDate', date_send_change);
                         }
-//                        $('#receive').show();
+                        //                        $('#receive').show();
                         $('#receive label').html(function () {
                             return fit_name + " Receive Date:";
                         });
                         if (date_receive_change == '1/1/1970') {
                             $('#receive input').val('');
                         } else {
-                            $('#receive input').datepicker('setDate',date_receive_change);
+                            $('#receive input').datepicker('setDate', date_receive_change);
                         }
                     });
                 }
             });
         }
         $('#fit_name').change(function () {
+            document.forms['form'].elements['sample_approved'].value = 0;
             var select = $("#fit_name option:selected").val();
+            if (select == 6 || select == 7 || select == 8 || select == 9) {
+                $('#approved_by').show();
+            } else {
+                $('#approved_by').hide();
+            }
             if (select != 0) {
                 $.post("<?php echo base_url(); ?>index.php/supply_info/register_info", {"id_supply_info": id_supply});
                 var id = select;
@@ -540,19 +590,18 @@
                     dataType: 'text',
                     type: 'POST',
                     success: function (data) {
-    //                        alert(data);
+                        //                                                alert(data);
 
                         var obj = $.parseJSON(data);
-    //                        alert(obj.supply_fit);
+                        //                        alert(obj.supply_fit);
                         if (jQuery.isEmptyObject(obj.supply_fit)) {
                             $('#send input').val('');
                             $('#receive input').val('');
                         } else {
                             $.each(obj.supply_fit, function (i, fit) {
-
                                 var date_send = new Date(fit['supply_fit_register_date_send']);
                                 var date_send_change = formatDate(date_send);
-//                            alert(date_send_change);
+                                //                            alert(date_send_change);
                                 var date_receive = new Date(fit['supply_fit_register_date_receive']);
                                 var date_receive_change = formatDate(date_receive);
                                 function formatDate(value)
@@ -565,20 +614,31 @@
                                     var fit_name = fit['name'];
                                     return fit_name + " Send date:";
                                 });
+                                $('#approved_by label').html(function () {
+                                    var fit_name = fit['name'];
+                                    return fit_name + " Pass/Fail By:";
+                                });
                                 if (date_send_change == '1/1/1970') {
                                     $('#send input').val('');
                                 } else {
-                                    $('#send input').datepicker('setDate',date_send_change);
+                                    $('#send input').datepicker('setDate', date_send_change);
                                 }
                                 $('#receive').show();
                                 $('#receive label').html(function () {
                                     return fit_name + " Receive date:";
                                 });
-//                                alert(date_)
+    //                                alert(fit['id_supply_fit_name']);
+    //                                alert(select);
+                                if (select == fit['id_supply_fit_name']) {
+                                    document.forms['form'].elements['sample_approved'].value = fit['sample_approved'];
+                                }
+
+
+                                //                                alert(date_)
                                 if (date_receive_change == '1/1/1970') {
                                     $('#receive input').val('');
                                 } else {
-                                    $('#receive input').datepicker('setDate',date_receive_change);
+                                    $('#receive input').datepicker('setDate', date_receive_change);
                                 }
 
                             });

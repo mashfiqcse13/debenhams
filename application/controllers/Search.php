@@ -59,7 +59,7 @@ class Search extends CI_Controller {
         } else {
             $data['all_informations'] = $this->Search_model->get_supply_info_with_fit_register();
         }
-//        echo '<pre>';print_r($data);exit();
+//        echo '<pre>';print_r($data['all_informations']);exit();
         $this->session->set_userdata('excel_session_data', $data['all_informations']);
         $this->session->set_userdata('pdf_session_data', $data['all_informations']);
 

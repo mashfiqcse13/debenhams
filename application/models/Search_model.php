@@ -18,7 +18,7 @@ class Search_model extends CI_Model {
     //put your code here
 
     function getregister($id_supply_info) {
-        $this->db->select('supply_fit_register.id_supply_fit_name,supply_fit_register_date_send as date_send,supply_fit_register_date_receive as date_receive,name as supply_fit_name');
+        $this->db->select('supply_fit_register.id_supply_fit_name,supply_fit_register_date_send as date_send,supply_fit_register_date_receive as date_receive,name as supply_fit_name,sample_approved');
         $this->db->from('supply_fit_register');
         $this->db->join('supply_fit_name', 'supply_fit_register.id_supply_fit_name = supply_fit_name.id_supply_fit_name', 'left');
         $this->db->where('supply_fit_register.id_supply_info', $id_supply_info);

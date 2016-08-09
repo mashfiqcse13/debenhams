@@ -80,8 +80,8 @@ include_once 'header.php'; ?>
                         <h2 class="text-center page-header">Supplier Performance : Basis on pass/fail</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
-                        <p class="text-blue" style="padding-left: 50px;" >Checked Order By <?=$user_name;?> : <?=$total_order-$unpased;?></p>
-                        <p class="text-blue" style="padding-left: 50px;" >Unchecked Order By <?=$user_name;?> : <?=$unpased;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample for <?=$user_name;?> : <?=$total_order-$unpased;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Unchecked Fit sample for <?=$user_name;?> : <?=$unpased;?></p>
                         
                         <div id="piechart" style="width: 100%; height: 500px;"></div>
                     </div> 
@@ -97,8 +97,8 @@ include_once 'header.php'; ?>
                         <h2 class="text-center page-header">Supplier Performance : Basis on Fit Sample</h2>
                         <p class="text-blue" style="padding-left: 50px;">Name of Supplier : <?=$user_name; ?></p>
                         <p class="text-blue" style="padding-left: 50px;" >Total Order By <?=$user_name;?> : <?=$total_order;?></p>
-                        <p class="text-blue" style="padding-left: 50px;" >Checked Order By <?=$user_name;?> : <?=$total_order-$unpased;?></p>
-                        <p class="text-blue" style="padding-left: 50px;" >Unchecked Order By <?=$user_name;?> : <?=$unpased;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Checked Fit sample for <?=$user_name;?> : <?=$total_order-$unpased;?></p>
+                        <p class="text-blue" style="padding-left: 50px;" >Unchecked Fit sample for <?=$user_name;?> : <?=$unpased;?></p>
                         <div id="piechart_fit" style="width: 100%; height: 500px;"></div>
                     </div> 
                     </div>
@@ -124,7 +124,7 @@ include_once 'header.php'; ?>
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: '<?=$Title;?> : <?=$user_name;?> ( Basis on Pass/Fail ) '
+          title: '<?=$Title;?> : <?=$user_name;?> ( Basis on Fit sample Pass/Fail ) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -138,7 +138,7 @@ include_once 'header.php'; ?>
         var data = google.visualization.arrayToDataTable(<?php echo $supplier_performance_by_fittype ; ?>);
 
         var options = {
-          title: '<?=$Title;?> : <?=$user_name;?> ( Fit Sample ) '
+          title: '<?=$Title;?> : <?=$user_name;?> ( Fit Sample step) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_fit'));

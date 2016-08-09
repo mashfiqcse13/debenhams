@@ -244,10 +244,10 @@ class Performance_model extends CI_Model  {
 
         
        $data="[['Sample Result','Percentage'],
-               ['Pass By UK',$count1],
-               ['Fail By UK',$count2],
-               ['Pass By BD',$count3],
-               ['Fail By BD',$count4]
+               ['Fit sample Pass By UK',$count1],
+               ['Fit sample Fail By UK',$count2],
+               ['Fit sample Pass By BD',$count3],
+               ['Fit sample Fail By BD',$count4]
                ]";
        
        
@@ -378,10 +378,10 @@ class Performance_model extends CI_Model  {
 
         
        $data="[['Sample Result','Percentage'],
-               ['Pass By UK',$count1],
-               ['Fail By UK',$count2],
-               ['Pass By BD',$count3],
-               ['Fail By BD',$count4]
+               ['Fit sample Pass By UK',$count1],
+               ['Fit sample Fail By UK',$count2],
+               ['Fit sample Pass By BD',$count3],
+               ['Fit sample Fail By BD',$count4]
                ]";
        
        

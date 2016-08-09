@@ -126,7 +126,7 @@
         var data = google.visualization.arrayToDataTable(<?php echo $analysis ; ?>);
 
         var options = {
-          title: '<?=$Title;?> : <?=$user_name;?> ( Basis on Pass/Fail ) '
+          title: '<?=$Title;?> : <?=$user_name;?> ( Basis on Fit sample Pass/Fail ) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -143,7 +143,7 @@
         var data = google.visualization.arrayToDataTable(<?php echo $analysis_by_fit ; ?>);
 
         var options = {
-          title: '<?=$Title;?> : <?=$user_name;?> ( Fit Sample ) '
+          title: '<?=$Title;?> : <?=$user_name;?> ( Fit Sample step) '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_fit'));

@@ -362,7 +362,7 @@ header( "Content-disposition: attachment; filename=spreadsheet.xls" );
                                         if (!empty($all_informations[$i][1][$w])) {
                                             if ($all_informations[$i][1][$w]->id_supply_fit_name == 9) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));
-                                                if (date('d/m/Y', strtotime($all_informations[$i][1][$o]->date_receive)) == '01/01/1970') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][1][$w]->date_receive));

@@ -158,7 +158,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-md-3">Sample Result:</label>
+                                        <label class="col-md-3">Fit Sample Result:</label>
                                         <div class="col-md-9">
                                             <select name="sample_result" id="" class="form-control select2">
                                                 <option value="0">Select Sample Result</option>
@@ -169,7 +169,7 @@
 
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-md-3">Approved By:</label>
+                                        <label class="col-md-3">Fit Sample Approved By:</label>
                                         <div class="col-md-9">
                                             <select name="approved_by" id="" class="form-control select2">
                                                 <option value="0">Select Approved By</option>
@@ -334,7 +334,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group ">
-                                            <label class="col-md-3">Sample Result:</label>
+                                            <label class="col-md-3">Fit Sample Result:</label>
                                             <div class="col-md-9">
                                                 <select name="sample_result" id="" class="form-control select">
                                                     <option value="0">Select Sample Result</option>
@@ -345,7 +345,7 @@
 
                                         </div>
                                         <div class="form-group ">
-                                            <label class="col-md-3">Approved By:</label>
+                                            <label class="col-md-3">Fit Sample Approved By:</label>
                                             <div class="col-md-9">
                                                 <select name="approved_by" id="" class="form-control select">
                                                     <option value="0">Select Approved By</option>

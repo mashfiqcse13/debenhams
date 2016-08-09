@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label class="col-md-3">Sample Result:</label>
+                            <label class="col-md-3">Fit Sample Result:</label>
                             <div class="col-md-9">
                                 <select name="sample_result" id="" class="form-control select2">
                                     <option value="">Select Sample Result</option>
@@ -220,7 +220,7 @@
 
                                 <th>Lab Test Report</th>
                                 <th>Pattern Block</th>
-                                <th>Fit Sample Pass/ Fail</th>
+                                <th>Fit Sample Pass/Fail</th>
                                 <th>Fit Sample Approved By</th>
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>                                

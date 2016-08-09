@@ -56,7 +56,7 @@ header( "Content-disposition: attachment; filename=spreadsheet.xls" );
                 <?php
 //                                echo print_r($max_supply_info->id_supply_info);
                 if (isset($all_informations)) {
-                    for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
+                    for ($i = $max_supply_info->id_supply_info; $i >=1;  $i--) {
                         if (!empty($all_informations[$i][0]->id_supply_info)) {
                             ?>
                             <tr>

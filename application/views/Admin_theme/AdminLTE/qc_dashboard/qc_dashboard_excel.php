@@ -1,6 +1,6 @@
 <?php
-//header( "Content-Type: application/vnd.ms-excel" );
-//header( "Content-disposition: attachment; filename=spreadsheet.xls" );
+header( "Content-Type: application/vnd.ms-excel" );
+header( "Content-disposition: attachment; filename=spreadsheet.xls" );
 ?>
                          <table class="table table-bordered table-striped table-condensed search_table" id="example1" border="1">
                             <thead>

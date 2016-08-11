@@ -140,5 +140,12 @@ class Supply_info_model extends ci_model {
         }
         return $data;
     }
+    
+    function get_supply_style_no($style_no){
+        $this->db->select('*');
+        $this->db->from('supply_style_no');
+        $this->db->where('style_no',$style_no);
+        return $this->db->get()->result();
+    }
 
 }

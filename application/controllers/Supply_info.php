@@ -214,12 +214,27 @@ class Supply_info extends CI_Controller {
     }
     
     function save_style(){
+//        print_r($_POST);exit();
         $data['style_no'] = $this->input->post('style_no');
-        $data['allocated_to'] = $this->session->userdata('user_id');        
+        $data['allocated_to'] = $this->input->post('allocated_to');        
         $id = $this->Supply_info_model->save_info('supply_style_no', $data);
-        $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Style is Successfully Inserted!</p></div>';
-        $this->session->set_userdata($sdata);
-        redirect('supply_info');
+        echo json_encode($data);
+//        $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Style is Successfully Inserted!</p></div>';
+//        $this->session->set_userdata($sdata);
+//        redirect('supply_info');
+    }
+    
+    function search_style(){
+        $something = '';
+        $style_no = $this->input->post('style_no');
+        $result = $this->Supply_info_model->get_supply_style_no($style_no);
+//        print_r($result);exit();
+//        = $this->db->get('supply_style_no')->where('style_no',$style_no)->result();
+        if($result){
+            echo json_encode($result);
+        }else if(empty($result)){
+            echo json_encode($something);
+        }
     }
 
 }

@@ -59,7 +59,7 @@
                                                     }
                                                     ?>
                                                     <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                             ?>" id="id_fit"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                                ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -226,7 +226,7 @@
                             $this->session->unset_userdata('message');
                             ?>
                         </div>
-                        <div class="box-body">
+                        <div class="box-body" id="insert_info">
                             <div class="row">
                                 <div class="col-md-6">
                                     <?php
@@ -239,10 +239,11 @@
                                     <div class="form-group ">
                                         <label class="col-md-3">Create Style No:</label>
                                         <div class="col-md-7">
-                                            <input type="text" class="form-control" placeholder="Write Style No" name="style_no"/>
+                                            <input type="text" class="form-control" id="no" placeholder="Write Style No" name="style_no"/>
+                                            <span id="span" style="color: red; font-weight: bold"></span>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="" id="style" value="Submit"  class="btn btn-success" style="margin-right: 10px"/>
+                                            <input type="submit" id="style" value="Submit"  class="btn btn-success"/>
                                         </div>
 
                                     </div>
@@ -422,7 +423,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" id="save"  value="Save" class="btn btn-primary pull-right btn-lg"/>
+                            <input type="submit" id="save"  value="Save" class="btn btn-primary pull-right btn-lg" style="padding: 10px 30px; font-weight: bold;"/>
                         </div>
 
                         <?= form_close(); ?>
@@ -448,6 +449,51 @@
     setTimeout(function () {
         $('#message').fadeOut();
     }, 5000);
+    $("#span").hide();
+    $("input#no").keyup(function () {
+        var style_no = $("input#no").val();
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/supply_info/search_style",
+            dataType: 'json',
+            cache: false,
+            data: {style_no: style_no},
+            success: function (data)
+            {
+                if (data) {
+                    $("#span").html('Style no is already exist!!').show();
+                    $("#style").click(function (event) {
+                        event.preventDefault()
+                        alert('You have to choose unique number');
+                    });
+
+                } else {
+                    $("#span").html('Style no is already exist!!').hide();
+                }
+            }
+        });
+
+    });
+    $("#style").click(function (event) {
+        event.preventDefault();
+        var style_no = $("input#no").val();
+        var allocated = <?php echo $this->session->userdata('user_id'); ?>;
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/supply_info/save_style",
+            dataType: 'json',
+            data: {style_no: style_no, allocated_to: allocated},
+            success: function (res) {
+                if (res)
+                {
+                    $('#insert_info').load(window.location.href + ' #insert_info');
+// Show Entered Values;
+                    alert('Style is inserted');
+                }
+            }
+        });
+    });
+
     $('#save').click(function () {
         if (document.getElementsByName('id_supplyer')[0].value == 'blank') {
             alert('Please Select Supplier !');
@@ -519,7 +565,7 @@
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
 
 
-        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                            ?>";
+        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                               ?>";
 
         $("input").each(function () {
             var curTable = $(this).val();
@@ -673,26 +719,11 @@
 <?php ?>
 <script>
     $('.treeview-menu').css('display', 'block');
-    $(function(){
-    
+//    $(function () {
+
 //    var info = new array( email,password );
-    $("#style").submit(function(){
-        var postData = $(this).serializeArray();
-        alert(postData);
-        $.ajax({
-            url: '<?php echo base_url(); ?>index.php/supply_info/',
-            type: 'POST',
-            data:{
-                style_no: style_no,
-                allocated_to: password,
-            },
-            success: function(msg){
-                console.log(msg);
-//                prevent.default();
-            },
-        });
-    });
-})
+
+//    })
 
 </script>
 <?php ?>

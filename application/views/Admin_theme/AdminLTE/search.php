@@ -775,7 +775,8 @@
     $('#example1').DataTable({
         "scrollX": true,
         bFilter: false,
-        "order": [[2, "desc"]]
+        "order": [[2, "desc"]],
+        "pageLength": 5
     });
     setTimeout(function () {
         $('#message').fadeOut();

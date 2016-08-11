@@ -212,5 +212,14 @@ class Supply_info extends CI_Controller {
         $this->session->set_userdata($sdata);
         redirect('search');
     }
+    
+    function save_style(){
+        $data['style_no'] = $this->input->post('style_no');
+        $data['allocated_to'] = $this->session->userdata('user_id');        
+        $id = $this->Supply_info_model->save_info('supply_style_no', $data);
+        $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Style is Successfully Inserted!</p></div>';
+        $this->session->set_userdata($sdata);
+        redirect('supply_info');
+    }
 
 }

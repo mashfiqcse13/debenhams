@@ -32,6 +32,12 @@
 <!-- /.content-wrapper -->
 
 <?php include_once __DIR__ . '/../footer.php'; ?>
+<?php if($this->uri->segment(3) == 'add'){?>
 <script type="text/javascript">
     $('#form-button-save').val('Save and go back to insert page');
 </script>
+<?php }if($this->uri->segment(3) == 'edit'){?>
+<script type="text/javascript">
+    $('#form-button-save').val('Update and go back to insert page');
+</script>
+<?php }?>

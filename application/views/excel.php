@@ -8,7 +8,7 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
         <tr>
             <th>Style No</th>
             <th>Season</th>
-            <th style="display:none;">supply id</th>
+            <!--<th style="display:none;">supply id</th>-->
             <th>Department:</th>
             <th>Style Description</th>
             <th>Supplier Name:</th>
@@ -53,21 +53,21 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
             <th>Data Entry Date</th>
             <th>Last Modified by Technician</th>
             <th>Last Modified by QC</th>
-            <th>Actions</th>
+<!--<th>Actions</th>-->
         </tr>
     </thead>
     <tbody>
         <?php
 //                                echo print_r($max_supply_info->id_supply_info);
         if (isset($all_informations)) {
-            for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
+            for ($i = $max_supply_info->id_supply_info; $i >= 1; $i--) {
                 if (!empty($all_informations[$i][0]->id_supply_info)) {
                     ?>
                     <tr>
                         <td><?php echo $all_informations[$i][0]->style_no; ?></td>
                         <td><?php echo $all_informations[$i][0]->supply_name; ?> </td>
-                        <td style="display:none;"><?php echo $all_informations[$i][0]->id_supply_info;
-                    ?></td>
+            <!--                        <td style="display:none;"><?php echo $all_informations[$i][0]->id_supply_info;
+                    ?></td>-->
                         <td><?php echo $all_informations[$i][0]->department_name; ?></td>
                         <td><?php echo $all_informations[$i][0]->style_description; ?></td>
                         <td><?php echo $all_informations[$i][0]->supplyer_name; ?></td>
@@ -493,24 +493,40 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                 echo 'Bangladesh';
                             }
                             ?>
+<!--                        </td>
+                        <td>
+                            <?php
+                            if ($all_informations[$i][0]->sample_result == 1) {
+                                echo 'Pass';
+                            }if ($all_informations[$i][0]->sample_result == 2) {
+                                echo 'Fail';
+                            }
+                            ?>
                         </td>
-
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001') {
+                            if ($all_informations[$i][0]->approved_by == 1) {
+                                echo 'United Kingdom';
+                            }if ($all_informations[$i][0]->approved_by == 2) {
+                                echo 'Bangladesh';
+                            }
+                            ?>
+                        </td>-->
+                        <td><?php
+                            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001' or '01/01/1970') {
                                 echo '';
                             } else {
                                 echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
                             }
                             ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001') {
+                            if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001' or '01/01/1970') {
                                 echo '';
                             } else {
                                 echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
                             }
                             ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '30/11/-0001') {
+                            if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '30/11/-0001' or '01/01/1970') {
                                 echo '';
                             } else {
                                 echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
@@ -518,14 +534,14 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                             ?></td>
                         <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001') {
+                            if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001' or '01/01/1970') {
                                 echo '';
                             } else {
                                 echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
                             }
                             ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001') {
+                            if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001' or '01/01/1970') {
                                 echo '';
                             } else {
                                 echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
@@ -542,13 +558,7 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                         <td><?php echo $all_informations[$i][0]->date; ?></td>
                         <td><?php echo $all_informations[$i][0]->last_modified; ?></td>
                         <td><?php echo $all_informations[$i][0]->last_modified_qc; ?></td>
-                        <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            </a>
-                            <a href="<?= site_url('search/search_delete/' . $all_informations[$i][0]->id_supply_info); ?>" onclick="return check();"type="button" class="btn btn-danger" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            </a>
-                        </td>
+
                     </tr>
                     <?php
                 }

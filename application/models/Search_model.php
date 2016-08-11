@@ -107,7 +107,7 @@ class Search_model extends CI_Model {
     }
 
     function get_supply_info($id_supply_style_no, $id_supplyer, $id_season, $id_department, $sample_result, $technician, $date_from, $date_to) {
-//        echo '<pre>';print_r($id_season);
+//        echo '<pre>';print_r($technician);
 //print_r($id_department);exit();
         $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date');
         $this->db->from('supply_info');
@@ -119,15 +119,15 @@ class Search_model extends CI_Model {
         $this->db->join('qc_info', 'supply_info.id_supply_style_no = qc_info.id_supply_style_no', 'left');
 
         if (!empty($id_supply_style_no)) {
-            $this->db->like('supply_info.id_supply_style_no',$id_supply_style_no);
+            $this->db->where('supply_info.id_supply_style_no',$id_supply_style_no);
         }if (!empty($id_supplyer)) {
-            $this->db->like('supply_info.id_supplyer', $id_supplyer);
+            $this->db->where('supply_info.id_supplyer', $id_supplyer);
         }if (!empty($id_season)) {
-            $this->db->like('supply_info.id_supply_session', $id_season);
+            $this->db->where('supply_info.id_supply_session', $id_season);
         }if (!empty($id_department)) {
-            $this->db->like('supply_info.id_department', $id_department);
+            $this->db->where('supply_info.id_department', $id_department);
         }if (!empty($sample_result)) {
-            $this->db->like('supply_info.sample_result', $sample_result);
+            $this->db->where('supply_info.sample_result', $sample_result);
         }if (!empty($technician)){
             $this->db->like('supply_info.id_technician', $technician);
         }if ($date_from != "1970-01-01 06:00:00") {

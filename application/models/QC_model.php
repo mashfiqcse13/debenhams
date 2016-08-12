@@ -25,6 +25,7 @@ class QC_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        $this->db->join('supply_info','qc_info.id_supply_style_no = supply_info.id_supply_style_no','left');
         $this->db->order_by('id_qc_info','desc');
         $query = $this->db->get();
         return $query->result();
@@ -33,18 +34,23 @@ class QC_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        $this->db->join('supply_info','qc_info.id_supply_style_no = supply_info.id_supply_style_no','left');
         $this->db->order_by('id_qc_info','desc');
         $this->db->where('qc_info.id_supply_style_no',$style_id);
         $query = $this->db->get();
         return $query->result();
     }
     function get_all_qc_info_by_date($from, $to) {
+//        print_r($from);exit();
+        $date_from = date('Y-m-d H:i:s', strtotime($from));
+        $date_to = date('Y-m-d H:i:s', strtotime($to));
         $this->db->select('*');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        $this->db->join('supply_info','qc_info.id_supply_style_no = supply_info.id_supply_style_no','left');
         $this->db->order_by('id_qc_info','desc');
-        $this->db->where('qc_info.date_created >= ',date('Y-m-d', strtotime($from)));
-        $this->db->where('qc_info.date_created <= ',date('Y-m-d', strtotime($to. ' +1 day')));
+        $date_range = "DATE(qc_info.date_created) BETWEEN '$date_from' AND '$date_to'";
+        $this->db->where($date_range);
         $query = $this->db->get();
         return $query->result();
     }
@@ -70,5 +76,7 @@ class QC_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('mytable');
     }
+    
+    
 
 }

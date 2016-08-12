@@ -22,25 +22,250 @@
             <div class="col-md-12">
 
                 <div class="box">
-
                     <?php
-                    if ($this->uri->segment(3) == 'add') {
+                    if ($this->uri->segment(3) == 'edit') {
                         $attributes = array(
                             'class' => 'form-horizontal',
                             'method' => 'get',
                             'name' => 'form',
                             'method' => 'post');
-                        echo form_open('supply_info/save_info', $attributes)
+                        echo form_open('supply_info/update_info', $attributes)
                         ?>
                         <div class="box-header">
                             <h2>Insert Info</h2>
                         </div>
                         <div class="box-body">
+                            <?php
+                            foreach ($all_supply_info as $value) {
+                                ?>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Style No:</label>
+                                            <div class="col-md-9">
+                                                <p><?php echo $value->style_no; ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Season:</label>
+                                            <div class="col-md-9">
+                                                <select name="id_supply_session" id="" class="form-control select">
+                                                    <option value="0">Select Season No</option>
+                                                    <?php
+                                                    foreach ($all_session as $session) {
+                                                        ?>
+                                                        <option value="<?php echo $session->id_supply_session; ?>"><?php echo $session->name; ?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                                 ?>" id="id_fit"/>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Department:</label>
+                                            <div class="col-md-9">
+                                                <select name="id_department" id="" class="form-control select">
+                                                    <option value="0">Select Department No</option>
+                                                    <?php
+                                                    foreach ($all_department as $department) {
+                                                        ?>
+                                                        <option value="<?php echo $department->id_department; ?>"><?php echo $department->name; ?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Style Description:</label>
+                                            <div class="col-md-9">
+                                                <textarea name="style_description" class="form-control" id="" rows="5"><?php echo $value->style_description; ?></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Supplier:</label>
+                                            <div class="col-md-9">
+                                                <select name="id_supplyer" id="" class="form-control select">
+                                                    <option value="blank">Select Supplier</option>
+                                                    <?php
+                                                    foreach ($all_supplyer as $supplyer) {
+                                                        ?>
+                                                        <option value="<?php echo $supplyer->id_supplyer; ?>"><?php echo $supplyer->name; ?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <?php
+                                        foreach ($all_supply_fit_register as $register) {
+                                            ?>
+                                            <div class="form-group ">
+                                                <label class="col-md-3">Sample Step Name:</label>
+                                                <div class="col-md-9">
+                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control select" required>
+                                                        <option value="0">Select Sample Step Name</option>
+                                                        <?php
+                                                        foreach ($all_fit_name as $fit) {
+                                                            ?>
+                                                            <option value="<?php echo $fit->id_supply_fit_name; ?>"><?php echo $fit->name; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                    <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register; ?>"/>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group " id="send">
+                                                <label class="col-md-3" >Send:</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control datepicker" id="sendcheck" name="supply_fit_register_date_send"  placeholder="Add Date"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group " id="receive">
+                                                <label class="col-md-3" >Receive:</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control datepicker" name="supply_fit_register_date_receive"  placeholder="Add Date"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group " id="approved_by">
+                                                <label class="col-md-3" >Fit Sample Approved BY:</label>
+                                                <div class="col-md-9">
+                                                    <select name="sample_approved" id="" class="form-control select">
+                                                        <option value="0">Select Sample Step Pass/Fail By</option>
+                                                        <option value="1">Pass By United Kingdom</option>
+                                                        <option value="2">Pass By Bangladesh</option>
+                                                        <option value="3">Fail By United Kingdom</option>
+                                                        <option value="4">Fail By Bangladesh</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+
+                                    <div class="col-md-6"> 
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Fit Sample Result:</label>
+                                            <div class="col-md-9">
+                                                <select name="sample_result" id="" class="form-control select">
+                                                    <option value="0">Select Fit Sample Result</option>
+                                                    <option value="1">Pass</option>
+                                                    <option value="2">Fail</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Fit Sample Approved By:</label>
+                                            <div class="col-md-9">
+                                                <select name="approved_by" id="" class="form-control select">
+                                                    <option value="0">Select Fit Sample  Approved By</option>
+                                                    <option value="1">United Kingdom</option>
+                                                    <option value="2">Bangladesh</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Lab Test Report:</label>
+                                            <div class="col-md-9">
+                                                <select name="lab_test_report" id="" class="form-control select">
+                                                    <option value="0">Select Lab Test Report</option>
+                                                    <option value="1">Pass</option>
+                                                    <option value="2">Fail</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Pattern Block:</label>
+                                            <div class="col-md-9">
+                                                <select name="pattern_block" id="" class="form-control select">
+                                                    <option value="0">Select Pattern Block</option>
+                                                    <option value="1">United Kingdom</option>
+                                                    <option value="2">Bangladesh</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group " id="receive">
+                                            <label class="col-md-3" >File Hand Over Date:</label>
+                                            <div class="col-md-9">
+                                                <input type="" class="form-control datepicker" name="file_hand_over_date" value="<?php echo $value->file_hand_over_date; ?>" placeholder="Add Date"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="col-md-3">Remark:</label>
+                                            <div class="col-md-9">
+                                                <textarea name="remark" class="form-control "id="" rows="5"><?php echo $value->remark; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px"/>
+                                <?php
+                            }
+                            ?>
+                        </div>
+
+                        <?= form_close(); ?>
+                        <?php
+                    } else {
+                        ?>
+                        <div class = "box-header">
+                            <h2>Insert Info</h2><?php
+                            $success = $this->session->userdata('message');
+                            if (isset($success)) {
+                                echo $success;
+                            }
+                            $this->session->unset_userdata('message');
+                            ?>
+                        </div>
+                        <div class="box-body" id="insert_info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php
+                                    $attributes = array(
+                                        'class' => 'form-horizontal',
+                                        'name' => 'form',
+                                        'method' => 'post');
+                                    echo form_open('supply_info/save_style', $attributes);
+                                    ?>
+                                    <div class="form-group ">
+                                        <label class="col-md-3">Create Style No:</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" id="no" placeholder="Write Style No" name="style_no"/>
+                                            <span id="span" style="color: red; font-weight: bold"></span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="submit" id="style" value="Submit"  class="btn btn-success"/>
+                                        </div>
+
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
+                            </div>
+                            <?php
+                            $attributes = array(
+                                'class' => 'form-horizontal',
+                                'name' => 'form',
+                                'method' => 'post');
+                            echo form_open('supply_info/save_info', $attributes)
+                            ?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label class="col-md-3">Style No:</label>
-                                        <div class="col-md-9">
+                                        <div class="col-md-9" id="sel">
                                             <select name="id_supply_style_no" id="" class="form-control select2">
                                                 <option value="0">Select Style No</option>
                                                 <?php
@@ -192,7 +417,12 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <div class="form-group " id="receive">
+                                        <label class="col-md-3" >File Hand Over Date:</label>
+                                        <div class="col-md-9">
+                                            <input type="" class="form-control datepicker" name="file_hand_over_date" placeholder="Add Date"/>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group ">
                                         <label class="col-md-3">Remark:</label>
@@ -202,210 +432,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" id="save"  value="Save" class="btn btn-primary pull-right"/>
+                            <input type="submit" id="save"  value="Save" class="btn btn-primary pull-right btn-lg" style="padding: 10px 30px; font-weight: bold;"/>
                         </div>
 
                         <?= form_close(); ?>
                         <?php
-                    } else if ($this->uri->segment(3) == 'edit') {
-                        $attributes = array(
-                            'class' => 'form-horizontal',
-                            'method' => 'get',
-                            'name' => 'form',
-                            'method' => 'post');
-                        echo form_open('supply_info/update_info', $attributes)
-                        ?>
-                        <div class="box-header">
-                            <h2>Insert Info</h2>
-                        </div>
-                        <div class="box-body">
-                            <?php
-                            foreach ($all_supply_info as $value) {
-                                ?>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Style No:</label>
-                                            <div class="col-md-9">
-                                                <p><?php echo $value->style_no; ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Season:</label>
-                                            <div class="col-md-9">
-                                                <select name="id_supply_session" id="" class="form-control select">
-                                                    <option value="0">Select Season No</option>
-                                                    <?php
-                                                    foreach ($all_session as $session) {
-                                                        ?>
-                                                        <option value="<?php echo $session->id_supply_session; ?>"><?php echo $session->name; ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                ?>" id="id_fit"/>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Department:</label>
-                                            <div class="col-md-9">
-                                                <select name="id_department" id="" class="form-control select">
-                                                    <option value="0">Select Department No</option>
-                                                    <?php
-                                                    foreach ($all_department as $department) {
-                                                        ?>
-                                                        <option value="<?php echo $department->id_department; ?>"><?php echo $department->name; ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Style Description:</label>
-                                            <div class="col-md-9">
-                                                <textarea name="style_description" class="form-control" id="" rows="5"><?php echo $value->style_description; ?></textarea>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Supplier:</label>
-                                            <div class="col-md-9">
-                                                <select name="id_supplyer" id="" class="form-control select">
-                                                    <option value="blank">Select Supplier</option>
-                                                    <?php
-                                                    foreach ($all_supplyer as $supplyer) {
-                                                        ?>
-                                                        <option value="<?php echo $supplyer->id_supplyer; ?>"><?php echo $supplyer->name; ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <?php
-                                        foreach ($all_supply_fit_register as $register) {
-                                            ?>
-                                            <div class="form-group ">
-                                                <label class="col-md-3">Sample Step Name:</label>
-                                                <div class="col-md-9">
-                                                    <select name="id_supply_fit_name" id="fit_name" class="form-control select" required>
-                                                        <option value="0">Select Sample Step Name</option>
-                                                        <?php
-                                                        foreach ($all_fit_name as $fit) {
-                                                            ?>
-                                                            <option value="<?php echo $fit->id_supply_fit_name; ?>"><?php echo $fit->name; ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-
-                                                    </select>
-                                                    <input type="hidden"  name="id_supply_fit_register" value="<?php echo $register->id_supply_fit_register; ?>"/>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group " id="send">
-                                                <label class="col-md-3" >Send:</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" class="form-control datepicker" id="sendcheck" name="supply_fit_register_date_send"  placeholder="Add Date"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group " id="receive">
-                                                <label class="col-md-3" >Receive:</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" class="form-control datepicker" name="supply_fit_register_date_receive"  placeholder="Add Date"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group " id="approved_by">
-                                                <label class="col-md-3" >Fit Sample Approved BY:</label>
-                                                <div class="col-md-9">
-                                                    <select name="sample_approved" id="" class="form-control select">
-                                                        <option value="0">Select Sample Step Pass/Fail By</option>
-                                                        <option value="1">Pass By United Kingdom</option>
-                                                        <option value="2">Pass By Bangladesh</option>
-                                                        <option value="3">Fail By United Kingdom</option>
-                                                        <option value="4">Fail By Bangladesh</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
-                                    </div>
-
-                                    <div class="col-md-6"> 
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Fit Sample Result:</label>
-                                            <div class="col-md-9">
-                                                <select name="sample_result" id="" class="form-control select">
-                                                    <option value="0">Select Fit Sample Result</option>
-                                                    <option value="1">Pass</option>
-                                                    <option value="2">Fail</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Fit Sample Approved By:</label>
-                                            <div class="col-md-9">
-                                                <select name="approved_by" id="" class="form-control select">
-                                                    <option value="0">Select Fit Sample  Approved By</option>
-                                                    <option value="1">United Kingdom</option>
-                                                    <option value="2">Bangladesh</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Lab Test Report:</label>
-                                            <div class="col-md-9">
-                                                <select name="lab_test_report" id="" class="form-control select">
-                                                    <option value="0">Select Lab Test Report</option>
-                                                    <option value="1">Pass</option>
-                                                    <option value="2">Fail</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Pattern Block:</label>
-                                            <div class="col-md-9">
-                                                <select name="pattern_block" id="" class="form-control select">
-                                                    <option value="0">Select Pattern Block</option>
-                                                    <option value="1">United Kingdom</option>
-                                                    <option value="2">Bangladesh</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-group ">
-                                            <label class="col-md-3">Remark:</label>
-                                            <div class="col-md-9">
-                                                <textarea name="remark" class="form-control "id="" rows="5"><?php echo $value->remark; ?></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px"/>
-                                <?php
-                            }
-                            ?>
-                        </div>
-
-                        <?= form_close(); ?>
-                        <?php
-                    } else {
-                        $success = $this->session->userdata('message');
-                        if (isset($success)) {
-                            echo $success;
-                        }
-                        $this->session->unset_userdata('message');
-                        echo $glosary->output;
                     }
                     ?>
 
@@ -427,6 +458,58 @@
     setTimeout(function () {
         $('#message').fadeOut();
     }, 5000);
+    $("#span").hide();
+
+    $("input#no").keyup(function () {
+        var style_no = $("input#no").val();
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/supply_info/search_style",
+            dataType: 'json',
+            cache: false,
+            data: {style_no: style_no},
+            success: function (data)
+            {
+                if (data) {
+                    $("#span").html('Style no is already exist!!').show();
+                    $("#style").click(function (event) {
+                        event.preventDefault()
+                        alert('You have to choose unique number');
+                    });
+
+                } else {
+                    $("#span").html('Style no is already exist!!').hide();
+                }
+            }
+        });
+
+    });
+    $("#style").click(function (event) {
+        event.preventDefault();
+        var style_no = $("input#no").val();
+        var allocated = <?php echo $this->session->userdata('user_id'); ?>;
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/supply_info/save_style",
+            dataType: 'json',
+            data: {style_no: style_no, allocated_to: allocated},
+            success: function (res) {
+//                alert(res);
+//                var obj = $.parseJSON(res);
+//                    $.each(obj.supply_fit, function (i, fit) {});
+                if (res)
+                {
+                    $('#insert_info').load(window.location.href + ' #insert_info');
+// Show Entered Values;
+                    alert('Style is inserted');
+//                    $("div#sel option[value=" + res + "]").attr('selected', 'selected');
+                    
+                }
+            }
+        });
+        return false;
+    });
+
     $('#save').click(function () {
         if (document.getElementsByName('id_supplyer')[0].value == 'blank') {
             alert('Please Select Supplier !');
@@ -498,7 +581,7 @@
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
 
 
-        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;               ?>";
+        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                                ?>";
 
         $("input").each(function () {
             var curTable = $(this).val();
@@ -627,8 +710,8 @@
                                 $('#receive label').html(function () {
                                     return fit_name + " Receive date:";
                                 });
-    //                                alert(fit['id_supply_fit_name']);
-    //                                alert(select);
+                                //                                alert(fit['id_supply_fit_name']);
+                                //                                alert(select);
                                 if (select == fit['id_supply_fit_name']) {
                                     document.forms['form'].elements['sample_approved'].value = fit['sample_approved'];
                                 }
@@ -649,9 +732,14 @@
         });
     </script>
 <?php } ?>
-<?php if ($this->uri->segment(3) == 'edit' or $this->uri->segment(3) == 'add') { ?>
-    <script>
-        $('.treeview-menu').css('display', 'block');
+<?php ?>
+<script>
+    $('.treeview-menu').css('display', 'block');
+//    $(function () {
 
-    </script>
-<?php } ?>
+//    var info = new array( email,password );
+
+//    })
+
+</script>
+<?php ?>

@@ -38,6 +38,7 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
             <th>Gold Sl Pass/Fail BY</th>
             <th>Lab Test Report</th>
             <th>Pattern Block</th>
+            <th>File Hand Over Date</th>
             <th>File Receive Date</th>
             <th>PP Meeting Date</th>                                
             <th>Wash Pass/Fail Date</th>
@@ -493,24 +494,16 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                 echo 'Bangladesh';
                             }
                             ?>
-<!--                        </td>
-                        <td>
-                            <?php
-                            if ($all_informations[$i][0]->sample_result == 1) {
-                                echo 'Pass';
-                            }if ($all_informations[$i][0]->sample_result == 2) {
-                                echo 'Fail';
+                        </td>
+                        <td><?php
+                            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001') {
+                                echo '';
+                            } else {
+                                echo date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));
                             }
                             ?>
                         </td>
-                        <td><?php
-                            if ($all_informations[$i][0]->approved_by == 1) {
-                                echo 'United Kingdom';
-                            }if ($all_informations[$i][0]->approved_by == 2) {
-                                echo 'Bangladesh';
-                            }
-                            ?>
-                        </td>-->
+
                         <td><?php
                             if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001' or '01/01/1970') {
                                 echo '';

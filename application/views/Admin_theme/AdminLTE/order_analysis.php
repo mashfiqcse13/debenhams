@@ -72,9 +72,9 @@ include_once 'header.php'; ?>
                             </tr>
                             
                             <tr>
-                                <td>Forth Fit Sample Pass</td>
+                                <td>Fifth Fit Sample Pass</td>
                                 <td><?=$order_analysis['count_pass'][5];?></td>
-                                <td>Forth Fit Sample Fail</td>
+                                <td>Fifth Fit Sample Fail</td>
                                 <td><?=$order_analysis['count_fail'][5];?></td>
                             </tr>
                             

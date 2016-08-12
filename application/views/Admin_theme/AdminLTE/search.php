@@ -175,7 +175,7 @@
 
             </div>
             <input type="submit"  value="Search Information" class="btn btn-success" style="margin: 10px 0 ;"/>
-            <?= anchor(current_url() . '', 'Reset', ' class="btn btn-primary"') ?>
+            <?= anchor(current_url() . '', 'Refresh', ' class="btn btn-primary"') ?>
             <?= form_close(); ?>
             <div class="row">
                 <div class="col-md-12">
@@ -224,6 +224,7 @@
                                 <th>Gold Sl Pass/Fail BY</th>
                                 <th>Lab Test Report</th>
                                 <th>Pattern Block</th>
+                                <th>File Hand Over Date</th>
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>                                
                                 <th>Wash Pass/Fail Date</th>
@@ -328,18 +329,18 @@
                                                 ?>
                                             </td>
                                             <td class="fit_date"><?php
-                                    for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
-                                        if (!empty($all_informations[$i][1][$j])) {
-                                            if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
+                                                for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
+                                                    if (!empty($all_informations[$i][1][$j])) {
+                                                        if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
 //                                                            echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
-                                                if (date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive)) == '01/01/1970') {
-                                                    echo '';
-                                                } else {
-                                                    echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
+                                                            if (date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive)) == '01/01/1970') {
+                                                                echo '';
+                                                            } else {
+                                                                echo date('d/m/Y', strtotime($all_informations[$i][1][$j]->date_receive));
+                                                            }
+                                                        }
+                                                    }
                                                 }
-                                            }
-                                        }
-                                    }
                                                 ?>
                                             </td>
                                             <?php
@@ -488,11 +489,11 @@
                                                 ?>
                                             </td>
                                             <td><?php
-                                    if ($all_informations[$i][0]->approved_by == 1) {
-                                        echo 'United Kingdom';
-                                    }if ($all_informations[$i][0]->approved_by == 2) {
-                                        echo 'Bangladesh';
-                                    }
+                                                if ($all_informations[$i][0]->approved_by == 1) {
+                                                    echo 'United Kingdom';
+                                                }if ($all_informations[$i][0]->approved_by == 2) {
+                                                    echo 'Bangladesh';
+                                                }
                                                 ?>
                                             </td>
 
@@ -659,35 +660,43 @@
                                                 }
                                                 ?>
                                             </td>
-                                                <?php ?>   
+                                            <?php ?>   
 
 
 
                                             <td>
-            <?php
-            if ($all_informations[$i][0]->lab_test_report == 1) {
-                echo 'Pass';
-            }if ($all_informations[$i][0]->lab_test_report == 2) {
-                echo 'Fail';
-            }
-            ?>
+                                                <?php
+                                                if ($all_informations[$i][0]->lab_test_report == 1) {
+                                                    echo 'Pass';
+                                                }if ($all_informations[$i][0]->lab_test_report == 2) {
+                                                    echo 'Fail';
+                                                }
+                                                ?>
                                             </td>
                                             <td><?php
-                                    if ($all_informations[$i][0]->pattern_block == 1) {
-                                        echo 'United Kingdom';
-                                    }if ($all_informations[$i][0]->pattern_block == 2) {
-                                        echo 'Bangladesh';
-                                    }
-            ?>
+                                                if ($all_informations[$i][0]->pattern_block == 1) {
+                                                    echo 'United Kingdom';
+                                                }if ($all_informations[$i][0]->pattern_block == 2) {
+                                                    echo 'Bangladesh';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?php
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001') {
+                                                    echo '';
+                                                } else {
+                                                    echo date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));
+                                                }
+                                                ?>
                                             </td>
 
                                             <td><?php
-                                    if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001') {
-                                        echo '';
-                                    } else {
-                                        echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
-                                    }
-            ?></td>
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001') {
+                                                    echo '';
+                                                } else {
+                                                    echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
+                                                }
+                                                ?></td>
                                             <td><?php
                                                 if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001') {
                                                     echo '';
@@ -704,11 +713,11 @@
                                                 ?></td>
                                             <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                                             <td><?php
-                                    if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001') {
-                                        echo '';
-                                    } else {
-                                        echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
-                                    }
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001') {
+                                                    echo '';
+                                                } else {
+                                                    echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
+                                                }
                                                 ?></td>
                                             <td><?php
                                                 if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001') {
@@ -736,11 +745,11 @@
                                                 </a>
                                             </td>
                                         </tr>
-            <?php
-        }
-    }
-}
-?>
+                                        <?php
+                                    }
+                                }
+                            }
+                            ?>
                         </tbody>
                     </table>
 

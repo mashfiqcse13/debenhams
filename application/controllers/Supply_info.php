@@ -156,6 +156,7 @@ class Supply_info extends CI_Controller {
         $data['pattern_block'] = $this->input->post('pattern_block');
         $data['date_created'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
+        $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
         $supply_info_id = $this->Supply_info_model->save_info('supply_info', $data);
 
         $fit['id_supply_info'] = $supply_info_id;
@@ -187,6 +188,7 @@ class Supply_info extends CI_Controller {
         $data['pattern_block'] = $this->input->post('pattern_block');
         $data['last_modified'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
+        $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
         $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();
         $id_fit = $this->input->post('id_supply_fit_register');

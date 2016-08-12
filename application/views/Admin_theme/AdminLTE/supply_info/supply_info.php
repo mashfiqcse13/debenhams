@@ -59,7 +59,7 @@
                                                     }
                                                     ?>
                                                     <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                                ?>" id="id_fit"/>
+                                                    <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                                 ?>" id="id_fit"/>
                                                 </select>
                                             </div>
 
@@ -197,8 +197,12 @@
                                                 </select>
                                             </div>
                                         </div>
-
-
+                                        <div class="form-group " id="receive">
+                                            <label class="col-md-3" >File Hand Over Date:</label>
+                                            <div class="col-md-9">
+                                                <input type="" class="form-control datepicker" name="file_hand_over_date" value="<?php echo $value->file_hand_over_date; ?>" placeholder="Add Date"/>
+                                            </div>
+                                        </div>
                                         <div class="form-group ">
                                             <label class="col-md-3">Remark:</label>
                                             <div class="col-md-9">
@@ -234,7 +238,7 @@
                                         'class' => 'form-horizontal',
                                         'name' => 'form',
                                         'method' => 'post');
-                                    echo form_open('supply_info/save_style', $attributes)
+                                    echo form_open('supply_info/save_style', $attributes);
                                     ?>
                                     <div class="form-group ">
                                         <label class="col-md-3">Create Style No:</label>
@@ -261,7 +265,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label class="col-md-3">Style No:</label>
-                                        <div class="col-md-9">
+                                        <div class="col-md-9" id="sel">
                                             <select name="id_supply_style_no" id="" class="form-control select2">
                                                 <option value="0">Select Style No</option>
                                                 <?php
@@ -413,7 +417,12 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <div class="form-group " id="receive">
+                                        <label class="col-md-3" >File Hand Over Date:</label>
+                                        <div class="col-md-9">
+                                            <input type="" class="form-control datepicker" name="file_hand_over_date" placeholder="Add Date"/>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group ">
                                         <label class="col-md-3">Remark:</label>
@@ -450,6 +459,7 @@
         $('#message').fadeOut();
     }, 5000);
     $("#span").hide();
+
     $("input#no").keyup(function () {
         var style_no = $("input#no").val();
         jQuery.ajax({
@@ -484,14 +494,20 @@
             dataType: 'json',
             data: {style_no: style_no, allocated_to: allocated},
             success: function (res) {
+//                alert(res);
+//                var obj = $.parseJSON(res);
+//                    $.each(obj.supply_fit, function (i, fit) {});
                 if (res)
                 {
                     $('#insert_info').load(window.location.href + ' #insert_info');
 // Show Entered Values;
                     alert('Style is inserted');
+//                    $("div#sel option[value=" + res + "]").attr('selected', 'selected');
+                    
                 }
             }
         });
+        return false;
     });
 
     $('#save').click(function () {
@@ -565,7 +581,7 @@
         document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
 
 
-        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                               ?>";
+        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                                ?>";
 
         $("input").each(function () {
             var curTable = $(this).val();

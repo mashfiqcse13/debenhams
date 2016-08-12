@@ -45,7 +45,8 @@ function index() {
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET'); 
         $data['Title'] = 'Insert Info';
         $data['base_url'] = base_url();
-        $this->load->view('excel', $data);
+//        $this->load->view('excel', $data);
+        $this->load->view('excel_csv', $data);
     }
     
     function qc_dashboard(){

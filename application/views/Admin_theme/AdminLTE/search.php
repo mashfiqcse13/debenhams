@@ -208,8 +208,8 @@
                                 <th>Second Fit Receive Date</th>
                                 <th>Third Fit Send Date</th>
                                 <th>Third Fit Receive Date</th>
-                                <th>Forth Fit Send Date</th>
-                                <th>Forth Fit Receive Date</th>
+                                <th>Fourth Fit Send Date</th>
+                                <th>Fourth Fit Receive Date</th>
                                 <th>Fifth Fit Send Date</th>
                                 <th>Fifth Fit Receive Date</th>
                                 <th>Fit Sample Pass/Fail</th>

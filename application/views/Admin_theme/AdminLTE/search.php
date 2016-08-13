@@ -196,22 +196,22 @@
                                 <th>Style No</th>
                                 <th>Season</th>
                                 <th style="display:none;">supply id</th>
-                                <th>Department:</th>
+                                <th>Department</th>
                                 <th>Style Description</th>
-                                <th>Supplier Name:</th>
+                                <th>Supplier Name</th>
                                 <th>Dev Send Date</th>
                                 <th>Dev Receive Date</th>
                                 <th>Dev Pass/Fail By</th>
-                                <th>First Fit Send Date:</th>
-                                <th>First Fit Receive Date:</th>
-                                <th>Second Fit Send Date:</th>
-                                <th>Second Fit Receive Date:</th>
-                                <th>Third Fit Send Date:</th>
-                                <th>Third Fit Receive Date:</th>
-                                <th>Forth Fit Send Date:</th>
-                                <th>Forth Fit Receive Date:</th>
-                                <th>Fifth Fit Send Date:</th>
-                                <th>Fifth Fit Receive Date:</th>
+                                <th>First Fit Send Date</th>
+                                <th>First Fit Receive Date</th>
+                                <th>Second Fit Send Date</th>
+                                <th>Second Fit Receive Date</th>
+                                <th>Third Fit Send Date</th>
+                                <th>Third Fit Receive Date</th>
+                                <th>Forth Fit Send Date</th>
+                                <th>Forth Fit Receive Date</th>
+                                <th>Fifth Fit Send Date</th>
+                                <th>Fifth Fit Receive Date</th>
                                 <th>Fit Sample Pass/Fail</th>
                                 <th>Fit Sample Approved By</th>
                                 <th>PP Send Date</th>
@@ -683,7 +683,7 @@
                                                 ?>
                                             </td>
                                             <td><?php
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));

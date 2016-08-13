@@ -1,3 +1,4 @@
+<div id="info">
 <?php include_once __DIR__ . '/../header.php'; ?>
 
 
@@ -17,6 +18,7 @@
     </section>
 
     <!-- Main content -->
+    
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -197,10 +199,10 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group " id="receive">
+                                        <div class="form-group ">
                                             <label class="col-md-3" >File Hand Over Date:</label>
                                             <div class="col-md-9">
-                                                <input type="" class="form-control datepicker" name="file_hand_over_date" value="<?php echo $value->file_hand_over_date; ?>" placeholder="Add Date"/>
+                                                <input type="" class="form-control datepicker" name="file_hand_over_date" value="<?php if(date('m/d/Y',strtotime($value->file_hand_over_date))=='01/01/1970'){echo '';}else{echo date('m/d/Y',strtotime($value->file_hand_over_date));}; ?>" placeholder="Add Date"/>
                                             </div>
                                         </div>
                                         <div class="form-group ">
@@ -247,7 +249,7 @@
                                             <span id="span" style="color: red; font-weight: bold"></span>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="submit" id="style" value="Submit"  class="btn btn-success"/>
+                                            <input type="submit" value="Submit"  class="btn btn-success"/>
                                         </div>
 
                                     </div>
@@ -417,7 +419,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group " id="receive">
+                                    <div class="form-group ">
                                         <label class="col-md-3" >File Hand Over Date:</label>
                                         <div class="col-md-9">
                                             <input type="" class="form-control datepicker" name="file_hand_over_date" placeholder="Add Date"/>
@@ -457,9 +459,9 @@
 <script type="text/javascript">
     setTimeout(function () {
         $('#message').fadeOut();
-    }, 5000);
+    }, 1000);
     $("#span").hide();
-
+//    alert(window.location.href);
     $("input#no").keyup(function () {
         var style_no = $("input#no").val();
         jQuery.ajax({
@@ -484,31 +486,31 @@
         });
 
     });
-    $("#style").click(function (event) {
-        event.preventDefault();
-        var style_no = $("input#no").val();
-        var allocated = <?php echo $this->session->userdata('user_id'); ?>;
-        jQuery.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/supply_info/save_style",
-            dataType: 'json',
-            data: {style_no: style_no, allocated_to: allocated},
-            success: function (res) {
-//                alert(res);
-//                var obj = $.parseJSON(res);
-//                    $.each(obj.supply_fit, function (i, fit) {});
-                if (res)
-                {
-                    $('#insert_info').load(window.location.href + ' #insert_info');
-// Show Entered Values;
-                    alert('Style is inserted');
+//    $("div#sel option[value=" + 60 + "]").attr('selected', 'selected'); 
+//    $("#style").click(function (event) {
+//        event.preventDefault();
+//        var style_no = $("input#no").val();
+//        var allocated = <?php echo $this->session->userdata('user_id'); ?>;
+//        jQuery.ajax({
+//            type: "POST",
+//            url: "<?php echo base_url(); ?>" + "index.php/supply_info/save_style",
+//            dataType: 'json',
+//            data: {style_no: style_no, allocated_to: allocated},
+//            success: function (res) {
+//                if (res)
+//                {
 //                    $("div#sel option[value=" + res + "]").attr('selected', 'selected');
-                    
-                }
-            }
-        });
-        return false;
-    });
+//                    $('#info').load(window.location.href+'#info');
+//                    alert('Style is inserted');
+////                    window.location.reload();
+//// Show Entered Values;
+//                    
+//                    $("div#sel option[value=" + res + "]").attr('selected', 'selected');                    
+//                }
+//            }
+//        });
+////        return false;
+//    });
 
     $('#save').click(function () {
         if (document.getElementsByName('id_supplyer')[0].value == 'blank') {
@@ -743,3 +745,4 @@
 
 </script>
 <?php ?>
+</div>

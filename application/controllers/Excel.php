@@ -83,7 +83,7 @@ function excel() {
         $this->load->view('excel_csv', $data);
     }
     
-    function qc_dashboard(){
+    function qc_dashboard_excel(){
         $this->load->model('QC_model');
         $style_id = $this->input->get('id_supply_style_no');
        
@@ -94,6 +94,20 @@ function excel() {
         $data['Title'] = 'QC Dashboard';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'qc_dashboard/qc_dashboard_excel', $data);
+    }
+    
+    
+    function qc_dashboard_csv(){
+        $this->load->model('QC_model');
+        $style_id = $this->input->get('id_supply_style_no');
+       
+        
+        $data['get_all_qc_info'] = $this->session->userdata('pdf_qc_dashboard');
+        $data['all_style_no'] = $this->QC_model->select_all_style_no();
+        $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        $data['Title'] = 'QC Dashboard';
+        $data['base_url'] = base_url();
+        $this->load->view($this->config->item('ADMIN_THEME') . 'qc_dashboard/qc_dashboard_csv', $data);
     }
    
 

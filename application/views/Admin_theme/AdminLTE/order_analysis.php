@@ -65,9 +65,9 @@ include_once 'header.php'; ?>
                                 <td><?=$order_analysis['count_fail'][3];?></td>
                             </tr>
                             <tr>
-                                <td>Forth Fit Sample Pass</td>
+                                <td>Fourth Fit Sample Pass</td>
                                 <td><?=$order_analysis['count_pass'][4];?></td>
-                                <td>Forth Fit Sample Fail</td>
+                                <td>Fourth Fit Sample Fail</td>
                                 <td><?=$order_analysis['count_fail'][4];?></td>
                             </tr>
                             

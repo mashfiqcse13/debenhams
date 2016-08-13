@@ -176,8 +176,8 @@ class Performance_model extends CI_Model  {
                    ['Second Fit Sample Fail',$fit2_fail],
                ['Third Fit Sample Pass',$fit3_pass],
                    ['Third Fit Sample Fail',$fit3_fail],
-               ['Forth Fit Sample Pass',$fit4_pass],
-                   ['Forth Fit Sample Fail',$fit4_fail],
+               ['Fourth Fit Sample Pass',$fit4_pass],
+                   ['Fourth Fit Sample Fail',$fit4_fail],
                ['Fifth Fit Sample Pass',$fit5_pass],   
                ['Fifth Fit Sample Fail',$fit5_fail],
                ['Unfinished Sample Result',$unfinished_order]
@@ -341,8 +341,8 @@ class Performance_model extends CI_Model  {
                    ['Second Fit Sample Fail',$countf2],
                ['Third Fit Sample Pass',$count3],
                    ['Third Fit Sample Fail',$countf3],
-               ['Forth Fit Sample Pass',$count4],
-                   ['Forth Fit Sample Fail',$countf4],
+               ['Fourth Fit Sample Pass',$count4],
+                   ['Fourth Fit Sample Fail',$countf4],
                ['Fifth Fit Sample Pass',$count5],
                    ['Fifth Fit Sample Fail',$countf5]
                ]";
@@ -477,8 +477,8 @@ class Performance_model extends CI_Model  {
                    ['Second Fit Sample Fail',$countf2],
                ['Third Fit Sample Pass',$count3],
                    ['Third Fit Sample Fail',$countf3],
-               ['Forth Fit Sample Pass',$count4],
-                   ['Forth Fit Sample Fail',$countf4],
+               ['Fourth Fit Sample Pass',$count4],
+                   ['Fourth Fit Sample Fail',$countf4],
                ['Fifth Fit Sample Pass',$count5],
                    ['Fifth Fit Sample Fail',$countf5]
                ]";

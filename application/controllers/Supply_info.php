@@ -162,6 +162,7 @@ class Supply_info extends CI_Controller {
         $fit['id_supply_info'] = $supply_info_id;
         $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
         $sample_approved = $this->input->post('sample_approved');
+//        print_r($sample_approved);exit();
         if (!empty($sample_approved)) {
             $fit['sample_approved'] = $sample_approved;
         }

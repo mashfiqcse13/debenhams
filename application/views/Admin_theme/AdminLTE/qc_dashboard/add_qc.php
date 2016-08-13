@@ -87,7 +87,7 @@
                         <textarea name="wash_comment" rows="8"  class="form-control" ></textarea>
                     </div>
                 </div>
-                <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right">Save</button>
+                <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right" style="padding: 10px 30px; font-weight: bold;">Save</button>
                 <?= form_close(); ?>
             </div>
         </div>

@@ -17,12 +17,31 @@ class QC_model extends CI_Model {
     function select_all_style_no() {
         $this->db->select('*');
         $this->db->from('supply_style_no');
-        $query = $this->db->get();
-        return $query->result();
+        $query = $this->db->get()->result();
+        for ($i = 0; $i < count($query); $i++) {
+            $id = $query[$i]->id_supply_style_no;
+            $data = $this->qc_info($id);
+            if (empty($data)) {
+                $this->db->select('*');
+                $this->db->from('supply_style_no');
+                $this->db->where('id_supply_style_no', $id);
+                $sql[] = $this->db->get()->row();
+            }
+        }
+        return $sql;
+    }
+    
+    
+    function qc_info($id) {
+        $this->db->select('*');
+        $this->db->from('qc_info');
+        $this->db->where('id_supply_style_no', $id);
+        $query = $this->db->get()->row();
+        return $query;
     }
 
     function get_all_qc_info() {
-        $this->db->select('*');
+        $this->db->select('*,qc_info.date_created as date');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
         $this->db->join('supply_info','qc_info.id_supply_style_no = supply_info.id_supply_style_no','left');
@@ -31,7 +50,7 @@ class QC_model extends CI_Model {
         return $query->result();
     }
     function get_all_qc_info_by_style_id($style_id) {
-        $this->db->select('*');
+        $this->db->select('*,qc_info.date_created as date');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
         $this->db->join('supply_info','qc_info.id_supply_style_no = supply_info.id_supply_style_no','left');
@@ -44,7 +63,7 @@ class QC_model extends CI_Model {
 //        print_r($from);exit();
         $date_from = date('Y-m-d H:i:s', strtotime($from));
         $date_to = date('Y-m-d H:i:s', strtotime($to));
-        $this->db->select('*');
+        $this->db->select('*,qc_info.date_created as date');
         $this->db->from('qc_info');
         $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
         $this->db->join('supply_info','qc_info.id_supply_style_no = supply_info.id_supply_style_no','left');
@@ -58,6 +77,7 @@ class QC_model extends CI_Model {
     function get_all_qc_info_by_qc_id($id) {
         $this->db->select('*');
         $this->db->from('qc_info');
+        $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
         $this->db->where('id_qc_info', $id);
         $query = $this->db->get();
         return $query->result();
@@ -73,8 +93,8 @@ class QC_model extends CI_Model {
     }
     
     function delete($id){
-        $this->db->where('id', $id);
-        $this->db->delete('mytable');
+        $this->db->where('id_qc_info', $id);
+        $this->db->delete('qc_info');
     }
     
     

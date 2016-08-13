@@ -105,14 +105,14 @@
                                     <th style="display:none;"></th>
                                     <th class="nowrap">File Hand Over Date</th>
                                     <th class="nowrap">File Receive Date</th>
-                                    <th>P.P Meeting Date:</th>
-                                    <th>Wash Approval Date:</th>
-                                    <th>Wash Comment:</th>
+                                    <th>P.P Meeting Date</th>
+                                    <th>Wash Approval Date</th>
+                                    <th>Wash Comment</th>
                                     <th>In-Line Date</th>
-                                    <th>Final Inspection Date:</th>
-                                    <th>Orders Comment:</th>                                    
-                                    <th>Data Entry Date:</th>
-                                    <th>Last Modified Date:</th>
+                                    <th>Final Inspection Date</th>
+                                    <th>Orders Comment</th>                                    
+                                    <th>Data Entry Date of QC</th>
+                                    <th>Last Modified Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -131,8 +131,8 @@
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
                                         <td><?php echo $all_informations->orders_comment; ?></td>
-                                        <td><?php echo $all_informations->date_created; ?></td>
-                                        <td><?php echo $all_informations->last_modified_qc; ?></td>
+                                        <td><?php echo $all_informations->date; ?></td>
+                                        <td><?php if($all_informations->last_modified_qc=='0000-00-00 00:00:00' || $all_informations->last_modified_qc=='11/30/-0001'){echo '';}else{echo $all_informations->last_modified_qc;} ?></td>
                                         <td><a href="<?= site_url('qc_dashboard/reduce/' . $all_informations->id_qc_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                             </a>
@@ -176,7 +176,7 @@
     });
     setTimeout(function () {
         $('#message').fadeOut();
-    }, 5000);
+    }, 1000);
 
 
     function check() {

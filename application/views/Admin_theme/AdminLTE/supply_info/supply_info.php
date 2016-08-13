@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px"/>
+                                <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px; padding: 10px 30px; font-weight: bold;"/>
                                 <?php
                             }
                             ?>

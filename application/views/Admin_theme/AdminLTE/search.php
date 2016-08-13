@@ -238,7 +238,8 @@
 
                                 <th>Remark</th>
 
-                                <th>Data Entry Date</th>
+                                <th>Data Entry Date of Technician</th>
+                                <th>Data Entry Date of QC</th>
                                 <th>Last Modified by Technician</th>
                                 <th>Last Modified by QC</th>
                                 <th>Actions</th>
@@ -736,8 +737,9 @@
                                             <td><?php echo $all_informations[$i][0]->remark; ?></td>
 
                                             <td><?php echo $all_informations[$i][0]->date; ?></td>
-                                            <td><?php echo $all_informations[$i][0]->last_modified; ?></td>
-                                            <td><?php echo $all_informations[$i][0]->last_modified_qc; ?></td>
+                                            <td><?php echo $all_informations[$i][0]->date_qc; ?></td>
+                                            <td><?php if($all_informations[$i][0]->last_modified=='0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified=='11/30/-0001'){echo '';}else{echo $all_informations[$i][0]->last_modified;} ?></td>
+                                            <td><?php if($all_informations[$i][0]->last_modified_qc=='0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified_qc=='11/30/-0001'){echo '';}else{echo $all_informations[$i][0]->last_modified_qc;} ?></td>
                                             <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>
@@ -790,7 +792,7 @@
     });
     setTimeout(function () {
         $('#message').fadeOut();
-    }, 5000);
+    }, 1000);
     function check() {
         var chk = confirm('Are You Sure To Delete?');
         if (chk) {

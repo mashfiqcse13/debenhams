@@ -33,15 +33,9 @@
                 <div class="form-group ">
                     <label class="col-md-3">Style No:</label>
                     <div class="col-md-9">
-                        <select name="id_supply_style_no" id="" class="form-control select">
-                            <option value="blank">Select Style No</option>
-                            <?php
-                            foreach ($all_style_no as $style_no) {
-                                ?>
-                                <option value="<?php echo $style_no->id_supply_style_no; ?>"><?php echo $style_no->style_no; ?></option>
-                                <?php
-                            }
-                            ?>
+                            <p name><?php echo $info->style_no; ?></p>
+                            <input type="hidden" name="id_qc_info" value="<?php echo $info->id_qc_info;?>" />
+                            <input type="hidden" name="id_supply_style_no" value="<?php echo $info->id_supply_style_no;?>" />
                         </select>
                     </div>
                 </div>
@@ -92,7 +86,7 @@
                         <textarea name="wash_comment" rows="8"  class="form-control" ><?php echo $info->wash_comment; ?></textarea>
                     </div>
                 </div>
-                <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right">Update</button>
+                <button type="submit" name="btn_submit" value="true" id="save" class="btn btn-success pull-right" style="padding: 10px 30px; font-weight: bold;">Update</button>
                 <?php
                 }?>
                 <?= form_close(); ?>
@@ -107,7 +101,6 @@
 
 <?php include_once __DIR__ . '/../footer.php'; ?>
 <script type="text/javascript">
-    document.forms['form'].elements['id_supply_style_no'].value = "<?php echo $info->id_supply_style_no; ?>";
     $('.datepicker').datepicker({
         autoclose: true
     });
@@ -115,7 +108,7 @@
     $("input").each(function () {
         var curTable = $(this).val();
         if (curTable == "01/01/1970" || curTable == "11/30/-0001") {
-            $(this).val(' ')
+            $(this).val('   ')
         }
     });
     

@@ -47,7 +47,7 @@ class Search_model extends CI_Model {
 
     function get_supply_info_with_fit_register() {
         $register = array();
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date');
+        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date,qc_info.date_created as date_qc');
         $this->db->from('supply_info');
         $this->db->join('supply_session', 'supply_info.id_supply_session=supply_session.id_supply_session', 'left');
         $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
@@ -109,7 +109,7 @@ class Search_model extends CI_Model {
     function get_supply_info($id_supply_style_no, $id_supplyer, $id_season, $id_department, $sample_result, $technician, $date_from, $date_to) {
 //        echo '<pre>';print_r($technician);
 //print_r($id_department);exit();
-        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date');
+        $this->db->select('*,supply_session.name as supply_name,department.name as department_name,supplyer.name as supplyer_name,supply_info.date_created as date,qc_info.date_created as date_qc');
         $this->db->from('supply_info');
         $this->db->join('supply_session', 'supply_info.id_supply_session = supply_session.id_supply_session', 'left');
         $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');

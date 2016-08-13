@@ -52,7 +52,7 @@
                                             <label class="col-md-3">Season:</label>
                                             <div class="col-md-9">
                                                 <select name="id_supply_session" id="" class="form-control select">
-                                                    <option value="0">Select Season No</option>
+                                                    <option value="0">Select Season Name</option>
                                                     <?php
                                                     foreach ($all_session as $session) {
                                                         ?>
@@ -70,7 +70,7 @@
                                             <label class="col-md-3">Department:</label>
                                             <div class="col-md-9">
                                                 <select name="id_department" id="" class="form-control select">
-                                                    <option value="0">Select Department No</option>
+                                                    <option value="0">Select Department Name</option>
                                                     <?php
                                                     foreach ($all_department as $department) {
                                                         ?>
@@ -269,7 +269,7 @@
                                         <label class="col-md-3">Style No:</label>
                                         <div class="col-md-9" id="sel">
                                             <select name="id_supply_style_no" id="" class="form-control select2">
-                                                <option value="0">Select Style No</option>
+                                                <option value="0">Select Style Name</option>
                                                 <?php
                                                 foreach ($all_style_no as $style_no) {
                                                     ?>
@@ -284,7 +284,7 @@
                                         <label class="col-md-3">Season:</label>
                                         <div class="col-md-9">
                                             <select name="id_supply_session" id="" class="form-control select2">
-                                                <option value="0">Select Season No</option>
+                                                <option value="0">Select Season Name</option>
                                                 <?php
                                                 foreach ($all_session as $session) {
                                                     ?>

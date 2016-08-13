@@ -320,6 +320,8 @@ if (isset($all_informations)) {
             echo ",";  // separator
             echo $all_informations[$i][0]->date;
             echo ",";  // separator
+            echo $all_informations[$i][0]->date_qc;
+            echo ",";  // separator
             echo $all_informations[$i][0]->last_modified;
             echo ",";  // separator
             echo $all_informations[$i][0]->last_modified_qc;

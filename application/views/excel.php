@@ -40,7 +40,7 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                 <th>File Hand Over Date</th>
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>                                
-                                <th>Wash Pass/Fail Date</th>
+                                <th>Wash Approval Date</th>
                                 <th>Wash Comment</th>
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>
@@ -51,22 +51,20 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                 <th>Data Entry Date of QC</th>
                                 <th>Last Modified by Technician</th>
                                 <th>Last Modified by QC</th>
-                                <th>Actions</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <?php
 //                                echo print_r($max_supply_info->id_supply_info);
                             if (isset($all_informations)) {
-                                for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
+                                for ($i = $max_supply_info->id_supply_info; $i >=1;  $i--) {
                                     if (!empty($all_informations[$i][0]->id_supply_info)) {
                                         ?>
                                         <tr>
                                             <td><?php echo $all_informations[$i][0]->style_no; ?></td>
                                             <td><?php echo $all_informations[$i][0]->supply_name; ?> </td>
-                                            <td style="display:none;"><?php echo $all_informations[$i][0]->id_supply_info;
-                                        ?></td>
-                                            <td><?php echo $all_informations[$i][0]->department_name; ?></td>
+                                             <td><?php echo $all_informations[$i][0]->department_name; ?></td>
                                             <td><?php echo $all_informations[$i][0]->style_description; ?></td>
                                             <td><?php echo $all_informations[$i][0]->supplyer_name; ?></td>
 
@@ -502,21 +500,21 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                             </td>
 
                                             <td><?php
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
                                                 }
                                                 ?></td>
                                             <td><?php
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
                                                 }
                                                 ?></td>
                                             <td><?php
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
@@ -524,14 +522,14 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                                 ?></td>
                                             <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                                             <td><?php
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
                                                 }
                                                 ?></td>
                                             <td><?php
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
@@ -549,13 +547,7 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                                             <td><?php echo $all_informations[$i][0]->date_qc; ?></td>
                                             <td><?php if($all_informations[$i][0]->last_modified=='0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified=='11/30/-0001'){echo '';}else{echo $all_informations[$i][0]->last_modified;} ?></td>
                                             <td><?php if($all_informations[$i][0]->last_modified_qc=='0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified_qc=='11/30/-0001'){echo '';}else{echo $all_informations[$i][0]->last_modified_qc;} ?></td>
-                                            <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
-                                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                                </a>
-                                                <a href="<?= site_url('search/search_delete/' . $all_informations[$i][0]->id_supply_info); ?>" onclick="return check();"type="button" class="btn btn-danger" aria-label="Left Align">
-                                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                                </a>
-                                            </td>
+                                            
                                         </tr>
                                         <?php
                                     }

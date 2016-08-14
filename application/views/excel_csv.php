@@ -3,14 +3,14 @@
 header("Content-Type: application/vnd.ms-excel");
 header("Content-disposition: attachment; filename=spreadsheet.csv");
 
-$header_array = array("Style No","Season","Department","Style Description","Supplier Name","Dev Send Date","Dev Receive Date","Dev Pass/Fail By","First Fit Send Date","First Fit Receive Date","Second Fit Send Date","Second Fit Receive Date","Third Fit Send Date","Third Fit Receive Date","Fourth Fit Send Date","Fourth Fit Receive Date","Fifth Fit Send Date","Fifth Fit Receive Date","Fit Sample Pass/Fail","Fit Sample Approved By","PP Send Date","PP Receive Date","PP Pass/Fail By","Wearer Send Date","Wearer Receive Date","Wearer Pass/Fail By","Gold Sl Send Date","Gold Sl Receive Date","Gold Sl Pass/Fail BY","Lab Test Report","Pattern Block","File Hand Over Date","File Receive Date","PP Meeting Date","Wash Pass/Fail Date","Wash Comment","Inline Date","Final Inspection Date","Orders Comment","Technician","Remark","Data Entry Date of Technician","Data Entry Date of QC","Last Modified by Technician","Last Modified by QC");
+$header_array = array("Style No","Season","Department","Style Description","Supplier Name","Dev Send Date","Dev Receive Date","Dev Pass/Fail By","First Fit Send Date","First Fit Receive Date","Second Fit Send Date","Second Fit Receive Date","Third Fit Send Date","Third Fit Receive Date","Fourth Fit Send Date","Fourth Fit Receive Date","Fifth Fit Send Date","Fifth Fit Receive Date","Fit Sample Pass/Fail","Fit Sample Approved By","PP Send Date","PP Receive Date","PP Pass/Fail By","Wearer Send Date","Wearer Receive Date","Wearer Pass/Fail By","Gold Sl Send Date","Gold Sl Receive Date","Gold Sl Pass/Fail BY","Lab Test Report","Pattern Block","File Hand Over Date","File Receive Date","PP Meeting Date","Wash Approval Date","Wash Comment","Inline Date","Final Inspection Date","Orders Comment","Technician","Remark","Data Entry Date of Technician","Data Entry Date of QC","Last Modified by Technician","Last Modified by QC");
 foreach ($header_array as $value) {
     echo "$value,";  // separator
 }
 echo "\n";
 
                             if (isset($all_informations)) {
-                                for ($i = 1; $i <= $max_supply_info->id_supply_info; $i++) {
+                                for ($i = $max_supply_info->id_supply_info; $i >=1;  $i--) {
                                     if (!empty($all_informations[$i][0]->id_supply_info)) {
                                              echo $all_informations[$i][0]->style_no;
                                              echo ",";
@@ -357,21 +357,21 @@ echo "\n";
                                                 }
                                                 echo ",";
                                             
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
                                                 }
                                                 echo ",";
                                             
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
                                                 }
                                                 echo ",";
                                             
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
@@ -380,14 +380,14 @@ echo "\n";
                                                 echo $all_informations[$i][0]->wash_comment;
                                                 echo ",";
                                             
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
                                                 }
                                                 echo ",";
                                             
-                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001') {
+                                                if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '01/01/1970') {
                                                     echo '';
                                                 } else {
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));

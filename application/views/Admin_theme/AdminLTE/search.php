@@ -228,7 +228,7 @@
                                 <th>File Hand Over Date</th>
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>                                
-                                <th>Wash Pass/Fail Date</th>
+                                <th>Wash Approval Date</th>
                                 <th>Wash Comment</th>
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>

@@ -28,7 +28,11 @@ class QC_model extends CI_Model {
                 $sql[] = $this->db->get()->row();
             }
         }
-        return $sql;
+        if(!empty($sql)){
+            return $sql;
+        }else{
+            return '';
+        }
     }
     
     

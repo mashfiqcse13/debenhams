@@ -45,6 +45,12 @@ class Users_list extends ci_controller {
                         return 'Not Banned';
                     }
                 });
+                
+          
+                if($_SESSION["user_id"] != 39){
+                        $crud->where("id != 39");
+                    }
+
         $output = $crud->render();
         $data['glosary'] = $output;
         $user_id = $this->uri->segment('4');

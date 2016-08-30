@@ -129,7 +129,7 @@ class Search_model extends CI_Model {
         }if (!empty($sample_result)) {
             $this->db->where('supply_info.sample_result', $sample_result);
         }if (!empty($technician)){
-            $this->db->like('supply_info.id_technician', $technician);
+            $this->db->where('supply_info.id_technician', $technician);
         }if ($date_from != "1970-01-01 06:00:00") {
 //            $this->db->where('supply_info.date_created >=', DATE($date_from));
 //            $this->db->where('supply_info.date_created <=', DATE($date_to));

@@ -147,5 +147,11 @@ class Supply_info_model extends ci_model {
         $this->db->where('style_no',$style_no);
         return $this->db->get()->result();
     }
-
+/////////////some testing model/////////////////////
+    function last_style_entry(){
+      return  $this->db->select('*')
+                ->from('supply_style_no')
+                ->order_by('id_supply_style_no','desc')
+                ->get()->row();
+    }
 }

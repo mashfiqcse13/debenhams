@@ -204,14 +204,19 @@
                                 <th>Dev Pass/Fail By</th>
                                 <th>First Fit Send Date</th>
                                 <th>First Fit Receive Date</th>
+                                <th>First Fit Comment</th>
                                 <th>Second Fit Send Date</th>
                                 <th>Second Fit Receive Date</th>
+                                <th>Second Fit Comment</th>
                                 <th>Third Fit Send Date</th>
                                 <th>Third Fit Receive Date</th>
+                                <th>Third Fit Comment</th>
                                 <th>Fourth Fit Send Date</th>
                                 <th>Fourth Fit Receive Date</th>
+                                <th>Fourth Fit Comment</th>
                                 <th>Fifth Fit Send Date</th>
                                 <th>Fifth Fit Receive Date</th>
+                                <th>Fifth Fit Comment</th>
                                 <th>Fit Sample Pass/Fail</th>
                                 <th>Fit Sample Approved By</th>
                                 <th>PP Send Date</th>
@@ -228,7 +233,7 @@
                                 <th>File Hand Over Date</th>
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>                                
-                                <th>Wash Approval Date</th>
+                                <th>Wash Pass/Fail Date</th>
                                 <th>Wash Comment</th>
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>
@@ -237,6 +242,7 @@
                                 <th>Technician</th>
 
                                 <th class="remark">Remark</th>
+                                <th class="remark">Files</th>
 
                                 <th>Data Entry Date of Technician</th>
                                 <th>Data Entry Date of QC</th>
@@ -345,8 +351,17 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <?php
-                                            ?>  
+                                            <td class="fit_date"><?php
+                                                for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
+                                                    if (!empty($all_informations[$i][1][$j])) {
+                                                        if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
+                                                            echo $all_informations[$i][1][$j]->fit_comment;
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
+
                                             <td class="fit_date">
                                                 <?php
                                                 for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
@@ -379,7 +394,17 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <?php ?>  
+                                            <td class="fit_date">
+                                                <?php
+                                                for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
+                                                    if (!empty($all_informations[$i][1][$k])) {
+                                                        if ($all_informations[$i][1][$k]->id_supply_fit_name == 2) {
+                                                            echo $all_informations[$i][1][$k]->fit_comment;
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </td> 
                                             <td class="fit_date">
                                                 <?php
                                                 for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
@@ -412,8 +437,17 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <?php
-                                            ?>  
+                                            <td class="fit_date">
+                                                <?php
+                                                for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
+                                                    if (!empty($all_informations[$i][1][$l])) {
+                                                        if ($all_informations[$i][1][$l]->id_supply_fit_name == 3) {
+                                                            echo $all_informations[$i][1][$l]->fit_comment;
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
                                             <td class="fit_date">
 
                                                 <?php
@@ -446,8 +480,18 @@
                                                     }
                                                 }
                                                 ?>
-                                            </td>
-                                            <?php ?>  
+                                            </td> 
+                                            <td class="fit_date">
+                                                <?php
+                                                for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
+                                                    if (!empty($all_informations[$i][1][$m])) {
+                                                        if ($all_informations[$i][1][$m]->id_supply_fit_name == 4) {
+                                                            echo $all_informations[$i][1][$m]->fit_comment;
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </td> 
                                             <td class="fit_date">
 
                                                 <?php
@@ -476,6 +520,17 @@
                                                             } else {
                                                                 echo date('d/m/Y', strtotime($all_informations[$i][1][$n]->date_receive));
                                                             }
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
+                                            <td class="fit_date">
+                                                <?php
+                                                for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
+                                                    if (!empty($all_informations[$i][1][$n])) {
+                                                        if ($all_informations[$i][1][$n]->id_supply_fit_name == 5) {
+                                                            echo $all_informations[$i][1][$n]->fit_comment;
                                                         }
                                                     }
                                                 }
@@ -735,11 +790,29 @@
                                             <td><?php echo $all_informations[$i][0]->username; ?></td>
 
                                             <td style="min-width: 200px;"><?php echo $all_informations[$i][0]->remark; ?></td>
+                                            <td><?php
+                                                $files = explode(',', $all_informations[$i][0]->file_upload);
+                                                foreach ($files as $file) {
+                                                    ?>
+                                    <a href="<?= base_url('file_upload/' . $file . '') ?>"  id="download"  target="blank"><?=$file?></a>
+                                    
+                                                    <!--echo '<a href ="'.base_url().''.$file.">'"."'</a>';-->
+                                                    <?php
+                                                }
+                                                ?></td>
 
                                             <td><?php echo $all_informations[$i][0]->date; ?></td>
                                             <td><?php echo $all_informations[$i][0]->date_qc; ?></td>
-                                            <td><?php if($all_informations[$i][0]->last_modified=='0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified=='11/30/-0001'){echo '';}else{echo $all_informations[$i][0]->last_modified;} ?></td>
-                                            <td><?php if($all_informations[$i][0]->last_modified_qc=='0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified_qc=='11/30/-0001'){echo '';}else{echo $all_informations[$i][0]->last_modified_qc;} ?></td>
+                                            <td><?php if ($all_informations[$i][0]->last_modified == '0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified == '11/30/-0001') {
+                                                    echo '';
+                                                } else {
+                                                    echo $all_informations[$i][0]->last_modified;
+                                                } ?></td>
+                                            <td><?php if ($all_informations[$i][0]->last_modified_qc == '0000-00-00 00:00:00' || $all_informations[$i][0]->last_modified_qc == '11/30/-0001') {
+                                                    echo '';
+                                                } else {
+                                                    echo $all_informations[$i][0]->last_modified_qc;
+                                                } ?></td>
                                             <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>
@@ -748,11 +821,11 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        <?php
-                                    }
-                                }
-                            }
-                            ?>
+            <?php
+        }
+    }
+}
+?>
                         </tbody>
                     </table>
 
@@ -776,7 +849,7 @@
         text-align: center;
         vertical-align: top!important;
     }
-    
+
     td {
         text-align: center;
     }

@@ -35,8 +35,10 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="<?= site_url('Performance/technician'); ?>"><i class="fa fa-bar-chart"></i> Performance of Technician</a></li>
-
         </ul>
+    </li>
+    <li class="treeview">
+        <?php echo anchor('users_list/account_managment', '<i class="fa fa-edit"></i>  <span>Account Management</span>'); ?>
     </li>
 
     

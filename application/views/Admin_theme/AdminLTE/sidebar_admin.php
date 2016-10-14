@@ -60,7 +60,7 @@
         <?php echo anchor('qc_dashboard', '<i class="fa fa-dashboard"></i>  <span>QC Dashboard</span>'); ?>
     </li>
     <li class="treeview">
-        <li><?php echo anchor('users_list', '<i class="fa fa-edit"></i>  <span>Users Management</span>'); ?></li>
+        <?php echo anchor('users_list', '<i class="fa fa-edit"></i>  <span>Users Management</span>'); ?>
     </li>
 
 

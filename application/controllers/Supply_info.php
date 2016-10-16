@@ -207,6 +207,7 @@ class Supply_info extends CI_Controller {
             }
             $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
             $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
+            $fit['fit_comment'] = $this->input->post('fit_comment');
             //        echo '<pre>'; print_r($fit);exit();
             $id_supply_fit_register = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
             //        die("<pre>" . var_dump($id_supply_fit_register));

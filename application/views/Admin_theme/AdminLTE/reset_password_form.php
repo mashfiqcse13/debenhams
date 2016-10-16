@@ -20,11 +20,7 @@
     <section class="content" style="min-height: 600px;">
         <div class="box">
             <?php
-            $attributes = array(
-                'class' => 'form-horizontal',
-                'name' => 'form',
-                'method' => 'post');
-            echo form_open('users_list/reset_password', $attributes)
+            $attributes = array( 'class' => 'form-horizontal');
             ?>
             <div class="box-header">
                 <h2>Reset Password</h2>
@@ -46,7 +42,7 @@
                     'size' => 30,
                 );
                 ?>
-                <?php // echo form_open($this->uri->uri_string()); ?>
+                <?php echo form_open($this->uri->uri_string(), $attributes); ?>
                 <div class="form-group ">
                     <?php echo form_label('New Password', $new_password['id'],array('class' =>'col-md-3')); ?>
                     <div class="col-md-9">

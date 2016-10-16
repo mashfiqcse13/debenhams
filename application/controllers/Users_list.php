@@ -177,88 +177,7 @@ class Users_list extends ci_controller {
 //        $this->load->view('forgot_password_form', $data);
     }
     
-//    public function forgot_password() {
-//    $this->load->library('form_validation');
-//    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|min_length[5]|max_length[125]');
-//
-//    if ($this->form_validation->run() == FALSE) {
-//      $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-//        $data['Title'] = 'Forget Password';
-//        $data['base_url'] = base_url();
-//        $this->load->view($this->config->item('ADMIN_THEME') . 'forgot_password_form', $data);
-//    } else {
-//      $email = $this->input->post('email');
-//
-//      $this->db->where('email', $email);
-//      $this->db->from('users');
-//      $num_res = $this->db->count_all_results();
-//      
-//      if ($num_res == 1) {
-//        // Make a small string (code) to assign to the user // to indicate they've requested a change of // password
-//        $code = mt_rand('5000', '200000');
-//        $data = array(
-//          'new_password_requested' => $code,
-//        );
-//
-//        $this->db->where('email', $email);
-//        if ($this->db->update('users', $data)) {
-//          // Update okay, send email
-//            $from_email = $this->config->item('webmaster_email', 'tank_auth');
-//          $url = site_url('users_list/new_password').$code;
-//          $body = "\nPlease click the following link to reset your password:\n\n".$url."\n\n";
-//          if (mail($email, 'Password reset', $body, 'From: '.$from_email)) {
-//            $data['submit_success'] = true;
-////            $this->load->view('signin/signin', $data);
-//                        redirect('admin');
-//          }
-//        } else {
-//          // Some sort of error happened, redirect user // back to form
-//          redirect('users_list/forgot_password');
-//        }
-//      } else {
-//        // Some sort of error happened, redirect user back // to form
-//        redirect('users_list/forgot_password');
-//      }
-//    }
-//  }
-  
-//  public function new_password() {
-//    $this->load->library('form_validation');
-//    $this->form_validation->set_rules('code', 'Code', 'required|min_length[4]|max_length[7]');
-//    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|min_length[5]|max_length[125]');
-//    $this->form_validation->set_rules('password1', 'Password', 'required|min_length[5]|max_length[15]');
-//    $this->form_validation->set_rules('password2', 'Confirmation Password', 'required|min_length[5]|max_length[15]|matches[password1]');
-//    
-//    // Get Code from URL or POST and clean up
-//    if ($this->input->post()) {
-//      $data['code'] = xss_clean($this->input->post('code'));
-//    } else {
-//      $data['code'] = xss_clean($this->uri->segment(3));
-//    }
-//
-//    if ($this->form_validation->run() == FALSE) {
-//      $this->load->view('signin/new_password', $data);
-//    } else {
-//      // Does code from input match the code against the // email
-//      $this->load->model('Signin_model');
-//      $email = xss_clean($this->input->post('email'));
-//      if (!$this->Signin_model->does_code_match($data['code'], $email)) {
-//        // Code doesn't match
-//        redirect ('signin/forgot_password');
-//      } else {// Code does match
-//        $this->load->model('Register_model');
-//        $hash = $this->encrypt->sha1($this->input->post('password1'));
-//
-//        $data = array(
-//          'user_hash' => $hash
-//        );
-//
-//        if ($this->Register_model->update_user($data, $email)) {
-//          redirect ('signin');
-//        }
-//      }
-//    }
-//  }
+//  
     
     /**
      * Send email message of given type (activate, forgot_password, etc.)
@@ -302,7 +221,7 @@ class Users_list extends ci_controller {
             if (!is_null($data = $this->tank_auth->reset_password(
                             $user_id, $new_pass_key, $this->form_validation->set_value('new_password')))) { // success
                 $data['site_name'] = $this->config->item('website_name', 'tank_auth');
-                print_r($data);exit();
+//                print_r($data);exit();
                 // Send email with new password
                 $this->_send_email('reset_password', $data['email'], $data);
                 redirect('admin');
@@ -321,7 +240,7 @@ class Users_list extends ci_controller {
             }
         }
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
-        $data['Title'] = 'Forget Password';
+        $data['Title'] = 'Reset Password';
         $data['base_url'] = base_url();
         $this->load->view($this->config->item('ADMIN_THEME') . 'reset_password_form', $data);
 //        $this->load->view('reset_password_form', $data);

@@ -57,7 +57,9 @@
                         </div> 
                         
                         <input type="submit" class="btn btn-success pull-right" value="Update" />
-                        <a href="<?php echo base_url();?>index.php/users_list/forgot_password" class="pull-right forget">Forget Password</a>
+                        <a href="<?= site_url('users_list/forgot_password'); ?>" class="pull-right forget">Forget Password</a>
+                        
+                        
                     </div>
                     <?php
                 }

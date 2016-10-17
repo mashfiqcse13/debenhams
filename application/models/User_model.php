@@ -38,5 +38,7 @@ class User_model extends CI_Model {
         return $query = $this->db->get()->result();
     }
     
+   
+    
 
 }

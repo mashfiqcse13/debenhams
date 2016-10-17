@@ -131,7 +131,7 @@ $captcha = array(
                 
                 <?php echo form_checkbox($remember); ?>
                             <?php echo form_label('Remember me', $remember['id']); ?>
-                <p class="login-help"><?php echo anchor('/auth/forgot_password/', 'Forgot password'); ?></p>
+                <p class="login-help"><?php echo anchor('login/forgot_password', 'Forgot password'); ?></p>
                 <?php echo form_close(); ?>
             </div>
 

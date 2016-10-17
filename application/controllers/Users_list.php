@@ -159,7 +159,7 @@ class Users_list extends ci_controller {
                     $data['site_name'] = $this->config->item('website_name', 'tank_auth');
 //                    print_r($data);exit();
                     // Send email with password activation link
-                    $this->_send_email('forgot_password', $data['email'], $data);
+                    $this->_send_email('forgot_password_in', $data['email'], $data);
 
 //                    $this->_show_message($this->lang->line('auth_message_new_password_sent'));
                 } else {
@@ -245,5 +245,6 @@ class Users_list extends ci_controller {
         $this->load->view($this->config->item('ADMIN_THEME') . 'reset_password_form', $data);
 //        $this->load->view('reset_password_form', $data);
     }
-
+    
+    
 }

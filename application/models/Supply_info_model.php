@@ -63,6 +63,42 @@ class Supply_info_model extends ci_model {
         }
         return $sql;
     }
+//    function select_all_unused_supplier(){
+//        $sql = array();
+//        $this->db->select('*');
+//        $this->db->from('supplyer');
+//        $results = $this->db->get()->result();
+//        foreach ($results as $result){
+//            $id = $result->id_supplyer;
+//            $data = $this->supplier_exist_in_supply_info($id);
+//            if (empty($data)) {
+//                $this->db->select('*');
+//                $this->db->from('supplyer');
+//                $this->db->where('id_supplyer', $id);
+//                $sql[] = $this->db->get()->row();
+//            }
+//        }
+//        return $sql;
+//    }
+//    function select_all_unused_department(){
+//        $sql = array();
+//        $this->db->select('*');
+//        $this->db->from('department');
+//        $results = $this->db->get()->result();
+//        foreach ($results as $result){
+//            $id = $result->id_department;
+//            $data = $this->supplier_exist_in_supply_info($id);
+//            if (empty($data)) {
+//                $this->db->select('*');
+//                $this->db->from('department');
+//                $this->db->where('id_department', $id);
+//                $sql[] = $this->db->get()->row();
+//            }
+//        }
+//        return $sql;
+//    }
+    
+    
 
     function supply_info($id) {
         $this->db->select('*');
@@ -71,6 +107,18 @@ class Supply_info_model extends ci_model {
         $query = $this->db->get()->row();
         return $query;
     }
+//    function supplier_exist_in_supply_info($id){
+//        $this->db->select('*');
+//        $this->db->from('supply_info');
+//        $this->db->where('id_supplyer', $id);
+//        return $this->db->get()->row();        
+//    }
+//    function department_exist_in_supply_info($id){
+//        $this->db->select('*');
+//        $this->db->from('supply_info');
+//        $this->db->where('id_department', $id);
+//        return $this->db->get()->row();        
+//    }
 
 //    ajax search
     function select_fit_name_by_fit_id($id) {

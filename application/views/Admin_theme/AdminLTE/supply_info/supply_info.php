@@ -51,7 +51,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Season:</label>
                                                 <div class="col-md-9">
-                                                    <select name="id_supply_session" id="" class="form-control select">
+                                                    <select name="id_supply_session" id="" class="form-control select2">
                                                         <option value="0">Select Season Name</option>
                                                         <?php
                                                         foreach ($all_session as $session) {
@@ -61,7 +61,7 @@
                                                         }
                                                         ?>
                                                         <input type="hidden" name="id_supply_info" value="<?php echo $value->id_supply_info; ?>" id="id_supply_info"/>
-                                                        <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                                    ?>" id="id_fit"/>
+                                                        <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                                                        ?>" id="id_fit"/>
                                                     </select>
                                                 </div>
 
@@ -69,7 +69,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Department:</label>
                                                 <div class="col-md-9">
-                                                    <select name="id_department" id="" class="form-control select">
+                                                    <select name="id_department" id="department" class="form-control select2">
                                                         <option value="0">Select Department Name</option>
                                                         <?php
                                                         foreach ($all_department as $department) {
@@ -79,6 +79,7 @@
                                                         }
                                                         ?>
                                                     </select>
+                                                    <span id="dep_error" style="color: red; font-weight: bold"></span>
                                                 </div>
 
                                             </div>
@@ -92,7 +93,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Supplier:</label>
                                                 <div class="col-md-9">
-                                                    <select name="id_supplyer" id="" class="form-control select">
+                                                    <select name="id_supplyer" id="supplier" class="form-control select2">
                                                         <option value="blank">Select Supplier</option>
                                                         <?php
                                                         foreach ($all_supplyer as $supplyer) {
@@ -102,6 +103,7 @@
                                                         }
                                                         ?>
                                                     </select>
+                                                    <span id="sup_error" style="color: red; font-weight: bold"></span>
                                                 </div>
 
                                             </div>
@@ -111,7 +113,7 @@
                                                 <div class="form-group ">
                                                     <label class="col-md-3">Sample Step Name:</label>
                                                     <div class="col-md-9">
-                                                        <select name="id_supply_fit_name" id="fit_name" class="form-control select" required>
+                                                        <select name="id_supply_fit_name" id="fit_name" class="form-control select2" required>
                                                             <option value="0">Select Sample Step Name</option>
                                                             <?php
                                                             foreach ($all_fit_name as $fit) {
@@ -142,7 +144,7 @@
                                                 <div class="form-group " id="approved_by">
                                                     <label class="col-md-3" >Fit Sample Approved BY:</label>
                                                     <div class="col-md-9">
-                                                        <select name="sample_approved" id="" class="form-control select">
+                                                        <select name="sample_approved" id="" class="form-control select2">
                                                             <option value="0">Select Sample Step Pass/Fail By</option>
                                                             <option value="1">Pass By United Kingdom</option>
                                                             <option value="2">Pass By Bangladesh</option>
@@ -166,7 +168,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Fit Sample Result:</label>
                                                 <div class="col-md-9">
-                                                    <select name="sample_result" id="" class="form-control select">
+                                                    <select name="sample_result" id="" class="form-control select2">
                                                         <option value="0">Select Fit Sample Result</option>
                                                         <option value="1">Pass</option>
                                                         <option value="2">Fail</option>
@@ -177,7 +179,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Fit Sample Approved By:</label>
                                                 <div class="col-md-9">
-                                                    <select name="approved_by" id="" class="form-control select">
+                                                    <select name="approved_by" id="" class="form-control select2">
                                                         <option value="0">Select Fit Sample  Approved By</option>
                                                         <option value="1">United Kingdom</option>
                                                         <option value="2">Bangladesh</option>
@@ -187,7 +189,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Lab Test Report:</label>
                                                 <div class="col-md-9">
-                                                    <select name="lab_test_report" id="" class="form-control select">
+                                                    <select name="lab_test_report" id="" class="form-control select2">
                                                         <option value="0">Select Lab Test Report</option>
                                                         <option value="1">Pass</option>
                                                         <option value="2">Fail</option>
@@ -198,7 +200,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-3">Pattern Block:</label>
                                                 <div class="col-md-9">
-                                                    <select name="pattern_block" id="" class="form-control select">
+                                                    <select name="pattern_block" id="" class="form-control select2">
                                                         <option value="0">Select Pattern Block</option>
                                                         <option value="1">United Kingdom</option>
                                                         <option value="2">Bangladesh</option>
@@ -224,11 +226,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group ">
-                                            <label class="col-md-3">File Upload:</label>
-                                            <div class="col-md-9">
-                                                <input type="file" multiple name="file_upload[]" size="20" />
+                                                <label class="col-md-3">File Upload:</label>
+                                                <div class="col-md-9">
+                                                    <input type="file" multiple name="file_upload[]" size="20" />
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                     <input type="submit"  value="Update" id="save" class="btn btn-success pull-right" style="margin-right: 10px; padding: 10px 30px; font-weight: bold;"/>
@@ -317,7 +319,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Department:</label>
                                             <div class="col-md-9">
-                                                <select name="id_department" id="" class="form-control select2">
+                                                <select name="id_department" id="department" class="form-control select2">
                                                     <option value="0">Select Department No</option>
                                                     <?php
                                                     foreach ($all_department as $department) {
@@ -327,6 +329,7 @@
                                                     }
                                                     ?>
                                                 </select>
+                                                 <span id="dep_error" style="color: red; font-weight: bold"></span>
                                             </div>
 
                                         </div>
@@ -340,7 +343,7 @@
                                         <div class="form-group ">
                                             <label class="col-md-3">Supplier:</label>
                                             <div class="col-md-9">
-                                                <select name="id_supplyer" id="" class="form-control select2">
+                                                <select name="id_supplyer" id="supplier" class="form-control select2">
                                                     <option value="blank">Select Supplier</option>
                                                     <?php
                                                     foreach ($all_supplyer as $supplyer) {
@@ -350,6 +353,7 @@
                                                     }
                                                     ?>
                                                 </select>
+                                                <span id="sup_error" style="color: red; font-weight: bold"></span>
                                             </div>
                                         </div>
                                         <div class="form-group ">
@@ -539,7 +543,7 @@
 
 //                        $('#info').load(document.URL + '#info');
                         alert('Style is inserted');
-                            window.location.reload(true);
+                        window.location.reload(true);
                         $('#select_style').val(res);
 //                            window.location.reload();
                         // Show Entered Values;
@@ -614,45 +618,52 @@
                 });
             }
         });
-
-//        $('#style_submit').click(function (e) {
-//            e.preventDefault();
-//            var style_no = $('#no').val();
-//            $('#style_load').load(window.location);
-//            $('#select_style').val(37);
-//            //        alert(style_no);
-////            $.ajax({
-////                url: '<?php echo base_url(); ?>index.php/supply_info/save_style',
-////                data: {'style_no': style_no},
-////                dataType: 'text',
-////                type: 'POST',
-////            });
-//            $.ajax({
-//                url: '<?php echo base_url(); ?>index.php/supply_info/last_style_info',
-////                data: {'style_no': style_no},
-//                dataType: 'text',
-//                type: 'POST',
-//                success: function(data){
-//                    alert(data);
-//                    
-//                },
-//            });
-//        });
+        $('#department').change(function () {
+            var department = this.value;
+            $.ajax({
+                url: '<?php echo base_url(); ?>index.php/supply_info/check_department',
+                data: {'id_department': department},
+                type: "POST",
+                dataType: 'text',
+                success: function (response) {
+                    if (response) {
+                        $("#dep_error").html('Department is already exist!!').show();
+                    }else {
+                        $("#dep_error").html('Style no is already exist!!').hide();
+                    }
+                },
+            });
+        });
+        $('#supplier').change(function () {
+            var supplier = this.value;
+            $.ajax({
+                url: '<?php echo base_url(); ?>index.php/supply_info/check_supplier',
+                data: {'id_supplier': supplier},
+                type: "POST",
+                dataType: 'text',
+                success: function (response) {
+//                    alert(response);
+                    if (response) {
+                        $("#sup_error").html('Supplier is already exist!!').show();
+                    }else {
+                        $("#sup_error").html('Style no is already exist!!').hide();
+                    }
+                },
+            });
+        });
     </script>
 
     <?php if ($this->uri->segment(3) == 'edit') { ?>
         <script>
 
             document.forms['form'].elements['id_supply_session'].value = "<?php echo $value->id_supply_session; ?>";
-            document.forms['form'].elements['id_department'].value = "<?php echo $value->id_department; ?>";
+                    document.forms['form'].elements['id_department'].value = "<?php echo $value->id_department; ?>";
             document.forms['form'].elements['id_supplyer'].value = "<?php echo $value->id_supplyer; ?>";
             document.forms['form'].elements['sample_result'].value = "<?php echo $value->sample_result; ?>";
             document.forms['form'].elements['approved_by'].value = "<?php echo $value->approved_by; ?>";
             document.forms['form'].elements['lab_test_report'].value = "<?php echo $value->lab_test_report; ?>";
             document.forms['form'].elements['pattern_block'].value = "<?php echo $value->pattern_block; ?>";
-
-
-            //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                                   ?>";
+            //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                                       ?>";
 
             $("input").each(function () {
                 var curTable = $(this).val();
@@ -664,7 +675,6 @@
             //        alert(sendCheck);
             var receiveCheck = $('#receive').val();
             $('#approved_by').hide();
-
             if (sendCheck == "1/1/1970" || receiveCheck == "1/1/1970") {
                 $('#send').val(' ');
                 $('#receive').val(' ');
@@ -679,7 +689,6 @@
             }
             if (select != 0) {
                 $.post("<?php echo base_url(); ?>index.php/supply_info/register_info", {"id_supply_info": id_supply});
-
                 var id = select;
                 $("#id_fit").val(select);
                 $.ajax({
@@ -690,7 +699,6 @@
                     success: function (data) {
                         //                                                            alert(data);
                         var obj = $.parseJSON(data);
-
                         $.each(obj.supply_fit, function (i, fit) {
                             var date_send = new Date(fit['supply_fit_register_date_send']);
                             var date_send_change = formatDate(date_send);

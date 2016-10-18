@@ -94,6 +94,7 @@ class Supply_info extends CI_Controller {
         $data['all_session'] = $this->Supply_info_model->select_all('supply_session');
         $data['all_department'] = $this->Supply_info_model->select_all('department');
         $data['all_supplyer'] = $this->Supply_info_model->select_all('supplyer');
+//        print_r($data['all_supplyer']);exit();
         $data['all_fit_name'] = $this->Supply_info_model->select_all('supply_fit_name');
         $supply_id = $this->uri->segment(4);
         $data['all_supply_info'] = $this->Supply_info_model->supply_info_by_supply_id($supply_id);
@@ -256,6 +257,26 @@ class Supply_info extends CI_Controller {
             echo json_encode($result);
         } else if (empty($result)) {
             echo json_encode($something);
+        }
+    }
+    
+    function check_department(){
+        $something = '';
+        $id = $this->input->post('id_department');
+        $result = $this->db->get_where('supply_info', array('id_department' => $id))->row();
+         if ($result) {
+            echo json_encode($result);
+        } else if (empty($result)) {
+             return false;
+        }
+    }
+    function check_supplier(){
+        $id = $this->input->post('id_supplier');
+        $result = $this->db->get_where('supply_info', array('id_supplyer' => $id))->row();
+         if ($result) {
+            echo json_encode($result);
+        } else if (empty($result)) {
+            return false;
         }
     }
 

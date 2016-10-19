@@ -135,7 +135,7 @@ class Supply_info_model extends ci_model {
         $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
         $this->db->where('supply_info.id_supply_info', $supply_id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row();
     }
 
     function supply_register_by_supply_id($supply_id) {

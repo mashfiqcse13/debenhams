@@ -38,7 +38,7 @@
         </ul>
     </li>
     <li class="treeview">
-        <?php echo anchor('users_list/account_managment', '<i class="fa fa-edit"></i>  <span>Account Management</span>'); ?>
+        <?php echo anchor('users_list/account_managment', '<i class="fa fa-edit"></i>  <span>User Management</span>'); ?>
     </li>
 
     

@@ -198,8 +198,9 @@ class Supply_info extends CI_Controller {
         $data['last_modified'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
         if ($_FILES['file_upload']['error'][0] == '0') {
-            $data['file_upload'] = implode(",", $this->do_upload($_FILES));
+            $data['file_upload'] = $this->input->post('prev_upload').','. implode(",", $this->do_upload($_FILES));
         }
+//        echo '<pre>'; print_r($data['file_upload']);exit();
         $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
         $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();
@@ -273,6 +274,15 @@ class Supply_info extends CI_Controller {
     function check_supplier(){
         $id = $this->input->post('id_supplier');
         $result = $this->db->get_where('supply_info', array('id_supplyer' => $id))->row();
+         if ($result) {
+            echo json_encode($result);
+        } else if (empty($result)) {
+            return false;
+        }
+    }
+    function check_session(){
+        $id = $this->input->post('id_session');
+        $result = $this->db->get_where('supply_info', array('id_supply_session' => $id))->row();
          if ($result) {
             echo json_encode($result);
         } else if (empty($result)) {

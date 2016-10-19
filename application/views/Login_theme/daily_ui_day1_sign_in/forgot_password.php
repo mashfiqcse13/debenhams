@@ -46,7 +46,7 @@ $login = array(
             </div>
             <div class="login-box animated fadeInUp">
                 <div class="box-header">
-                    <h2>Forget Password</h2>
+                    <h2>Forget User/Password</h2>
                 </div>
                 <p>An email has been sent to the address provided.</p>
 <?php
@@ -54,14 +54,11 @@ echo form_open('login/forgot_password', $form_attribute);
 echo form_input($login);
 ?><br />
                 <?php echo form_submit('btn', 'SEND',$submit_attr); ?> <br />
+                <p class="login-help"><?php echo anchor('login', 'Login'); ?></p>
                     <?php echo form_close(); ?>
             </div>
 
-            <section class="about">
-                <p class="about-links">
-                    <?= anchor($SITE['website'], "Main Site", 'target="_blank"') ?>
-                    <?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('#', 'Register'); ?>       
-                </p>
+            <section class="about">                
                 <p class="about-author">
                     &copy; <?= date("Y") ?> <?= anchor($SITE['website'], $SITE['name'], 'target="_blank"') ?>
                     Developed by <?= anchor($DEVELOPER['website'], $DEVELOPER['name'], 'target="_blank"') ?>  

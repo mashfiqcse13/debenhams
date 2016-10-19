@@ -25,7 +25,7 @@
                     'method' => 'get',
                     'name' => 'form',
                     'method' => 'post');
-                echo form_open('users_list/update_info', $attributes)
+                echo form_open('users_list/update_account_management', $attributes)
                 ?>
                 <div class="box-header">
                     <h2>Users Info</h2>
@@ -37,8 +37,7 @@
                         <div class="form-group ">
                             <label class="col-md-3">User Name:</label>
                             <div class="col-md-9">
-                                <p><?php echo $user->username;?></p>
-                                <input type="hidden" name="username" class="form-control" value="<?php echo $user->username; ?>"/>
+                                <input type="text" name="username" class="form-control" value="<?php echo $user->username; ?>"/>
                                 <input type="hidden" name="id" value="<?php echo $user->id; ?>" />
                                 <input type="hidden" name="id_user_type" value="<?php echo $user->id_user_type; ?>" />
                             </div>
@@ -57,7 +56,6 @@
                         </div> 
                         
                         <input type="submit" class="btn btn-success pull-right" value="Update" />
-                        <a href="<?= site_url('users_list/forgot_password'); ?>" class="pull-right forget">Forget Password</a>
                         
                         
                     </div>

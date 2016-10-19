@@ -8,7 +8,6 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
         <tr>
             <th>Style No</th>
             <th>Season</th>
-            <th style="display:none;">supply id</th>
             <th>Department</th>
             <th>Style Description</th>
             <th>Supplier Name</th>

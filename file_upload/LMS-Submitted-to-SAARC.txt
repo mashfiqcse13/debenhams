@@ -1,0 +1,57 @@
+Library Management Features:
+An integrated library system (ILS), also known as a library management system (LMS)  is an enterprise resource planning system for a library, used to track items owned, orders made, bills paid, and patrons who have borrowed.
+An ILS usually comprises a relational database, software to interact with that database, and two graphical user interfaces (one for patrons, one for staff). Most ILSes separate software functions into discrete programs called modules, each of them integrated with a unified interface. Examples of modules might include:
+•	acquisitions (ordering, receiving, and invoicing materials)
+•	cataloging (classifying and indexing materials)
+•	circulation (lending materials to patrons and receiving them back)
+•	serials (tracking magazine, journals, and newspaper holdings)
+•	the OPAC (public interface for users)
+
+The basic modules are:
+?	Keep record of different categories like; Books, Journals, Newspapers, Magazines, etc.
+?	Classify the books subject wise.
+?	Online access for registered user to see the status of their books.
+?	Easy way to enter new books.
+?	Keep record of complete information of a book like; Book name, Author name, Publisher’s name, Date/ Year of publication, Cost of the book, Book purchasing date/ Bill.
+?	Easy way to make a check-out.
+?	Easy way to make a check-in.
+?	Automatic fine calculation for late returns.
+?	Different criteria for searching a book.
+?	Different kind of reports like; total no. of books, no. of issued books, no. of journals, etc.
+?	Easy way to know how many books are issued to a particular member.
+?	Easy way to know the status of a book.
+?	Event calendar for librarian to remember their dates.
+?	My Notes section for librarian to write any note.
+?	Completely cloud based Library Management System.
+?	No need to invest heavily on Hardware.
+?	Data of past database of SAC library should be inserted as required by new database.
+.............................................................................................................
+
+?	Back-end – Admin Panel:
+?	Dashboard (graphical report of recent activities)
+?	General settings (system customization)
+?	Member management (member types and members)
+?	Book management (book categories and books )
+?	Circulation management (circulation settings and issue & return books to/from members)
+?	Requested books by members (accept or reject requests)
+?	Daily read books (books are being read everyday)
+?	Report (fine report and notification report)
+?	Online read facility (PDF,ePUB)
+?	Multilingual
+?	RTL Support
+?	Back-end – Member Panel:
+?	Advanced book search
+?	View circulation history
+?	View status of requested books
+?	View notifications from admin
+?	Read e-book online (if available)
+?	Change password
+?	Multilingual
+?	RTL Support
+?	Front-end:
+?	Most read books, most issued books, most recent books preview
+?	Advanced book search
+?	Contact page
+?	Member registration
+?	Multilingual
+RTL Support

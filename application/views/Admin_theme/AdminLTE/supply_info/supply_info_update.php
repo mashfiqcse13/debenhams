@@ -60,7 +60,7 @@
                                                 }
                                                 ?>
                                                 <input type="hidden" name="id_supply_info" value="<?php echo $all_supply_info->id_supply_info; ?>" id="id_supply_info"/>
-                                                <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                ?>" id="id_fit"/>
+                                                <input type="hidden" name="id_fit" value="<?php // echo $value->id_supply_fit_register;                   ?>" id="id_fit"/>
                                             </select>
                                         </div>
 
@@ -412,23 +412,17 @@
                                             <input type="file" multiple name="file_upload[]" size="20" /><span style="color: #52A652;">*Select multiple file in one time</span><br />
                                             <?php
                                             $files = explode(',', $all_supply_info->file_upload);
-                                            $i= 1;
+                                            $i = 1;
                                             foreach ($files as $file) {
                                                 if (($file)) {
                                                     ?>
-                                                    <span><?= $file ?></span>
-                                                    <!--<form action="<?php echo site_url('supply_info/delete_upload'); ?>" method="post">-->
-                                                    <!--<button name="delete" ><i class = "fa fa-times"></i></a></button><br />-->
-                                                    <a href="" class="delete" value="<?php echo $i;?>"><input name="file_name[]" id="file_name" type="hidden" value="<?php echo $file; ?>"/><i class = "fa fa-times"></i></a>
-                                                    <!--<input name="id_info" type="hidden" value="<?php echo $file; ?>"/>-->
-                                                    <!--</form>-->  
-                                                    <!--<a href="" class="id_upload"><input type="hidden" value="<?php echo $file; ?>"/> <i class = "fa fa-times"></i></a><br />-->
-                                                    <!--echo '<a href ="'.base_url().''.$file.">'"."'</a>';-->
+                                                    <span><?= $file ?> <i class = "fa fa-times delete"></i></span>  <br /> 
+                                                    <!--<input type="text" id="prev" value="<?php echo $file; ?>"/>-->
                                                     <?php
                                                 }
                                             }
                                             ?>
-                                            <input type="hidden" name="prev_upload" value="<?php echo $all_supply_info->file_upload; ?>"/>
+                                            <!--<input type="text" name="prev_upload" value="<?php echo $all_supply_info->file_upload; ?>"/>-->
                                         </div>
                                     </div>
                                 </div>
@@ -452,6 +446,12 @@
     <!-- /.content-wrapper -->
 
     <?php include_once __DIR__ . '/../footer.php'; ?>
+    <style type="text/css">
+        .delete{
+            cursor: pointer;
+
+        }
+    </style>
     <script type="text/javascript">
         setTimeout(function () {
             $('#message').fadeOut();
@@ -474,7 +474,7 @@
         document.forms['form'].elements['approved_by'].value = "<?php echo $all_supply_info->approved_by; ?>";
         document.forms['form'].elements['lab_test_report'].value = "<?php echo $all_supply_info->lab_test_report; ?>";
         document.forms['form'].elements['pattern_block'].value = "<?php echo $all_supply_info->pattern_block; ?>";
-        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                                                       ?>";
+        //        document.forms['form'].elements['id_supply_fit_name'].value = "<?php // echo $register->id_supply_fit_name;                                                          ?>";
 
         $("input").each(function () {
             var curTable = $(this).val();
@@ -673,22 +673,35 @@
 //            alert(id_upload);
 //        });
 
-        $('.delete').click(function (event) {
-            event.preventDefault();
-            var test = this.value;
+//        $('span').click(function (event) {
+//            event.preventDefault();
+//            var test = $(this).text;
 //            alert(test);
-            $('input[name = "file_name[]"]').each(function () {
-//            $('input[name = "file_name[]"]').indexOf("Apple")
-                var id_upload = $(this).find();
-                alert(id_upload);
-                var id_supply_info = <?php echo $all_supply_info->id_supply_info; ?>;
-                $.ajax({
-                    url: '<?php echo base_url(); ?>index.php/supply_info/delete_upload',
-                    data: {'file_name': id_upload, 'id_supply_info': id_supply_info},
-                    dataType: 'text',
-                    type: 'POST',
-                });
+//            $('input[name = "file_name[]"]').each(function () {
+////            $('input[name = "file_name[]"]').indexOf("Apple")
+//                var id_upload = $(this).find();
+//                alert(id_upload);
+//                var id_supply_info = <?php echo $all_supply_info->id_supply_info; ?>;
+//                $.ajax({
+//                    url: '<?php echo base_url(); ?>index.php/supply_info/delete_upload',
+//                    data: {'file_name': id_upload, 'id_supply_info': id_supply_info},
+//                    dataType: 'text',
+//                    type: 'POST',
+//                });
+//            });
+//        });
+
+        $('span').click(function () {
+            var name = $(this).text();
+//            alert(name);
+            var id_supply_info = <?php echo $all_supply_info->id_supply_info; ?>;
+            $.ajax({
+                url: '<?php echo base_url(); ?>index.php/supply_info/delete_upload',
+                data: {'file_name': name, 'id_supply_info': id_supply_info},
+                dataType: 'text',
+                type: 'POST',
             });
+            $(this).remove();
         });
     </script>
 </div>

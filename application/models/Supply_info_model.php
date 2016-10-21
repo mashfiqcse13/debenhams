@@ -211,23 +211,29 @@ class Supply_info_model extends ci_model {
     }
 
     function delete_upload($id, $delete_image) {
-        die($delete_image);
+//        die($delete_image);
         $this->db->select('file_upload');
         $this->db->from('supply_info');
         $this->db->where('id_supply_info', $id);
         $all_image = $this->db->get()->row();
 //        print_r($all_image);exit();
         $explodeArr = explode(",", $all_image->file_upload);
-//        die($explodeArr);
+//        $length = strlen($value);
+//        die($length);
 
         $updatedColumn = "";
+        $newUpdatedData = "";
         foreach ($explodeArr as $key => $value) {
-            if ($value != $delete_image) {
+            if ($value == $delete_image) {
+                unlink('file_upload/' . $delete_image);
+            } elseif ($value != $delete_image) {
                 $updatedColumn[] = $value; // store data that you dont need to delete
             }
         }
-        $newUpdatedData = implode(",", $updatedColumn);
-        $this->db->set('file_upload',$newUpdatedData);
+        if (is_array($updatedColumn)) {
+            $newUpdatedData = implode(",", $updatedColumn);
+        }
+        $this->db->set('file_upload', $newUpdatedData);
         $this->db->where('id_supply_info', $id);
         $this->db->update('supply_info');
         return true;

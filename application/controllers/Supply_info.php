@@ -210,6 +210,7 @@ class Supply_info extends CI_Controller {
 
     function update_info() {
         $id = $this->input->post('id_supply_info');
+        $prev_file = $this->db->get_where('supply_info',array('id_supply_info' => $id))->row();
 //         echo '<pre>'; print_r($_FILES);exit();
         $data['id_supply_session'] = $this->input->post('id_supply_session');
         $data['id_department'] = $this->input->post('id_department');
@@ -223,9 +224,16 @@ class Supply_info extends CI_Controller {
         $data['last_modified'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
         if ($_FILES['file_upload']['error'][0] == '0') {
-            $data['file_upload'] = $this->input->post('prev_upload') . ',' . implode(",", $this->do_upload($_FILES));
+//            $prev_file = $this->input->post('prev_upload');
+            if (empty($prev_file)) {
+                $data['file_upload'] = implode(",", $this->do_upload($_FILES));
+            } else {
+                $data['file_upload'] = $prev_file->file_upload . ',' . implode(",", $this->do_upload($_FILES));
+            }
         }
-//        echo '<pre>'; print_r($data['file_upload']);exit();
+//        echo '<pre>';
+//        print_r($data['file_upload']);
+//        exit();
         $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
         $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();
@@ -314,10 +322,10 @@ class Supply_info extends CI_Controller {
         $delete_image = $this->input->post('file_name');
         $id = $this->input->post('id_supply_info');
 //        die($delete_image);
-        $this->Supply_info_model->delete_upload($id,$delete_image);
+        $this->Supply_info_model->delete_upload($id, $delete_image);
         return true;
     }
-    
+
     function last_style_info() {
         $data = $this->Supply_info_model->last_style_entry();
         print_r($data);
@@ -356,8 +364,11 @@ class Supply_info extends CI_Controller {
 //        
             if (!$this->upload->do_upload('file_upload')) {
                 $error = $this->upload->display_errors();
-                // echo '<pre>';
-                // print_r($error);
+                $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> File Type Is Not Supported!</p></div>';
+                $this->session->set_userdata($sdata);
+//                redirect('search');
+                 echo '<pre>';
+                 print_r($error);
             } else {
                 $fdata['upload_path'] = $this->upload->data();
                 $file_link[] = $fdata['upload_path']['file_name'];
@@ -372,7 +383,7 @@ class Supply_info extends CI_Controller {
         $config = array();
         $config['upload_path'] = './file_upload/';
         $config['allowed_types'] = 'gif|jpeg|jpg|png|tiff|doc|docx|txt|odt|xls|xlsx|pdf|ppt|pptx|pps|ppsx|mp3|m4a|ogg|wav|mp4|m4v|mov|wmv|flv|avi|mpg|ogv|3gp|3g2';
-        $config['max_size'] = '0';
+        $config['max_size'] = '100000000000000';
         $config['overwrite'] = FALSE;
 
         return $config;

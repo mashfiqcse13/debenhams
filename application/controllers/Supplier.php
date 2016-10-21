@@ -33,6 +33,7 @@ class Supplier extends ci_controller{
         $crud = new grocery_CRUD();
         $crud->set_table('supplyer')
                 ->set_subject('Supplier');
+        $crud->unique_fields('name');
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

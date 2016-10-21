@@ -45,13 +45,16 @@ class Supply_style_no extends CI_Controller {
                 ->callback_column('allocated_to', array($this, 'user_name'))
                 ->where($con)
                 ->order_by('id_supply_style_no', 'desc');
-
+        $crud->unique_fields('style_no');
         $crud->callback_add_field('allocated_to', function() {
             return $this->session->userdata('username') . '<input  name="allocated_to" type="hidden" value="' . $this->session->userdata('user_id') . '">';
         });
         $crud->callback_edit_field('allocated_to', function() {
             return $this->session->userdata('username') . '<input  name="allocated_to" type="hidden" value="' . $this->session->userdata('user_id') . '">';
         });
+        
+        
+        
         $crud->set_lang_string('insert_success_message', 'Your data has been successfully stored into the database.<br/>Please wait while you are redirecting to the list page.
    <script type="text/javascript">
     window.location = "' . site_url('supply_info/index/add') . '";
@@ -59,6 +62,9 @@ class Supply_style_no extends CI_Controller {
    <div style="display:none">
    '
         );
+        
+
+        
         $output = $crud->render();
         $data['glosary'] = $output;
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');

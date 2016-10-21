@@ -111,6 +111,31 @@ class Supply_info extends CI_Controller {
         $this->load->view($this->config->item('ADMIN_THEME') . 'supply_info/supply_info', $data);
     }
 
+    function supply_edit($supply_id) {
+        if ($this->session->userdata('user_type') == 1) {
+            $con = ' 1=1 ';
+            $con1 = ' 1=1';
+        } elseif ($this->session->userdata('user_type') == 2) {
+            $id_technician = $this->session->userdata('user_id');
+            $con = "id_technician=$id_technician";
+            $con1 = "allocated_to=$id_technician";
+        }
+        $data['last_style_entry'] = $this->Supply_info_model->last_style_entry();
+        $data['all_style_no'] = $this->Supply_info_model->select_all_by_technician_id($con1);
+        $data['all_session'] = $this->Supply_info_model->select_all('supply_session');
+        $data['all_department'] = $this->Supply_info_model->select_all('department');
+        $data['all_supplyer'] = $this->Supply_info_model->select_all('supplyer');
+        $data['all_fit_name'] = $this->Supply_info_model->select_all('supply_fit_name');
+        $data['all_supply_info'] = $this->Supply_info_model->supply_info_by_supply_id($supply_id);
+//        echo '<pre>';print_r($data['all_supply_info']);exit();
+        $data['all_supply_fit_register'] = $this->Supply_info_model->supply_register_by_supply_id($supply_id);
+//        echo '<pre>';print_r($data['all_supply_fit_register']);exit();
+        $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
+        $data['Title'] = 'Update Info';
+        $data['base_url'] = base_url();
+        $this->load->view($this->config->item('ADMIN_THEME') . 'supply_info/supply_info_update', $data);
+    }
+
     function supply_session($value, $row) {
         return $this->Supply_info_model->get_all($value, 'supply_session', 'id_supply_session');
     }
@@ -198,7 +223,7 @@ class Supply_info extends CI_Controller {
         $data['last_modified'] = date('Y-m-d H:i:s');
         $data['remark'] = $this->input->post('remark');
         if ($_FILES['file_upload']['error'][0] == '0') {
-            $data['file_upload'] = $this->input->post('prev_upload').','. implode(",", $this->do_upload($_FILES));
+            $data['file_upload'] = $this->input->post('prev_upload') . ',' . implode(",", $this->do_upload($_FILES));
         }
 //        echo '<pre>'; print_r($data['file_upload']);exit();
         $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
@@ -208,16 +233,60 @@ class Supply_info extends CI_Controller {
         if (!empty($this->input->post('id_fit'))) {
             $fit['id_supply_info'] = $supply_info_id->id_supply_info;
             $fit['id_supply_fit_name'] = $this->input->post('id_fit');
-            $sample_approved = $this->input->post('sample_approved');
-            if (!empty($sample_approved)) {
-                $fit['sample_approved'] = $sample_approved;
+            if ($fit['id_supply_fit_name'] == 1) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_receive')));
+                $fit['fit_comment'] = $this->input->post('first_fit_comment');
+            }if ($fit['id_supply_fit_name'] == 2) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('second_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('second_supply_fit_register_date_receive')));
+                $fit['fit_comment'] = $this->input->post('second_fit_comment');
+            }if ($fit['id_supply_fit_name'] == 3) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('third_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('third_supply_fit_register_date_receive')));
+                $fit['fit_comment'] = $this->input->post('third_fit_comment');
+            }if ($fit['id_supply_fit_name'] == 4) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('fourth_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('fourth_supply_fit_register_date_receive')));
+                $fit['fit_comment'] = $this->input->post('fourth_fit_comment');
+            }if ($fit['id_supply_fit_name'] == 5) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('fifth_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('fifth_supply_fit_register_date_receive')));
+                $fit['fit_comment'] = $this->input->post('fifth_fit_comment');
+            }if ($fit['id_supply_fit_name'] == 6) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('dev_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('dev_supply_fit_register_date_receive')));
+                $sample_approved = $this->input->post('dev_sample_approved');
+                if (!empty($sample_approved)) {
+                    $fit['sample_approved'] = $sample_approved;
+                }
+            }if ($fit['id_supply_fit_name'] == 7) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('pp_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('pp_supply_fit_register_date_receive')));
+                $sample_approved = $this->input->post('pp_sample_approved');
+                if (!empty($sample_approved)) {
+                    $fit['sample_approved'] = $sample_approved;
+                }
+            }if ($fit['id_supply_fit_name'] == 8) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('wearer_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('wearer_supply_fit_register_date_receive')));
+                $sample_approved = $this->input->post('wearer_sample_approved');
+                if (!empty($sample_approved)) {
+                    $fit['sample_approved'] = $sample_approved;
+                }
+            }if ($fit['id_supply_fit_name'] == 9) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('gold_supply_fit_register_date_send')));
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('gold_supply_fit_register_date_receive')));
+                $sample_approved = $this->input->post('gold_sample_approved');
+                if (!empty($sample_approved)) {
+                    $fit['sample_approved'] = $sample_approved;
+                }
             }
-            $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
-            $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
-            $fit['fit_comment'] = $this->input->post('fit_comment');
-            //        echo '<pre>'; print_r($fit);exit();
+//            echo '<pre>';
+//            print_r($fit);
+//            exit();
             $id_supply_fit_register = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
-            //        die("<pre>" . var_dump($id_supply_fit_register));
+//                    die("<pre>" . var_dump($id_supply_fit_register));
             if ($id_supply_fit_register != FALSE) {
                 $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_supply_fit_register);
             } else {
@@ -241,6 +310,14 @@ class Supply_info extends CI_Controller {
 //        redirect('supply_info');
     }
 
+    function delete_upload() {
+        $delete_image = $this->input->post('file_name');
+        $id = $this->input->post('id_supply_info');
+//        die($delete_image);
+        $this->Supply_info_model->delete_upload($id,$delete_image);
+        return true;
+    }
+    
     function last_style_info() {
         $data = $this->Supply_info_model->last_style_entry();
         print_r($data);
@@ -258,35 +335,6 @@ class Supply_info extends CI_Controller {
             echo json_encode($result);
         } else if (empty($result)) {
             echo json_encode($something);
-        }
-    }
-    
-    function check_department(){
-        $something = '';
-        $id = $this->input->post('id_department');
-        $result = $this->db->get_where('supply_info', array('id_department' => $id))->row();
-         if ($result) {
-            echo json_encode($result);
-        } else if (empty($result)) {
-             return false;
-        }
-    }
-    function check_supplier(){
-        $id = $this->input->post('id_supplier');
-        $result = $this->db->get_where('supply_info', array('id_supplyer' => $id))->row();
-         if ($result) {
-            echo json_encode($result);
-        } else if (empty($result)) {
-            return false;
-        }
-    }
-    function check_session(){
-        $id = $this->input->post('id_session');
-        $result = $this->db->get_where('supply_info', array('id_supply_session' => $id))->row();
-         if ($result) {
-            echo json_encode($result);
-        } else if (empty($result)) {
-            return false;
         }
     }
 
@@ -318,7 +366,8 @@ class Supply_info extends CI_Controller {
         return $file_link;
     }
 
-    private function set_upload_options() {
+    private
+            function set_upload_options() {
         //upload an image options
         $config = array();
         $config['upload_path'] = './file_upload/';

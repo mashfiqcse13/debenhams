@@ -63,6 +63,7 @@ class Supply_info_model extends ci_model {
         }
         return $sql;
     }
+
 //    function select_all_unused_supplier(){
 //        $sql = array();
 //        $this->db->select('*');
@@ -97,8 +98,8 @@ class Supply_info_model extends ci_model {
 //        }
 //        return $sql;
 //    }
-    
-    
+
+
 
     function supply_info($id) {
         $this->db->select('*');
@@ -107,6 +108,7 @@ class Supply_info_model extends ci_model {
         $query = $this->db->get()->row();
         return $query;
     }
+
 //    function supplier_exist_in_supply_info($id){
 //        $this->db->select('*');
 //        $this->db->from('supply_info');
@@ -119,7 +121,6 @@ class Supply_info_model extends ci_model {
 //        $this->db->where('id_department', $id);
 //        return $this->db->get()->row();        
 //    }
-
 //    ajax search
     function select_fit_name_by_fit_id($id) {
         $this->db->select('*');
@@ -133,9 +134,14 @@ class Supply_info_model extends ci_model {
         $this->db->select('*');
         $this->db->from('supply_info');
         $this->db->join('supply_style_no', 'supply_info.id_supply_style_no = supply_style_no.id_supply_style_no', 'left');
+//        $this->db->join('supply_fit_register','supply_info.id_supply_info = supply_fit_register.id_supply_info','left');
+//        $this->db->join('supply_fit_name','supply_fit_register.id_supply_fit_name = supply_fit_name.id_supply_fit_name','left');
         $this->db->where('supply_info.id_supply_info', $supply_id);
-        $query = $this->db->get();
-        return $query->row();
+        return $result = $this->db->get()->row();
+        $this->db->select('*');
+        $this->db->from('supply_fit_register');
+        $this->db->where('id_supply_info', $result->id_supply_info);
+        return $add[] = array($result, $this->db->get()->result());
     }
 
     function supply_register_by_supply_id($supply_id) {
@@ -188,18 +194,43 @@ class Supply_info_model extends ci_model {
         }
         return $data;
     }
-    
-    function get_supply_style_no($style_no){
+
+    function get_supply_style_no($style_no) {
         $this->db->select('*');
         $this->db->from('supply_style_no');
-        $this->db->where('style_no',$style_no);
+        $this->db->where('style_no', $style_no);
         return $this->db->get()->result();
     }
+
 /////////////some testing model/////////////////////
-    function last_style_entry(){
-      return  $this->db->select('*')
-                ->from('supply_style_no')
-                ->order_by('id_supply_style_no','desc')
-                ->get()->row();
+    function last_style_entry() {
+        return $this->db->select('*')
+                        ->from('supply_style_no')
+                        ->order_by('id_supply_style_no', 'desc')
+                        ->get()->row();
     }
+
+    function delete_upload($id, $delete_image) {
+        die($delete_image);
+        $this->db->select('file_upload');
+        $this->db->from('supply_info');
+        $this->db->where('id_supply_info', $id);
+        $all_image = $this->db->get()->row();
+//        print_r($all_image);exit();
+        $explodeArr = explode(",", $all_image->file_upload);
+//        die($explodeArr);
+
+        $updatedColumn = "";
+        foreach ($explodeArr as $key => $value) {
+            if ($value != $delete_image) {
+                $updatedColumn[] = $value; // store data that you dont need to delete
+            }
+        }
+        $newUpdatedData = implode(",", $updatedColumn);
+        $this->db->set('file_upload',$newUpdatedData);
+        $this->db->where('id_supply_info', $id);
+        $this->db->update('supply_info');
+        return true;
+    }
+
 }

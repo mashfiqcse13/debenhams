@@ -57,7 +57,7 @@ $submit_attr = 'class="login-submit"';
 
             <section class="about">
                 <p class="about-author">
-                    &copy; <?= date("Y") ?> <?= anchor($SITE['website'], $SITE['name'], 'target="_blank"') ?>
+                    &copy; <?= date("Y") ?> <?=$SITE['name']?>
                     Developed by <?= anchor($DEVELOPER['website'], $DEVELOPER['name'], 'target="_blank"') ?>  
                 </p>
             </section>

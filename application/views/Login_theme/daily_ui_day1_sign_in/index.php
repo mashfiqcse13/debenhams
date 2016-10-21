@@ -131,13 +131,13 @@ $captcha = array(
                 
                 <?php echo form_checkbox($remember); ?>
                             <?php echo form_label('Remember me', $remember['id']); ?>
-                <p class="login-help"><?php echo anchor('login/forgot_password', 'Forget user/password'); ?></p>
+                <p class="login-help"><?php echo anchor('login/forgot_password', 'Forgotten account?'); ?></p>
                 <?php echo form_close(); ?>
             </div>
 
             <section class="about">
                 <p class="about-author">
-                    &copy; <?= date("Y") ?> <?= anchor($SITE['website'], $SITE['name'], 'target="_blank"') ?>
+                    &copy; <?= date("Y") ?> <?=$SITE['name']?>
                     Developed by <?= anchor($DEVELOPER['website'], $DEVELOPER['name'], 'target="_blank"') ?>  
                 </p>
             </section>

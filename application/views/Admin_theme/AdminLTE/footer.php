@@ -7,7 +7,7 @@
         <p>Developed by <a href="<?php echo $this->config->config['DEVELOPER']['website']; ?>"><?php echo $this->config->config['DEVELOPER']['name']; ?></a></p>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#"><?php echo $this->config->item('SITETITLE'); ?></a>.</strong>  All rights reserved. 
+    <strong>Copyright &copy; 2016 <a href="<?= site_url('Admin'); ?>"><?php echo $this->config->item('SITETITLE'); ?></a>.</strong>  All rights reserved. 
   </footer>
 
   <!-- Control Sidebar -->
@@ -89,7 +89,11 @@
 </div>
 <!-- ./wrapper -->
 
-
+<style type="text/css">
+    .sidebar-menu li:hover > ul{
+	display: block;
+}
+</style>
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo $theme_asset_url ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
 <?php if (isset($glosary)): ?>
@@ -198,6 +202,14 @@
     });
     
     $('#reservation').val('');
+    
+//    $('.treeview').mouseenter(function(){
+//        $('.treeview >.treeview-menu').show();
+//    });
+//    $('#has_dropdown').mouseleave(function(){
+//        $('#has_menu').hide();
+//    });
+    
   });
 </script>
 </body>

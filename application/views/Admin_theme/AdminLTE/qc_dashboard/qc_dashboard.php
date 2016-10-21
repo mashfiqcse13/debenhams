@@ -108,10 +108,10 @@
                                     <th class="nowrap">File Receive Date</th>
                                     <th>P.P Meeting Date</th>
                                     <th>Wash Approval Date</th>
-                                    <th>Wash Comment</th>
+                                    <th style="min-width: 250px;">Wash Comment</th>
                                     <th>In-Line Date</th>
                                     <th>Final Inspection Date</th>
-                                    <th>Orders Comment</th>                                    
+                                    <th style="min-width: 250px;">Orders Comment</th>                                    
                                     <th>Data Entry Date of QC</th>
                                     <th>Last Modified Date</th>
                                     <th>Actions</th>
@@ -128,10 +128,10 @@
                                         <td class="nowrap"><?php echo date('d/m/Y', strtotime($all_informations->file_receive_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->wash_approval_date)); ?></td>
-                                        <td><?php echo $all_informations->wash_comment; ?></td>
+                                        <td class="justy"><?php echo $all_informations->wash_comment; ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
-                                        <td><?php echo $all_informations->orders_comment; ?></td>
+                                        <td class="justy"><?php echo $all_informations->orders_comment; ?></td>
                                         <td><?php echo $all_informations->date; ?></td>
                                         <td><?php if($all_informations->last_modified_qc=='0000-00-00 00:00:00' || $all_informations->last_modified_qc=='11/30/-0001'){echo '';}else{echo $all_informations->last_modified_qc;} ?></td>
                                         <td><a href="<?= site_url('qc_dashboard/reduce/' . $all_informations->id_qc_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
@@ -168,6 +168,9 @@
         text-align: center;
     }
     table{text-align: center;}
+    .justy{
+        text-align: justify;
+    }
 </style>
 <script type="text/javascript">
     $('#example1').DataTable({

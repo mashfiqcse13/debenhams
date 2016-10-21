@@ -30,7 +30,7 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
             <th>Fifth Fit Receive Date</th>
             <th>Fifth Fit Comment</th>
             <th>Fit Sample Pass/Fail</th>
-            <th>Fit Sample Approved By</th>
+            <th>Fit Sample Pass/Fail By</th>
             <th>PP Send Date</th>
             <th>PP Receive Date</th>
             <th>PP Pass/Fail By</th>

@@ -197,28 +197,28 @@
                                 <th>Season</th>
                                 <th style="display:none;">supply id</th>
                                 <th>Department</th>
-                                <th>Style Description</th>
+                                <th class="comment">Style Description</th>
                                 <th>Supplier Name</th>
                                 <th>Dev Send Date</th>
                                 <th>Dev Receive Date</th>
                                 <th>Dev Pass/Fail By</th>
                                 <th>First Fit Send Date</th>
                                 <th>First Fit Receive Date</th>
-                                <th>First Fit Comment</th>
+                                <th class="comment">First Fit Comment</th>
                                 <th>Second Fit Send Date</th>
                                 <th>Second Fit Receive Date</th>
-                                <th>Second Fit Comment</th>
+                                <th class="comment">Second Fit Comment</th>
                                 <th>Third Fit Send Date</th>
                                 <th>Third Fit Receive Date</th>
-                                <th>Third Fit Comment</th>
+                                <th class="comment">Third Fit Comment</th>
                                 <th>Fourth Fit Send Date</th>
                                 <th>Fourth Fit Receive Date</th>
-                                <th>Fourth Fit Comment</th>
+                                <th class="comment">Fourth Fit Comment</th>
                                 <th>Fifth Fit Send Date</th>
                                 <th>Fifth Fit Receive Date</th>
-                                <th>Fifth Fit Comment</th>
+                                <th class="comment">Fifth Fit Comment</th>
                                 <th>Fit Sample Pass/Fail</th>
-                                <th>Fit Sample Approved By</th>
+                                <th>Fit Sample Pass/Fail By</th>
                                 <th>PP Send Date</th>
                                 <th>PP Receive Date</th>
                                 <th>PP Pass/Fail By</th>
@@ -234,10 +234,10 @@
                                 <th>File Receive Date</th>
                                 <th>PP Meeting Date</th>                                
                                 <th>Wash Pass/Fail Date</th>
-                                <th>Wash Comment</th>
+                                <th class="comment">Wash Comment</th>
                                 <th>Inline Date</th>
                                 <th>Final Inspection Date</th>
-                                <th>Orders Comment</th>
+                                <th class="comment">Orders Comment</th>
 
                                 <th>Technician</th>
 
@@ -264,7 +264,7 @@
                                             <td style="display:none;"><?php echo $all_informations[$i][0]->id_supply_info;
                                         ?></td>
                                             <td><?php echo $all_informations[$i][0]->department_name; ?></td>
-                                            <td><?php echo $all_informations[$i][0]->style_description; ?></td>
+                                            <td class="justy"><?php echo $all_informations[$i][0]->style_description; ?></td>
                                             <td><?php echo $all_informations[$i][0]->supplyer_name; ?></td>
 
                                             <td>
@@ -351,7 +351,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="fit_date"><?php
+                                            <td class="justy"><?php
                                                 for ($j = 0; $j < $max_supply_fit_register->id_supply_fit_register; $j++) {
                                                     if (!empty($all_informations[$i][1][$j])) {
                                                         if ($all_informations[$i][1][$j]->id_supply_fit_name == 1) {
@@ -362,7 +362,7 @@
                                                 ?>
                                             </td>
 
-                                            <td class="fit_date">
+                                            <td class="justy">
                                                 <?php
                                                 for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
                                                     if (!empty($all_informations[$i][1][$k])) {
@@ -394,7 +394,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="fit_date">
+                                            <td class="justy">
                                                 <?php
                                                 for ($k = 0; $k < $max_supply_fit_register->id_supply_fit_register; $k++) {
                                                     if (!empty($all_informations[$i][1][$k])) {
@@ -437,7 +437,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="fit_date">
+                                            <td class="justy">
                                                 <?php
                                                 for ($l = 0; $l < $max_supply_fit_register->id_supply_fit_register; $l++) {
                                                     if (!empty($all_informations[$i][1][$l])) {
@@ -481,7 +481,7 @@
                                                 }
                                                 ?>
                                             </td> 
-                                            <td class="fit_date">
+                                            <td class="justy">
                                                 <?php
                                                 for ($m = 0; $m < $max_supply_fit_register->id_supply_fit_register; $m++) {
                                                     if (!empty($all_informations[$i][1][$m])) {
@@ -525,7 +525,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="fit_date">
+                                            <td class="justy">
                                                 <?php
                                                 for ($n = 0; $n < $max_supply_fit_register->id_supply_fit_register; $n++) {
                                                     if (!empty($all_informations[$i][1][$n])) {
@@ -768,7 +768,7 @@
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
                                                 }
                                                 ?></td>
-                                            <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
+                                            <td class="justy"><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                                             <td><?php
                                                 if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970') {
                                                     echo '';
@@ -783,18 +783,18 @@
                                                     echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
                                                 }
                                                 ?></td>
-                                            <td><?php echo $all_informations[$i][0]->orders_comment; ?></td>
+                                            <td class="justy"><?php echo $all_informations[$i][0]->orders_comment; ?></td>
 
 
 
                                             <td><?php echo $all_informations[$i][0]->username; ?></td>
 
-                                            <td style="min-width: 200px;"><?php echo $all_informations[$i][0]->remark; ?></td>
+                                            <td class="justy" style="min-width: 250px;"><?php echo $all_informations[$i][0]->remark; ?></td>
                                             <td><?php
                                                 $files = explode(',', $all_informations[$i][0]->file_upload);
                                                 foreach ($files as $file) {
                                                     ?>
-                                    <a href="<?= base_url('file_upload/' . $file . '') ?>"  id="download"  target="blank"><?=$file?></a>
+                                                <a href="<?= base_url('file_upload/' . $file . '') ?>" download="" id="download"  target="blank"><?=$file?></a>
                                     
                                                     <!--echo '<a href ="'.base_url().''.$file.">'"."'</a>';-->
                                                     <?php
@@ -813,7 +813,7 @@
                                                 } else {
                                                     echo $all_informations[$i][0]->last_modified_qc;
                                                 } ?></td>
-                                            <td><a href="<?= site_url('supply_info/index/edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
+                                            <td><a href="<?= site_url('supply_info/supply_edit/' . $all_informations[$i][0]->id_supply_info); ?>" type="button" class="btn btn-success" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>
                                                 <a href="<?= site_url('search/search_delete/' . $all_informations[$i][0]->id_supply_info); ?>" onclick="return check();"type="button" class="btn btn-danger" aria-label="Left Align">
@@ -834,9 +834,7 @@
         </div>
 </div>
 
-</section>
-<!-- /.content -->
-</div>
+
 <!-- /.content-wrapper -->
 
 <?php include_once 'footer.php'; ?>
@@ -852,6 +850,12 @@
 
     td {
         text-align: center;
+    }
+    .comment{
+        min-width: 250px!important;
+    }
+    .justy{
+        text-align: justify;
     }
 </style>
 <script type="text/javascript">

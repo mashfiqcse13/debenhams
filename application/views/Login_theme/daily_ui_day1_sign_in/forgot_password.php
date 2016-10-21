@@ -46,9 +46,9 @@ $login = array(
             </div>
             <div class="login-box animated fadeInUp">
                 <div class="box-header">
-                    <h2>Forget User/Password</h2>
+                    <h2>Forgotten account</h2>
                 </div>
-                <p>An email has been sent to the address provided.</p>
+                <p>An email will be sent to your provided <br /> address if you are registered.</p>
 <?php
 echo form_open('login/forgot_password', $form_attribute);
 echo form_input($login);
@@ -60,7 +60,7 @@ echo form_input($login);
 
             <section class="about">                
                 <p class="about-author">
-                    &copy; <?= date("Y") ?> <?= anchor($SITE['website'], $SITE['name'], 'target="_blank"') ?>
+                    &copy; <?= date("Y") ?> <?=$SITE['name']?>
                     Developed by <?= anchor($DEVELOPER['website'], $DEVELOPER['name'], 'target="_blank"') ?>  
                 </p>
             </section>

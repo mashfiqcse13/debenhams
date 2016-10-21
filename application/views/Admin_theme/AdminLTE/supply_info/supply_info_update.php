@@ -416,7 +416,7 @@
                                             foreach ($files as $file) {
                                                 if (($file)) {
                                                     ?>
-                                                    <span><?= $file ?> <i class = "fa fa-times delete"></i></span>  <br /> 
+                                                    <span><?= $file ?><i class = "fa fa-times delete"></i></span>  <br /> 
                                                     <!--<input type="text" id="prev" value="<?php echo $file; ?>"/>-->
                                                     <?php
                                                 }

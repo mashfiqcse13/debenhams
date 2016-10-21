@@ -35,6 +35,9 @@
             body {
                 text-transform: capitalize;
             }
+                .fa.fa-times.delete {
+                    margin-left: 5px;
+                }
         </style>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

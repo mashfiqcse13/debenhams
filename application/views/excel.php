@@ -60,7 +60,6 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
             <th>Data Entry Date of QC</th>
             <th>Last Modified by Technician</th>
             <th>Last Modified by QC</th>
-            <th>Actions</th>
 
         </tr>
     </thead>

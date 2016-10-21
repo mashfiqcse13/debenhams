@@ -416,7 +416,7 @@
                                             foreach ($files as $file) {
                                                 if (($file)) {
                                                     ?>
-                                                    <span><?= $file ?><i class = "fa fa-times delete"></i></span>  <br /> 
+                                            <span style="text-align:center;"><?= $file ?><i class = "fa fa-times delete"></i></span>  <br /> 
                                                     <!--<input type="text" id="prev" value="<?php echo $file; ?>"/>-->
                                                     <?php
                                                 }
@@ -449,7 +449,6 @@
     <style type="text/css">
         .delete{
             cursor: pointer;
-
         }
     </style>
     <script type="text/javascript">

@@ -794,7 +794,7 @@
                                                 $files = explode(',', $all_informations[$i][0]->file_upload);
                                                 foreach ($files as $file) {
                                                     ?>
-                                                <a href="<?= base_url('file_upload/' . $file . '') ?>" download="" id="download"  target="blank"><?=$file?></a>
+                                                <a href="<?= base_url('file_upload/' . $file . '') ?>" download="" id="download" style="text-align: left;"  target="blank"><?=$file?></a><br />
                                     
                                                     <!--echo '<a href ="'.base_url().''.$file.">'"."'</a>';-->
                                                     <?php

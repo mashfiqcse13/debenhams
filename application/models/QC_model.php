@@ -15,6 +15,31 @@ class QC_model extends CI_Model {
 
     //put your code here
     function select_all_style_no() {
+//        $this->db->select('*');
+//        $this->db->from('supply_style_no');
+//        $query = $this->db->get()->result();
+//        for ($i = 0; $i < count($query); $i++) {
+//            $id = $query[$i]->id_supply_style_no;
+//            $data = $this->qc_info($id);
+//            if (empty($data)) {
+//                $this->db->select('*');
+//                $this->db->from('supply_style_no');
+//                $this->db->where('id_supply_style_no', $id);
+//                $sql[] = $this->db->get()->row();
+//            }
+//        }
+//        if(!empty($sql)){
+//            return $sql;
+//        }else{
+//            return '';
+//        }
+        $this->db->distinct('id_supply_style_no');
+        $this->db->from('qc_info');
+        $this->db->join('supply_style_no','qc_info.id_supply_style_no = supply_style_no.id_supply_style_no','left');
+        return $this->db->get()->result();
+    }
+    
+    function add_new_select_all_style_no(){
         $this->db->select('*');
         $this->db->from('supply_style_no');
         $query = $this->db->get()->result();

@@ -51,7 +51,7 @@ class Qc_dashboard extends CI_Controller {
     }
 
     function add_new() {
-        $data['all_style_no'] = $this->QC_model->select_all_style_no();
+        $data['all_style_no'] = $this->QC_model->add_new_select_all_style_no();
 //        echo '<pre>';print_r($data);exit();
         $data['theme_asset_url'] = base_url() . $this->config->item('THEME_ASSET');
         $data['Title'] = 'Add New QC';

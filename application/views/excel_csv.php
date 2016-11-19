@@ -389,49 +389,32 @@ if (isset($all_informations)) {
                 echo 'Bangladesh';
             }
             echo ",";
-
-            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '01/01/1970') {
-                echo '';
-            } else {
-                echo date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));
-            }
+            
+            echo (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));
+            
+            echo ",";
+            
+            echo (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));;
+            
             echo ",";
 
-            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '01/01/1970') {
-                echo '';
-            } else {
-                echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
-            }
+            echo (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
+            
             echo ",";
 
-            if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '01/01/1970') {
-                echo '';
-            } else {
-                echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
-            }
-            echo ",";
-
-            if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '01/01/1970') {
-                echo '';
-            } else {
-                echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
-            }
+            echo (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
+            
+            
             echo ",";
             echo $all_informations[$i][0]->wash_comment;
             echo ",";
 
-            if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970') {
-                echo '';
-            } else {
-                echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
-            }
+            echo (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
+            
             echo ",";
-
-            if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '01/01/1970') {
-                echo '';
-            } else {
-                echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
-            }
+            
+            echo (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
+            
             echo ",";
             echo $all_informations[$i][0]->orders_comment;
             echo ",";

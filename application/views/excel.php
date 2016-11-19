@@ -548,49 +548,25 @@ header("Content-disposition: attachment; filename=spreadsheet.xls");
                             ?>
                         </td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '01/01/1970') {
-                                echo '';
-                            } else {
-                                echo date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));
-                            }
+                            echo (date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations[$i][0]->file_hand_over_date));
                             ?>
                         </td>
 
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '01/01/1970') {
-                                echo '';
-                            } else {
-                                echo date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));
-                            }
+                            echo (date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations[$i][0]->file_receive_date));;
                             ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '01/01/1970') {
-                                echo '';
-                            } else {
-                                echo date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
-                            }
+                            echo (date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations[$i][0]->pp_meeting_date));
                             ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '01/01/1970') {
-                                echo '';
-                            } else {
-                                echo date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
-                            }
+                            echo (date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations[$i][0]->wash_approval_date));
                             ?></td>
                         <td><?php echo $all_informations[$i][0]->wash_comment; ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970') {
-                                echo '';
-                            } else {
-                                echo date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
-                            }
+                            echo (date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->inline_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations[$i][0]->inline_date));
                             ?></td>
                         <td><?php
-                            if (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '01/01/1970') {
-                                echo '';
-                            } else {
-                                echo date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
-                            }
+                            echo (date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations[$i][0]->final_inspection_date));
                             ?></td>
                         <td><?php echo $all_informations[$i][0]->orders_comment; ?></td>
 

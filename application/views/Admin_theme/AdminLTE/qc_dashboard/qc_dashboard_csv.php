@@ -8,19 +8,19 @@ echo " Style No,File Hand Over Date,File Receive Date,P.P Meeting Date,Wash Appr
         
              echo $all_informations->style_no;
              echo ",";
-             echo date('d/m/Y', strtotime($all_informations->file_hand_over_date));
+             echo (date('d/m/Y', strtotime($all_informations->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->file_hand_over_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations->file_hand_over_date));
              echo ",";
-             echo date('d/m/Y', strtotime($all_informations->file_receive_date));
+             echo (date('d/m/Y', strtotime($all_informations->file_receive_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->file_receive_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations->file_receive_date));
              echo ",";
-             echo date('d/m/Y', strtotime($all_informations->pp_meeting_date));
+             echo (date('d/m/Y', strtotime($all_informations->pp_meeting_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->pp_meeting_date)) == '01/01/1970')? '' : date('d/m/Y', strtotime($all_informations->pp_meeting_date));
              echo ",";
-             echo date('d/m/Y', strtotime($all_informations->wash_approval_date));
+             echo (date('d/m/Y', strtotime($all_informations->wash_approval_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->wash_approval_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations->wash_approval_date));
              echo ",";
              echo $all_informations->wash_comment;
              echo ",";
-             echo date('d/m/Y', strtotime($all_informations->inline_date));
+             echo (date('d/m/Y', strtotime($all_informations->inline_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->inline_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations->inline_date));
              echo ",";
-             echo date('d/m/Y', strtotime($all_informations->final_inspection_date));
+             echo (date('d/m/Y', strtotime($all_informations->final_inspection_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->final_inspection_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations->final_inspection_date));
              echo ",";
              echo $all_informations->orders_comment;
              echo ",";

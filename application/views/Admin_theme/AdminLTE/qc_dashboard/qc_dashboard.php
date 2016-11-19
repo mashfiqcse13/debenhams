@@ -124,13 +124,13 @@
                                     <tr>
                                         <td class="nowrap"><?php echo $all_informations->style_no; ?></td>
                                         <td style="display:none;"><?php echo $all_informations->id_qc_info; ?></td>
-                                        <td class="nowrap"><?php echo (date('d/m/Y', strtotime($all_informations->file_hand_over_date)) == '30/11/-0001')? '' : date('d/m/Y', strtotime($all_informations->file_hand_over_date)); ?></td>
-                                <td class="nowrap"><?php echo (date('d/m/Y', strtotime($all_informations->file_receive_date)) == '30/11/-0001')? '' : date('d/m/Y', strtotime($all_informations->file_receive_date)); ?></td>
-                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->pp_meeting_date)) == '30/11/-0001')? '' : date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
-                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->wash_approval_date)) == '30/11/-0001')? '' :date('d/m/Y', strtotime($all_informations->wash_approval_date)); ?></td>
+                                        <td class="nowrap"><?php echo (date('d/m/Y', strtotime($all_informations->file_hand_over_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->file_hand_over_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations->file_hand_over_date)); ?></td>
+                                            <td class="nowrap"><?php echo (date('d/m/Y', strtotime($all_informations->file_receive_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->file_receive_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations->file_receive_date)); ?></td>
+                                         <td><?php echo (date('d/m/Y', strtotime($all_informations->pp_meeting_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->pp_meeting_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations->pp_meeting_date)); ?></td>
+                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->wash_approval_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->wash_approval_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations->wash_approval_date)); ?></td>
                                         <td class="justy"><?php echo $all_informations->wash_comment; ?></td>
-                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->inline_date)) == '30/11/-0001')? '' :date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
-                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->final_inspection_date)) == '30/11/-0001') ? '' : date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
+                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->inline_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->inline_date)) == '01/01/1970')? '' :date('d/m/Y', strtotime($all_informations->inline_date)); ?></td>
+                                        <td><?php echo (date('d/m/Y', strtotime($all_informations->final_inspection_date)) == '30/11/-0001' || date('d/m/Y', strtotime($all_informations->final_inspection_date)) == '01/01/1970') ? '' : date('d/m/Y', strtotime($all_informations->final_inspection_date)); ?></td>
                                         <td class="justy"><?php echo $all_informations->orders_comment; ?></td>
                                         <td><?php echo $all_informations->date; ?></td>
                                         <td><?php if($all_informations->last_modified_qc=='0000-00-00 00:00:00' || $all_informations->last_modified_qc=='11/30/-0001'){echo '';}else{echo $all_informations->last_modified_qc;} ?></td>

@@ -36,16 +36,9 @@ include_once 'header.php'; ?>
                     <div class="col-md-12">
                     <div class="box box-title">
                         <h2 class="text-center page-header">Total Order Analysis</h2>
-                        
-
-                         
-                        <table class="table table-bordered text-blue" style="margin-left: 50px;max-width:600px;">
-                            <tr>
-                                <th>Total Finished Order</th>
-                                <th><?=$order_analysis['total_finish_order'];?></th>
-                                <th>Unfinished Order</th>
-                                <th><?=$order_analysis['unfinished_order'];?></th>
-                            </tr>
+                        <h4 class="text-center text-blue">Fit Sample Result Unfinished Order :  <?=$order_analysis['unfinished_order'];?></h4>
+                        <h4 class="text-center text-blue">Fit Sample Result Finished Order :  <?=$order_analysis['total_finish_order'];?></h4><hr>
+                        <table class="table table-bordered text-blue table-responsive table-striped" style="margin-left: 50px;max-width:600px;">
                             <tr>
                                 <td>First Fit Sample Pass</td>
                                 <td><?=$order_analysis['count_pass'][1];?></td>

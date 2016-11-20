@@ -490,7 +490,7 @@ class Performance_model extends CI_Model  {
     
 
     
-    function total_order_count($id,$date,$name){
+    function total_order_count($id,$date,$name=''){
         $this->load->model('common_model'); 
         if(empty($date) || $date==''){
             $date_range='';
@@ -504,6 +504,16 @@ class Performance_model extends CI_Model  {
         $total=$this->row_count($con);
         return $total;
     }
+    
+        
+    function total_order_count_supplier($id){
+        $this->load->model('common_model'); 
+           $sql ="SELECT count(*) as total FROM `supply_info` WHERE id_supplyer=$id and sample_result between 2 and 3";
+        $result =$this->db->query($sql)->row();       
+        return $result->total;
+    }
+    
+    
     
     function unpased_order_count($id,$date,$name){
         $this->load->model('common_model');

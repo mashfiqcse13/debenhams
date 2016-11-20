@@ -70,7 +70,8 @@ for($i=0;$i < $supplyer_count; $i++) {
                     $fitr=$fitr*1;
                 }               
                 $fit_total+=$fitr; 
-                $order_count++;
+                $order_count=$this->performance_model->total_order_count_supplier($fit['id_supplyer'][$j]);
+               
         }
         
     }
@@ -141,16 +142,17 @@ for($i=0;$i < $supplyer_count; $i++) {
                                 <div id="piechart" style="width: 100%; height: 500px;"></div>
                             </div>
                             <div class="col-md-4">
-                                <table class="table table-bordered" style="margin-left: -15px">
+                                <table class="table table-bordered table-striped" style="margin-left: -15px">
                                     <tr>
                                         <th>Name Of Supplier</th>
-                                        <th>Toatal Order</th>
+                                        <th>Total Order of <br> Checked Fit Sample</th>
                                         
                                     </tr>
                                 <?php
                             $i=0;
-                            
+                            $sum_total_c=0;
                             for($i=0;$i<$fit_result_count;$i++){
+                             $sum_total_c+=$fit_result[$i]['order_count'];
                         ?>
                             <tr>
                                 <td> <?=$fit_result[$i]['name'];?></td><td><?=$fit_result[$i]['order_count'];?></td> 
@@ -158,6 +160,7 @@ for($i=0;$i < $supplyer_count; $i++) {
                            <?php 
                             
                             }
+                            echo "<td class=\"text-bold\">Total </td><td class=\"text-bold\">$sum_total_c</td>";
                             
                         ?>
                             </table>

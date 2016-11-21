@@ -188,21 +188,39 @@ class Supply_info extends CI_Controller {
         if ($_FILES['file_upload']['error'][0] == '0') {
             $data['file_upload'] = implode(",", $this->do_upload($_FILES));
         }
-        $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
-        $supply_info_id = $this->Supply_info_model->save_info('supply_info', $data);
-
-        $fit['id_supply_info'] = $supply_info_id;
-        $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
-        $sample_approved = $this->input->post('sample_approved');
-//        print_r($sample_approved);exit();
-        if (!empty($sample_approved)) {
-            $fit['sample_approved'] = $sample_approved;
+        if (empty($this->input->post('file_hand_over_date'))) {
+            $data['file_hand_over_date'] = $this->input->post('file_hand_over_date');
+        } else {
+            $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
         }
-        $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
-        $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
-        $fit['fit_comment'] = $this->input->post('fit_comment');
+//        
+        $supply_info_id = $this->Supply_info_model->save_info('supply_info', $data);
+//        die($this->input->post('supply_fit_register_date_send'));
+        if (empty($this->input->post('supply_fit_register_date_send')) && empty($this->input->post('supply_fit_register_date_receive'))) {
+            $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Saved!</p></div>';
+            $this->session->set_userdata($sdata);
+            redirect('search');
+        } else {
+            $fit['id_supply_info'] = $supply_info_id;
+            $fit['id_supply_fit_name'] = $this->input->post('id_supply_fit_name');
+            $sample_approved = $this->input->post('sample_approved');
+
+//        print_r($sample_approved);exit();
+            if (!empty($sample_approved)) {
+                $fit['sample_approved'] = $sample_approved;
+            }
+            if (!empty($this->input->post('supply_fit_register_date_send'))) {
+                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_send')));
+            }
+            if (!empty($this->input->post('supply_fit_register_date_receive'))) {
+                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('supply_fit_register_date_receive')));
+            }
+
+
+            $fit['fit_comment'] = $this->input->post('fit_comment');
 //        echo '<pre>'; print_r($fit);exit();
-        $this->Supply_info_model->save_info('supply_fit_register', $fit);
+            $this->Supply_info_model->save_info('supply_fit_register', $fit);
+        }
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Saved!</p></div>';
         $this->session->set_userdata($sdata);
         redirect('search');
@@ -210,7 +228,7 @@ class Supply_info extends CI_Controller {
 
     function update_info() {
         $id = $this->input->post('id_supply_info');
-        $prev_file = $this->db->get_where('supply_info',array('id_supply_info' => $id))->row();
+        $prev_file = $this->db->get_where('supply_info', array('id_supply_info' => $id))->row();
 //         echo '<pre>'; print_r($_FILES);exit();
         $data['id_supply_session'] = $this->input->post('id_supply_session');
         $data['id_department'] = $this->input->post('id_department');
@@ -234,7 +252,9 @@ class Supply_info extends CI_Controller {
 //        echo '<pre>';
 //        print_r($data['file_upload']);
 //        exit();
-        $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
+        if (!empty($this->input->post('file_hand_over_date'))) {
+            $data['file_hand_over_date'] = date('Y-m-d H:i:s', strtotime($this->input->post('file_hand_over_date')));
+        }
         $supply_info_id = $this->Supply_info_model->update_info('supply_info', 'id_supply_info', $data, $id);
 //        echo '<pre>'; print_r($supply_info_id);exit();
         $id_fit = $this->input->post('id_supply_fit_register');
@@ -242,49 +262,81 @@ class Supply_info extends CI_Controller {
             $fit['id_supply_info'] = $supply_info_id->id_supply_info;
             $fit['id_supply_fit_name'] = $this->input->post('id_fit');
             if ($fit['id_supply_fit_name'] == 1) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('first_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_send')));
+                }
+                if (empty($this->input->post('first_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_receive')));
+                }
                 $fit['fit_comment'] = $this->input->post('first_fit_comment');
             }if ($fit['id_supply_fit_name'] == 2) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('second_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('second_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('second_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('second_supply_fit_register_date_send')));
+                }
+                if (!empty($this->input->post('second_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('second_supply_fit_register_date_receive')));
+                }
                 $fit['fit_comment'] = $this->input->post('second_fit_comment');
             }if ($fit['id_supply_fit_name'] == 3) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('third_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('third_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('third_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('third_supply_fit_register_date_send')));
+                }
+                if (!empty($this->input->post('third_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('third_supply_fit_register_date_receive')));
+                }
                 $fit['fit_comment'] = $this->input->post('third_fit_comment');
             }if ($fit['id_supply_fit_name'] == 4) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('fourth_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('fourth_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('fourth_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('fourth_supply_fit_register_date_send')));
+                }
+                if (!empty($this->input->post('fourth_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('fourth_supply_fit_register_date_receive')));
+                }
                 $fit['fit_comment'] = $this->input->post('fourth_fit_comment');
             }if ($fit['id_supply_fit_name'] == 5) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('fifth_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('fifth_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('fifth_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('fifth_supply_fit_register_date_send')));
+                }
+                if (!empty($this->input->post('fifth_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('fifth_supply_fit_register_date_receive')));
+                }
                 $fit['fit_comment'] = $this->input->post('fifth_fit_comment');
             }if ($fit['id_supply_fit_name'] == 6) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('dev_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('dev_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('dev_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('dev_supply_fit_register_date_send')));
+                }if (!empty($this->input->post('dev_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('dev_supply_fit_register_date_receive')));
+                }
                 $sample_approved = $this->input->post('dev_sample_approved');
                 if (!empty($sample_approved)) {
                     $fit['sample_approved'] = $sample_approved;
                 }
             }if ($fit['id_supply_fit_name'] == 7) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('pp_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('pp_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('pp_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('pp_supply_fit_register_date_send')));
+                }if (!empty($this->input->post('pp_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('pp_supply_fit_register_date_receive')));
+                }
                 $sample_approved = $this->input->post('pp_sample_approved');
                 if (!empty($sample_approved)) {
                     $fit['sample_approved'] = $sample_approved;
                 }
             }if ($fit['id_supply_fit_name'] == 8) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('wearer_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('wearer_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('wearer_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('wearer_supply_fit_register_date_send')));
+                }if (!empty($this->input->post('wearer_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('wearer_supply_fit_register_date_receive')));
+                }
                 $sample_approved = $this->input->post('wearer_sample_approved');
                 if (!empty($sample_approved)) {
                     $fit['sample_approved'] = $sample_approved;
                 }
             }if ($fit['id_supply_fit_name'] == 9) {
-                $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('gold_supply_fit_register_date_send')));
-                $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('gold_supply_fit_register_date_receive')));
+                if (!empty($this->input->post('gold_supply_fit_register_date_send'))) {
+                    $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('gold_supply_fit_register_date_send')));
+                }if (!empty($this->input->post('gold_supply_fit_register_date_receive'))) {
+                    $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('gold_supply_fit_register_date_receive')));
+                }
                 $sample_approved = $this->input->post('gold_sample_approved');
                 if (!empty($sample_approved)) {
                     $fit['sample_approved'] = $sample_approved;
@@ -296,9 +348,21 @@ class Supply_info extends CI_Controller {
             $id_supply_fit_register = $this->Supply_info_model->check_fit($fit['id_supply_info'], $fit['id_supply_fit_name']);
 //                    die("<pre>" . var_dump($id_supply_fit_register));
             if ($id_supply_fit_register != FALSE) {
-                $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_supply_fit_register);
+                if (empty($fit['supply_fit_register_date_send']) && empty($fit['supply_fit_register_date_receive'])) {
+                    $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
+                    $this->session->set_userdata($sdata);
+                    redirect('search');
+                } else {
+                    $this->Supply_info_model->update_info('supply_fit_register', 'id_supply_fit_register', $fit, $id_supply_fit_register);
+                }
             } else {
-                $this->Supply_info_model->save_info('supply_fit_register', $fit);
+                if (empty($fit['supply_fit_register_date_send']) && empty($fit['supply_fit_register_date_receive'])) {
+                    $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
+                    $this->session->set_userdata($sdata);
+                    redirect('search');
+                } else {
+                    $this->Supply_info_model->save_info('supply_fit_register', $fit);
+                }
             }
         }
         $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Data is Successfully Updated!</p></div>';
@@ -367,8 +431,8 @@ class Supply_info extends CI_Controller {
                 $sdata['message'] = '<div class = "alert alert-success" id="message"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> File Type Is Not Supported!</p></div>';
                 $this->session->set_userdata($sdata);
 //                redirect('search');
-                 echo '<pre>';
-                 print_r($error);
+                echo '<pre>';
+                print_r($error);
             } else {
                 $fdata['upload_path'] = $this->upload->data();
                 $file_link[] = $fdata['upload_path']['file_name'];

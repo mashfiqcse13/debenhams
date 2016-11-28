@@ -456,7 +456,9 @@
             $('#message').fadeOut();
         }, 1000);
         $("#span").hide();
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+            autoclose: true,
+        });
         $(".select2").select2();
         //    $('#approved_by').hide();
 

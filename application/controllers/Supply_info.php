@@ -265,7 +265,7 @@ class Supply_info extends CI_Controller {
                 if (!empty($this->input->post('first_supply_fit_register_date_send'))) {
                     $fit['supply_fit_register_date_send'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_send')));
                 }
-                if (empty($this->input->post('first_supply_fit_register_date_receive'))) {
+                if (!empty($this->input->post('first_supply_fit_register_date_receive'))) {
                     $fit['supply_fit_register_date_receive'] = date('Y-m-d H:i:s', strtotime($this->input->post('first_supply_fit_register_date_receive')));
                 }
                 $fit['fit_comment'] = $this->input->post('first_fit_comment');
